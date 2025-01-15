@@ -1,0 +1,133 @@
+<template>
+<div>
+  <div id="loader" class="box">
+      <div class="center">
+        <div style="margin-right: 10px;">
+          <svg viewBox="25 25 50 50" class="container">
+            <circle cx="50" cy="50" r="20" class="loader"></circle>
+          </svg>
+        </div>
+        <div style="margin-left: 10px;">
+          <p class="text">
+          <span class="letter letter1">L</span>
+          <span class="letter letter2">o</span>
+          <span class="letter letter3">a</span>
+          <span class="letter letter4">d</span>
+          <span class="letter letter5">i</span>
+          <span class="letter letter6">n</span>
+          <span class="letter letter7">g</span>
+          <span class="letter letter8">.</span>
+          <span class="letter letter9">.</span>
+          <span class="letter letter10">.</span>
+          </p>
+        </div>
+      </div>
+      
+    </div>
+</div>
+</template>
+
+<style>
+  .box{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 999;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .container {
+    width: 3.25em;
+    transform-origin: center;
+    animation: rotate4 2s linear infinite;
+  }
+  .loader {
+    fill: none;
+    stroke: #7C57F4;
+    stroke-width: 8;
+    stroke-dasharray: 2, 200;
+    stroke-dashoffset: 0;
+    stroke-linecap: round;
+    animation: dash4 1.5s ease-in-out infinite;
+  }
+  @keyframes rotate4 {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes dash4 {
+    0% {
+      stroke-dasharray: 1, 200;
+      stroke-dashoffset: 0;
+    }
+
+    50% {
+      stroke-dasharray: 90, 200;
+      stroke-dashoffset: -35px;
+    }
+
+    100% {
+      stroke-dashoffset: -125px;
+    }
+  }
+  .text {
+    color: black;
+    font-weight: bolder;
+  }
+  @keyframes letter {
+    0% {
+      font-size: 30px;
+    }
+
+    50% {
+      font-size: 40px;
+    }
+
+    100% {
+      font-size: 30px;
+    }
+  }
+  .letter {
+    animation: letter 1.7s infinite;
+  }
+  .letter1 {
+    animation-delay: 0s;
+  }
+  .letter2 {
+    animation-delay: -1.7s;
+  }
+  .letter3 {
+    animation-delay: -1.5s;
+  }
+  .letter4 {
+    animation-delay: -1.3s;
+  }
+  .letter5 {
+    animation-delay: -1.1s;
+  }
+  .letter6 {
+    animation-delay: -0.9s;
+  }
+  .letter7 {
+    animation-delay: -0.7s;
+  }
+  .letter8 {
+    animation-delay: -0.5s;
+  }
+  .letter9 {
+    animation-delay: -0.3s;
+  }
+  .letter10 {
+    animation-delay: -0.1s;
+  }
+</style>
