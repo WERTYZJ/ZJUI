@@ -184,9 +184,15 @@ a{
   display: flex;
   justify-content: space-between;
   position: relative;
+  transition: all 0.2s ease-in-out;
 }
 .menuFather:hover{
   background-color:var(--ZJ-main-hover);
+  color:var(--ZJ-default-main);
+}
+.menuFather:active{
+  background-color:var(--ZJ-default-main-hover);
+  color:var(--ZJ-default-main);
 }
 .menuFather-icon{
   display: flex;
