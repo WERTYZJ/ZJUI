@@ -1,6 +1,12 @@
 <template>  
   <div :class="{ 'custom-select':this.size==null, 'Tutor-Wallet': this.size=='Tutor-Wallet','size40': this.size=='40',}">  
-    <div class="selected" @click="toggleDropdown"><a>{{ selectedText || label }}</a> <img ref="img" src="../assets/ui/select.svg" alt=""></div> 
+    <div class="selected" @click="toggleDropdown">
+      <a>{{ selectedText || label }}</a>
+      <ZJSvgIcons icon="select"
+        :class="{'ZJRotate-icon-open': isIconOpen, 'ZJRotate-icon-close': !isIconOpen}"
+      ></ZJSvgIcons>
+      <!-- <img ref="img" src="../assets/ui/select.svg" alt=""> -->
+    </div> 
     <Transition name="Select"> 
     <div class="dropdown" v-if="isDropdownVisible">  
       <ul>  
@@ -39,7 +45,8 @@ export default {
   data() {  
     return {  
       selectedText: this.value ? this.findOptionText(this.value) : '',  
-      isDropdownVisible: false  
+      isDropdownVisible: false,
+      isIconOpen:false,
     };  
   },  
   mounted() {  
@@ -54,15 +61,15 @@ export default {
       // 检查点击是否发生在下拉框或其子元素之外  
       if (!this.$el.contains(e.target) && this.isDropdownVisible) {  
         this.isDropdownVisible = false;  
-        this.$refs.img.style.transform = 'rotate(0deg)';  
+        this.isIconOpen = false;
       }  
     }, 
     toggleDropdown() {  
       this.isDropdownVisible = !this.isDropdownVisible;
       if(this.isDropdownVisible===true){
-        this.$refs.img.style.transform = 'rotate(180deg)'; 
+        this.isIconOpen = true;
       }else if(this.isDropdownVisible===false){
-        this.$refs.img.style.transform = 'rotate(0deg)'; 
+        this.isIconOpen = false;
       }
        
     },  
@@ -70,7 +77,7 @@ export default {
       this.$emit('input',item.name || item.value || item);  
       this.selectedText = item.value || item;  
       this.isDropdownVisible = false;  
-      this.$refs.img.style.transform = 'rotate(0deg)'; 
+      this.isIconOpen = false;
     },  
     findOptionText(value) {  
       return this.options.find(option => option.value === value)?.text || '';  

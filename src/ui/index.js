@@ -6,7 +6,9 @@ import ZJSvgIcons from './ZJSvgIcons/index.vue';
 import ZJButton from './ZJButton/index.vue';
 import ZJMenu from "./ZJMenu/index.vue";
 import ZJProgress from "./ZJProgress/index.vue";
-import ZJRate from "./ZJRate/index.vue"
+import ZJRate from "./ZJRate/index.vue";
+import ZJPagination from "./ZJPagination/index.vue";
+import ZJSelect from "./ZJSelect/index.vue"
 // 导入函数
 import ZJMessage from "./ZJMessage/ZJMessage.js";
 
@@ -19,7 +21,9 @@ const components = {
   ZJButton,
   ZJMenu,
   ZJProgress,
-  ZJRate
+  ZJRate,
+  ZJPagination,
+  ZJSelect,
 };
 
 // 插件对象

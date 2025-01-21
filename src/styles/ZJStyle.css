@@ -221,7 +221,7 @@ video {
   margin: 4px 0px;
   padding: 2px 5px;
   word-break: normal;
-  transition: all 0.2s ease-in-out;
+  transition:var(--ZJ-main-transition);
   border-radius:5px;
   color: var(--ZJ-main-text-color);
 }

@@ -184,7 +184,7 @@ a{
   display: flex;
   justify-content: space-between;
   position: relative;
-  transition: all 0.2s ease-in-out;
+  transition:var(--ZJ-main-transition);
 }
 .menuFather:hover{
   background-color:var(--ZJ-main-hover);
@@ -203,6 +203,7 @@ a{
   overflow: hidden;
 }
 .selected,.selected a,.selected:hover{
+  transition:var(--ZJ-main-transition);
   background-color:var(--ZJ-default-main-hover);
   color:var(--ZJ-default-main);
 }

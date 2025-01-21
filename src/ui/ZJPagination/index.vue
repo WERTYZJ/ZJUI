@@ -1,55 +1,57 @@
 <template>
- 
-  <div class="p">
-    <div class="p-box">
-      <div style="position: relative;">
-        <div class="p-left" @click="showDropdown" ref="showPageCount">
-          <a>{{ everyPageCount }} /page</a>
-          <img src="../assets/tutor-wallet-page.svg" alt="" ref="img">
-        </div>
-      
-        <Transition name="Select"> 
-        <div class="dropdown" v-if="showPageCount">  
-          <ul>  
-            <li v-for="item in options" :key="item.value" @click="selectCount(item)">  
-              {{ item.value || item }}  
-            </li>  
-          </ul>  
-        </div> 
-        </Transition>
+  <div class="p-box">
+    <div style="position: relative;">
+      <div class="p-left" @click="showDropdown" ref="showPageCount">
+        <a>{{ everyPageCount2 }} /page</a>
+        <ZJSvgIcons icon="select"
+         :class="{'ZJRotate-icon-open': isIconOpen, 'ZJRotate-icon-close': !isIconOpen}"
+        ></ZJSvgIcons>
       </div>
-      <div class="p-right">
-        <div class="p-right-box" @click="PreviousPage()"><img src="../assets/tutor-wallet-left.svg" alt=""></div>
+    
+      <Transition name="Select"> 
+      <div class="dropdown" v-if="showPageCount">  
+        <ul>  
+          <li v-for="item in options" :key="item.value" @click="selectCount(item)">  
+            {{ item.value || item }}  
+          </li>  
+        </ul>  
+      </div> 
+      </Transition>
+    </div>
+    <div class="p-right">
+      <div class="p-right-box" @click="PreviousPage()">
+        <ZJSvgIcons icon="select" style="transform:rotate(90deg);"></ZJSvgIcons>
+      </div>
 
-        <div class="right-box" v-if="this.pageCount<=4">
-          <div :class="{'p-right-box':true,'p-right-box-select':this.selectPageCount==item}" 
-          v-for="item in pageCount" :key="item" @click="clickPage(item)">{{ item }}</div>
-        </div>
+      <div class="right-box" v-if="this.pageCount<=4">
+        <div :class="{'p-right-box':true,'p-right-box-select':this.selectPageCount==item}" 
+        v-for="item in pageCount" :key="item" @click="clickPage(item)">{{ item }}</div>
+      </div>
 
-        <div class="right-box" v-if="this.pageCount > 4">
-          <div 
-            v-for="item in visiblePageNumbers" 
-            :key="item" 
-            :class="{'p-right-box': true, 'p-right-box-select': this.selectPageCount === item}" 
-            @click="clickPage(item)"
-          >
-            {{ item }}
-          </div>
-          <div class="p-right-box-more" v-if="lastPageVisible" >···</div>
-          <div 
-            v-if="lastPageVisible" 
-            :class="{'p-right-box': true, 'p-right-box-select': this.selectPageCount === lastPage}" 
-            @click="clickPage(lastPage)"
-          >
-            {{ lastPage }}
-          </div>
+      <div class="right-box" v-if="this.pageCount > 4">
+        <div 
+          v-for="item in visiblePageNumbers" 
+          :key="item" 
+          :class="{'p-right-box': true, 'p-right-box-select': this.selectPageCount === item}" 
+          @click="clickPage(item)"
+        >
+          {{ item }}
         </div>
-        
-        <div class="p-right-box" @click="NextPage()"><img src="../assets/tutor-wallet-right.svg" alt=""></div>
+        <div class="p-right-box-more" v-if="lastPageVisible" >···</div>
+        <div 
+          v-if="lastPageVisible" 
+          :class="{'p-right-box': true, 'p-right-box-select': this.selectPageCount === lastPage}" 
+          @click="clickPage(lastPage)"
+        >
+          {{ lastPage }}
+        </div>
+      </div>
+      
+      <div class="p-right-box" @click="NextPage()">
+        <ZJSvgIcons icon="select" style="transform:rotate(270deg);"></ZJSvgIcons>
       </div>
     </div>
   </div>
-
 </template>
 
 <script>
@@ -58,16 +60,25 @@ export default{
   props: {  
     allDataCount: {  
       type: [String, Number],  
-      default: null  
+      default:null  
+    },
+    everyPageCount: {  
+      type: [Number],  
+      default:10,  
+    },
+    maxPageCount: {  
+      type: [Number],  
+      default:null, 
     },
   },  
   data() {
     return {
+      everyPageCount2:null,
       showPageCount: false,
       options:this.Count(),
-      everyPageCount:10,
       pageCount:'',
       selectPageCount:1,
+      isIconOpen:false,
     }
   },
   watch: {
@@ -76,7 +87,7 @@ export default{
         this.MountedPage(); // 当 allDataCount 更新时，重新计算分页
       }
     },
-    everyPageCount(){
+    everyPageCount2(){
       this.MountedPage();
     }
   },
@@ -99,7 +110,10 @@ export default{
   },
   mounted() {  
     document.addEventListener('click', this.handleOutsideClick); 
-    this.MountedPage() 
+    if(this.everyPageCount){
+      this.everyPageCount2 = this.everyPageCount
+    }
+    this.MountedPage();
   },  
   beforeUnmount() {  
     document.removeEventListener('click', this.handleOutsideClick);  
@@ -109,7 +123,7 @@ export default{
       // 检查点击是否发生在下拉框或其子元素之外  
       if (!this.$refs.showPageCount.contains(e.target) && this.showPageCount) {  
         this.showPageCount = false;  
-        this.$refs.img.style.transform = 'rotate(0deg)';  
+        this.isIconOpen = false;  
       }  
     },
     // 初始化分页
@@ -118,8 +132,8 @@ export default{
         return 0;
       }else{
         this.selectPageCount=1;
-        this.pageCount = Math.ceil(this.allDataCount / this.everyPageCount);
-        this.$emit('showPageCount',this.selectPageCount,this.everyPageCount)
+        this.pageCount = Math.ceil(this.allDataCount / this.everyPageCount2);
+        this.$emit('showPageCount',this.selectPageCount,Number(this.everyPageCount2))
       }
     },
     // 上一页
@@ -131,14 +145,14 @@ export default{
           return 0;
         }else{
           this.selectPageCount--;
-          this.$emit('showPageCount',this.selectPageCount,this.everyPageCount)
+          this.$emit('showPageCount',this.selectPageCount,Number(this.everyPageCount2))
         }
       }
     },
     // 点击页数
     clickPage(val){
       this.selectPageCount = val
-      this.$emit('ShowPageCount',this.selectPageCount,this.everyPageCount)
+      this.$emit('ShowPageCount',this.selectPageCount,Number(this.everyPageCount2))
     },
     // 下一页
     NextPage(){
@@ -149,7 +163,7 @@ export default{
           return 0;
         }else{
           this.selectPageCount++;
-          this.$emit('ShowPageCount',this.selectPageCount,this.everyPageCount)
+          this.$emit('ShowPageCount',this.selectPageCount,Number(this.everyPageCount2))
         }
       }
     },
@@ -157,22 +171,21 @@ export default{
     showDropdown() {  
       this.showPageCount = !this.showPageCount;
       if(this.showPageCount===true){
-        this.$refs.img.style.transform = 'rotate(180deg)'; 
-        this.$refs.img.style.transition = 'transform 0.2s ease-in-out';
+        this.isIconOpen = true;
       }else if(this.showPageCount===false){
-        this.$refs.img.style.transform = 'rotate(0deg)'; 
+        this.isIconOpen = false;
       }
     },
     // 选择页数
     selectCount(item) {  
-      this.everyPageCount = item
+      this.everyPageCount2 = item
       this.showPageCount = false;  
-      this.$refs.img.style.transform = 'rotate(0deg)'; 
+      this.isIconOpen = false;
     },
     // 页数范围5-20
     Count(){
       const Count = []
-      for(let i =2;i<=20;i++){
+      for(let i = 1;i<=this.maxPageCount;i++){
         Count.push(i)
       }
       return Count
@@ -182,11 +195,6 @@ export default{
 </script>
 
 <style scoped>
-.p{
-  /* background-color: #c898dd; */
-  display: flex;
-  justify-content: end;
-}
 .p-box{
   /* background-color: #8c1f6f; */
   display: flex;
@@ -196,20 +204,18 @@ export default{
 .p-left{
   cursor: pointer;
   margin-right:10px;
-border-radius: 3px;
-padding: 5px 8px;
-gap: 8px;
-background: #FFFFFF;
-/* Gray 中性/Gray4-边框 */
-border: 1px solid #DCDCDC;
-font-family: AlibabaPuHuiTi;
-font-size: 14px;
-font-weight: normal;
-line-height: 22px;
-display: flex;
-align-items: center;
-letter-spacing: 0em;	
-color: rgba(0, 0, 0, 0.9);
+  border-radius: 3px;
+  padding: 5px 8px;
+  gap: 8px;
+  background: var(--ZJ-main);
+  border:var(--ZJ-main-border-light);
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0em;	
+  color:var(--ZJ-main-text-color);
 }
 .p-right{
   display: flex;
@@ -217,30 +223,30 @@ color: rgba(0, 0, 0, 0.9);
 }
 .p-right-box{
   margin: 0 4px;
-min-width: 32px;
-height: 32px;
-border-radius: 3px;
-background: #FFFFFF;
-border: 1px solid #DCDCDC;
-display: flex;
-justify-content: center;
-align-items: center;
-overflow: hidden;
-cursor: default;
+  min-width: 32px;
+  height: 32px;
+  border-radius: 3px;
+  background: var(--ZJ-main);
+  border:var(--ZJ-main-border-light);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  cursor: default;
 }
 .p-right-box-more{
   margin: 0 4px;
-min-width: 32px;
-height: 32px;
-border-radius: 3px;
-display: flex;
-justify-content: center;
-align-items: center;
-overflow: hidden;
+  min-width: 32px;
+  height: 32px;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
 .p-right-box-select{
-background: #7050E8;
-color: #FFFFFF;
+  background:var(--ZJ-default-main);
+  color:var(--ZJ-main);
 }
 .right-box{
   display: flex;
@@ -260,7 +266,7 @@ color: #FFFFFF;
   width: 0;
   height: 0; 
   transform: rotate(-45deg);
-  border-top:solid 15px #FFFFFF;
+  border-top:solid 15px var(--ZJ-main-message-color);
   border-left:solid 15px  transparent;
   border-bottom:solid 15px transparent;
   z-index:2;  
@@ -285,9 +291,9 @@ color: #FFFFFF;
   border-radius:4px;
   max-height:200px;
   min-height: 100%;
-  box-shadow: 0px 8px 16px 0px rgba(78,78,78,0.5);
-  border: 1px solid #E4E7ED;  
-  background-color: #FFFFFF;  
+  box-shadow:var(--ZJ-main-box-shadow);
+  border: var(--ZJ-main-border-light);  
+  background-color:var( --ZJ-main-message-color);
   z-index:2;  
 }  
 .dropdown ul {  
@@ -301,17 +307,12 @@ color: #FFFFFF;
 .dropdown li {  
   padding: 10px 20px;  
   cursor: pointer; 
-height:16px;
-font-family: AlibabaPuHuiTi;
-font-size: 16px;
-font-weight: normal;
-line-height: 100%;
-letter-spacing: 0em;
-font-variation-settings: "opsz" auto;
-font-feature-settings: "kern" on;
-color: rgba(0, 0, 0,0.6); 
+  height:16px;
+  font-size: 16px;
+  font-weight: normal;
+  color:var(--ZJ-main-text-color); 
 }  
 .dropdown li:hover {  
-  background: rgba(112, 80, 232, 0.05);
+  background: var(--ZJ-default-main-hover);
 } 
 </style>

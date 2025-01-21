@@ -87,6 +87,20 @@ const routes = [
         meta: { icon: 'button' },
         component: () => import('@/views/ZJUI/ZJSvgIcons/index.vue')
       },
+      { 
+        id:209,
+        path: '/ZJPagination',
+        name: 'ZJPagination',
+        meta: { icon: 'button' },
+        component: () => import('@/views/ZJUI/ZJPagination/index.vue')
+      },
+      { 
+        id:210,
+        path: '/ZJSelect',
+        name: 'ZJSelect',
+        meta: { icon: 'button' },
+        component: () => import('@/views/ZJUI/ZJSelect/index.vue')
+      },
     ]
   },
   { 
