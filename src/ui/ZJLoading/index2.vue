@@ -1,196 +1,133 @@
-<template>  
-  <div class="loader-main"> 
-      
-    <div class="loader-main-box">
-      <div class="loader-ico"></div>
-      <div class="loader-main-box-center" v-if="isProgress=='true'">
-        <a class="loader-main-box-center-left">{{fileName}}</a>
-        <a>{{ FileSize(FinishCount) }}/{{ FileSize(AllCount) }}</a>
-      </div>
-      <div class="loader-main-box-bottom" v-if="isProgress=='true'">
-        <div class="main" ref="main">
-          <div class="finish" ref="finish"></div>
+<template>
+<div>
+  <div id="loader" class="box">
+      <div class="center">
+        <div style="margin-right: 10px;">
+          <svg viewBox="25 25 50 50" class="container">
+            <circle cx="50" cy="50" r="20" class="loader"></circle>
+          </svg>
+        </div>
+        <div style="margin-left: 10px;">
+          <p class="text">
+          <span class="letter letter1">L</span>
+          <span class="letter letter2">o</span>
+          <span class="letter letter3">a</span>
+          <span class="letter letter4">d</span>
+          <span class="letter letter5">i</span>
+          <span class="letter letter6">n</span>
+          <span class="letter letter7">g</span>
+          <span class="letter letter8">.</span>
+          <span class="letter letter9">.</span>
+          <span class="letter letter10">.</span>
+          </p>
         </div>
       </div>
+      
     </div>
-  </div>
-</template>  
-  
-<script>
-import FileSize from '@/tools/fileSizeTool';
-export default {  
-  props: { 
-    fileName: {  
-      type: [String, Number],  
-      default: null  
-    },  
-    AllCount: {  
-      type: [String, Number],  
-      default: null  
-    },
-    FinishCount:{
-      type: [String, Number],  
-      default: null  
-    },
-    isProgress:{
-      type: [String, Number],  
-      default: null  
-    },
-  }, 
-  data() {
-    return {}
-  },
-  computed: {
-    FileSize(){
-			return FileSize();
-		},
-	},
-  watch:{
-    FinishCount(){
-      var finishProgress = Math.floor(this.FinishCount/(this.AllCount/100));
-      this.Progress(finishProgress);
-   },
-  },
-  methods: {
-    Progress(finishProgress){
-      this.$refs.finish.style.width = `${ (350/100) * finishProgress }px`
-    },
-  }
-}  
-</script>  
-  
-<style scoped>  
+</div>
+</template>
 
-.loader-main{
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  background-color: rgb(255,255,255,0.95);
-  z-index:1000;
-}
-.loader-ico {  
-  width: 48px;  
-  height: 48px;  
-  margin: auto;  
-  position: relative;  
-  /* background-color: aqua */
-}  
-  
-.loader-ico:before {  
-  content: '';  
-  width: 48px;  
-  height: 5px;  
-  background: #f0808050;  
-  position: absolute;  
-  top: 60px;  
-  left: 0;  
-  border-radius: 50%;  
-  animation: shadow324 0.5s linear infinite;  
-}  
-  
-.loader-ico:after {  
-  content: '';  
-  width: 100%;  
-  height: 100%;  
-  background: #f08080;  
-  position: absolute;  
-  top: 0;  
-  left: 0;  
-  border-radius: 4px;  
-  animation: jump7456 0.5s linear infinite;  
-}  
-/*  */
-/* center */
-/*  */
-.loader-main-box{
-  margin: 0 10px;
-  /* background-color: rgb(136, 201, 245); */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 350px;
-}
-.loader-main-box-center{
-  margin-top:40px;
-  /* background-color: hsl(115, 100%, 75%); */
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-font-family: AlibabaPuHuiTi;
-font-size: 16px;
-font-weight: normal;
-line-height: 100%;
-letter-spacing: 0em;
-font-variation-settings: "opsz" auto;
-font-feature-settings: "kern" on;
-color: rgba(0, 0, 0, 0.5);
-}
-.loader-main-box-center-left{
-  max-width: 200px;
-  /* background-color: #d295d8; */
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.loader-main-box-bottom{
-  /* background-color: hwb(330 9% 56%); */
-  width: 100%;
-  margin-top: 10px;
-}
-.main{
-position: relative;
-max-width: 350px;
-min-width: 200px;
-height: 16px;
-border-radius:10px;
-background: rgba(112, 80, 232, 0.1804);
-}
-.finish{
-position: absolute;
-max-width:350px;
-left: 0px;
-height: 16px;
-border-radius:10px;
-background: #7050E8;
-transition: all 0.3s ease;
-}
-@keyframes jump7456 {  
-  15% {  
-    border-bottom-right-radius: 3px;  
-  }  
-  
-  25% {  
-    transform: translateY(9px) rotate(22.5deg);  
-  }  
-  
-  50% {  
-    transform: translateY(18px) scale(1, .9) rotate(45deg);  
-    border-bottom-right-radius: 40px;  
-  }  
-  
-  75% {  
-    transform: translateY(9px) rotate(67.5deg);  
-  }  
-  
-  100% {  
-    transform: translateY(0) rotate(90deg);  
-  }  
-}  
-  
-@keyframes shadow324 {  
-  0%, 100% {  
-    transform: scale(1, 1);  
-  }  
-  
-  50% {  
-    transform: scale(1.2, 1);  
-  }  
-}  
+<style>
+  .box{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 999;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .container {
+    width: 3.25em;
+    transform-origin: center;
+    animation: rotate4 2s linear infinite;
+  }
+  .loader {
+    fill: none;
+    stroke: #7C57F4;
+    stroke-width: 8;
+    stroke-dasharray: 2, 200;
+    stroke-dashoffset: 0;
+    stroke-linecap: round;
+    animation: dash4 1.5s ease-in-out infinite;
+  }
+  @keyframes rotate4 {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes dash4 {
+    0% {
+      stroke-dasharray: 1, 200;
+      stroke-dashoffset: 0;
+    }
+
+    50% {
+      stroke-dasharray: 90, 200;
+      stroke-dashoffset: -35px;
+    }
+
+    100% {
+      stroke-dashoffset: -125px;
+    }
+  }
+  .text {
+    color: black;
+    font-weight: bolder;
+  }
+  @keyframes letter {
+    0% {
+      font-size: 30px;
+    }
+
+    50% {
+      font-size: 40px;
+    }
+
+    100% {
+      font-size: 30px;
+    }
+  }
+  .letter {
+    animation: letter 1.7s infinite;
+  }
+  .letter1 {
+    animation-delay: 0s;
+  }
+  .letter2 {
+    animation-delay: -1.7s;
+  }
+  .letter3 {
+    animation-delay: -1.5s;
+  }
+  .letter4 {
+    animation-delay: -1.3s;
+  }
+  .letter5 {
+    animation-delay: -1.1s;
+  }
+  .letter6 {
+    animation-delay: -0.9s;
+  }
+  .letter7 {
+    animation-delay: -0.7s;
+  }
+  .letter8 {
+    animation-delay: -0.5s;
+  }
+  .letter9 {
+    animation-delay: -0.3s;
+  }
+  .letter10 {
+    animation-delay: -0.1s;
+  }
 </style>

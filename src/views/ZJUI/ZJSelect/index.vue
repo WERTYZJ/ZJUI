@@ -4,13 +4,16 @@
       <template #header>
         <h2>ZJSelect(下拉选择)</h2>
       </template>
-      <h3>分页用来将若干数据分成一页一页的数据进行展示</h3>
-      <p>分页数据总数量:allDataCount="100"(必须)</p>
-      <p>每一页数据数量:everyPageCount="16"(不必须,默认20)</p>
-      <p>每页最大数据数量:maxPageCount="20"(不必须,默认20)</p>
-      <p>选择每一页面数据时,传递的页数page,数量size函数:@showPageCount="AcceptPageCount"</p>
+      <h3>下拉选择用来选择许多数据里面的其中一个或者几个数据</h3>
+      <p>选择下拉数据:options="ZJOptions"(必须)</p>
+      <p>标签名字:label="姓名"(不必须)</p>
+      <p>使用ZJSelectVal接收选择到的单选value数值:@ZJSelectVal="ZJSelectVal = $event"</p>
       <div class="ZJDisplayFlex m-t-10">
-        <ZJSelect label="姓名" value="2"></ZJSelect>
+        <ZJSelect
+         label="姓名" 
+         :options="ZJOptions"
+         @ZJSelectVal="ZJSelectVal = $event"
+         ></ZJSelect>
       </div>
       <ZJCodeDisplay :code="vueCode" language="vue" />
     </ZJMain>
@@ -20,23 +23,53 @@
 <script setup>
 import { ref } from "vue";
 
-function AcceptPageCount(page,size){
-  console.log("page",page)
-  console.log("size",size)
-}
+const ZJOptions=ref([
+  {
+    label:"张三",
+    value:1,
+  },
+  {
+    label:"李四",
+    value:2,
+  },
+  {
+    label:"王五",
+    value:3,
+  },
+])
+
+const ZJSelectVal = ref(null);
 
 const vueCode=ref(
 `<template>
-  <ZJPagination
-    everyPageCount="16"
-    maxPageCount="20"
-    allDataCount="100"
-    @showPageCount="AcceptPageCount"></ZJPagination>
+   <ZJSelect
+      label="姓名" 
+      :options="ZJOptions"
+      @ZJSelectVal="ZJSelectVal = $event"
+    ></ZJSelect>
 </template>
 
-function AcceptPageCount(page,size){
-  console.log("page",page)
-  console.log("size",size)
-}
+import { ref, watch } from "vue";
+
+const ZJOptions=ref([
+  {
+    label:"张三",
+    value:1,
+  },
+  {
+    label:"李四",
+    value:2,
+  },
+  {
+    label:"王五",
+    value:3,
+  },
+])
+
+const ZJSelectVal = ref(null);
+
+watch(()=>{
+  console.log("ZJSelectVal",ZJSelectVal.value)
+})
 `)
 </script>

@@ -1,14 +1,23 @@
 <template>  
   <div class="custom-select" >  
-    <div class="selected" @click="toggleDropdown"><a>{{ StartSelectedText+EndSelectedText || label }}</a> <img ref="img" src="../assets/DateSelect.png" alt=""></div>
+    <div class="selected" @click="toggleDropdown">
+      <a>{{ StartSelectedText+EndSelectedText || label }}</a> 
+      <ZJSvgIcons icon="select"
+        :class="{'ZJRotate-icon-open': isIconOpen, 'ZJRotate-icon-close': !isIconOpen}"
+      ></ZJSvgIcons>
+    </div>
     <Transition name="Select">  
     <div class="dropdown" v-if="isDropdownVisible">
       <Transition name="Date">
       <div v-show="StartTime">
         <div class="header">  
-        <button @click="prevMonth"><img src="../assets/left.png" alt=""></button>  
+        <button @click="prevMonth">
+          <ZJSvgIcons icon="select" style="transform:rotate(90deg);"></ZJSvgIcons>
+        </button>  
         <span>Start&nbsp;&nbsp;&nbsp;{{ currentYear }}&nbsp;&nbsp;{{ currentMonth+1 }}</span>  
-        <button @click="nextMonth"><img src="../assets/right.png" alt=""></button>  
+        <button @click="nextMonth">
+          <ZJSvgIcons icon="select" style="transform:rotate(270deg);"></ZJSvgIcons>
+        </button>  
       </div>  
       <div class="weekdays">  
         <div v-for="day in weekdays" :key="day">{{ day }}</div>  
@@ -23,9 +32,13 @@
       <Transition name="Date">
       <div v-show="EndTime">
         <div class="header">  
-        <button @click="prevMonth"><img src="../assets/left.png" alt=""></button>  
+        <button @click="prevMonth">
+          <ZJSvgIcons icon="select" style="transform:rotate(90deg);"></ZJSvgIcons>
+        </button>  
         <span>End&nbsp;&nbsp;&nbsp;{{ currentYear }}&nbsp;&nbsp;{{ this.currentMonth+1 }}</span>  
-        <button @click="nextMonth"><img src="../assets/right.png" alt=""></button>  
+        <button @click="nextMonth">
+          <ZJSvgIcons icon="select" style="transform:rotate(270deg);"></ZJSvgIcons>
+        </button>  
       </div>  
       <div class="weekdays">  
         <div v-for="day in weekdays" :key="day">{{ day }}</div>  
@@ -43,7 +56,6 @@
 </template>  
   
 <script>
-
 export default {  
   name: 'DateSelect',  
   props: {  
@@ -75,7 +87,8 @@ export default {
       StartTime2:'',
       EndSelectedText:this.value ? this.findOptionText(this.value) : '',
       EndTime2:'',
-      isDropdownVisible: false  
+      isDropdownVisible: false,
+      isIconOpen:false,
     };  
   },  
   mounted() {  
@@ -147,18 +160,20 @@ export default {
     handleOutsideClick(e) {  
       // 检查点击是否发生在下拉框或其子元素之外  
       if (!this.$el.contains(e.target) && this.isDropdownVisible) {  
-        this.isDropdownVisible = false;   
+        this.isDropdownVisible = false;  
+        this.isIconOpen = false; 
       }  
     }, 
     // 下拉
     toggleDropdown() {  
       this.isDropdownVisible = !this.isDropdownVisible; 
+      this.isIconOpen = !this.isIconOpen; 
     },  
     // 起始日期选择
     StartSelectItem(date) { 
        if(date != null){
         let a = date.getDate()
-        const Date = this.currentYear + '-' + (this.currentMonth +1).toString().padStart(2, '0') + '-' + a.toString().padStart(2, '0') +'-';
+        const Date = this.currentYear + '-' + (this.currentMonth +1).toString().padStart(2, '0') + '-' + a.toString().padStart(2, '0') +' - ';
         this.StartTime2 = this.currentYear + '-' + (this.currentMonth +1).toString().padStart(2, '0') + '-' + a.toString().padStart(2, '0');
         this.$emit('input', Date);  
         this.StartSelectedText = Date;  
@@ -177,22 +192,22 @@ export default {
         let end = new Date(this.EndTime2);
         if(end>start){
 
-          this.$emit('input', val); 
           this.EndSelectedText = val;
 
-          var selectDate = this.StartTime2 + '-' + this.EndTime2
-          this.$emit('getSelectDate',selectDate);  
+          // var selectDate = this.StartTime2 + '-' + this.EndTime2
+          this.$emit('StartTime',this.StartTime2);
+          this.$emit('EndTime',this.EndTime2);  
 
           this.StartTime = true;
           this.EndTime =false;
           this.currentYear=new Date().getFullYear(),  
           this.currentMonth=new Date().getMonth(),
           this.isDropdownVisible = false; 
+          this.isIconOpen = false;
         }else{
-          this.$message({
-           showClose: true,
+          this.$ZJMessage({
            type: 'warning',
-           message: 'The end time must be before the start time.',
+           message: '结束时间必须在起始时间之后',
           })
         }
         
@@ -211,29 +226,20 @@ export default {
   }  
 };  
 </script>  
-  
+
 <style scoped> 
 .header {  
   display: flex;  
   justify-content: space-between;  
   align-items: center;  
-  padding:10px 20px;  
+  padding: 10px 20px;  
+  /* background-color: #a4fce0; */
 }
 .header span{
-font-family: AlibabaPuHuiTi;
-font-size: 16px;
-font-weight: normal;
-line-height: normal;
-text-align: right;
-letter-spacing: 0em;
-font-variation-settings: "opsz" auto;
-font-feature-settings: "kern" on;
-color: #000000;
-}
-button img{
-  height: 16px;
-  width: 16px;
-}  
+  font-size:16px;
+  font-weight: normal;
+  color: var(--ZJ-main-text-color);
+} 
 .header button{
   border: none;
   padding: 5px;
@@ -242,14 +248,11 @@ button img{
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #FFFFFF;
-  border: 1px solid #DCDCDC;
+  background-color:var(--ZJ-main-message-color);
+  border:var(--ZJ-main-border-light);
 }
 .header button:hover{
-  background-color: rgb(242, 242, 242);
-}
-.header button:active{
-  background-color:rgb(222, 222, 222);
+  background-color:var(--ZJ-main-hover);
 }
 .weekdays{  
   display: grid;  
@@ -259,7 +262,7 @@ button img{
   padding: 10px 0; 
   font-size: 14px;
   margin: 0 10px; 
-  border-bottom: 1px solid #E4E7ED;
+  border-bottom: var(--ZJ-main-border-light);
 }  
 .days {  
   display: grid;  
@@ -280,74 +283,70 @@ button img{
 .is-normal:hover {  
   /* height: 30px;  
   line-height: 30px;   */
-  background-color:#f1f3f7;
+  background-color:var(--ZJ-main-hover);
   border-radius: 5px;
 } 
 /* 为空情况 */
 .is-empty,.is-empty:hover{
-  background-color:#FFFFFF;
+  background-color:var(--ZJ-main-message-color);
   border-radius: 5px;
 }
 /* 今天的日期样式 */  
 .is-today,.is-today:hover{  
-  background: #F2F3FF;
-  color: #7050E8;
+  background: var(--ZJ-default-main-hover);
+  color: var(--ZJ-default-main);
   border-radius: 5px;
-}  
+} 
 
 
 
-
-
-
-
-
-img{
-  transition: transform 0.3s ease;
-}
 .custom-select {  
   position: relative;  
   /* display: inline-block;   */
   display: flex;
   justify-content: center;
   align-items: center;
-}  
-.selected a{
-  margin: 0 7px 0 16px;
-}
-.selected img{
-  margin: 0 16px 0 7px;
-  height: 20px;
-  width: 20px;
-}
+  min-width: 350px;
+} 
 .selected { 
-  background-color:#F2F2F2;
-  height: 40px;
-  width: 260px;
-  border-radius:7px;
+  background: var(--ZJ-main);
+  height:32px;
+  border-radius:var(--ZJ-main-border-radius);
+  padding:0 12px 0 15px;
+  border:var(--ZJ-main-border-light);
+  gap: 5px;
+  width: 100%;
   position: relative;
-  cursor: pointer; 
   display: flex;
   justify-content: space-between;
   align-items: center; 
-font-family: AlibabaPuHuiTi;
-font-size:14px;
-font-weight: normal;
-line-height: normal;
-letter-spacing: 0em;
-font-variation-settings: "opsz" auto;
-font-feature-settings: "kern" on;
-color: rgba(0, 0, 0, 0.5);
-}  
+  font-size: 14px;
+  font-weight: normal;
+  color: var(--ZJ-main-text-label-color);
+}   
+.dropdown {  
+  position: absolute;  
+  top:47px;
+  width: 100%;
+  min-width: 350px;
+  max-height:300px;
+  min-height: 100%;
+  transition: height 0.2s;
+  border-radius:var(--ZJ-main-border-radius-dropdown);
+  box-shadow:var(--ZJ-main-box-shadow);
+  border: var(--ZJ-main-border-light);  
+  background-color:var( --ZJ-main-message-color);
+  z-index:2;  
+} 
 .dropdown::after {  
   content: '';
   top: -9px;
   position: absolute;
-  left: calc(50% - 10.6px);
+  left: calc(50% - 5px);
   width: 0;
   height: 0; 
   transform: rotate(-45deg);
-  border-top:solid 15px #FFFFFF;
+  border-top:solid 15px var(--ZJ-main-message-color);
   border-left:solid 15px  transparent;
   border-bottom:solid 15px transparent;
   z-index:2;  
@@ -356,28 +355,14 @@ color: rgba(0, 0, 0, 0.5);
   content: '';
   top: -10px;
   position: absolute;
-  left: calc(50% - 10.6px);
+  left: calc(50% - 5px);
   width: 0;
   height: 0; 
   transform: rotate(-45deg);
-  border-top:solid 15px #E4E7ED;
+  border-top:solid 15px #DCDCDC;
   border-left:solid 15px  transparent;
   border-bottom:solid 15px transparent;
   z-index:2;  
-} 
-.dropdown {  
-  position: absolute;  
-  overflow: hidden;
-  top:55px;
-  width:350px;
-  border-radius:10px;
-  max-height:300px;
-  min-height: 100%;
-  box-shadow: 0px 8px 16px 0px rgba(78,78,78,0.2);
-  border: 1px solid #E4E7ED;  
-  background-color: #FFFFFF;  
-  z-index:2; 
-  transition: height 0.2s; 
 }   
 
 /* 动画 */

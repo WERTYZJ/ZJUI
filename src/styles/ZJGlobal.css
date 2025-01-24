@@ -6,16 +6,22 @@
   --ZJ-main-hover:#F3F3F5;
   --ZJ-main-bg-color:#F6F9F8;
   --ZJ-main-text-color:#333639;
+  --ZJ-main-text-label-color:#00000080;
   --ZJ-main-box-shadow:0 3px 6px -4px rgba(0, 0, 0, .12), 0 6px 16px 0 rgba(0, 0, 0, .08), 0 9px 28px 8px rgba(0, 0, 0, .05);
   --ZJ-main-code-copy-bg:#dedede;
   --ZJ-main-message-color:#FFFFFF;
   --ZJ-main-transition:all 0.2s ease-in-out;
   --ZJ-main-border-light: 1px solid #DCDCDC;
+  --ZJ-main-border-radius:3px;
+
+  /* dropdown */
+  --ZJ-main-border-radius-dropdown:4px;
 
   /* --ZJ-card-top-left-border:#ff5733; */
   --ZJ-default-main:#646CFF;
   --ZJ-default-main-hover:#EFF0FF;
-
+  
+  /* silderBar */
   --ZJAsideMenu-width:220px;
   --ZJHeader-height:56px;
   --n-bezier: cubic-bezier(.4, 0, .2, 1);

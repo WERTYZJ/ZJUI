@@ -1,7 +1,7 @@
 <template>  
   <div :class="{'noMoreData':true,'noMoreData150':size==150,'noMoreData100':size==100,'noMoreData50':size==50,'noMoreDataAuto':size=='auto'}">
-  <img v-if="icon==1" src="../assets/error/NoMoreData.svg" alt="">
-  <img v-if="icon==2" src="../assets/error/noMoreDateMessageList.svg" alt="">
+  <img v-if="icon==1" src="@/assets/ZJUI/ZJNoData/NoMoreData.png" alt="">
+  <img v-if="icon==2" src="@/assets/ZJUI/ZJNoData/MessageListAvatar.svg" alt="">
   <p>{{ label }}</p>
   </div>
 </template>  
@@ -103,7 +103,6 @@ export default {
   /* background-color: #85b5bb; */
 }
 .noMoreData100 p{
-  font-family: "Courgette";
   font-size: 20px;
 }
 
@@ -128,7 +127,6 @@ export default {
   /* background-color: #85b5bb; */
 }
 .noMoreDataAuto p{
-  font-family: "Courgette";
   font-size: 20px;
 }
 </style>

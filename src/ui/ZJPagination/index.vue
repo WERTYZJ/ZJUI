@@ -202,7 +202,6 @@ export default{
   align-items: center;
 }
 .p-left{
-  cursor: pointer;
   margin-right:10px;
   border-radius: 3px;
   padding: 5px 8px;
@@ -232,7 +231,6 @@ export default{
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  cursor: default;
 }
 .p-right-box-more{
   margin: 0 4px;
@@ -253,16 +251,12 @@ export default{
   font-size: 14px;
 }
 
-
-
-
-
 /* 页面选择 */
 .dropdown::after {  
   content: '';
   top: -9px;
   position: absolute;
-  left: calc(50% - 10.6px);
+  left: calc(50% - 5px);
   width: 0;
   height: 0; 
   transform: rotate(-45deg);
@@ -275,11 +269,11 @@ export default{
   content: '';
   top: -10px;
   position: absolute;
-  left: calc(50% - 10.6px);
+  left: calc(50% - 5px);
   width: 0;
   height: 0; 
   transform: rotate(-45deg);
-  border-top:solid 15px #E4E7ED;
+  border-top:solid 15px #DCDCDC;
   border-left:solid 15px  transparent;
   border-bottom:solid 15px transparent;
   z-index:2;  
@@ -288,7 +282,7 @@ export default{
   position: absolute;  
   top:50px;
   width: 100%;
-  border-radius:4px;
+  border-radius:var(--ZJ-main-border-radius-dropdown);
   max-height:200px;
   min-height: 100%;
   box-shadow:var(--ZJ-main-box-shadow);
@@ -305,10 +299,9 @@ export default{
   height: 100%;
 }  
 .dropdown li {  
-  padding: 10px 20px;  
+  padding: 8px 20px;  
   cursor: pointer; 
-  height:16px;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: normal;
   color:var(--ZJ-main-text-color); 
 }  

@@ -101,6 +101,41 @@ const routes = [
         meta: { icon: 'button' },
         component: () => import('@/views/ZJUI/ZJSelect/index.vue')
       },
+      { 
+        id:211,
+        path: '/ZJSelectDate',
+        name: 'ZJSelectDate',
+        meta: { icon: 'button' },
+        component: () => import('@/views/ZJUI/ZJSelectDate/index.vue')
+      },
+      { 
+        id:212,
+        path: '/ZJSelectDateMore',
+        name: 'ZJSelectDateMore',
+        meta: { icon: 'button' },
+        component: () => import('@/views/ZJUI/ZJSelectDateMore/index.vue')
+      },
+      { 
+        id:213,
+        path: '/ZJSelectTime',
+        name: 'ZJSelectTime',
+        meta: { icon: 'button' },
+        component: () => import('@/views/ZJUI/ZJSelectTime/index.vue')
+      },
+      { 
+        id:214,
+        path: '/ZJNoData',
+        name: 'ZJNoData',
+        meta: { icon: 'button' },
+        component: () => import('@/views/ZJUI/ZJNoData/index.vue')
+      },
+      { 
+        id:215,
+        path: '/ZJLoading',
+        name: 'ZJLoading',
+        meta: { icon: 'button' },
+        component: () => import('@/views/ZJUI/ZJLoading/index.vue')
+      },
     ]
   },
   { 

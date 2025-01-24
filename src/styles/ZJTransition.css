@@ -110,8 +110,7 @@
   transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;  
   opacity: 0;  
   transform: translateY(-5%); 
-}  
-  
+}
 .Select-enter-to,  
 .Select-leave-from { 
   opacity: 1;  

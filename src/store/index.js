@@ -51,6 +51,6 @@ export const useUserStore = defineStore('user', {
   },
   getters: {
     getUserData: (state) => state.userData,
-    isLoading: (state) => state.isLoading,
+    // getLoading: (state) => state.isLoading,
   },
 });

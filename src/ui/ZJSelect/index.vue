@@ -1,5 +1,5 @@
 <template>  
-  <div :class="{ 'custom-select':this.size==null, 'Tutor-Wallet': this.size=='Tutor-Wallet','size40': this.size=='40',}">  
+  <div :class="{ 'custom-select':this.size==null,'size40': this.size=='40',}">  
     <div class="selected" @click="toggleDropdown">
       <a>{{ selectedText || label }}</a>
       <ZJSvgIcons icon="select"
@@ -11,7 +11,7 @@
     <div class="dropdown" v-if="isDropdownVisible">  
       <ul>  
         <li v-for="item in options" :key="item.value" @click="selectItem(item)">  
-          {{ item.value || item }}  
+          {{ item.label || item }}  
         </li>  
       </ul>  
     </div> 
@@ -44,7 +44,7 @@ export default {
   },  
   data() {  
     return {  
-      selectedText: this.value ? this.findOptionText(this.value) : '',  
+      selectedText: this.label ? this.findOptionText(this.label) : '',  
       isDropdownVisible: false,
       isIconOpen:false,
     };  
@@ -74,8 +74,8 @@ export default {
        
     },  
     selectItem(item) {  
-      this.$emit('input',item.name || item.value || item);  
-      this.selectedText = item.value || item;  
+      this.$emit('ZJSelectVal',item.value || item);  
+      this.selectedText = item.label || item;  
       this.isDropdownVisible = false;  
       this.isIconOpen = false;
     },  
@@ -93,85 +93,7 @@ export default {
 };  
 </script>  
   
-<style scoped>  
-.size40{
-  position: relative;  
-  /* background-color: aquamarine; */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-}
-.size40 .selected { 
-  /* background-color:#F2F2F2; */
-  /* background-color: chocolate; */
-  height: 40px;
-  width:100%;
-  border-radius:7px;
-  position: relative;
-  cursor: pointer; 
-  display: flex;
-  justify-content: space-between;
-  align-items: center; 
-  font-family: AlibabaPuHuiTi;
-font-size: 14px;
-font-weight: normal;
-line-height: normal;
-letter-spacing: 0em;
-font-variation-settings: "opsz" auto;
-font-feature-settings: "kern" on;
-color: rgba(0, 0, 0, 0.5);
-} 
-.size40 .selected a{
-  margin: 0 7px 0 16px;
-  /* background-color: aquamarine; */
-}
-.size40 .selected img{
-  margin: 0 16px 0 7px;
-  /* background-color: rgb(132, 20, 76); */
-}
-
-
-.Tutor-Wallet{
-  position: relative;  
-  /* background-color: aquamarine; */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-}
-.Tutor-Wallet .selected { 
-  /* background-color:#F2F2F2; */
-  /* background-color: chocolate; */
-  height: 40px;
-  width: 250px;
-  border-radius:7px;
-  position: relative;
-  cursor: pointer; 
-  display: flex;
-  justify-content: space-between;
-  align-items: center; 
-  font-family: AlibabaPuHuiTi;
-font-size: 14px;
-font-weight: normal;
-line-height: normal;
-letter-spacing: 0em;
-font-variation-settings: "opsz" auto;
-font-feature-settings: "kern" on;
-color: rgba(0, 0, 0, 0.5);
-} 
-.Tutor-Wallet .selected a{
-  margin: 0 7px 0 16px;
-  /* background-color: aquamarine; */
-}
-.Tutor-Wallet .selected img{
-  margin: 0 16px 0 7px;
-  /* background-color: rgb(132, 20, 76); */
-}
-
-
-
-
+<style scoped>
 .custom-select {  
   position: relative;  
   /* display: inline-block;   */
@@ -180,46 +102,30 @@ color: rgba(0, 0, 0, 0.5);
   align-items: center;
 } 
 .selected { 
-  background-color:#F2F2F2;
-  height: 40px;
-  border-radius:10px;
+  background: var(--ZJ-main);
+  height:32px;
+  border-radius:var(--ZJ-main-border-radius);
+  padding:0 12px 0 15px;
+  border:var(--ZJ-main-border-light);
+  gap: 5px;
   width: 100%;
   position: relative;
-  cursor: pointer; 
   display: flex;
   justify-content: space-between;
   align-items: center; 
-font-family: AlibabaPuHuiTi;
-font-size: 14px;
-font-weight: normal;
-line-height: normal;
-letter-spacing: 0em;
-font-variation-settings: "opsz" auto;
-font-feature-settings: "kern" on;
-color: rgba(0, 0, 0, 0.5);
+  font-size: 14px;
+  font-weight: normal;
+  color: var(--ZJ-main-text-label-color);
 } 
-.custom-select .selected a{
-  margin: 0 10px 0 16px;
-}
-.custom-select .selected img{
-  margin: 0 16px 0 10px;
-}
- 
-
-
-
-img{
-  transition: transform 0.3s ease;
-}
 .dropdown::after {  
   content: '';
   top: -9px;
   position: absolute;
-  left: calc(50% - 10.6px);
+  left: calc(50% - 5px);
   width: 0;
   height: 0; 
   transform: rotate(-45deg);
-  border-top:solid 15px #FFFFFF;
+  border-top:solid 15px var(--ZJ-main-message-color);
   border-left:solid 15px  transparent;
   border-bottom:solid 15px transparent;
   z-index:2;  
@@ -228,25 +134,25 @@ img{
   content: '';
   top: -10px;
   position: absolute;
-  left: calc(50% - 10.6px);
+  left: calc(50% - 5px);
   width: 0;
   height: 0; 
   transform: rotate(-45deg);
-  border-top:solid 15px #E4E7ED;
+  border-top:solid 15px #DCDCDC;
   border-left:solid 15px  transparent;
   border-bottom:solid 15px transparent;
   z-index:2;  
 } 
 .dropdown {  
   position: absolute;  
-  top:55px;
+  top:47px;
   width: 100%;
-  border-radius:10px;
+  border-radius:var(--ZJ-main-border-radius-dropdown);
   max-height:200px;
   min-height: 100%;
-  box-shadow: 0px 8px 16px 0px rgba(78,78,78,0.2);
-  border: 1px solid #E4E7ED;  
-  background-color: #FFFFFF;  
+  box-shadow:var(--ZJ-main-box-shadow);
+  border: var(--ZJ-main-border-light);  
+  background-color:var( --ZJ-main-message-color);
   z-index:2;  
 }  
 .dropdown ul {  
@@ -258,37 +164,12 @@ img{
   height: 100%;
 }  
 .dropdown li {  
-  padding: 10px 20px;  
+  padding:8px 20px;  
   cursor: pointer; 
-height:14px;
-font-family: AlibabaPuHuiTi;
-font-size: 14px;
-font-weight: normal;
-line-height: 100%;
-letter-spacing: 0em;
-font-variation-settings: "opsz" auto;
-font-feature-settings: "kern" on;
-color: rgba(0, 0, 0,0.6); 
+  font-size: 14px;
+  color:var(--ZJ-main-text-color); 
 }  
 .dropdown li:hover {  
-  background: rgba(112, 80, 232, 0.05);
-}  
-
-/* 动画 */
-.Select-enter-active,  
-.Select-leave-active {  
-  transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;  
-  opacity: 0;  
-  transform: translateY(-5%); 
-}  
-  
-.Select-enter-to,  
-.Select-leave-from { 
-  opacity: 1;  
-  transform: translateY(0); 
-}   
-.Select-leave-to {  
-  opacity: 0;  
-  transform: translateY(-5%); 
+  background: var(--ZJ-default-main-hover);
 }
 </style>

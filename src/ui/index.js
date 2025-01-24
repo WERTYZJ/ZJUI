@@ -8,7 +8,12 @@ import ZJMenu from "./ZJMenu/index.vue";
 import ZJProgress from "./ZJProgress/index.vue";
 import ZJRate from "./ZJRate/index.vue";
 import ZJPagination from "./ZJPagination/index.vue";
-import ZJSelect from "./ZJSelect/index.vue"
+import ZJSelect from "./ZJSelect/index.vue";
+import ZJSelectDate from "./ZJSelectDate/index.vue";
+import ZJSelectDateMore from "./ZJSelectDateMore/index.vue";
+import ZJSelectTime from "./ZJSelectTime/index.vue";
+import ZJNoData from "./ZJNoData.vue/index.vue";
+import ZJLoading from "./ZJLoading/index2.vue"
 // 导入函数
 import ZJMessage from "./ZJMessage/ZJMessage.js";
 
@@ -24,6 +29,11 @@ const components = {
   ZJRate,
   ZJPagination,
   ZJSelect,
+  ZJSelectDate,
+  ZJSelectDateMore,
+  ZJSelectTime,
+  ZJNoData,
+  ZJLoading
 };
 
 // 插件对象

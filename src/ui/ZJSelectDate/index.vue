@@ -1,12 +1,20 @@
 <template>  
   <div class="custom-select" >  
-    <div class="selected" @click="toggleDropdown"><a>{{ selectedText || label }}</a> <img ref="img" src="../assets/DateSelect.png" alt=""></div>
-    <Transition name="Select">  
+    <div class="selected" @click="toggleDropdown"><a>{{ selectedText || label }}</a>
+      <ZJSvgIcons icon="select"
+         :class="{'ZJRotate-icon-open': isIconOpen, 'ZJRotate-icon-close': !isIconOpen}"
+        ></ZJSvgIcons>
+    </div>
+    <Transition name="Select"> 
     <div class="dropdown" v-if="isDropdownVisible">  
       <div class="header">  
-        <button @click="prevMonth"><img src="../assets/left.png" alt=""></button>  
+        <button @click="prevMonth">
+          <ZJSvgIcons icon="select" style="transform:rotate(90deg);"></ZJSvgIcons>
+        </button>  
         <span>{{ currentYear }}&nbsp;&nbsp;&nbsp;&nbsp;{{ MonthInEnglish[currentMonth] }}</span>  
-        <button @click="nextMonth"><img src="../assets/right.png" alt=""></button>  
+        <button @click="nextMonth">
+          <ZJSvgIcons icon="select" style="transform:rotate(270deg);"></ZJSvgIcons>
+        </button>  
       </div>  
       <div class="weekdays">  
         <div v-for="day in weekdays" :key="day">{{ day }}</div>  
@@ -55,7 +63,8 @@ export default {
       weekdays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],  
       daysOfMonth: [],   
       selectedText: this.value ? this.findOptionText(this.value) : '',  
-      isDropdownVisible: false  
+      isDropdownVisible: false,
+      isIconOpen:false,
     };  
   },  
   mounted() {  
@@ -127,11 +136,13 @@ export default {
     handleOutsideClick(e) {  
       // 检查点击是否发生在下拉框或其子元素之外  
       if (!this.$el.contains(e.target) && this.isDropdownVisible) {  
+        this.isIconOpen = false;
         this.isDropdownVisible = false;   
       }  
     }, 
     // 下拉
     toggleDropdown() {  
+      this.isIconOpen = !this.isIconOpen;
       this.isDropdownVisible = !this.isDropdownVisible; 
     },  
     // 选择
@@ -140,9 +151,10 @@ export default {
        if(date != null){
         let a = date.getDate()
         const Date = this.currentYear + '-' + (this.currentMonth +1).toString().padStart(2, '0') + '-' + a.toString().padStart(2, '0');
-        this.$emit('input', Date);  
+        this.$emit('ZJSelectDataVal', Date);  
         this.selectedText = Date;  
         this.isDropdownVisible = false; 
+        this.isIconOpen = false;
       }
     },  
     findOptionText(value) {  
@@ -168,20 +180,10 @@ export default {
   /* background-color: #a4fce0; */
 }
 .header span{
-font-family: AlibabaPuHuiTi;
-font-size:16px;
-font-weight: normal;
-line-height: normal;
-text-align: right;
-letter-spacing: 0em;
-font-variation-settings: "opsz" auto;
-font-feature-settings: "kern" on;
-color: #000000;
-}
-button img{
-  height: 16px;
-  width: 16px;
-}  
+  font-size:16px;
+  font-weight: normal;
+  color: var(--ZJ-main-text-color);
+} 
 .header button{
   border: none;
   padding: 5px;
@@ -190,14 +192,11 @@ button img{
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #FFFFFF;
-  border: 1px solid #DCDCDC;
+  background-color:var(--ZJ-main-message-color);
+  border:var(--ZJ-main-border-light);
 }
 .header button:hover{
-  background-color: rgb(232, 232, 232);
-}
-.header button:active{
-  background-color:rgb(212, 212, 212);
+  background-color:var(--ZJ-main-hover);
 }
 .weekdays{  
   display: grid;  
@@ -207,7 +206,7 @@ button img{
   padding: 10px 0; 
   font-size: 14px;
   margin: 0 10px; 
-  border-bottom: 1px solid #E4E7ED;
+  border-bottom: var(--ZJ-main-border-light);
 }  
 .days {  
   display: grid;  
@@ -228,75 +227,69 @@ button img{
 .is-normal:hover {  
   /* height: 30px;  
   line-height: 30px;   */
-  background-color:#f1f3f7;
+  background-color:var(--ZJ-main-hover);
   border-radius: 5px;
 } 
 /* 为空情况 */
 .is-empty,.is-empty:hover{
-  background-color:#FFFFFF;
+  background-color:var(--ZJ-main-message-color);
   border-radius: 5px;
 }
 /* 今天的日期样式 */  
 .is-today,.is-today:hover{  
-  background: #F2F3FF;
-  color: #7050E8;
+  background: var(--ZJ-default-main-hover);
+  color: var(--ZJ-default-main);
   border-radius: 5px;
 }  
 
 
 
-
-
-
-
-
-img{
-  transition: transform 0.3s ease;
-}
 .custom-select {  
   position: relative;  
-  /* display: inline-block;   */
   display: flex;
   justify-content: center;
   align-items: center;
-}  
-.selected a{
-  margin-left: 16px;
-}
-.selected img{
-  margin-right: 20px;
-  height: 20px;
-  width: 20px;
+  min-width: 350px;
 }
 .selected { 
-  background-color:#F2F2F2;
-  padding: 10px 0;
-  border-radius:10px;
+  background: var(--ZJ-main);
+  height:32px;
+  border-radius:var(--ZJ-main-border-radius);
+  padding:0 12px 0 15px;
+  border:var(--ZJ-main-border-light);
+  gap: 5px;
   width: 100%;
   position: relative;
-  cursor: pointer; 
   display: flex;
   justify-content: space-between;
   align-items: center; 
-height: 20px;
-font-family: AlibabaPuHuiTi;
-font-size: 14px;
-font-weight: normal;
-line-height: normal;
-letter-spacing: 0em;
-font-variation-settings: "opsz" auto;
-font-feature-settings: "kern" on;
-color: rgba(0, 0, 0, 0.5);
-}  
+  font-size: 14px;
+  font-weight: normal;
+  color: var(--ZJ-main-text-label-color);
+} 
+.dropdown {  
+  position: absolute;  
+  top:47px;
+  width: 100%;
+  min-width: 350px;
+  max-height:300px;
+  min-height: 100%;
+  transition: height 0.2s;
+  border-radius:var(--ZJ-main-border-radius-dropdown);
+  box-shadow:var(--ZJ-main-box-shadow);
+  border: var(--ZJ-main-border-light);  
+  background-color:var( --ZJ-main-message-color);
+  z-index:2;  
+} 
 .dropdown::after {  
   content: '';
   top: -9px;
   position: absolute;
-  left: calc(50% - 10.6px);
+  left: calc(50% - 5px);
   width: 0;
   height: 0; 
   transform: rotate(-45deg);
-  border-top:solid 15px #FFFFFF;
+  border-top:solid 15px var(--ZJ-main-message-color);
   border-left:solid 15px  transparent;
   border-bottom:solid 15px transparent;
   z-index:2;  
@@ -305,29 +298,15 @@ color: rgba(0, 0, 0, 0.5);
   content: '';
   top: -10px;
   position: absolute;
-  left: calc(50% - 10.6px);
+  left: calc(50% - 5px);
   width: 0;
   height: 0; 
   transform: rotate(-45deg);
-  border-top:solid 15px #E4E7ED;
+  border-top:solid 15px #DCDCDC;
   border-left:solid 15px  transparent;
   border-bottom:solid 15px transparent;
   z-index:2;  
 } 
-.dropdown {  
-  position: absolute;  
-  top:55px;
-  width: 100%;
-  min-width: 350px;
-  border-radius:10px;
-  max-height:300px;
-  min-height: 100%;
-  box-shadow: 0px 8px 16px 0px rgba(78,78,78,0.2);
-  border: 1px solid #E4E7ED;  
-  background-color: #FFFFFF;  
-  z-index:2; 
-  transition: height 0.2s; 
-}   
 
 /* 动画 */
 .Select-enter-active,  
@@ -346,5 +325,4 @@ color: rgba(0, 0, 0, 0.5);
   opacity: 0;  
   transform: translateY(-5%); 
 }
-
 </style>
