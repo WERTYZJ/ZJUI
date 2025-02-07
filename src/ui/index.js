@@ -13,7 +13,9 @@ import ZJSelectDate from "./ZJSelectDate/index.vue";
 import ZJSelectDateMore from "./ZJSelectDateMore/index.vue";
 import ZJSelectTime from "./ZJSelectTime/index.vue";
 import ZJNoData from "./ZJNoData.vue/index.vue";
-import ZJLoading from "./ZJLoading/index2.vue"
+import ZJLoading from "./ZJLoading/index2.vue";
+import ZJCutAvatar from "./ZJCutAvatar/index.vue";
+import ZJUpload from "./ZJUpload/index.vue"
 // 导入函数
 import ZJMessage from "./ZJMessage/ZJMessage.js";
 
@@ -33,7 +35,9 @@ const components = {
   ZJSelectDateMore,
   ZJSelectTime,
   ZJNoData,
-  ZJLoading
+  ZJLoading,
+  ZJCutAvatar,
+  ZJUpload
 };
 
 // 插件对象

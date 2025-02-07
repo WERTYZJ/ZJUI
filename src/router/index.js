@@ -136,6 +136,20 @@ const routes = [
         meta: { icon: 'button' },
         component: () => import('@/views/ZJUI/ZJLoading/index.vue')
       },
+      { 
+        id:216,
+        path: '/ZJCutAvatar',
+        name: 'ZJCutAvatar',
+        meta: { icon: 'button' },
+        component: () => import('@/views/ZJUI/ZJCutAvatar/index.vue')
+      },
+      { 
+        id:217,
+        path: '/ZJUpload',
+        name: 'ZJUpload',
+        meta: { icon: 'button' },
+        component: () => import('@/views/ZJUI/ZJUpload/index.vue')
+      },
     ]
   },
   { 
