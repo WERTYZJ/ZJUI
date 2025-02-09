@@ -1,12 +1,42 @@
 <template>
-  <div class="ZJDefaultMainBg">
+  <div class="ZJDefaultMainBg" ref="scrollTopElement">
     <transition name="fade-slide">
       <router-view class="ZJDefaultMain"></router-view>
     </transition>
+    <ZJBackTop 
+      :ZJTopHeight="scrollTop"
+      :ZJTopElement="scrollTopElement"
+      >
+    </ZJBackTop>
   </div>
 </template>
 
-<script setup name="ZJDefaultMain"></script>
+<script setup name="ZJDefaultMain">
+import {ref,onMounted,onUnmounted} from 'vue'
+
+const scrollTopElement = ref('')
+const scrollTop = ref(0);
+
+const handleScroll = () => {
+  if (scrollTopElement.value) {
+    scrollTop.value = scrollTopElement.value.scrollTop;
+  }
+};
+ 
+onMounted(() => {
+  const e = scrollTopElement.value;
+  if (e) {
+    e.addEventListener('scroll', handleScroll);
+  }
+});
+ 
+onUnmounted(() => {
+  const e = scrollTopElement.value;
+  if (e) {
+    e.removeEventListener('scroll', handleScroll);
+  }
+});
+</script>
 
 <style scoped>
 .ZJDefaultMainBg{
@@ -24,5 +54,4 @@
   color: var(--ZJ-main-text-color);
   box-shadow:2px 0 8px 0 rgb(29, 35, 41, 0.05);
 }
-
 </style>

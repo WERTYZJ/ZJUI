@@ -188,6 +188,19 @@ video {
   background-color:var(--ZJ-main-hover);
   color:var(--ZJ-default-main);
 }
+.ZJIconBox{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding:5px;
+  border-radius:5px;
+  transition: all 0.2s ease-in-out;
+  color: var(--ZJ-main-text-color);
+}
+.ZJIconBox:hover{
+  background-color:var(--ZJ-main-hover);
+  color:var(--ZJ-default-main);
+}
 /* 旋转图标动画 */
 .ZJRotate-icon-open{
   transform: rotate(180deg);

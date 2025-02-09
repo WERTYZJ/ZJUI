@@ -55,7 +55,7 @@ export default{
 position: relative;
 max-width: 400px;
 min-width: 200px;
-height: 16px;
+height: 12px;
 border-radius: 104px;
 /* background: rgba(112, 80, 232, 0.1804); */
 background-color: var(--ZJ-default-main-hover);
@@ -64,7 +64,7 @@ background-color: var(--ZJ-default-main-hover);
 position: absolute;
 max-width: 100%;
 left: 0px;
-height: 16px;
+height: 12px;
 border-radius:10px;
 /* background: rgba(112, 80, 232, 0.5); */
 background-color: var(--ZJ-default-main);

@@ -12,46 +12,40 @@
       </div>
   </div>
 
-  <div v-show="showCutAvatar" class="modal">
-    <div class="cut-main">
-      <div class="cut-main-top">
-        <!-- <a>Please crop your profile picture</a> -->
-        <a>请裁剪您的头像</a>
-        <div class="right-close"  @click="CloseCutAvatar2()">
-          <ZJSvgIcons icon="close"></ZJSvgIcons>
-        </div>
-      </div>
+  <ZJDialog
+   v-show="showCutAvatar"
+   title="请裁剪您的头像"
+   @closeZJDialog="CloseCutAvatar2()"
+   >
       <div class="cut-main-center">
-        <div class="img-container">
+      <div class="img-container">
         <img :src="avatarUrl" ref="image" alt="" />
-        </div>
-        <div class="cut-main-center-right">
-          <!-- <div class="before"></div> -->
-          <!-- <a>After cropping</a> -->
-          <a>裁剪预览</a>
-          <div class="afterCropper">
-            <img src="@/assets/ZJUI/ZJCutAvatar/img.png" style="position: absolute; z-index:0;">
-            <img :src="CutImg" style="z-index:1;" />
-          </div>
-        </div>
-        
       </div>
-      <div class="cut-main-bottom">
-        <ZJButton 
-          type="success" 
-          text="确定裁剪"
-          @click="sureSava"
-        ></ZJButton>
-        <ZJButton 
-          type="info" 
-          text="确定上传"
-          @click="CloseCutAvatar()"
-        ></ZJButton>
-          <!-- <a>Determine the crop</a> -->  
-          <!-- <a>Confirm the upload</a> -->
+      <div class="cut-main-center-right">
+        <!-- <div class="before"></div> -->
+        <!-- <a>After cropping</a> -->
+        <a>裁剪预览</a>
+        <div class="afterCropper">
+          <img src="@/assets/ZJUI/ZJCutAvatar/img.png" style="position: absolute; z-index:0;">
+          <img :src="CutImg" style="z-index:1;" />
+        </div>
       </div>
+      
     </div>
-  </div>
+    <template #footer>
+      <ZJButton 
+        type="success" 
+        text="确定裁剪"
+        @click="sureSava"
+      ></ZJButton>
+      <ZJButton 
+        type="info" 
+        text="确定上传"
+        @click="CloseCutAvatar()"
+        style="margin-right: 40px;"
+      ></ZJButton>
+    </template>
+  </ZJDialog>
 </template>
 
 <script>
@@ -180,15 +174,6 @@ export default{
 </script>
 
 <style scoped>
-.cut-main-bottom{
-  gap: 20px;
-  height:50px;
-  margin-top:40px;
-  margin-right: 40px;
-  display: flex;
-  justify-content: flex-end;
-  /* background-color: blueviolet; */
-}
 .cut-main-center-right a{
   margin-bottom: 10px;
   font-size: 18px;
@@ -205,43 +190,6 @@ export default{
 }
 .cut-main-center{
   display: flex;
-}
-.right-close:hover{
-  background-color:var(--ZJ-main-hover);
-}
-.right-close{
-  position: absolute;
-  top: 0px;
-  right:0px;
-  padding: 5px;
-  z-index: 2;
-  border-radius:6px;
-}
-.cut-main-top  a{
-  font-size: 22px;
-  font-weight: 900;
-  text-align: center;
-  color:var(--ZJ-main-text-color);
-}
-.cut-main-top{
-  position: relative;
-  display: flex;
-  justify-content: center;
-  /* align-items: center; */
-  margin:10px 0 30px 0;
-  width: 100%;
-  /* background-color: antiquewhite; */
-}
-.cut-main{
-  width: 680px;
-  height: 480px;
-  padding: 20px;
-  background-color:var(--ZJ-main-message-color);
-  border-radius: 10px;
-}
-.container{
-  display: flex;
-  animation: modal 0.5s ease-in-out;
 }
 .before{
   width: 120px;
@@ -267,7 +215,7 @@ export default{
   height: 116px;
   overflow: hidden;
   border-radius: 50%;
-  border: 2px solid #7050E8;
+  border: 2px solid var(--ZJ-default-main);
 }
 
 

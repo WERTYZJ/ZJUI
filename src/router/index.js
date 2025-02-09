@@ -150,6 +150,34 @@ const routes = [
         meta: { icon: 'button' },
         component: () => import('@/views/ZJUI/ZJUpload/index.vue')
       },
+      { 
+        id:218,
+        path: '/ZJCalendar',
+        name: 'ZJCalendar',
+        meta: { icon: 'button' },
+        component: () => import('@/views/ZJUI/ZJCalendar/index.vue')
+      },
+      { 
+        id:219,
+        path: '/ZJAnchor',
+        name: 'ZJAnchor',
+        meta: { icon: 'button' },
+        component: () => import('@/views/ZJUI/ZJAnchor/index.vue')
+      },
+      { 
+        id:220,
+        path: '/ZJDialog',
+        name: 'ZJDialog',
+        meta: { icon: 'button' },
+        component: () => import('@/views/ZJUI/ZJDialog/index.vue')
+      },
+      { 
+        id:221,
+        path: '/ZJBackTop',
+        name: 'ZJBackTop',
+        meta: { icon: 'button' },
+        component: () => import('@/views/ZJUI/ZJBackTop/index.vue')
+      },
     ]
   },
   { 

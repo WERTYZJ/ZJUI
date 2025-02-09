@@ -15,7 +15,11 @@ import ZJSelectTime from "./ZJSelectTime/index.vue";
 import ZJNoData from "./ZJNoData.vue/index.vue";
 import ZJLoading from "./ZJLoading/index2.vue";
 import ZJCutAvatar from "./ZJCutAvatar/index.vue";
-import ZJUpload from "./ZJUpload/index.vue"
+import ZJUpload from "./ZJUpload/index.vue";
+import ZJCalendar from "./ZJCalendar/index.vue";
+import ZJAnchor from "./ZJAnchor/index.vue";
+import ZJDialog from "./ZJDialog/index.vue";
+import ZJBackTop from "./ZJBackTop/index.vue"
 // 导入函数
 import ZJMessage from "./ZJMessage/ZJMessage.js";
 
@@ -37,7 +41,11 @@ const components = {
   ZJNoData,
   ZJLoading,
   ZJCutAvatar,
-  ZJUpload
+  ZJUpload,
+  ZJCalendar,
+  ZJAnchor,
+  ZJDialog,
+  ZJBackTop,
 };
 
 // 插件对象
