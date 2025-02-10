@@ -49,10 +49,9 @@ align-items: center;
 }
 .star-left-32 a{
 margin-left: 5px;
-font-family: DIN Black;
 font-size: 26px;
 font-weight: 950;
-color: #000000;
+color: var( --ZJ-main-text-color);
 }
 .star-left-32 img{
   margin: 0 5px 0 0 ;
@@ -71,10 +70,9 @@ align-items: center;
 }
 .star-left-24 a{
 margin-left: 5px;
-font-family: DIN Black;
 font-size:20px;
 font-weight:600;
-color: #000000;
+color: var( --ZJ-main-text-color);
 }
 .star-left-24 img{
 margin: 0 5px 0 0 ;
@@ -93,10 +91,9 @@ align-items: center;
 }
 .star-left-20 a{
 margin-left: 5px;
-font-family: DIN Black;
 font-size:18px;
 font-weight:600;
-color: #000000;
+color: var( --ZJ-main-text-color);
 }
 .star-left-20 img{
 margin: 0 5px 0 0 ;

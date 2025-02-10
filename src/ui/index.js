@@ -19,7 +19,9 @@ import ZJUpload from "./ZJUpload/index.vue";
 import ZJCalendar from "./ZJCalendar/index.vue";
 import ZJAnchor from "./ZJAnchor/index.vue";
 import ZJDialog from "./ZJDialog/index.vue";
-import ZJBackTop from "./ZJBackTop/index.vue"
+import ZJBackTop from "./ZJBackTop/index.vue";
+import ZJCarousel from "./ZJCarousel/index.vue";
+import ZJAvailableTime from "./ZJAvailableTime/index.vue";
 // 导入函数
 import ZJMessage from "./ZJMessage/ZJMessage.js";
 
@@ -46,6 +48,8 @@ const components = {
   ZJAnchor,
   ZJDialog,
   ZJBackTop,
+  ZJCarousel,
+  ZJAvailableTime
 };
 
 // 插件对象

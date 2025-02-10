@@ -178,6 +178,20 @@ const routes = [
         meta: { icon: 'button' },
         component: () => import('@/views/ZJUI/ZJBackTop/index.vue')
       },
+      { 
+        id:222,
+        path: '/ZJCarousel',
+        name: 'ZJCarousel',
+        meta: { icon: 'button' },
+        component: () => import('@/views/ZJUI/ZJCarousel/index.vue')
+      },
+      { 
+        id:223,
+        path: '/ZJAvailableTime',
+        name: 'ZJAvailableTime',
+        meta: { icon: 'button' },
+        component: () => import('@/views/ZJUI/ZJAvailableTime/index.vue')
+      },
     ]
   },
   { 
