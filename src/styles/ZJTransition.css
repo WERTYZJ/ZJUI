@@ -1,137 +1,155 @@
-
 /* 全局动画效果*/
-.a-enter-active{
+.a-enter-active {
   opacity: 0;
   transition: all 0.5s ease-in-out;
-  transform: translate(-100px,50px) scale(0.5);
+  transform: translate(-100px, 50px) scale(0.5);
 }
-.a-enter-to{
+
+.a-enter-to {
   opacity: 1;
   transition: all 0.5s ease-in-out;
-  transform: translate(0px,0px) scale(1);
-} 
-.a-leave-active{
+  transform: translate(0px, 0px) scale(1);
+}
+
+.a-leave-active {
   opacity: 1;
   transition: all 0.5s ease-in-out;
-  transform: translate(0px,0px) scale(1);
+  transform: translate(0px, 0px) scale(1);
 }
-.a-leave-to{
+
+.a-leave-to {
   opacity: 0;
   transition: all 0.5s ease-in-out;
-  transform: translate(-100px,50px) scale(0.5);
+  transform: translate(-100px, 50px) scale(0.5);
 }
 
 
 /* list 动画效果*/
-.l-enter-active{
+.l-enter-active {
   opacity: 0;
   transform: translateX(-200px) scale(0);
 }
-.l-enter-to{
+
+.l-enter-to {
   opacity: 1;
   transition: all 0.5s ease-in-out;
   transform: translateX(0px) scale(1);
-} 
-.l-leave-active{
+}
+
+.l-leave-active {
   opacity: 1;
   transition: all 0.5s ease-in-out;
-	transform: translateX(0px) scale(1);
+  transform: translateX(0px) scale(1);
 }
-.l-leave-to{
+
+.l-leave-to {
   opacity: 0;
   transform: translateX(200px) scale(0);
 }
 
 /* photo图片动画 */
-.photo-enter-active{
+.photo-enter-active {
   opacity: 0;
   transition: all 0.5s ease;
-  transform: translate(0px,-160px);
+  transform: translate(0px, -160px);
 }
-.photo-enter-to{
+
+.photo-enter-to {
   opacity: 1;
   transition: all 0.5s ease;
-  transform: translate(0px,0px);
-} 
-.photo-leave-active{
+  transform: translate(0px, 0px);
+}
+
+.photo-leave-active {
   opacity: 1;
   transition: all 0.5s ease;
-  transform: translate(0px,0px);
+  transform: translate(0px, 0px);
 }
-.photo-leave-to{
+
+.photo-leave-to {
   opacity: 0;
   transition: all 0.5s ease;
-  transform: translate(0px,-160px);
+  transform: translate(0px, -160px);
 }
 
 /* photo阴影遮罩动画 */
-.mask-enter-active{
+.mask-enter-active {
   opacity: 0;
   transition: all 0.3s ease;
 }
-.mask-enter-to{
-  opacity: 1;
-  transition: all 0.3s ease;
-} 
-.mask-leave-active{
+
+.mask-enter-to {
   opacity: 1;
   transition: all 0.3s ease;
 }
-.mask-leave-to{
+
+.mask-leave-active {
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+.mask-leave-to {
   opacity: 0;
   transition: all 0.3s ease;
 }
 
 /* file文件上传动画 */
-.file-enter-active{
+.file-enter-active {
   opacity: 0;
   transition: all 0.5s ease;
-  transform: translate(0px,-160px);
+  transform: translate(0px, -160px);
 }
-.file-enter-to{
+
+.file-enter-to {
   opacity: 1;
   transition: all 0.5s ease;
-  transform: translate(0px,0px);
-} 
-.file-leave-active{
+  transform: translate(0px, 0px);
+}
+
+.file-leave-active {
   opacity: 1;
   transition: all 0.5s ease;
-  transform: translate(0px,0px);
+  transform: translate(0px, 0px);
 }
-.file-leave-to{
+
+.file-leave-to {
   opacity: 0;
   transition: all 0.5s ease;
-  transform: translate(0px,-160px);
+  transform: translate(0px, -160px);
 }
 
 /* select下拉框 */
-.Select-enter-active,  
-.Select-leave-active {  
-  transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;  
-  opacity: 0;  
-  transform: translateY(-5%); 
+.Select-enter-active,
+.Select-leave-active {
+  transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+  opacity: 0;
+  transform: translateY(-5%);
 }
-.Select-enter-to,  
-.Select-leave-from { 
-  opacity: 1;  
-  transform: translateY(0); 
-}   
-.Select-leave-to {  
-  opacity: 0;  
-  transform: translateY(-5%); 
+
+.Select-enter-to,
+.Select-leave-from {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.Select-leave-to {
+  opacity: 0;
+  transform: translateY(-5%);
 }
 
 /* 路由跳转动画 */
 .fade-slide-leave-active,
 .fade-slide-enter-active {
-  transition: all 0.4s ease-in-out ;
+  transition: all 0.4s ease-in-out;
 }
+
 .fade-slide-enter-from {
   opacity: 0;
   transform: translateX(-30px);
 }
+
 .fade-slide-leave-to {
-  opacity:1;
+  opacity: 1;
   transform: translateX(30px);
 }
 
@@ -140,112 +158,168 @@
   opacity: 0;
   transform: translate(-50%, -100%);
 }
+
 .message-enter-to {
   transform: translate(-50%, 0%);
 }
+
 .message-enter-active {
   transition: all 0.4s ease;
 }
+
 .message-leave {
   transform: translateY(0%);
 }
+
 .message-leave-to {
   opacity: 0;
   transform: translate(-50%, -100%);
 }
+
 .message-leave-active {
   transition: all 0.5s ease-in-out;
 }
 
 /* HeaderBar动画*/
-.c-enter-active{
+.c-enter-active {
   opacity: 0;
   transition: all 0.3s ease-in-out;
-  transform: translate(50px,-110px) scale(0.5);
+  transform: translate(50px, -110px) scale(0.5);
 }
-.c-enter-to{
+
+.c-enter-to {
   opacity: 1;
   transition: all 0.3s ease-in-out;
-  transform: translate(0px,0px) scale(1);
-} 
-.c-leave-active{
+  transform: translate(0px, 0px) scale(1);
+}
+
+.c-leave-active {
   opacity: 1;
   transition: all 0.3s ease-in-out;
-  transform: translate(0px,0px) scale(1);
+  transform: translate(0px, 0px) scale(1);
 }
-.c-leave-to{
+
+.c-leave-to {
   opacity: 0;
-  transform: translate(50px,-110px) scale(0.5);
+  transform: translate(50px, -110px) scale(0.5);
 }
 
 /* 从右往左平滑过渡300px */
-.showTopMore-enter-active{
+.showTopMore-enter-active {
   opacity: 0;
   transition: all 0.5s ease;
-  transform: translate(300px,0px);
+  transform: translate(300px, 0px);
 }
-.showTopMore-enter-to{
+
+.showTopMore-enter-to {
   opacity: 1;
   transition: all 0.5s ease;
-  transform: translate(0px,0px);
-} 
-.showTopMore-leave-active{
+  transform: translate(0px, 0px);
+}
+
+.showTopMore-leave-active {
   opacity: 1;
   transition: all 0.5s ease;
-  transform: translate(0px,0px);
+  transform: translate(0px, 0px);
 }
-.showTopMore-leave-to{
+
+.showTopMore-leave-to {
   opacity: 0;
   transition: all 0.5s ease;
-  transform: translate(300px,0px);
+  transform: translate(300px, 0px);
 }
 
 
 /* 左侧导航栏 */
-.leftBar-enter-active{
+.leftBar-enter-active {
   opacity: 0;
   transition: all 0.3s ease-in-out;
 }
-.leftBar-enter-to{
+
+.leftBar-enter-to {
   opacity: 1;
 }
 
 /* 图片上传删除图片动画 */
-.photo-enter-active{
+.photo-enter-active {
   opacity: 0;
   transition: all 0.5s ease;
-  transform: translate(0px,-160px);
+  transform: translate(0px, -160px);
 }
-.photo-enter-to{
+
+.photo-enter-to {
   opacity: 1;
   transition: all 0.5s ease;
-  transform: translate(0px,0px);
-} 
-.photo-leave-active{
+  transform: translate(0px, 0px);
+}
+
+.photo-leave-active {
   opacity: 1;
   transition: all 0.5s ease;
-  transform: translate(0px,0px);
+  transform: translate(0px, 0px);
 }
-.photo-leave-to{
+
+.photo-leave-to {
   opacity: 0;
   transition: all 0.5s ease;
-  transform: translate(0px,-160px);
+  transform: translate(0px, -160px);
 }
 
 /* 图片上传鼠标移入遮罩层动画 */
-.mask-enter-active{
+.mask-enter-active {
   opacity: 0;
   transition: all 0.3s ease;
 }
-.mask-enter-to{
-  opacity: 1;
-  transition: all 0.3s ease;
-} 
-.mask-leave-active{
+
+.mask-enter-to {
   opacity: 1;
   transition: all 0.3s ease;
 }
-.mask-leave-to{
+
+.mask-leave-active {
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+.mask-leave-to {
   opacity: 0;
   transition: all 0.3s ease;
+}
+
+/* 右侧设置遮罩层动画 */
+.showSetmask-enter-active {
+  transition: all 0.4s ease;
+}
+
+.showSetmask-enter-to {
+  transition: all 0.4s ease;
+}
+
+.showSetmask-leave-active {
+  transition: all 0.4s ease;
+}
+
+.showSetmask-leave-to {
+  transition: all 0.4s ease;
+}
+
+/* 右侧设置菜单动画 */
+.showSetRight-enter-active {
+  transition: all 0.4s ease;
+  transform: translate(100%, 0px);
+}
+
+.showSetRight-enter-to {
+  transition: all 0.4s ease;
+  transform: translate(0px, 0px);
+}
+
+.showSetRight-leave-active {
+  transition: all 0.4s ease;
+  transform: translate(0px, 0px);
+}
+
+.showSetRight-leave-to {
+  transition: all 0.4s ease;
+  transform: translate(100%, 0px);
 }

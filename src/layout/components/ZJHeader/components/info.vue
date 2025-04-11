@@ -1,9 +1,9 @@
 <template>
   <div class="ZJHeaderInfoBox" @click="open('openInfoHeaderBar')" ref="ZJHeaderInfoBox">
-    <a>{{userName}}</a>
+    <a>{{ userName }}</a>
     <img :src="userAvatar" @error="avatarSrcError()" alt="">
+    <infoHeaderBar v-show="showInfoHeaderBar" class="ZJHeaderBar"></infoHeaderBar>
   </div>
-  <infoHeaderBar v-show="showInfoHeaderBar" class="ZJHeaderBar"></infoHeaderBar>
 </template>
 
 <script setup>
@@ -14,13 +14,13 @@ const userName = ref('ZJUI-Admin');
 const userAvatar = ref(require('@/assets/logo/logo.png'))
 const showInfoHeaderBar = ref(false);
 
-function open(action){
-  if(action=='openInfoHeaderBar'){
-    showInfoHeaderBar.value=!showInfoHeaderBar.value
+function open(action) {
+  if (action == 'openInfoHeaderBar') {
+    showInfoHeaderBar.value = !showInfoHeaderBar.value
   }
 }
 // 图片错误处理
-function avatarSrcError(){
+function avatarSrcError() {
   this.UserAvatar = require('@/assets/error/Avatar.svg');
 }
 
@@ -43,7 +43,7 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-.ZJHeaderInfoBox{
+.ZJHeaderInfoBox {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -51,29 +51,33 @@ onUnmounted(() => {
   border-radius: 10px;
   padding: 0px 10px;
   margin-left: 10px;
-  position: relative;
   height: 40px;
 }
-.ZJHeaderInfoBox:hover{
-  background-color:var(--ZJ-main-hover);
+
+.ZJHeaderInfoBox:hover {
+  background-color: var(--ZJ-main-hover);
   transition: all 0.2s ease-in-out;
 }
-.ZJHeaderBar{
+
+.ZJHeaderBar {
   position: absolute;
-  top:50px;
-  right: 0;
+  top: 50px;
+  right: 25px;
 }
-img{
-  width:36px;
-  height:36px;
+
+img {
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
+  position: relative;
 }
-a{
+
+a {
   max-width: 150px;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis; 
-  font-size:14px;
+  text-overflow: ellipsis;
+  font-size: 14px;
   font-weight: 900;
   text-align: right;
   letter-spacing: 0em;

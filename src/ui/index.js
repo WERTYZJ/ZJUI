@@ -22,6 +22,7 @@ import ZJDialog from "./ZJDialog/index.vue";
 import ZJBackTop from "./ZJBackTop/index.vue";
 import ZJCarousel from "./ZJCarousel/index.vue";
 import ZJAvailableTime from "./ZJAvailableTime/index.vue";
+import ZJSwitch from './ZJSwitch'
 // 导入函数
 import ZJMessage from "./ZJMessage/ZJMessage.js";
 
@@ -49,7 +50,8 @@ const components = {
   ZJDialog,
   ZJBackTop,
   ZJCarousel,
-  ZJAvailableTime
+  ZJAvailableTime,
+  ZJSwitch
 };
 
 // 插件对象

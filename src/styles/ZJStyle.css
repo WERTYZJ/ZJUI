@@ -1,21 +1,27 @@
-*{
+* {
   padding: 0;
   margin: 0;
   scrollbar-width: 10px;
-  -webkit-tap-highlight-color:transparent;
+  -webkit-tap-highlight-color: transparent;
   cursor: default;
-  -webkit-user-select: none;
+  /* 禁用选择 */
+  /* -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   -khtml-user-select: none;
-  user-select: none;
+  user-select: none; */
   word-break: break-all;
 }
+
 html {
-  line-height: 1.5; /* 1 */
-  -webkit-text-size-adjust: 100%; /* 2 */
-  -moz-tab-size: 4; /* 3 */
-  tab-size: 4; /* 3 */
+  line-height: 1.5;
+  /* 1 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */
+  -moz-tab-size: 4;
+  /* 3 */
+  tab-size: 4;
+  /* 3 */
   font-family:
     ui-sans-serif,
     system-ui,
@@ -30,17 +36,23 @@ html {
     'Apple Color Emoji',
     'Segoe UI Emoji',
     'Segoe UI Symbol',
-    'Noto Color Emoji'; /* 4 */
+    'Noto Color Emoji';
+  /* 4 */
 }
+
 body {
-  margin: 0; /* 1 */
-  line-height: inherit; /* 2 */
+  margin: 0;
+  /* 1 */
+  line-height: inherit;
+  /* 2 */
 }
-p{
+
+p {
   font-size: 14px;
-  line-height:200%;
+  line-height: 200%;
 }
-h3{
+
+h3 {
   line-height: 300%;
 }
 
@@ -48,8 +60,10 @@ code,
 kbd,
 samp,
 pre {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace; /* 1 */
-  font-size: 1em; /* 2 */
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  /* 1 */
+  font-size: 1em;
+  /* 2 */
 }
 
 small {
@@ -61,28 +75,40 @@ input,
 optgroup,
 select,
 textarea {
-  font-family: inherit; /* 1 */
-  font-feature-settings: inherit; /* 1 */
-  font-variation-settings: inherit; /* 1 */
-  font-size: 100%; /* 1 */
-  font-weight: inherit; /* 1 */
-  line-height: inherit; /* 1 */
-  color: inherit; /* 1 */
-  margin: 0; /* 2 */
-  padding: 0; /* 3 */
+  font-family: inherit;
+  /* 1 */
+  font-feature-settings: inherit;
+  /* 1 */
+  font-variation-settings: inherit;
+  /* 1 */
+  font-size: 100%;
+  /* 1 */
+  font-weight: inherit;
+  /* 1 */
+  line-height: inherit;
+  /* 1 */
+  color: inherit;
+  /* 1 */
+  margin: 0;
+  /* 2 */
+  padding: 0;
+  /* 3 */
 }
 
 button,
 select {
   text-transform: none;
 }
+
 button,
 [type='button'],
 [type='reset'],
 [type='submit'] {
-  -webkit-appearance: button; /* 1 */
+  -webkit-appearance: button;
+  /* 1 */
   /* background-color: transparent;  */
-  background-image: none; /* 2 */
+  background-image: none;
+  /* 2 */
 }
 
 :-moz-focusring {
@@ -110,8 +136,10 @@ audio,
 iframe,
 embed,
 object {
-  display: block; /* 1 */
-  vertical-align: middle; /* 2 */
+  display: block;
+  /* 1 */
+  vertical-align: middle;
+  /* 2 */
 }
 
 img,
@@ -123,157 +151,197 @@ video {
 /* 滚动条 */
 /* 设置滚动条滑块的样式 */
 ::-webkit-scrollbar-thumb {
-    background: #9B89E4; 
+  background: #9B89E4;
 }
+
 /* 设置滚动条的宽度 */
 ::-webkit-scrollbar {
-    width: 7px; /* 适用于垂直滚动条 */
-    height: 7px; /* 适用于水平滚动条 */
-    background: var(--ZJ-default-main-hover);
-    border-radius: 20px;
+  width: 7px;
+  /* 适用于垂直滚动条 */
+  height: 7px;
+  /* 适用于水平滚动条 */
+  background: var(--ZJ-default-main-hover);
+  border-radius: 20px;
 }
+
 /* 设置滚动条滑块的样式 */
 ::-webkit-scrollbar-thumb {
-    /* background: #9B89E4;  */
-    background:var(--ZJ-default-main);
-    width: 10px;
-    border-radius: 10px;
+  /* background: #9B89E4;  */
+  background: var(--ZJ-default-main);
+  width: 10px;
+  border-radius: 10px;
 }
+
 /* 设置垂直滚动条的滑块样式 */
 ::-webkit-scrollbar-thumb:vertical {
-    background:var(--ZJ-default-main); 
-    width: 10px;
-    border-radius: 20px;
+  background: var(--ZJ-default-main);
+  width: 10px;
+  border-radius: 20px;
 }
-.ZJMain{
-  width:calc(100vw - 220px);
-  height:calc(100vh - 60px);
+
+.ZJMain {
+  width: calc(100vw - 220px);
+  height: calc(100vh - 60px);
   position: fixed;
   right: 0;
-  top:60px;
+  top: 60px;
   overflow: auto;
 }
-.modal{
+
+.modal {
   position: fixed;
-  z-index:999;
+  z-index: 999;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
   animation: modal 0.5s ease-in-out;
   overflow: auto;
 }
-@keyframes modal{
+
+@keyframes modal {
   0% {
     opacity: 0;
   }
+
   100% {
     opacity: 1;
   }
 }
-.ZJHeaderToolsBox{
+
+.ZJHeaderToolsBox {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding:7px;
-  border-radius:5px;
+  padding: 7px;
+  border-radius: 5px;
   transition: all 0.2s ease-in-out;
   color: var(--ZJ-main-text-color);
 }
-.ZJHeaderToolsBox:hover{
-  background-color:var(--ZJ-main-hover);
-  color:var(--ZJ-default-main);
+
+.ZJHeaderToolsBox:hover {
+  background-color: var(--ZJ-main-hover);
+  color: var(--ZJ-default-main);
 }
-.ZJIconBox{
+
+.ZJIconBox {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding:5px;
-  border-radius:5px;
+  padding: 5px;
+  border-radius: 5px;
   transition: all 0.2s ease-in-out;
   color: var(--ZJ-main-text-color);
 }
-.ZJIconBox:hover{
-  background-color:var(--ZJ-main-hover);
-  color:var(--ZJ-default-main);
+
+.ZJIconBox:hover {
+  background-color: var(--ZJ-main-hover);
+  color: var(--ZJ-default-main);
 }
+
 /* 旋转图标动画 */
-.ZJRotate-icon-open{
+.ZJRotate-icon-open {
   transform: rotate(180deg);
   transition: all 0.3s ease-in-out;
 }
-.ZJRotate-icon-close{
+
+.ZJRotate-icon-close {
   transform: rotate(0deg);
   transition: all 0.3s ease-in-out;
 }
+
 /* 菜单样式 */
-.ZJMenu{
-  background-color:var( --ZJ-main-message-color);
-  box-shadow:var(--ZJ-main-box-shadow);
+.ZJMenu {
+  background-color: var(--ZJ-main-message-color);
+  box-shadow: var(--ZJ-main-box-shadow);
   padding: 0 4px;
-  border-radius:5px;
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
   z-index: 1;
 }
-.ZJMenuHr{
+
+.ZJMenuHr {
   border: none;
   margin: 0 10px;
   border-bottom: 1px solid var(--ZJ-main-hover);
 }
-.ZJMenuHrLast{
+
+.ZJMenuHrLast {
   display: none;
-} 
-.ZJMenuLi{
+}
+
+.ZJMenuLi {
   display: flex;
   align-items: center;
   margin: 4px 0px;
   padding: 2px 5px;
   word-break: normal;
-  transition:var(--ZJ-main-transition);
-  border-radius:5px;
+  transition: var(--ZJ-main-transition);
+  border-radius: 5px;
   color: var(--ZJ-main-text-color);
 }
-.ZJMenuLi:hover{
-  background-color:var(--ZJ-main-hover);
+
+.ZJMenuLi:hover {
+  background-color: var(--ZJ-main-hover);
 }
-.ZJMenuLi>.img{
+
+.ZJMenuLi>.img {
   margin-left: 5px;
   height: 22px;
   width: 22px;
 }
-.ZJMenuLi:hover>.img{
+
+.ZJMenuLi:hover>.img {
   animation: bar 0.5s ease-in;
 }
+
 @keyframes bar {
-  0% { transform: scale(1); }
-  30% { transform: scale(1.2); }
-  60% { transform: scale(1.05); }
-  80% { transform: scale(1.1); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+
+  30% {
+    transform: scale(1.2);
+  }
+
+  60% {
+    transform: scale(1.05);
+  }
+
+  80% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }
+
 .ZJMenuLi a {
   /* margin:10px 5px 10px 5px; */
   margin: 5px;
   font-family: AlibabaPuHuiTi;
-  font-size:14px;
+  font-size: 14px;
   letter-spacing: 0em;
   font-variation-settings: "opsz" auto;
   font-feature-settings: "kern" on;
 }
 
-.ZJDisplayFlex{
-  display:flex; 
-  flex-wrap:wrap;
-  gap:20px;
+.ZJDisplayFlex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
 }
-.m-tb-10{
+
+.m-tb-10 {
   margin: 10px 0;
 }
-.m-t-10{
+
+.m-t-10 {
   margin-top: 10px;
 }

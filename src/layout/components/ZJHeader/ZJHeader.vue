@@ -27,38 +27,43 @@ import Info from './components/info.vue';
 
 function enter(event) {
   if (event.keyCode == 13) {
-  if (!event.ctrlKey) {
+    if (!event.ctrlKey) {
       event.preventDefault();
-      router.push({path:'/MoreTutor/:SearchVal',})
+      router.push({ path: '/MoreTutor/:SearchVal', })
+    }
   }
-  }     
 }
 </script>
 
 <style scoped>
 /* 头部header */
-.header{
-  width:calc(100vw - var(--ZJAsideMenu-width));
-  height:var(--ZJHeader-height);
-  background-color:var(--ZJ-main);
-  transition: width 0.3s ease-in-out;
+.header {
+  width: calc(100vw - var(--ZJAsideMenu-width));
+  height: var(--ZJHeader-height);
+  background-color: var(--ZJ-main);
+  transition: var(--ZJ-main-transition-width);
+  box-shadow: 0 1px 1px 1px var(--ZJ-main-hover);
+  z-index: 1;
 }
-.header-box{
-  height:56px;
-  padding: 0 20px;
+
+.header-box {
+  height: 56px;
+  padding: 0 8px 0 20px;
   display: flex;
   justify-content: space-between;
   box-shadow: 0 1px 2px rgb(0, 21, 41, 0.08);
   /* background-color: rgba(95, 158, 160); */
 }
-.header-left{
+
+.header-left {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap:15px;
+  gap: 15px;
   /* background-color: #a66510; */
 }
-.header-right{
+
+.header-right {
   /* background-color: aqua; */
   display: flex;
   justify-content: center;

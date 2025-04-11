@@ -1,6 +1,6 @@
 <template>
-  <div class="sidebarOpen" @click="clickBtn">
-    <ZJSvgIcons :icon="sidebarIcon" style="cursor:pointer;"></ZJSvgIcons>
+  <div class="ZJHeaderToolsBox" @click="clickBtn">
+    <ZJSvgIcons :icon="sidebarIcon" height="18px" width="18px" style="cursor:pointer;"></ZJSvgIcons>
   </div>
 </template>
 
@@ -16,7 +16,7 @@ function clickBtn() {
   const currentValue = getComputedStyle(document.documentElement)
     .getPropertyValue('--ZJAsideMenu-width')
     .trim(); // 使用 trim() 去除可能的空白字符
- 
+
   // 检查当前值，并设置新的值
   if (currentValue === '220px') {
     document.documentElement.style.setProperty('--ZJAsideMenu-width', '56px');
@@ -27,8 +27,4 @@ function clickBtn() {
 }
 </script>
 
-<style scoped>
-.sidebarOpen{
-  color: var(--ZJ-main-text-color);
-}
-</style>
+<style scoped></style>

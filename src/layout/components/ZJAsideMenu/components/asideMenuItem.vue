@@ -1,37 +1,28 @@
 <template>
   <div>
-    <div :style="{ paddingLeft: level > 0 ? menuChildLeft() : undefined }" 
-         :class="{'menuFather': true,'selected': item.name === userStore.ZJAsideMenuNameSelect}" 
-         @click="toggleChildMenu(item.name,props.index,item.path)"
-         >
+    <div :style="{ paddingLeft: level > 0 ? menuChildLeft() : undefined }"
+      :class="{ 'menuFather': true, 'selected': item.name === userStore.ZJAsideMenuNameSelect }"
+      @click="toggleChildMenu(item.name, props.index, item.path)">
       <div class="menuFather-icon">
         <ZJSvgIcons :icon="item.meta.icon"></ZJSvgIcons>
         <Transition name="leftBar">
           <a v-if="userStore.isSideBarOpen">{{ item.name }}</a>
         </Transition>
       </div>
-      <ZJSvgIcons 
-        :class="{'ZJRotate-icon-open': isChildMenuOpen, 'ZJRotate-icon-close': !isChildMenuOpen}" 
-        icon="select" 
-        v-if="item.children && item.children.length && userStore.isSideBarOpen"
-      />
+      <ZJSvgIcons :class="{ 'ZJRotate-icon-open': isChildMenuOpen, 'ZJRotate-icon-close': !isChildMenuOpen }"
+        icon="select" v-if="item.children && item.children.length && userStore.isSideBarOpen" />
     </div>
 
     <transition name="fade">
       <div ref="childMenuBoxElement" class="menuChildBox"
-      :style="{ height: isChildMenuOpen && userStore.isSideBarOpen ? `${childMenuHeight}px` : '0' }">
-        <AsideMenuItem
-          v-for="(child, childIndex) in item.children"
-          :key="childIndex"
-          :item="child"
-          :level="level + 1"
-          :index="childIndex"
-          @updateHeight="updateHeight"
-        />
+        :style="{ height: isChildMenuOpen && userStore.isSideBarOpen ? `${childMenuHeight}px` : '0' }">
+        <AsideMenuItem v-for="(child, childIndex) in item.children" :key="childIndex" :item="child" :level="level + 1"
+          :index="childIndex" @updateHeight="updateHeight" />
       </div>
     </transition>
 
-    <div v-if="userStore.isSideBarOpen==false && userStore.ZJAsideMenuNameSelect==item.name && isChildMenuCardOpen"
+    <!-- 左侧导航栏弹窗卡片 -->
+    <!-- <div v-if="userStore.isSideBarOpen==false && userStore.ZJAsideMenuNameSelect==item.name && isChildMenuCardOpen"
       class="menuChildCard ZJMenu"
       >
       <Transition name="select">
@@ -43,12 +34,12 @@
         @closeAsideMenuCard="closeAsideMenuCard"
       />
       </Transition>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script setup>
-import { ref,defineProps,computed, onMounted,onUnmounted,defineEmits } from 'vue';
+import { ref, defineProps, computed, onMounted, onUnmounted, defineEmits } from 'vue';
 import { useUserStore } from '@/store';
 import router from '@/router';
 import AsideMenuItemCard from './asideMenuItemCard.vue';
@@ -57,21 +48,21 @@ const userStore = useUserStore();
 const emits = defineEmits(['updateHeight']);
 
 const props = defineProps({
-  item:{
-    type:Object,
+  item: {
+    type: Object,
   },
-  selectedIndex:{
-    type:String,
+  selectedIndex: {
+    type: String,
   },
-  clickSelectedIndex:{
-    type:Function
+  clickSelectedIndex: {
+    type: Function
   },
-  level:{
-    type:Number,
+  level: {
+    type: Number,
     default: 0
   },
-  index:{
-    type:Number,
+  index: {
+    type: Number,
     default: 0
   }
 });
@@ -83,12 +74,12 @@ const childMenuHeight = ref(0);
 
 const menuChildLeft = () => `${props.level * 20 + 12}px`;
 
-function updateHeight(val,type){
+function updateHeight(val, type) {
   // console.log(val,type)
-  emits('updateHeight',val,type);
-  if(type){
+  emits('updateHeight', val, type);
+  if (type) {
     childMenuHeight.value = childMenuHeight.value + val;
-  }else{
+  } else {
     childMenuHeight.value = childMenuHeight.value - val;
   }
 }
@@ -96,10 +87,10 @@ function updateHeight(val,type){
 function toggleChildMenu(name, index, path) {
 
   const selectBarName = userStore.ZJAsideMenuNameSelect;
-  if(selectBarName!=name){ 
+  if (selectBarName != name) {
     childMenuHeight.value = 0;
-  }else{
-    if(userStore.isSideBarOpen==true && childMenuBoxElement.value){
+  } else {
+    if (userStore.isSideBarOpen == true && childMenuBoxElement.value) {
       childMenuHeight.value = childMenuBoxElement.value.scrollHeight;
     }
   }
@@ -107,11 +98,11 @@ function toggleChildMenu(name, index, path) {
   userStore.ZJAsideMenuNameSelect = name;
   isChildMenuOpen.value = !isChildMenuOpen.value;
 
-  if(props.level==0){
+  if (props.level == 0) {
     useUserStore.ZJAsideMenuCardNameIndex = index;
   }
 
-  if(userStore.isSideBarOpen==false){
+  if (userStore.isSideBarOpen == false) {
     isChildMenuCardOpen.value = !isChildMenuCardOpen.value;
   }
 
@@ -119,11 +110,11 @@ function toggleChildMenu(name, index, path) {
   if (isChildMenuOpen.value) {
     setTimeout(() => {
       if (childMenuBoxElement.value) {
-        emits('updateHeight', childMenuHeight.value,true);
+        emits('updateHeight', childMenuHeight.value, true);
       }
     }, 0);
   } else {
-    emits('updateHeight', childMenuHeight.value,false);
+    emits('updateHeight', childMenuHeight.value, false);
   }
 
   if (path) {
@@ -150,69 +141,81 @@ onUnmounted(() => {
   childMenuHeight.value = 0;
 });
 
-function closeAsideMenuCard(){
-  isChildMenuCardOpen.value=false;
+function closeAsideMenuCard() {
+  isChildMenuCardOpen.value = false;
   // console.log('5555')
 }
 </script>
 
 <style scoped>
-.ZJSlider{
+.ZJSlider {
   width: var(--ZJAsideMenu-width);
-  background-color:var(--ZJ-main);
+  background-color: var(--ZJ-main);
   box-shadow: 2px 0 8px 0 rgb(29, 35, 41, 0.05);
   color: var(--ZJ-main-text-color);
   transition: width 0.3s ease-in-out;
 }
-a{
+
+a {
   font-size: 14px;
   line-height: normal;
   text-decoration: none;
   overflow: hidden;
   white-space: nowrap;
 }
-.menuMain{
+
+.menuMain {
   display: flex;
   flex-direction: column;
 }
-.menuFather{
+
+.menuFather {
   font-size: 16px;
-  padding:10px 12px;
+  padding: 10px 12px;
   margin: 2px 6px;
-  border-radius:4px;
+  border-radius: 4px;
   list-style: none;
   display: flex;
   justify-content: space-between;
   position: relative;
-  transition:var(--ZJ-main-transition);
+  transition: var(--ZJ-main-transition);
 }
-.menuFather:hover{
-  background-color:var(--ZJ-main-hover);
-  color:var(--ZJ-default-main);
+
+.menuFather:hover {
+  background-color: var(--ZJ-main-hover);
+  color: var(--ZJ-default-main);
 }
-.menuFather:active{
-  background-color:var(--ZJ-default-main-hover);
-  color:var(--ZJ-default-main);
+
+.menuFather:active {
+  background-color: var(--ZJ-default-main-hover);
+  color: var(--ZJ-default-main);
 }
-.menuFather-icon{
+
+.menuFather-icon {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap:8px;
+  gap: 8px;
   /* background-color: aquamarine; */
   overflow: hidden;
 }
-.selected,.selected a,.selected:hover{
-  transition:var(--ZJ-main-transition);
-  background-color:var(--ZJ-default-main-hover);
-  color:var(--ZJ-default-main);
+
+.selected,
+.selected a,
+.selected:hover {
+  transition: var(--ZJ-main-transition);
+  background-color: var(--ZJ-default-main-hover);
+  color: var(--ZJ-default-main);
 }
-.menuChildBox{
+
+.menuChildBox {
   overflow: hidden;
-  transition:height 0.3s ease-in-out; /* 平滑过渡 */
+  transition: height 0.3s ease-in-out;
+  /* 平滑过渡 */
 }
-.menuChildCard{
-  z-index:10;
+
+.menuChildCard {
+  z-index: 10;
   position: absolute;
   margin-left: 56px;
   margin-top: -43px;

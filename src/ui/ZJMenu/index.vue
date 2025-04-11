@@ -1,40 +1,30 @@
 <template>
   <div>
-    <div :style="{ paddingLeft: level > 0 ? menuChildLeft() : undefined }" 
-         :class="{'menuFather': true,'selected': item.name === userStore.ZJAsideMenuNameSelect}" 
-         @click="toggleChildMenu(item.name,props.index,item.path)"
-         >
+    <div :style="{ paddingLeft: level > 0 ? menuChildLeft() : undefined }"
+      :class="{ 'menuFather': true, 'selected': item.name === userStore.ZJAsideMenuNameSelect }"
+      @click="toggleChildMenu(item.name, props.index, item.path)">
       <div class="menuFather-icon">
         <ZJSvgIcons :icon="item.meta.icon"></ZJSvgIcons>
         <Transition name="leftBar">
           <a v-if="userStore.isSideBarOpen">{{ item.name }}</a>
         </Transition>
       </div>
-      <ZJSvgIcons 
-        :class="{'ZJRotate-icon-open': isChildMenuOpen, 'ZJRotate-icon-close': !isChildMenuOpen}" 
-        icon="select" 
-        v-if="item.children && item.children.length && userStore.isSideBarOpen"
-      />
+      <ZJSvgIcons :class="{ 'ZJRotate-icon-open': isChildMenuOpen, 'ZJRotate-icon-close': !isChildMenuOpen }"
+        icon="select" v-if="item.children && item.children.length && userStore.isSideBarOpen" />
     </div>
 
     <transition name="fade">
       <div ref="childMenuBoxElement" class="menuChildBox"
-      :style="{ height: isChildMenuOpen && userStore.isSideBarOpen ? `${childMenuHeight}px` : '0' }">
-        <AsideMenuItem
-          v-for="(child, childIndex) in item.children"
-          :key="childIndex"
-          :item="child"
-          :level="level + 1"
-          :index="childIndex"
-          @updateHeight="updateHeight"
-        />
+        :style="{ height: isChildMenuOpen && userStore.isSideBarOpen ? `${childMenuHeight}px` : '0' }">
+        <AsideMenuItem v-for="(child, childIndex) in item.children" :key="childIndex" :item="child" :level="level + 1"
+          :index="childIndex" @updateHeight="updateHeight" />
       </div>
     </transition>
   </div>
 </template>
 
 <script setup>
-import { ref,defineProps, onMounted,onUnmounted,defineEmits } from 'vue';
+import { ref, defineProps, onMounted, onUnmounted, defineEmits } from 'vue';
 import { useUserStore } from '@/store';
 import router from '@/router';
 
@@ -42,21 +32,21 @@ const userStore = useUserStore();
 const emits = defineEmits(['updateHeight']);
 
 const props = defineProps({
-  item:{
-    type:Object,
+  item: {
+    type: Object,
   },
-  selectedIndex:{
-    type:String,
+  selectedIndex: {
+    type: String,
   },
-  clickSelectedIndex:{
-    type:Function
+  clickSelectedIndex: {
+    type: Function
   },
-  level:{
-    type:Number,
+  level: {
+    type: Number,
     default: 0
   },
-  index:{
-    type:Number,
+  index: {
+    type: Number,
     default: 0
   }
 });
@@ -68,12 +58,12 @@ const childMenuHeight = ref(0);
 
 const menuChildLeft = () => `${props.level * 20 + 12}px`;
 
-function updateHeight(val,type){
+function updateHeight(val, type) {
   // console.log(val,type)
-  emits('updateHeight',val,type);
-  if(type){
+  emits('updateHeight', val, type);
+  if (type) {
     childMenuHeight.value = childMenuHeight.value + val;
-  }else{
+  } else {
     childMenuHeight.value = childMenuHeight.value - val;
   }
 }
@@ -135,62 +125,73 @@ onUnmounted(() => {
   childMenuHeight.value = 0;
 });
 
-function closeAsideMenuCard(){
-  isChildMenuCardOpen.value=false;
+function closeAsideMenuCard() {
+  isChildMenuCardOpen.value = false;
   console.log('5555')
 }
 </script>
 
 <style scoped>
-.ZJSlider{
+.ZJSlider {
   width: var(--ZJAsideMenu-width);
-  background-color:var(--ZJ-main);
+  background-color: var(--ZJ-main);
   box-shadow: 2px 0 8px 0 rgb(29, 35, 41, 0.05);
   color: var(--ZJ-main-text-color);
   transition: width 0.3s ease-in-out;
 }
-a{
+
+a {
   font-size: 14px;
   line-height: normal;
   text-decoration: none;
   overflow: hidden;
   white-space: nowrap;
 }
-.menuMain{
+
+.menuMain {
   display: flex;
   flex-direction: column;
 }
-.menuFather{
+
+.menuFather {
   font-size: 16px;
-  padding:10px 12px;
+  padding: 10px 12px;
   margin: 2px 6px;
-  border-radius:4px;
+  border-radius: 4px;
   list-style: none;
   display: flex;
   justify-content: space-between;
   position: relative;
 }
-.menuFather:hover{
-  background-color:var(--ZJ-main-hover);
+
+.menuFather:hover {
+  background-color: var(--ZJ-main-hover);
 }
-.menuFather-icon{
+
+.menuFather-icon {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap:8px;
+  gap: 8px;
   /* background-color: aquamarine; */
   overflow: hidden;
 }
-.selected,.selected a,.selected:hover{
-  background-color:var(--ZJ-default-main-hover);
-  color:var(--ZJ-default-main);
+
+.selected,
+.selected a,
+.selected:hover {
+  background-color: var(--ZJ-default-main-hover);
+  color: var(--ZJ-default-main);
 }
-.menuChildBox{
+
+.menuChildBox {
   overflow: hidden;
-  transition:height 0.3s ease-in-out; /* 平滑过渡 */
+  transition: height 0.3s ease-in-out;
+  /* 平滑过渡 */
 }
-.menuChildCard{
-  z-index:10;
+
+.menuChildCard {
+  z-index: 10;
   position: absolute;
   margin-left: 56px;
   margin-top: -43px;

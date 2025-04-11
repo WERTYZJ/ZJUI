@@ -1,8 +1,9 @@
 <template>
   <div class="default">
-    <ZJAsideMenu></ZJAsideMenu>
+    <ZJAsideMenu v-show="userStore.layout.showSilderBar"></ZJAsideMenu>
     <div class="default-main">
-      <ZJHeader></ZJHeader>
+      <ZJHeader v-show="userStore.layout.showHeader"></ZJHeader>
+      <ZJHeaderBar v-show="userStore.layout.showHeaderBar"></ZJHeaderBar>
       <ZJMain></ZJMain>
     </div>
   </div>
@@ -10,18 +11,22 @@
 
 <script setup name="ZJDefaultMain">
 import ZJHeader from '../components/ZJHeader/ZJHeader.vue';
+import ZJHeaderBar from '../components/ZJHeaderBar/ZJHeaderBar.vue'
 import ZJAsideMenu from '../components/ZJAsideMenu/ZJAsideMenu.vue';
 import ZJMain from '../components/ZJMain/ZJMain.vue';
+import { useUserStore } from '@/store';
+const userStore = useUserStore();
 </script>
 
 <style scoped>
-.default{
+.default {
   display: flex;
   width: 100vw;
   height: 100vh;
   overflow: hidden;
 }
-.default-main{
+
+.default-main {
   display: flex;
   flex-direction: column;
 }

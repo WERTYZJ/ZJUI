@@ -1,68 +1,56 @@
 <template>
   <div>
-  <div ref="cardFatherElement" class="cardFather"
-    @mouseenter="onMouseEnter(index)"
-    @mouseleave="onMouseLeave">
-    <div @click="clickMenuItemCardIndex(item.name,index,item.path)">
-    <div class="ZJMenuLi">
-      <ZJSvgIcons class="img" :icon="item.meta.icon"></ZJSvgIcons>
-      <a>{{ item.name }}</a>
+    <div ref="cardFatherElement" class="cardFather" @mouseenter="onMouseEnter(index)" @mouseleave="onMouseLeave">
+      <div @click="clickMenuItemCardIndex(item.name, index, item.path)">
+        <div class="ZJMenuLi">
+          <ZJSvgIcons class="img" :icon="item.meta.icon"></ZJSvgIcons>
+          <a>{{ item.name }}</a>
+        </div>
+        <!-- <hr class="ZJMenuHr"  :class="{ 'ZJMenuHrLast': index === props.item.length - 1}"> -->
+      </div>
     </div>
-    <!-- <hr class="ZJMenuHr"  :class="{ 'ZJMenuHrLast': index === props.item.length - 1}"> -->
-    </div>
-  </div>
 
-  <div class="ZJMenu cardChild"
-   v-show="showCardChild==index"
-   :style="{marginLeft:cardFatherElementWidthStyle}"
-   @mouseenter="onMouseEnter(index)"
-   @mouseleave="onMouseLeave"
-    >
-    <AsideMenuItemCard
-      v-for="(child, childIndex) in item.children"
-      :key="childIndex"
-      :item="child"
-      :clickMenuItemCardIndex="clickMenuItemCardIndex"
-      :level="level + 1"
-      :index="childIndex"
-      @closeAsideMenuCard="closeAsideMenuCard"
-    />
-  </div>
+    <div class="ZJMenu cardChild" v-show="showCardChild == index" :style="{ marginLeft: cardFatherElementWidthStyle }"
+      @mouseenter="onMouseEnter(index)" @mouseleave="onMouseLeave">
+      <AsideMenuItemCard v-for="(child, childIndex) in item.children" :key="childIndex" :item="child"
+        :clickMenuItemCardIndex="clickMenuItemCardIndex" :level="level + 1" :index="childIndex"
+        @closeAsideMenuCard="closeAsideMenuCard" />
+    </div>
   </div>
 </template>
 
 <script setup>
-import { ref,defineProps,onMounted,computed,defineEmits } from 'vue';
+import { ref, defineProps, onMounted, computed, defineEmits } from 'vue';
 import router from '@/router';
 
 const emits = defineEmits(['closeAsideMenuCard']);
 
 const props = defineProps({
-  item:{
-    type:Object,
+  item: {
+    type: Object,
   },
-  clickSelectedIndex:{
-    type:Function
+  clickSelectedIndex: {
+    type: Function
   },
-  level:{
-    type:Number,
+  level: {
+    type: Number,
     default: 0
   },
-  index:{
-    type:Number,
+  index: {
+    type: Number,
     default: 0
   }
 });
 
 // 点击
-function clickMenuItemCardIndex(name,index,path) {
+function clickMenuItemCardIndex(name, index, path) {
   //  console.log('name',name);
   // console.log('index',index);
   // console.log('path',path);
- if(path){
-   router.push(`${path}`)
- }
- emits('closeAsideMenuCard');
+  if (path) {
+    router.push(`${path}`)
+  }
+  emits('closeAsideMenuCard');
 }
 
 // 样式
@@ -81,35 +69,37 @@ onMounted(() => {
 
 const showCardChild = ref(null);
 
-function onMouseEnter(index){
+function onMouseEnter(index) {
   // console.log(index)
-  showCardChild.value=index;
+  showCardChild.value = index;
   if (cardFatherElement.value) {
     cardFatherElementWidth.value = cardFatherElement.value.offsetWidth;
   }
   // console.log(showCardChild.value)
 }
-function onMouseLeave(){
-  showCardChild.value=-1;
+function onMouseLeave() {
+  showCardChild.value = -1;
   // console.log(showCardChild.value)
 }
-function closeAsideMenuCard(){
+function closeAsideMenuCard() {
   emits('closeAsideMenuCard');
 }
 </script>
 
 <style scoped>
-a{
+a {
   font-size: 14px;
   line-height: normal;
   text-decoration: none;
   overflow: hidden;
   white-space: nowrap;
 }
-.cardFather{
+
+.cardFather {
   position: relative;
 }
-.cardChild{
+
+.cardChild {
   position: absolute;
   margin-top: -41px;
 }

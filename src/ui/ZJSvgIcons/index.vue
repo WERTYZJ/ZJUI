@@ -1,13 +1,6 @@
 <template>
-  <svg
-    class="svg-icon"
-    :width="width"
-    :height="height"
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 20 20"
-    :style="{ width, height,color, ...style }"
-    v-html="iconContent"
-  ></svg>
+  <svg class="svg-icon" :width="width" :height="height" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+    :style="{ width, height, color, ...style }" v-html="iconContent"></svg>
 </template>
 
 <script setup>
@@ -49,5 +42,6 @@ const iconContent = computed(() => {
   display: inline-block;
   vertical-align: middle;
   overflow: hidden;
+  min-width: 18px;
 }
 </style>

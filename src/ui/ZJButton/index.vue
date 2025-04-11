@@ -1,40 +1,37 @@
 <template>
-   <button 
-    :class="props.type"
-    :style="ZJStyle"
-    >
+  <button :class="props.type" :style="ZJStyle">
     <ZJSvgIcons v-if="props.icon" :icon="props.icon"></ZJSvgIcons>
     {{ props.text }}
-   </button>
+  </button>
 </template>
  
 <script setup>
-import {defineProps,computed } from 'vue';
- 
+import { defineProps, computed } from 'vue';
+
 // 接收 props
 const props = defineProps({
-  type:{
+  type: {
     type: String,
     required: true,
-    validator: (value) => ['default','success', 'error', 'warning', 'info'].includes(value),
+    validator: (value) => ['default', 'success', 'error', 'warning', 'info'].includes(value),
   },
-  icon:{
-    type:String,
-    default:'',
+  icon: {
+    type: String,
+    default: '',
   },
-  text:{
-    type:String,
-    default:'',
+  text: {
+    type: String,
+    default: '',
   },
-  style:{
+  style: {
     type: Object,
     default: () => ({})
   },
-  dashed:{
+  dashed: {
     type: Boolean,
     default: false,
   },
-  transparent:{
+  transparent: {
     type: Boolean,
     default: false,
   },
@@ -42,8 +39,8 @@ const props = defineProps({
 
 const ZJStyle = computed(() => {
   let fontColor
-  if(props.transparent){
-    switch(props.type){
+  if (props.transparent) {
+    switch (props.type) {
       case 'success':
         fontColor = 'var(--ZJ-button-success-dark)';
         break;
@@ -57,14 +54,14 @@ const ZJStyle = computed(() => {
         fontColor = 'var(--ZJ-button-warning-dark)';
         break;
       default:
-        fontColor = 'var(--ZJ-main-text-color)';
+        fontColor = 'var(--ZJ-default-main)';
     }
   }
   const styleGroup = {
     ...props.style,
-    ...(props.dashed ? { borderStyle:'dashed' } : {}),
-    ...(props.transparent ? { backgroundColor:'transparent' } : {}),
-    ...{color:fontColor},
+    ...(props.dashed ? { borderStyle: 'dashed' } : {}),
+    ...(props.transparent ? { backgroundColor: 'transparent' } : {}),
+    ...{ color: fontColor },
   }
 
   return styleGroup;
@@ -73,64 +70,71 @@ const ZJStyle = computed(() => {
 </script>
 
 <style scoped>
-button{
+button {
   color: #FFF;
-  font-size:var(--ZJ-button-font-size);
-  height:var(--ZJ-button-height);
-  padding:var(--ZJ-button-padding);
+  font-size: var(--ZJ-button-font-size);
+  height: var(--ZJ-button-height);
+  padding: var(--ZJ-button-padding);
   border-radius: var(--ZJ-button-border-radius);
   transition: var(--ZJ-button-transition);
 }
 
-.success{
-  background-color:var(--ZJ-button-success-dark);
-  border:var(--ZJ-button-success-border-dark);
+.success {
+  background-color: var(--ZJ-button-success-dark);
+  border: var(--ZJ-button-success-border-dark);
 }
-.success:hover{
+
+.success:hover {
   background-color: var(--ZJ-button-success-light);
-  border:var(--ZJ-button-success-border-light);
+  border: var(--ZJ-button-success-border-light);
 }
-.success:active{
+
+.success:active {
   background-color: var(--ZJ-button-success-active);
-  border:var(--ZJ-button-success-active-border);
+  border: var(--ZJ-button-success-active-border);
 }
 
-.error{
-  background-color:var(--ZJ-button-error-dark);
-  border:var(--ZJ-button-error-border-dark);
+.error {
+  background-color: var(--ZJ-button-error-dark);
+  border: var(--ZJ-button-error-border-dark);
 }
-.error:hover{
+
+.error:hover {
   background-color: var(--ZJ-button-error-light);
-  border:var(--ZJ-button-error-border-light);
+  border: var(--ZJ-button-error-border-light);
 }
-.error:active{
+
+.error:active {
   background-color: var(--ZJ-button-error-active);
-  border:var(--ZJ-button-error-active-border);
+  border: var(--ZJ-button-error-active-border);
 }
 
-.warning{
-  background-color:var(--ZJ-button-warning-dark);
-  border:var(--ZJ-button-warning-border-dark);
+.warning {
+  background-color: var(--ZJ-button-warning-dark);
+  border: var(--ZJ-button-warning-border-dark);
 }
-.warning:hover{
+
+.warning:hover {
   background-color: var(--ZJ-button-warning-light);
-  border:var(--ZJ-button-warning-border-light);
-}
-.warning:active{
-  background-color: var(--ZJ-button-warning-active);
-  border:var(--ZJ-button-warning-active-border);
+  border: var(--ZJ-button-warning-border-light);
 }
 
-.info{
-  background-color:var(--ZJ-button-info-dark);
-  border:var(--ZJ-button-info-border-dark);
+.warning:active {
+  background-color: var(--ZJ-button-warning-active);
+  border: var(--ZJ-button-warning-active-border);
 }
-.info:hover{
+
+.info {
+  background-color: var(--ZJ-button-info-dark);
+  border: var(--ZJ-button-info-border-dark);
+}
+
+.info:hover {
   background-color: var(--ZJ-button-info-light);
-  border:var(--ZJ-button-info-border-light);
+  border: var(--ZJ-button-info-border-light);
 }
-.info:active{
+
+.info:active {
   background-color: var(--ZJ-button-info-active);
-  border:var(--ZJ-button-info-active-border);
-}
-</style>
+  border: var(--ZJ-button-info-active-border);
+}</style>

@@ -2,19 +2,14 @@
   <div class="ZJSlider">
     <ZJLogo></ZJLogo>
     <div class="menuMain" ref="ZJSlider">
-      <AsideMenuItem
-        v-for="(item, index) in menu"
-        :key="index"
-        :item="item"
-        :clickSelectedIndex="clickSelectedIndex"
-        :index="index"
-      />
+      <AsideMenuItem v-for="(item, index) in menu" :key="index" :item="item" :clickSelectedIndex="clickSelectedIndex"
+        :index="index" />
     </div>
   </div>
 </template>
 
 <script setup name="ZJAsideMenu">
-import { ref,onMounted,watch,onUnmounted } from 'vue';
+import { ref, onMounted, watch, onUnmounted } from 'vue';
 import router from '@/router';
 import ZJLogo from './components/asideTopLogo.vue';
 import { useUserStore } from '@/store';
@@ -35,19 +30,19 @@ const ifChildMenuOpen = ref(false);
 // const childMenuHeight = ref(0);
 // const childMenuBoxElement = ref(null);
 
-function clickSelectedIndex(name,index,path) {
- 
+function clickSelectedIndex(name, index, path) {
+
   // let childMenu
   // if(userStore.isSideBarOpen==true){
   //   childMenu = childMenuBoxElement.value[index];
   // }
 
-  if(selectedIndex.value == name){ 
+  if (selectedIndex.value == name) {
     showChildMenu.value = null;
     selectedIndex.value = null;
     ifChildMenuOpen.value = false;
     // childMenuHeight.value = 0;
-  }else{
+  } else {
     selectedIndex.value = name;
     showChildMenu.value = index;
     ifChildMenuOpen.value = true;
@@ -55,7 +50,7 @@ function clickSelectedIndex(name,index,path) {
     //   childMenuHeight.value = childMenu.scrollHeight;
     // }
   }
-  if(path){
+  if (path) {
     router.push(`${path}`)
   }
 }
@@ -65,7 +60,7 @@ const ZJSlider = ref(null);
 
 function handleClickOutside(event) {
   if (ZJSlider.value && !ZJSlider.value.contains(event.target)) {
-    if(userStore.isSideBarOpen==false){
+    if (userStore.isSideBarOpen == false) {
       showChildMenu.value = null;
     }
   }
@@ -80,8 +75,8 @@ onUnmounted(() => {
   document.removeEventListener('click', handleClickOutside);
 });
 
-watch(()=>userStore.isSideBarOpen,(newVal)=>{
-  if(newVal==false){
+watch(() => userStore.isSideBarOpen, (newVal) => {
+  if (newVal == false) {
     ifChildMenuOpen.value = false;
     // childMenuHeight.value = 0;
   }
@@ -91,69 +86,86 @@ watch(()=>userStore.isSideBarOpen,(newVal)=>{
 </script>
 
 <style scoped>
-.ZJSlider{
+.ZJSlider {
   width: var(--ZJAsideMenu-width);
-  background-color:var(--ZJ-main);
-  box-shadow: 2px 0 8px 0 rgb(29, 35, 41, 0.05);
+  background-color: var(--ZJ-main);
+  box-shadow: 2px 0 8px 2px rgb(29, 35, 41, 0.05);
   color: var(--ZJ-main-text-color);
-  transition: width 0.3s ease-in-out;
+  transition: var(--ZJ-main-transition-width);
+  z-index: 2;
 }
-a{
+
+a {
   font-size: 14px;
   line-height: normal;
   text-decoration: none;
   overflow: hidden;
   white-space: nowrap;
 }
-.menuMain{
+
+.menuMain {
   display: flex;
   flex-direction: column;
   overflow-y: auto;
   overflow-x: hidden;
   max-height: calc(100vh - 56px);
 }
+
 .menuMain::-webkit-scrollbar {
-  width:0px;
+  width: 0px;
 }
+
 .menuMain::-webkit-scrollbar-thumb {
   width: 0px;
 }
-.menuFather{
+
+.menuFather {
   font-size: 16px;
-  padding:10px 12px;
+  padding: 10px 12px;
   margin: 2px 6px;
-  border-radius:4px;
+  border-radius: 4px;
   list-style: none;
   display: flex;
   justify-content: space-between;
   position: relative;
 }
-.menuFather:hover{
-  background-color:var(--ZJ-main-hover);
+
+.menuFather:hover {
+  background-color: var(--ZJ-main-hover);
 }
-.menuFather-icon{
+
+.menuFather-icon {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap:8px;
+  gap: 8px;
   /* background-color: aquamarine; */
 }
-.selected,.selected a,.selected:hover{
-  background-color:var(--ZJ-default-main-hover);
-  color:var(--ZJ-default-main);
+
+.selected,
+.selected a,
+.selected:hover {
+  background-color: var(--ZJ-default-main-hover);
+  color: var(--ZJ-default-main);
 }
-.menuMainBox{
+
+.menuMainBox {
   width: 100%;
 }
-.menuChildBox{
-  overflow: hidden; /* 防止内容溢出 */
-  transition:height 0.3s ease-in-out; /* 平滑过渡 */
+
+.menuChildBox {
+  overflow: hidden;
+  /* 防止内容溢出 */
+  transition: height 0.3s ease-in-out;
+  /* 平滑过渡 */
 }
-.menuChild{
+
+.menuChild {
   padding-left: 30px;
 }
-.menuChildCard{
-  z-index:10;
+
+.menuChildCard {
+  z-index: 10;
   position: absolute;
   margin-left: 56px;
   margin-top: -43px;

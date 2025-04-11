@@ -2,62 +2,67 @@
 @import './ZJStyle.css';
 
 :root {
-  --ZJ-main:#FFFFFF;
-  --ZJ-main-hover:#F3F3F5;
-  --ZJ-main-bg-color:#F6F9F8;
-  --ZJ-main-text-color:#333639;
-  --ZJ-main-text-label-color:#00000080;
-  --ZJ-main-box-shadow:0 3px 6px -4px rgba(0, 0, 0, .12), 0 6px 16px 0 rgba(0, 0, 0, .08), 0 9px 28px 8px rgba(0, 0, 0, .05);
-  --ZJ-main-code-copy-bg:#dedede;
-  --ZJ-main-message-color:#FFFFFF;
-  --ZJ-main-transition:all 0.2s ease-in-out;
+  --ZJ-main: #FFFFFF;
+  --ZJ-main-hover: #F3F3F5;
+  --ZJ-main-bg-color: #F6F9F8;
+  --ZJ-main-text-color: #333639;
+  --ZJ-main-text-label-color: #00000080;
+  --ZJ-main-box-shadow: 0 3px 6px -4px rgba(0, 0, 0, .12), 0 6px 16px 0 rgba(0, 0, 0, .08), 0 9px 28px 8px rgba(0, 0, 0, .05);
+  --ZJ-main-code-copy-bg: #dedede;
+  --ZJ-main-message-color: #FFFFFF;
   --ZJ-main-border-light: 1px solid #DCDCDC;
-  --ZJ-main-border-radius:3px;
-
+  --ZJ-main-border-radius: 3px;
+  --ZJ-main-set-box-shadow-color: #0000001a;
+  /* 全局宽度动画header main bar silder */
+  --ZJ-main-transition: all 0.2s ease-in-out;
+  --ZJ-main-transition-width: width 0.3s ease-in-out;
   /* dropdown */
-  --ZJ-main-border-radius-dropdown:4px;
+  --ZJ-main-border-radius-dropdown: 4px;
 
   /* --ZJ-card-top-left-border:#ff5733; */
-  --ZJ-default-main:#646CFF;
-  --ZJ-default-main-hover:#EFF0FF;
-  
+  --ZJ-default-main: #646CFF;
+  --ZJ-default-main-hover: #EFF0FF;
+  --ZJ-default-main-hover2: #ced1ff;
+
   /* silderBar */
-  --ZJAsideMenu-width:220px;
-  --ZJHeader-height:56px;
+  --ZJAsideMenu-width: 220px;
+  --ZJHeader-height: 56px;
+  --ZJHeaderBar-height: 44px;
   --n-bezier: cubic-bezier(.4, 0, .2, 1);
 
+
   /* ZJButton */
-  --ZJ-button-height:34px;
-  --ZJ-button-font-size:14px;
-  --ZJ-button-padding:0 14px;
-  --ZJ-button-border-radius:3px;
-  --ZJ-button-transition:.3s;
+  --ZJ-button-height: 34px;
+  --ZJ-button-font-size: 14px;
+  --ZJ-button-padding: 0 14px;
+  --ZJ-button-border-radius: 5px;
+  --ZJ-button-transition: .3s;
   /* success */
-  --ZJ-button-success-light:#36ad6a;
-  --ZJ-button-success-dark:#18a058;
-  --ZJ-button-success-border-light:1px solid #36ad6a;
-  --ZJ-button-success-border-dark:1px solid #18a058;
+  --ZJ-button-success-light: #36ad6a;
+  --ZJ-button-success-dark: #18a058;
+  --ZJ-button-success-border-light: 1px solid #36ad6a;
+  --ZJ-button-success-border-dark: 1px solid #18a058;
   --ZJ-button-success-active: #0c7a43;
-  --ZJ-button-success-active-border:1px solid #0c7a43;
+  --ZJ-button-success-active-border: 1px solid #0c7a43;
   /* error */
-  --ZJ-button-error-light:#de576d;
-  --ZJ-button-error-dark:#d03050;
-  --ZJ-button-error-border-light:1px solid #de576d;
-  --ZJ-button-error-border-dark:1px solid #d03050;
+  --ZJ-button-error-light: #de576d;
+  --ZJ-button-error-dark: #d03050;
+  --ZJ-button-error-border-light: 1px solid #de576d;
+  --ZJ-button-error-border-dark: 1px solid #d03050;
   --ZJ-button-error-active: #ab1f3f;
-  --ZJ-button-error-active-border:1px solid #ab1f3f;
+  --ZJ-button-error-active-border: 1px solid #ab1f3f;
   /* info */
-  --ZJ-button-info-light:#4098fc;
-  --ZJ-button-info-dark:#2080f0;
-  --ZJ-button-info-border-light:1px solid #4098fc;
-  --ZJ-button-info-border-dark:1px solid #2080f0;
+  --ZJ-button-info-light: #4098fc;
+  --ZJ-button-info-dark: #2080f0;
+  --ZJ-button-info-border-light: 1px solid #4098fc;
+  --ZJ-button-info-border-dark: 1px solid #2080f0;
   --ZJ-button-info-active: #1060c9;
-  --ZJ-button-info-active-border:1px solid #1060c9;
+  --ZJ-button-info-active-border: 1px solid #1060c9;
   /* warning */
-  --ZJ-button-warning-light:#fcb040;
-  --ZJ-button-warning-dark:#f0a020;
-  --ZJ-button-warning-border-light:1px solid #fcb040;
-  --ZJ-button-warning-border-dark:1px solid #f0a020;
+  --ZJ-button-warning-light: #fcb040;
+  --ZJ-button-warning-dark: #f0a020;
+  --ZJ-button-warning-border-light: 1px solid #fcb040;
+  --ZJ-button-warning-border-dark: 1px solid #f0a020;
   --ZJ-button-warning-active: #c97c10;
-  --ZJ-button-warning-active-border:1px solid #c97c10;
+  --ZJ-button-warning-active-border: 1px solid #c97c10;
 }
