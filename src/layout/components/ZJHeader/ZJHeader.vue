@@ -38,7 +38,7 @@ function enter(event) {
 <style scoped>
 /* 头部header */
 .header {
-  width: calc(100vw - var(--ZJAsideMenu-width));
+  width: var(--ZJMain-width);
   height: var(--ZJHeader-height);
   background-color: var(--ZJ-main);
   transition: var(--ZJ-main-transition-width);

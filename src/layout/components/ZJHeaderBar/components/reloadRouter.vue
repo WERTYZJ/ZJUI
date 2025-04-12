@@ -6,10 +6,12 @@
 </template>
 
 <script setup>
-import { ref, nextTick } from 'vue';
+import { ref, nextTick,getCurrentInstance } from 'vue';
 // import { useRouter, useRoute } from 'vue-router';
 import { useUserStore } from '@/store';
 const userStore = useUserStore();
+const { appContext } = getCurrentInstance();
+const $ZJMessage = appContext.config.globalProperties.$ZJMessage;
 
 const isRotating = ref(false);
 // 获取路由实例
@@ -27,6 +29,11 @@ const clickReload = () => {
     })
     isRotating.value = false;
     // router.go(0)
+    $ZJMessage({
+      type: 'success',
+      message: '页面刷新成功!',
+      duration: 3000,
+    });
   }, 1000);
 
   // 打印完整路由配置

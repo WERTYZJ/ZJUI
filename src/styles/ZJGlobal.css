@@ -28,6 +28,7 @@
   --ZJAsideMenu-width: 220px;
   --ZJHeader-height: 56px;
   --ZJHeaderBar-height: 44px;
+  --ZJMain-width:calc(100vw - var(--ZJAsideMenu-width));
   --n-bezier: cubic-bezier(.4, 0, .2, 1);
 
 

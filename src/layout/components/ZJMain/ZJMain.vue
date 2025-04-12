@@ -55,7 +55,7 @@ onUnmounted(() => {
 <style scoped>
 .ZJDefaultMainBg {
   height: 100%;
-  width: calc(100vw - var(--ZJAsideMenu-width));
+  width: var(--ZJMain-width);
   background-color: var(--ZJ-main-bg-color);
   overflow-y: auto;
   overflow-x: hidden;

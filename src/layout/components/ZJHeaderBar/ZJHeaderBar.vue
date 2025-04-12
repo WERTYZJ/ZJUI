@@ -40,6 +40,7 @@ const barData = ref([
 
 <style scoped>
 .barMain {
+    flex-shrink: 0;
     height: var(--ZJHeaderBar-height);
     background-color: var(--ZJ-main);
     padding: 0 10px 0 20px;

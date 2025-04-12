@@ -11,8 +11,15 @@ const userStore = useUserStore();
 
 const clickFullScreenRouter = () => {
   if (!userStore.layout.isFullScreenRouter) {
+    userStore.layout.isFullScreenRouter = true
     userStore.layout.showSilderBar = false;
     userStore.layout.showHeader = false;
+    document.documentElement.style.setProperty('--ZJMain-width', '100vw');
+  }else{
+    userStore.layout.isFullScreenRouter = false;
+    userStore.layout.showSilderBar = true;
+    userStore.layout.showHeader = true;
+    document.documentElement.style.setProperty('--ZJMain-width', 'calc(100vw - var(--ZJAsideMenu-width))');
   }
 
 };

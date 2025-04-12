@@ -133,8 +133,10 @@ onMounted(() => {
   switch (currentValue) {
     case '56px':
       bujuVal.value = 1;
+      break;
     case '220px':
       bujuVal.value = 2;
+      break;
   }
 })
 function ClickbujuVal(index) {
