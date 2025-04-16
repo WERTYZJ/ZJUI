@@ -93,6 +93,7 @@ watch(() => userStore.isSideBarOpen, (newVal) => {
   color: var(--ZJ-main-text-color);
   transition: var(--ZJ-main-transition-width);
   z-index: 2;
+  flex-shrink: 0;
 }
 
 a {

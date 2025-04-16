@@ -44,6 +44,9 @@ export const useUserStore = defineStore('user', {
       showSilderBar: true,
       // 路由刷新
       showRouterActive: true,
+      //设置
+      showSet: false,
+      // 单页面全屏
       isFullScreenRouter: false,
     },
   }),

@@ -6,6 +6,7 @@ import ZJSvgIcons from './ZJSvgIcons/index.vue';
 import ZJButton from './ZJButton/index.vue';
 import ZJMenu from "./ZJMenu/index.vue";
 import ZJProgress from "./ZJProgress/index.vue";
+import ZJProgressCircle from "./ZJProgressCircle/index.vue";
 import ZJRate from "./ZJRate/index.vue";
 import ZJPagination from "./ZJPagination/index.vue";
 import ZJSelect from "./ZJSelect/index.vue";
@@ -35,6 +36,7 @@ const components = {
   ZJButton,
   ZJMenu,
   ZJProgress,
+  ZJProgressCircle,
   ZJRate,
   ZJPagination,
   ZJSelect,

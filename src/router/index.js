@@ -2,56 +2,56 @@ import { createRouter, createWebHashHistory } from 'vue-router';
 
 const routes = [
   {
-    id:1,
+    id: 1,
     path: '/home',
     name: 'home',
     meta: { icon: 'home' },
     component: () => import('@/views/home/index.vue')
   },
   {
-    id:2,
+    id: 2,
     path: '',
     name: 'ZJUI-Home',
     meta: { icon: 'ZJUI' },
-    component:'',
-    children:[
-      { 
-        id:201,
+    component: '',
+    children: [
+      {
+        id: 201,
         path: '/ZJCard',
         name: 'ZJCard',
         meta: { icon: 'card' },
         component: () => import('@/views/ZJUI/ZJCard/index.vue'),
       },
-      { 
-        id:202,
+      {
+        id: 202,
         path: '/ZJCodeDisplay',
         name: 'ZJCodeDisplay',
         meta: { icon: 'copy' },
         component: () => import('@/views/ZJUI/ZJCodeDisplay/index.vue'),
       },
-      { 
-        id:203,
+      {
+        id: 203,
         path: '/ZJMessage',
         name: 'ZJMessage',
         meta: { icon: 'message' },
         component: () => import('@/views/ZJUI/ZJMessage/index.vue')
       },
-      { 
-        id:204,
+      {
+        id: 204,
         path: '',
         name: 'ZJItem',
         meta: { icon: 'menu' },
-        component:'',
-        children:[
-          { 
-            id:204001,
+        component: '',
+        children: [
+          {
+            id: 204001,
             path: '/ZJMenu',
             name: 'ZJMenu',
             meta: { icon: 'menu' },
             component: () => import('@/views/ZJUI/ZJItem/ZJMenu/index.vue'),
           },
-          { 
-            id:204002,
+          {
+            id: 204002,
             path: '/ZJMenuCard',
             name: 'ZJMenuCard',
             meta: { icon: 'menu' },
@@ -59,173 +59,194 @@ const routes = [
           },
         ]
       },
-      { 
-        id:205,
+      {
+        id: 205,
         path: '/ZJButton',
         name: 'ZJButton',
         meta: { icon: 'button' },
         component: () => import('@/views/ZJUI/ZJButton/index.vue')
       },
-      { 
-        id:206,
+      {
+        id: 206,
         path: '/ZJProgress',
         name: 'ZJProgress',
         meta: { icon: 'button' },
         component: () => import('@/views/ZJUI/ZJProgress/index.vue')
       },
-      { 
-        id:207,
+      {
+        id: 207,
         path: '/ZJRate',
         name: 'ZJRate',
         meta: { icon: 'button' },
         component: () => import('@/views/ZJUI/ZJRate/index.vue')
       },
-      { 
-        id:208,
+      {
+        id: 208,
         path: '/ZJSvgIcons',
         name: 'ZJSvgIcons',
         meta: { icon: 'button' },
         component: () => import('@/views/ZJUI/ZJSvgIcons/index.vue')
       },
-      { 
-        id:209,
+      {
+        id: 209,
         path: '/ZJPagination',
         name: 'ZJPagination',
         meta: { icon: 'button' },
         component: () => import('@/views/ZJUI/ZJPagination/index.vue')
       },
-      { 
-        id:210,
+      {
+        id: 210,
         path: '/ZJSelect',
         name: 'ZJSelect',
         meta: { icon: 'button' },
         component: () => import('@/views/ZJUI/ZJSelect/index.vue')
       },
-      { 
-        id:211,
+      {
+        id: 211,
         path: '/ZJSelectDate',
         name: 'ZJSelectDate',
         meta: { icon: 'button' },
         component: () => import('@/views/ZJUI/ZJSelectDate/index.vue')
       },
-      { 
-        id:212,
+      {
+        id: 212,
         path: '/ZJSelectDateMore',
         name: 'ZJSelectDateMore',
         meta: { icon: 'button' },
         component: () => import('@/views/ZJUI/ZJSelectDateMore/index.vue')
       },
-      { 
-        id:213,
+      {
+        id: 213,
         path: '/ZJSelectTime',
         name: 'ZJSelectTime',
         meta: { icon: 'button' },
         component: () => import('@/views/ZJUI/ZJSelectTime/index.vue')
       },
-      { 
-        id:214,
+      {
+        id: 214,
         path: '/ZJNoData',
         name: 'ZJNoData',
         meta: { icon: 'button' },
         component: () => import('@/views/ZJUI/ZJNoData/index.vue')
       },
-      { 
-        id:215,
+      {
+        id: 215,
         path: '/ZJLoading',
         name: 'ZJLoading',
         meta: { icon: 'button' },
         component: () => import('@/views/ZJUI/ZJLoading/index.vue')
       },
-      { 
-        id:216,
+      {
+        id: 216,
         path: '/ZJCutAvatar',
         name: 'ZJCutAvatar',
         meta: { icon: 'button' },
         component: () => import('@/views/ZJUI/ZJCutAvatar/index.vue')
       },
-      { 
-        id:217,
+      {
+        id: 217,
         path: '/ZJUpload',
         name: 'ZJUpload',
         meta: { icon: 'button' },
         component: () => import('@/views/ZJUI/ZJUpload/index.vue')
       },
-      { 
-        id:218,
+      {
+        id: 218,
         path: '/ZJCalendar',
         name: 'ZJCalendar',
         meta: { icon: 'button' },
         component: () => import('@/views/ZJUI/ZJCalendar/index.vue')
       },
-      { 
-        id:219,
+      {
+        id: 219,
         path: '/ZJAnchor',
         name: 'ZJAnchor',
         meta: { icon: 'button' },
         component: () => import('@/views/ZJUI/ZJAnchor/index.vue')
       },
-      { 
-        id:220,
+      {
+        id: 220,
         path: '/ZJDialog',
         name: 'ZJDialog',
         meta: { icon: 'button' },
         component: () => import('@/views/ZJUI/ZJDialog/index.vue')
       },
-      { 
-        id:221,
+      {
+        id: 221,
         path: '/ZJBackTop',
         name: 'ZJBackTop',
         meta: { icon: 'button' },
         component: () => import('@/views/ZJUI/ZJBackTop/index.vue')
       },
-      { 
-        id:222,
+      {
+        id: 222,
         path: '/ZJCarousel',
         name: 'ZJCarousel',
         meta: { icon: 'button' },
         component: () => import('@/views/ZJUI/ZJCarousel/index.vue')
       },
-      { 
-        id:223,
+      {
+        id: 223,
         path: '/ZJAvailableTime',
         name: 'ZJAvailableTime',
         meta: { icon: 'button' },
         component: () => import('@/views/ZJUI/ZJAvailableTime/index.vue')
       },
+      {
+        id: 224,
+        path: '/ZJSwitch',
+        name: 'ZJSwitch',
+        meta: { icon: 'button' },
+        component: () => import('@/views/ZJUI/ZJSwitch/index.vue')
+      },
+      {
+        id: 225,
+        path: '/ZJProgressCircle',
+        name: 'ZJProgressCircle',
+        meta: { icon: 'button' },
+        component: () => import('@/views/ZJUI/ZJProgressCircle/index.vue')
+      },
     ]
   },
-  { 
-    id:3,
+  {
+    id: 3,
     path: '',
     name: 'javaScript',
     meta: { icon: 'javaScript' },
-    component:'',
-    children:[
-      { 
-        id:301,
+    component: '',
+    children: [
+      {
+        id: 301,
         path: '/toFixed',
         name: 'js保留两位小数',
         meta: { icon: 'message' },
         component: () => import('@/views/javaScript/toFixed/index.vue')
       },
+      {
+        id: 302,
+        path: '/function',
+        name: 'js函数',
+        meta: { icon: 'message' },
+        component: () => import('@/views/javaScript/function/index.vue')
+      },
     ]
   },
-  { 
-    id:4,
+  {
+    id: 4,
     path: '',
     name: '项目一(WeMaster)',
     meta: { icon: 'weMaster' },
-    component:''
+    component: ''
   },
-  { 
-    id:5,
-    path:'',
-    name:'项目二(WePal)',
+  {
+    id: 5,
+    path: '',
+    name: '项目二(WePal)',
     meta: { icon: 'wePal' },
-    component:'',
-    children:[
-      { 
-        id:501,
+    component: '',
+    children: [
+      {
+        id: 501,
         path: '/Vuex-Pinia',
         name: 'Vuex转换Pinia',
         meta: { icon: 'javaScript' },
@@ -233,35 +254,35 @@ const routes = [
       },
     ]
   },
-  { 
-    id:6,
+  {
+    id: 6,
     path: '',
     name: 'vue',
     meta: { icon: 'vue' },
-    component:'',
-    children:[
-      { 
-        id:601,
-        path: '/dev-server',
-        name: 'dev-server',
+    component: '',
+    children: [
+      {
+        id: 601,
+        path: '/vue.config.js',
+        name: 'vue.config.js',
         meta: { icon: 'vue' },
-        component: () => import('@/views/javaScript/toFixed/index.vue')
+        component: () => import('@/views/vue/vue.config.js/index.vue')
       },
     ]
   },
-  { 
-    id:7,
-    path: '',
+  {
+    id: 7,
+    path: '/info',
     name: '个人中心',
     meta: { icon: 'selfInfo' },
-    component:''
+    component: () => import('@/views/info/index.vue')
   },
-  { 
-    id:8,
-    path: '',
+  {
+    id: 8,
+    path: '/set',
     name: '设置',
     meta: { icon: 'set' },
-    component:''
+    component: () => import('@/views/set/index.vue')
   },
   // {
   //   path: '/SearchTutor',
@@ -321,7 +342,7 @@ const routes = [
   //     }  
   //   },
   // },
-  
+
 ]
 
 const router = createRouter({

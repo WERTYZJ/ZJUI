@@ -1,5 +1,6 @@
 <template>
   <div class="default">
+    <ZJSet></ZJSet>
     <ZJAsideMenu v-show="userStore.layout.showSilderBar"></ZJAsideMenu>
     <div class="default-main">
       <ZJHeader v-show="userStore.layout.showHeader"></ZJHeader>
@@ -14,6 +15,7 @@ import ZJHeader from '../components/ZJHeader/ZJHeader.vue';
 import ZJHeaderBar from '../components/ZJHeaderBar/ZJHeaderBar.vue'
 import ZJAsideMenu from '../components/ZJAsideMenu/ZJAsideMenu.vue';
 import ZJMain from '../components/ZJMain/ZJMain.vue';
+import ZJSet from '../components/ZJSet/ZJSet.vue';
 import { useUserStore } from '@/store';
 const userStore = useUserStore();
 </script>
