@@ -224,7 +224,7 @@ function acceptSwitchVal(e, index) {
 }
 
 .zuoce-r-b {
-  background-color: var(--ZJ-default-main-hover);
+  background-color: var(--ZJ-default-main-hover3);
   border-radius: 5px;
   height: 39px;
   width: 57px;
@@ -268,7 +268,7 @@ function acceptSwitchVal(e, index) {
 }
 
 .zuoce2-r-b {
-  background-color: var(--ZJ-default-main-hover);
+  background-color: var(--ZJ-default-main-hover3);
   border-radius: 5px;
   height: 39px;
   width: 42px;
@@ -289,7 +289,7 @@ function acceptSwitchVal(e, index) {
 }
 
 .zuoce3-r {
-  background-color: var(--ZJ-default-main-hover);
+  background-color: var(--ZJ-default-main-hover3);
   border-radius: 5px;
   height: 26px;
   width: 74px;
@@ -333,7 +333,7 @@ hr {
 }
 
 .header-r:hover {
-  background-color: var(--ZJ-default-main-hover);
+  background-color: var(--ZJ-default-main-hover3);
   color: var(--ZJ-default-main);
 }
 

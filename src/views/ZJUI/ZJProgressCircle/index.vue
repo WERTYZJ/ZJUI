@@ -9,7 +9,7 @@
       <p>i.percent 进度条的展示进度。（100为完成, 必须）</p>
       <p>i.text 圆圈进度条中间展示的说明性文字。（不必须）</p>
       <p>i.bottomText 圆圈进度条下面展示的说明性文字。（不必须）</p>
-      <div class="m-t-10" style="display: flex; gap: 30px;">
+      <div class="m-t-10 ZJDisplayFlex">
         <div v-for="(i, index) in listData" :key="index">
           <ZJProgressCircle :ZJCircleData="i"></ZJProgressCircle>
         </div>

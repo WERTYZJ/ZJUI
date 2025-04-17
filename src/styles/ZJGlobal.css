@@ -12,6 +12,7 @@
   --ZJ-main-message-color: #FFFFFF;
   --ZJ-main-border-light: 1px solid #DCDCDC;
   --ZJ-main-border-radius: 3px;
+  --ZJ-main-border-radius-10: 10px;
   --ZJ-main-set-box-shadow-color: #0000001a;
   /* 全局宽度动画header main bar silder */
   --ZJ-main-transition: all 0.2s ease-in-out;
@@ -20,15 +21,20 @@
   --ZJ-main-border-radius-dropdown: 4px;
 
   /* --ZJ-card-top-left-border:#ff5733; */
-  --ZJ-default-main: #646CFF;
+  --ZJ-default-main: #7F56D9;
   --ZJ-default-main-hover: #EFF0FF;
-  --ZJ-default-main-hover2: #ced1ff;
+  --ZJ-default-main-hover2: #cdb0ff;
+  --ZJ-default-main-hover3: #e8d9ff;
+  --ZJ-default-main-border-light: 1px solid var(--ZJ-default-main);
+  --ZJ-default-main-border-dark: 1px solid var(--ZJ-default-main-hover2);
+  --ZJ-default-main-active: #5b37a8;
+  --ZJ-default-main-active-border: 1px solid #7343db;
 
   /* silderBar */
   --ZJAsideMenu-width: 220px;
   --ZJHeader-height: 56px;
   --ZJHeaderBar-height: 44px;
-  --ZJMain-width:calc(100vw - var(--ZJAsideMenu-width));
+  --ZJMain-width: calc(100vw - var(--ZJAsideMenu-width));
   --n-bezier: cubic-bezier(.4, 0, .2, 1);
 
 
@@ -36,7 +42,7 @@
   --ZJ-button-height: 34px;
   --ZJ-button-font-size: 14px;
   --ZJ-button-padding: 0 14px;
-  --ZJ-button-border-radius: 5px;
+  --ZJ-button-border-radius: 8px;
   --ZJ-button-transition: .3s;
   /* success */
   --ZJ-button-success-light: #36ad6a;
@@ -47,7 +53,7 @@
   --ZJ-button-success-active-border: 1px solid #0c7a43;
   /* error */
   --ZJ-button-error-light: #de576d;
-  --ZJ-button-error-dark: #d03050;
+  --ZJ-button-error-dark: #D92D20;
   --ZJ-button-error-border-light: 1px solid #de576d;
   --ZJ-button-error-border-dark: 1px solid #d03050;
   --ZJ-button-error-active: #ab1f3f;

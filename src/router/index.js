@@ -232,17 +232,10 @@ const routes = [
     ]
   },
   {
-    id: 4,
-    path: '',
-    name: '项目一(WeMaster)',
-    meta: { icon: 'weMaster' },
-    component: ''
-  },
-  {
     id: 5,
     path: '',
-    name: '项目二(WePal)',
-    meta: { icon: 'wePal' },
+    name: 'pinia',
+    meta: { icon: 'pinia' },
     component: '',
     children: [
       {
@@ -250,7 +243,7 @@ const routes = [
         path: '/Vuex-Pinia',
         name: 'Vuex转换Pinia',
         meta: { icon: 'javaScript' },
-        component: () => import('@/views/wepal/Vuex-Pinia/index.vue')
+        component: () => import('@/views/pinia/Vuex-Pinia/index.vue')
       },
     ]
   },

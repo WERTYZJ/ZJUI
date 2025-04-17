@@ -92,6 +92,8 @@ function getTextBgColor(index) {
 </script>
 
 <style scoped>
+@import url("https://fontsapi.zeoseven.com/442/main/result.css");
+
 .ZJHomeTop {
   display: flex;
   flex-wrap: wrap;
@@ -104,6 +106,8 @@ function getTextBgColor(index) {
   border-radius: 7px;
   padding: 20px;
   overflow: hidden;
+  font-family: "Maple Mono NF CN";
+  font-weight: normal;
 }
 
 .left {

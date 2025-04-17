@@ -27,7 +27,7 @@ function changeTheme(theme) {
       '--ZJ-main-text-label-color': '#00000080',
       '--ZJ-main-hover': '#F3F3F5',
       '--ZJ-card-top-left-border': '#ff5733',
-      '--ZJ-default-main': '#646CFF',
+      '--ZJ-default-main': '#7F56D9',
       '--ZJ-default-main-hover': '#EFF0FF',
       '--ZJ-main-code-copy-bg': '#dedede',
       '--ZJ-main-message-color': '#FFFFFF',

@@ -8,9 +8,9 @@
 </template>
  
 <script setup>
-import { ref, onMounted,defineProps } from 'vue';
+import { ref, onMounted, defineProps } from 'vue';
 import ZJSvgIcons from '../ZJSvgIcons/index.vue'
- 
+
 // 接收 props
 const props = defineProps({
   type: {
@@ -24,10 +24,10 @@ const props = defineProps({
   },
   duration: {
     type: Number,
-    default:2.5,
+    default: 2.5,
   },
 });
- 
+
 function getIcon(type) {
   const iconMap = {
     success: 'success',
@@ -43,11 +43,11 @@ function getIconClass(type) {
 }
 
 const visible = ref(true);
- 
+
 onMounted(() => {
   if (props.duration) {
     setTimeout(() => {
-      visible.value = false; 
+      visible.value = false;
     }, props.duration);
   }
 });
@@ -57,44 +57,52 @@ onMounted(() => {
 .success {
   color: #18a058;
 }
+
 .error {
   color: #d03050;
 }
-.warning{
+
+.warning {
   color: #f0a020;
 }
+
 .info {
-  color: #2080f0; /* 选择一个适合的颜色 */
+  color: #2080f0;
+  /* 选择一个适合的颜色 */
 }
 
 .message-box {
-  z-index:10000;
+  z-index: 10000;
   position: fixed;
-  top:35px;
+  top: 35px;
   left: 50%;
   transform: translateX(-50%);
   /* display: inline-flex; */
+  display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
   padding: 10px 15px;
-  border-radius:5px;
-  color:var(--ZJ-main-text-color);
-  box-shadow:var(--ZJ-main-box-shadow);
+  border-radius: 5px;
+  color: var(--ZJ-main-text-color);
+  box-shadow: var(--ZJ-main-box-shadow);
   background-color: var(--ZJ-main-message-color);
   animation: slideInDown .4s ease-in-out;
 }
+
 @keyframes slideInDown {
   0% {
     opacity: 0;
     transform: translateY(-100%) translateX(-50%);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0%) translateX(-50%);
   }
 }
+
 .message-title {
   padding: 0 15px 0 10px;
   font-size: 14px;

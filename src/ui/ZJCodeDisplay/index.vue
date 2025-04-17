@@ -1,17 +1,20 @@
 <!-- eslint-disable vue/no-dupe-keys -->
 <template>
   <div class="ZJCodeDisplay">
-    <ZJSvgIcons icon="copy" class="copyIcon"></ZJSvgIcons>
+    <ZJSvgIcons icon="copy" class="copyIcon" @click="handleCopy"></ZJSvgIcons>
     <pre>
-      <code class="code-display" :class="language" ref="codeBlock">{{ code }}</code>
-    </pre>
+              <code class="code-display" :class="language" ref="codeBlock">{{ code }}</code>
+            </pre>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted,defineProps } from 'vue';
+import { ref, onMounted, defineProps, getCurrentInstance } from 'vue';
 import hljs from 'highlight.js';
 import 'highlight.js/styles/atom-one-light.css'; // 你可以选择其他样式
+const { appContext } = getCurrentInstance();
+const $ZJMessage = appContext.config.globalProperties.$ZJMessage;
+
 
 const props = defineProps({
   code: {
@@ -20,11 +23,36 @@ const props = defineProps({
   },
   language: {
     type: String,
-    default: '' // 默认语言
+    default: 'vue' // 默认语言
   }
 })
 
 const codeBlock = ref(null);
+
+const copied = ref(false); // 添加复制状态
+
+// 复制处理函数
+const handleCopy = async () => {
+  try {
+    await navigator.clipboard.writeText(props.code);
+    copied.value = true;
+    setTimeout(() => {
+      copied.value = false;
+    }, 1500);
+
+    $ZJMessage({
+      type: 'success',
+      message: '复制成功！',
+      duration: 3000,
+    });
+  } catch (err) {
+    $ZJMessage({
+      type: 'error',
+      message: '复制失败！',
+      duration: 3000,
+    });
+  }
+};
 
 onMounted(() => {
   hljs.highlightElement(codeBlock.value);
@@ -33,29 +61,34 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.ZJCodeDisplay{
+.ZJCodeDisplay {
   position: relative;
 }
+
 .code-display {
-  background-color:var(--ZJ-main-hover); /* 代码块背景色 */
-  padding:10px;
-  border-radius: 5px; /* 圆角 */
-  overflow-x: auto; /* 横向滚动 */
+  background-color: var(--ZJ-main-hover);
+  /* 代码块背景色 */
+  padding: 10px;
+  border-radius: 5px;
+  /* 圆角 */
+  overflow-x: auto;
+  /* 横向滚动 */
   font-size: 16px;
   /* max-height: 200px; */
 }
-.copyIcon{
-  background-color:var(--ZJ-main-code-copy-bg);
+
+.copyIcon {
+  background-color: var(--ZJ-main-code-copy-bg);
   height: 20px;
   width: 20px;
-  padding:4px;
+  padding: 4px;
   border-radius: 5px;
   position: absolute;
-  right:6px;
+  right: 6px;
   top: 30px;
 }
-.copyIcon:hover{
-  background-color:var(--ZJ-default-main-hover);
+
+.copyIcon:hover {
   color: var(--ZJ-default-main);
 }
 </style>

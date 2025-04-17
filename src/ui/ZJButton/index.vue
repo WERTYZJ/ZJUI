@@ -13,7 +13,7 @@ const props = defineProps({
   type: {
     type: String,
     required: true,
-    validator: (value) => ['default', 'success', 'error', 'warning', 'info'].includes(value),
+    validator: (value) => ['default', 'success', 'error', 'warning', 'info', 'info2'].includes(value),
   },
   icon: {
     type: String,
@@ -50,6 +50,9 @@ const ZJStyle = computed(() => {
       case 'info':
         fontColor = 'var(--ZJ-button-info-dark)';
         break;
+      case 'info2':
+        fontColor = 'var(--ZJ-main-text-color)';
+        break;
       case 'warning':
         fontColor = 'var(--ZJ-button-warning-dark)';
         break;
@@ -78,6 +81,22 @@ button {
   border-radius: var(--ZJ-button-border-radius);
   transition: var(--ZJ-button-transition);
 }
+
+.default {
+  background-color: var(--ZJ-default-main);
+  border: var(--ZJ-default-main-border-light);
+}
+
+.default:hover {
+  background-color: var(--ZJ-default-main);
+  border: var(--ZJ-default-main-border-light);
+}
+
+.default:active {
+  background-color: var(--ZJ-default-main-active);
+  border: var(--ZJ-default-main-active-border);
+}
+
 
 .success {
   background-color: var(--ZJ-button-success-dark);
@@ -137,4 +156,20 @@ button {
 .info:active {
   background-color: var(--ZJ-button-info-active);
   border: var(--ZJ-button-info-active-border);
-}</style>
+}
+
+.info2 {
+  border: var(--ZJ-main-border-light);
+  color: var(--ZJ-main-text-color);
+}
+
+.info2:hover {
+  background-color: var(--ZJ-main-hover);
+  border: 1px solid var(--ZJ-main-hover);
+}
+
+.info2:active {
+  background-color: var(--ZJ-main-hover);
+  border: var(--ZJ-main-border-light);
+}
+</style>
