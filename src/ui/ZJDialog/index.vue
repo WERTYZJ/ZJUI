@@ -23,7 +23,7 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits, computed } from 'vue';
+import { ref, defineProps, defineEmits, computed } from 'vue';
 const props = defineProps({
   title: {
     type: String,
@@ -39,6 +39,8 @@ const props = defineProps({
   },
 })
 const emit = defineEmits(['closeZJDialog'])
+
+const showDialog = ref(false)
 
 function close() {
   emit('closeZJDialog');

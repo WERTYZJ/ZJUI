@@ -87,13 +87,14 @@ watch(() => userStore.isSideBarOpen, (newVal) => {
 
 <style scoped>
 .ZJSlider {
-  width: var(--ZJAsideMenu-width);
-  background-color: var(--ZJ-main);
+  width: var(--ZJ-AsideMenu-width);
+  background-color: var(--ZJ-AsideMenu-bg);
   box-shadow: 2px 0 8px 2px rgb(29, 35, 41, 0.05);
-  color: var(--ZJ-main-text-color);
+  color: var(--ZJ-AsideMenu-text-color);
   transition: var(--ZJ-main-transition-width);
   z-index: 2;
   flex-shrink: 0;
+  overflow: hidden;
 }
 
 a {

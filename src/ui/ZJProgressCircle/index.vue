@@ -19,7 +19,7 @@ import { defineProps } from 'vue';
 
 const props = defineProps({
   ZJCircleData: {
-    type: Array,
+    type: Object,
   },
 })
 

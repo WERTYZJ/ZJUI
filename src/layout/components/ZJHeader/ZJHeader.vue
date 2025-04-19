@@ -3,7 +3,7 @@
     <div class="header-box">
 
       <div class="header-left">
-        <headerSidebarOpen></headerSidebarOpen>
+        <headerSidebarOpen v-show="userStore.layout.showHeaderSildebarOpen"></headerSidebarOpen>
         <headerLeft></headerLeft>
       </div>
 
@@ -22,8 +22,8 @@ import headerSidebarOpen from './components/headerSidebarOpen.vue';
 import headerLeft from './components/headerLeft.vue';
 import headerRight from './components/headerRight.vue';
 import Info from './components/info.vue';
-// import { useUserStore } from '@/store';
-// const userStore = useUserStore();
+import { useUserStore } from '@/store';
+const userStore = useUserStore();
 
 function enter(event) {
   if (event.keyCode == 13) {

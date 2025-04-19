@@ -149,10 +149,10 @@ function closeAsideMenuCard() {
 
 <style scoped>
 .ZJSlider {
-  width: var(--ZJAsideMenu-width);
-  background-color: var(--ZJ-main);
+  width: var(--ZJ-AsideMenu-width);
+  background-color: var(--ZJ-AsideMenu-bg);
   box-shadow: 2px 0 8px 0 rgb(29, 35, 41, 0.05);
-  color: var(--ZJ-main-text-color);
+  color: var(--ZJ-AsideMenu-text-color);
   transition: width 0.3s ease-in-out;
 }
 
@@ -182,12 +182,12 @@ a {
 }
 
 .menuFather:hover {
-  background-color: var(--ZJ-main-hover);
+  background-color: var(--ZJ-AsideMenu-hover2);
   color: var(--ZJ-default-main);
 }
 
 .menuFather:active {
-  background-color: var(--ZJ-default-main-hover);
+  background-color: var(--ZJ-AsideMenu-hover);
   color: var(--ZJ-default-main);
 }
 
@@ -204,7 +204,7 @@ a {
 .selected a,
 .selected:hover {
   transition: var(--ZJ-main-transition);
-  background-color: var(--ZJ-default-main-hover);
+  background-color: var(--ZJ-AsideMenu-hover);
   color: var(--ZJ-default-main);
 }
 

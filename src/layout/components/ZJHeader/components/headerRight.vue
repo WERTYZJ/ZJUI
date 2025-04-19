@@ -16,14 +16,15 @@ import Languages from './language.vue';
 import FullScreen from './fullScreen.vue';
 import Notice from './notice.vue'
 import search from './search.vue';
+
 </script>
 
 <style scoped>
-.headerRight{
+.headerRight {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap:5px;
+  gap: 5px;
   /* background-color: #97d4d4; */
   margin-left: 20px;
 }

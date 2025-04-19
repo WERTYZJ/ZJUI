@@ -323,3 +323,30 @@
   transition: all 0.4s ease;
   transform: translate(100%, 0px);
 }
+
+
+/* search搜索框动画 */
+
+.showSetSearch-enter-active {
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+  transform: translate(0, -50%) scale(0.5);
+}
+
+.showSetSearch-enter-to {
+  opacity: 1;
+  transition: all 0.3s ease-in-out;
+  transform: translate(0px, 0px) scale(1);
+}
+
+.showSetSearch-leave-active {
+  opacity: 1;
+  transition: all 0.3s ease-in-out;
+  transform: translate(0px, 0px) scale(1);
+}
+
+.showSetSearch-leave-to {
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+  transform: translate(0, -50%) scale(0.5);
+}

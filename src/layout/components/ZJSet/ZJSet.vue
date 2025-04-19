@@ -62,8 +62,8 @@
         </div>
 
         <div class="footer">
-          <ZJButton type="success" text="重置主题"></ZJButton>
-          <ZJButton type="info" text="复制主题"></ZJButton>
+          <ZJButton type="info2" text="复制主题" transparent></ZJButton>
+          <ZJButton type="default" text="重置主题"></ZJButton>
         </div>
       </div>
     </transition>
@@ -71,16 +71,18 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted, onUnmounted, getCurrentInstance } from 'vue';
 import { useUserStore } from '@/store';
 const userStore = useUserStore();
+const { appContext } = getCurrentInstance();
+const $ZJMessage = appContext.config.globalProperties.$ZJMessage;
 
 
 const setData = ref({
   setZhuTi: [
     {
       title: "深色侧边栏",
-      value: true,
+      value: false,
     },
     {
       title: "灰色模式",
@@ -122,7 +124,7 @@ function closeRightAndMask(e) {
 const bujuVal = ref(null);
 onMounted(() => {
   const currentValue = getComputedStyle(document.documentElement)
-    .getPropertyValue('--ZJAsideMenu-width')
+    .getPropertyValue('--ZJ-AsideMenu-width')
     .trim();
   switch (currentValue) {
     case '56px':
@@ -135,44 +137,80 @@ onMounted(() => {
 })
 function ClickbujuVal(index) {
   bujuVal.value = index;
+  // 获取当前 --ZJ-AsideMenu-width 的值
+  const currentValue = getComputedStyle(document.documentElement)
+    .getPropertyValue('--ZJ-AsideMenu-width')
+    .trim();
   switch (index) {
     case 1:
-      clickBtn(1);
+      document.documentElement.style.setProperty('--ZJ-AsideMenu-width', '56px');
+      document.documentElement.style.setProperty('--ZJMain-width', 'calc(100vw - var(--ZJ-AsideMenu-width))');
+      userStore.isSideBarOpen = false;
+      userStore.layout.showSilderBar = !userStore.showSilderBar;
+      userStore.layout.showHeaderSildebarOpen = true;
       break;
     case 2:
-      clickBtn(2);
+      document.documentElement.style.setProperty('--ZJ-AsideMenu-width', '220px');
+      document.documentElement.style.setProperty('--ZJMain-width', 'calc(100vw - var(--ZJ-AsideMenu-width))');
+      userStore.isSideBarOpen = true;
+      userStore.layout.showSilderBar = !userStore.showSilderBar;
+      userStore.layout.showHeaderSildebarOpen = true;
+      break;
+    case 3:
+      document.documentElement.style.setProperty('--ZJ-AsideMenu-width', '0px');
+      document.documentElement.style.setProperty('--ZJMain-width', 'calc(100vw - var(--ZJ-AsideMenu-width))');
+      userStore.showSilderBar = false;
+      userStore.layout.showHeaderSildebarOpen = false;
       break;
     default:
       return;
   }
 }
 
-function clickBtn(index) {
-  // 获取当前 --ZJAsideMenu-width 的值
-  const currentValue = getComputedStyle(document.documentElement)
-    .getPropertyValue('--ZJAsideMenu-width')
-    .trim();
-  if (index == 1) {
-    if (currentValue != '56px') {
-      document.documentElement.style.setProperty('--ZJAsideMenu-width', '56px');
-      userStore.isSideBarOpen = !userStore.isSideBarOpen;
-    }
-    return;
-  }
-  if (index == 2) {
-    if (currentValue != '220px') {
-      document.documentElement.style.setProperty('--ZJAsideMenu-width', '220px');
-      userStore.isSideBarOpen = !userStore.isSideBarOpen;
-    }
-    return;
-  }
 
-}
-
+// 开关相关操作
 function acceptSwitchVal(e, index) {
-  console.log("开关的数值为", e)
-  console.log("开关的数值index为", index)
+  switch (index) {
+    case 0:
+      if (!e) {
+        document.documentElement.style.setProperty('--ZJ-AsideMenu-bg', '#FFFFFF');
+        document.documentElement.style.setProperty('--ZJ-AsideMenu-text-color', '#333639');
+        document.documentElement.style.setProperty('--ZJ-AsideMenu-hover', '#EFF0FF');
+        document.documentElement.style.setProperty('--ZJ-AsideMenu-hover2', '#F3F3F5');
+      } else {
+        document.documentElement.style.setProperty('--ZJ-AsideMenu-bg', '#18181C');
+        document.documentElement.style.setProperty('--ZJ-AsideMenu-text-color', '#D5D5D6');
+        document.documentElement.style.setProperty('--ZJ-AsideMenu-hover', '#23243E');
+        document.documentElement.style.setProperty('--ZJ-AsideMenu-hover2', '#2D2D30');
+      }
+      break;
+    case 1:
+      if (!e) {
+        document.documentElement.style.setProperty('--ZJ-default-main', '#7F56D9');
+        document.documentElement.style.setProperty('--ZJ-default-main-hover', '#EFF0FF');
+        document.documentElement.style.setProperty('--ZJ-default-main-hover2', '#cdb0ff');
+        document.documentElement.style.setProperty('--ZJ-default-main-hover3', '#e8d9ff');
+      } else {
+        document.documentElement.style.setProperty('--ZJ-default-main', '#717171');
+        document.documentElement.style.setProperty('--ZJ-default-main-hover', '#f0f0f0');
+        document.documentElement.style.setProperty('--ZJ-default-main-hover2', '#b5b5b5');
+        document.documentElement.style.setProperty('--ZJ-default-main-hover3', '#dfdfdf');
+      }
+      break;
+    case 2:
+      if (e) {
+        $ZJMessage({
+          type: 'warning',
+          message: '请等待后续版本更新!',
+          duration: 3000,
+        });
+      }
+      break;
+  }
+  // console.log("开关的数值为", e)
+  // console.log("开关的数值index为", index)
 }
+
 
 </script>
 
@@ -187,7 +225,7 @@ function acceptSwitchVal(e, index) {
   border-radius: 5px;
   height: 46px;
   width: 74px;
-  box-shadow: 0 1px 3px 0 var(--ZJ-main-set-box-shadow-color);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
   padding: 6px;
   display: flex;
   gap: 6px;
@@ -333,7 +371,7 @@ hr {
 }
 
 .header-r:hover {
-  background-color: var(--ZJ-default-main-hover3);
+  background-color: var(--ZJ-main-hover);
   color: var(--ZJ-default-main);
 }
 

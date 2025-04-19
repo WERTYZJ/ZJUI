@@ -206,6 +206,13 @@ const routes = [
         meta: { icon: 'button' },
         component: () => import('@/views/ZJUI/ZJProgressCircle/index.vue')
       },
+      {
+        id: 225,
+        path: '/ZJInput',
+        name: 'ZJInput',
+        meta: { icon: 'button' },
+        component: () => import('@/views/ZJUI/ZJInput/index.vue')
+      },
     ]
   },
   {
@@ -250,7 +257,7 @@ const routes = [
   {
     id: 6,
     path: '',
-    name: 'vue',
+    name: 'vue3',
     meta: { icon: 'vue' },
     component: '',
     children: [
@@ -260,6 +267,20 @@ const routes = [
         name: 'vue.config.js',
         meta: { icon: 'vue' },
         component: () => import('@/views/vue/vue.config.js/index.vue')
+      },
+      {
+        id: 602,
+        path: '/recursion',
+        name: 'recursion',
+        meta: { icon: 'vue' },
+        component: () => import('@/views/vue/recursion/index.vue')
+      },
+      {
+        id: 603,
+        path: '/searchRoute',
+        name: 'searchRoute',
+        meta: { icon: 'vue' },
+        component: () => import('@/views/vue/searchRoute/index.vue')
       },
     ]
   },

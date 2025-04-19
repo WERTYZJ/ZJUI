@@ -14,13 +14,15 @@
   --ZJ-main-border-radius: 3px;
   --ZJ-main-border-radius-10: 10px;
   --ZJ-main-set-box-shadow-color: #0000001a;
+
   /* 全局宽度动画header main bar silder */
   --ZJ-main-transition: all 0.2s ease-in-out;
   --ZJ-main-transition-width: width 0.3s ease-in-out;
+
   /* dropdown */
   --ZJ-main-border-radius-dropdown: 4px;
 
-  /* --ZJ-card-top-left-border:#ff5733; */
+  /* 默认主题 */
   --ZJ-default-main: #7F56D9;
   --ZJ-default-main-hover: #EFF0FF;
   --ZJ-default-main-hover2: #cdb0ff;
@@ -30,11 +32,22 @@
   --ZJ-default-main-active: #5b37a8;
   --ZJ-default-main-active-border: 1px solid #7343db;
 
-  /* silderBar */
-  --ZJAsideMenu-width: 220px;
+  /* ZJAsideMenu */
+  --ZJ-AsideMenu-width: 220px;
+  --ZJ-AsideMenu-bg: #FFFFFF;
+  --ZJ-AsideMenu-text-color: #333639;
+  --ZJ-AsideMenu-hover: #EFF0FF;
+  --ZJ-AsideMenu-hover2: #F3F3F5;
+
+  /* ZJHeader */
   --ZJHeader-height: 56px;
-  --ZJHeaderBar-height: 44px;
-  --ZJMain-width: calc(100vw - var(--ZJAsideMenu-width));
+
+  /* ZJHeaderBar */
+  --ZJ-HeaderBar-height: 44px;
+  --ZJ-HeaderBar-border-radius: 4px;
+
+  /* ZJMain */
+  --ZJMain-width: calc(100vw - var(--ZJ-AsideMenu-width));
   --n-bezier: cubic-bezier(.4, 0, .2, 1);
 
 

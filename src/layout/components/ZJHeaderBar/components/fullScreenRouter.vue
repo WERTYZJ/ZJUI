@@ -15,13 +15,13 @@ const clickFullScreenRouter = () => {
     userStore.layout.showSilderBar = false;
     userStore.layout.showHeader = false;
     document.documentElement.style.setProperty('--ZJMain-width', '100vw');
-    document.documentElement.style.setProperty('--ZJAsideMenu-width', '0px');
+    document.documentElement.style.setProperty('--ZJ-AsideMenu-width', '0px');
   } else {
     userStore.layout.isFullScreenRouter = false;
     userStore.layout.showSilderBar = true;
     userStore.layout.showHeader = true;
-    document.documentElement.style.setProperty('--ZJMain-width', 'calc(100vw - var(--ZJAsideMenu-width))');
-    document.documentElement.style.setProperty('--ZJAsideMenu-width', '220px');
+    document.documentElement.style.setProperty('--ZJMain-width', 'calc(100vw - var(--ZJ-AsideMenu-width))');
+    document.documentElement.style.setProperty('--ZJ-AsideMenu-width', '220px');
   }
 
 };

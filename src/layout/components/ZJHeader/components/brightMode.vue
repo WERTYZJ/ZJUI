@@ -32,6 +32,10 @@ function changeTheme(theme) {
       '--ZJ-main-code-copy-bg': '#dedede',
       '--ZJ-main-message-color': '#FFFFFF',
       '--ZJ-main-set-box-shadow-color': '#0000001a',
+      '--ZJ-AsideMenu-bg': '#FFFFFF',
+      '--ZJ-AsideMenu-text-color': '#333639',
+      '--ZJ-AsideMenu-hover': '#EFF0FF',
+      '--ZJ-AsideMenu-hover2': '#F3F3F5',
     },
     dark: {
       '--ZJ-main': '#18181C',
@@ -44,6 +48,10 @@ function changeTheme(theme) {
       '--ZJ-main-code-copy-bg': '#23243E',
       '--ZJ-main-message-color': '#48484E',
       '--ZJ-main-set-box-shadow-color': '#DCDCDC',
+      '--ZJ-AsideMenu-bg': '#18181C',
+      '--ZJ-AsideMenu-text-color': '#D5D5D6',
+      '--ZJ-AsideMenu-hover': '#23243E',
+      '--ZJ-AsideMenu-hover2': '#2D2D30',
     }
   };
 

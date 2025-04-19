@@ -12,16 +12,16 @@ const userStore = useUserStore();
 const sidebarIcon = ref('sidebarOpen')
 
 function clickBtn() {
-  // 获取当前 --ZJAsideMenu-width 的值
+  // 获取当前 --ZJ-AsideMenu-width 的值
   const currentValue = getComputedStyle(document.documentElement)
-    .getPropertyValue('--ZJAsideMenu-width')
+    .getPropertyValue('--ZJ-AsideMenu-width')
     .trim(); // 使用 trim() 去除可能的空白字符
 
   // 检查当前值，并设置新的值
   if (currentValue === '220px') {
-    document.documentElement.style.setProperty('--ZJAsideMenu-width', '56px');
+    document.documentElement.style.setProperty('--ZJ-AsideMenu-width', '56px');
   } else if (currentValue === '56px') {
-    document.documentElement.style.setProperty('--ZJAsideMenu-width', '220px');
+    document.documentElement.style.setProperty('--ZJ-AsideMenu-width', '220px');
   }
   userStore.isSideBarOpen = !userStore.isSideBarOpen;
 }

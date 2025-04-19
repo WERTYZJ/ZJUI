@@ -3,9 +3,10 @@
         <div class="bar-l">
             <div :class="{ 'barBox': true, 'barBoxActive': showbarBoxActive === i.path }" v-for="(i, index) in barData"
                 :key="index" @click="openRouter(i.path)">
-                <ZJSvgIcons :icon="i.meta" height="18px" width="18px"></ZJSvgIcons>
+                <ZJSvgIcons :icon="i.icon" height="18px" width="18px"></ZJSvgIcons>
                 <a style="display:flex;min-width: fit-content;">{{ i.name }}</a>
-                <div class="barBorClose" v-if="i.name != 'home'" @click.stop="closeRouter(index)">
+                <div class="barBorClose" v-if="i.name != 'home' && userStore.layout.showHeaderSildebarOpen"
+                    @click.stop="closeRouter(index)">
                     <ZJSvgIcons icon="close" height="18px" width="18px"></ZJSvgIcons>
                 </div>
             </div>
@@ -23,15 +24,13 @@ import fullScreenRouter from "./components/fullScreenRouter.vue"
 import reloadRoutre from "./components/reloadRouter.vue";
 import { useRouter, useRoute } from 'vue-router';
 import router from "@/router";
+import { useUserStore } from '@/store';
+const userStore = useUserStore();
 
-const barData = ref([
-    // {
-    //     name: 'home',
-    //     meta: 'home',
-    // },
-])
+
+const barData = ref([])
 // 获取路由实例
-// const router = useRouter()
+const routerList = useRouter()
 // 获取当前路由对象
 const route = useRoute();
 
@@ -64,17 +63,18 @@ const openRouter = (path) => {
     // console.log('打印当前激活的路由记录:', route)
 };
 
-
+const beforeDataList = ref([]) //保存点击前数据
 watch(
     () => route,
     (val) => {
         if (barData.value.length == 0) {
             barData.value.push({
                 name: 'home',
-                meta: 'home',
+                icon: 'home',
                 path: '/home',
             });
             showbarBoxActive.value = barData.value[0].path;
+            beforeDataList.value = barData.value;
             return;
         }
         // 使用 some() 方法检查是否存在相同 name
@@ -83,7 +83,7 @@ watch(
         if (!exists) {
             barData.value.push({
                 name: val.name,
-                meta: val.meta.icon,
+                icon: val.meta.icon,
                 path: val.fullPath,
             });
         }
@@ -95,12 +95,62 @@ watch(
     }
 )
 
+//上下导航存在时的函数
+
+watch(() => userStore.layout.showHeaderSildebarOpen, (val) => {
+    let names = new Set();
+    barData.value.forEach((i) => {
+        names.add(i.name)
+    })
+    if (!val) {
+        beforeDataList.value = barData.value;
+        // 递归写法
+        const processRoutes = (routes) => {
+            routes.forEach(i => {
+                // 路由路径不为空判断
+                if (i.path != '') {
+                    const exists = names.has(i.name)
+                    // 相同路径只保留一个(去重)
+                    if (!exists) {
+                        names.add(i.name);
+                        barData.value.push({
+                            name: i.name,
+                            path: i.path,
+                            icon: i.meta?.icon || ''
+                        })
+                    }
+                }
+
+                if (i.children && i.children.length > 0) {
+                    processRoutes(i.children)
+                }
+            })
+        }
+
+        // 从根路由开始处理
+        processRoutes(routerList.options.routes)
+    } else {
+        barData.value = []
+        barData.value.push({
+            name: 'home',
+            icon: 'home',
+            path: '/home',
+        });
+        router.push('home')
+    }
+},
+    {
+        immediate: false,//默认加载一次
+        deep: true
+    }
+)
+
 </script>
 
 <style scoped>
 .barMain {
     flex-shrink: 0;
-    height: var(--ZJHeaderBar-height);
+    height: var(--ZJ-HeaderBar-height);
     background-color: var(--ZJ-main);
     padding: 0 10px 0 20px;
     display: flex;
@@ -115,7 +165,7 @@ watch(
     display: flex;
     flex-direction: row;
     gap: 10px;
-    width: calc(100vw - var(--ZJAsideMenu-width) - 100px);
+    width: calc(100vw - var(--ZJ-AsideMenu-width) - 100px);
     overflow-x: scroll;
     overflow-y: hidden;
     /* 隐藏滚动条的核心代码 */
@@ -135,7 +185,7 @@ watch(
     justify-content: center;
     gap: 10px;
     border: var(--ZJ-main-border-light);
-    border-radius: var(--ZJ-button-border-radius);
+    border-radius: var(--ZJ-HeaderBar-border-radius);
     font-size: 14px;
     color: var(--ZJ-main-text-color);
     flex-wrap: nowrap;
@@ -156,7 +206,6 @@ watch(
     justify-content: center;
     gap: 10px;
     border: 1px solid var(--ZJ-default-main);
-    border-radius: var(--ZJ-button-border-radius);
     font-size: 14px;
     color: var(--ZJ-default-main);
     background-color: var(--ZJ-default-main-hover);

@@ -40,12 +40,16 @@ export const useUserStore = defineStore('user', {
       showHeader: true,
       // 头部路由
       showHeaderBar: true,
+      // 头部左侧侧边栏打开按钮
+      showHeaderSildebarOpen: true,
       // 侧边栏导航
       showSilderBar: true,
       // 路由刷新
       showRouterActive: true,
       //设置
       showSet: false,
+      //展示搜索
+      showSearch: false,
       // 单页面全屏
       isFullScreenRouter: false,
     },

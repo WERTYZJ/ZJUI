@@ -133,7 +133,7 @@ function closeAsideMenuCard() {
 
 <style scoped>
 .ZJSlider {
-  width: var(--ZJAsideMenu-width);
+  width: var(--ZJ-AsideMenu-width);
   background-color: var(--ZJ-main);
   box-shadow: 2px 0 8px 0 rgb(29, 35, 41, 0.05);
   color: var(--ZJ-main-text-color);
