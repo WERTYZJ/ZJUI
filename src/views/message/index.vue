@@ -1755,9 +1755,6 @@ li {
   cursor: default;
 }
 
-/* li:last-child{
-  border-bottom: none;
-} */
 li:hover {
   background-color: var(--ZJ-main-hover);
   /* box-shadow:
