@@ -1574,7 +1574,7 @@ export default {
   width: calc(100% - 30px);
   overflow: hidden;
   padding: 0;
-  box-shadow: inset 0px 0px 0px 1px #D8D8D8;
+  /* box-shadow: inset 0px 0px 0px 1px #D8D8D8; */
 }
 
 .dia-left {
@@ -1760,16 +1760,16 @@ li {
 } */
 li:hover {
   background-color: var(--ZJ-main-hover);
-  box-shadow:
-    inset 1px 0 0 0 #D8D8D8;
+  /* box-shadow:
+    inset 1px 0 0 0 #D8D8D8; */
 }
 
 /* 点击后样式 */
 .selected,
 .selected:hover {
   background-color: var(--ZJ-main-hover);
-  box-shadow:
-    inset 1px 0 0 0 #D8D8D8;
+  /* box-shadow:
+    inset 1px 0 0 0 #D8D8D8; */
   /* 左侧阴影 */
 }
 
@@ -1786,8 +1786,8 @@ li:hover {
 .isPinned:hover {
   /* 内阴影 */
   background-color: var(--ZJ-main-hover);
-  box-shadow:
-    inset 1px 0 0 0 #D8D8D8;
+  /* box-shadow:
+    inset 1px 0 0 0 #D8D8D8; */
 }
 
 .isPinned .unread_count_circle,
