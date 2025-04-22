@@ -6,7 +6,7 @@
     <transition name="showSetRight">
       <div class="user-main" v-show="userStore.layout.showSet" ref="setMainEl">
         <div class="header">
-          <div class="header-l">主题配置</div>
+          <div class="header-l">{{ t("layout.ZJSet.ThemeConfiguration") }}</div>
           <div class="header-r" @click="close('closeRight')">
             <ZJSvgIcons icon="close"></ZJSvgIcons>
           </div>
@@ -15,17 +15,17 @@
         <div class="user-more">
           <div class="title">
             <hr>
-            <a>主题模式</a>
+            <a>{{ t("layout.ZJSet.ThemeMode.ThemeMode") }}</a>
             <hr>
           </div>
           <div class="more-box">
-            <li v-for="(i, index) in setData.setZhuTi" :key="index">{{ i.title }}
+            <li v-for="(i, index) in SetZhuTi" :key="index">{{ i.title }}
               <ZJSwitch :ZJSwitchVal="i.value" @ZJSwitchNewVal="acceptSwitchVal($event, index)">
               </ZJSwitch>
             </li>
           </div>
           <div class="title">
-            <hr><a>布局模式</a>
+            <hr><a>{{ t("layout.ZJSet.LayoutMode") }}</a>
             <hr>
           </div>
           <div class="more-box-buju">
@@ -56,14 +56,14 @@
           </div>
           <div class="title">
             <hr>
-            <a>主题颜色</a>
+            <a>{{ t("layout.ZJSet.ThemeColors") }}</a>
             <hr>
           </div>
         </div>
 
         <div class="footer">
-          <ZJButton type="info2" text="复制主题" transparent></ZJButton>
-          <ZJButton type="default" text="重置主题"></ZJButton>
+          <ZJButton type="info2" :text="t('layout.ZJSet.DuplicateTheme')" transparent></ZJButton>
+          <ZJButton type="default" :text="t('layout.ZJSet.CancelTheme')"></ZJButton>
         </div>
       </div>
     </transition>
@@ -71,29 +71,30 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, getCurrentInstance } from 'vue';
+import { ref, onMounted, onUnmounted, getCurrentInstance, computed } from 'vue';
 import { useUserStore } from '@/store';
+import { useI18n } from 'vue-i18n';
+
 const userStore = useUserStore();
 const { appContext } = getCurrentInstance();
 const $ZJMessage = appContext.config.globalProperties.$ZJMessage;
+const { t } = useI18n();
 
-
-const setData = ref({
-  setZhuTi: [
-    {
-      title: "深色侧边栏",
-      value: false,
-    },
-    {
-      title: "灰色模式",
-      value: false,
-    },
-    {
-      title: "色弱模式",
-      value: false,
-    },
-  ]
-})
+// 使用计算属性动态生成
+const SetZhuTi = computed(() => [
+  {
+    title: t('layout.ZJSet.ThemeConfiguration'),
+    value: false,
+  },
+  {
+    title: t('layout.ZJSet.ThemeMode.GrayMode'),
+    value: false,
+  },
+  {
+    title: t('layout.ZJSet.ThemeMode.ColorDeficiencyMode'),
+    value: false,
+  }
+])
 
 function close(action) {
   if (action === 'closeRight') {

@@ -1,0 +1,23 @@
+{
+  "info": {
+    "login": {
+      "loginOut": "Login out successful！"
+    }
+  },
+  "layout": {
+    "ZJSet": {
+      "ThemeConfiguration": "Theme configuration",
+      "ThemeMode": {
+        "ThemeMode": "Mode",
+        "DarkSidebar": "Dark sidebar",
+        "GrayMode": "Gray mode",
+        "ColorDeficiencyMode": "Color deficiency mode"
+      },
+      "LayoutMode": "Layout",
+      "ThemeColors": "Colors",
+      "DuplicateTheme": "Duplicate theme",
+      "CancelTheme": "Cancel theme",
+      "ChangeSuccess": "Language changed Successful!"
+    }
+  }
+}

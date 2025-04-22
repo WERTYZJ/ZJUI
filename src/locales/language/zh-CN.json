@@ -1,0 +1,23 @@
+{
+  "info": {
+    "login": {
+      "loginOut": "退出成功！"
+    }
+  },
+  "layout": {
+    "ZJSet": {
+      "ThemeConfiguration": "主题配置",
+      "ThemeMode": {
+        "ThemeMode": "主题模式",
+        "DarkSidebar": "深色侧边栏",
+        "GrayMode": "灰色模式",
+        "ColorDeficiencyMode": "色弱模式"
+      },
+      "LayoutMode": "布局模式",
+      "ThemeColors": "主题颜色",
+      "DuplicateTheme": "复制主题",
+      "CancelTheme": "取消主题",
+      "ChangeSuccess": "语言切换成功!"
+    }
+  }
+}

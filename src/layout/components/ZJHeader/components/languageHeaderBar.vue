@@ -1,9 +1,8 @@
 <template>
   <Transition name="Select">
     <div class="HeaderBar">
-      <div v-for="(item, index) in topMore" :key="index" @click="HeaderTopBar(item.type)">
+      <div v-for="(item, index) in topMore" :key="index" @click="changeLanguage(item.type)">
         <div class="HeaderBarLi">
-          <ZJSvgIcons class="img" :icon="item.img"></ZJSvgIcons>
           <a>{{ item.name }}</a>
         </div>
         <hr class="HeaderBarHr" :class="{ 'HeaderBarHrLast': index === topMore.length - 1 }">
@@ -13,37 +12,33 @@
 </template>
 
 <script setup>
-import router from '@/router';
 import { ref, getCurrentInstance } from 'vue';
 import { useI18n } from 'vue-i18n';
-const { t } = useI18n();
 const { appContext } = getCurrentInstance();
 const $ZJMessage = appContext.config.globalProperties.$ZJMessage;
+const { locale, t } = useI18n();
+
 const topMore = ref(
   [
     {
-      img: 'personalCenter',
-      name: '个人中心',
-      type: 'Account',
+      name: '中文',
+      type: 'zh-CN',
     },
     {
-      img: 'logout',
-      name: '登出',
-      type: 'Logout',
+      name: '英文',
+      type: 'en-US',
     },
   ])
-// 头部下拉框
-function HeaderTopBar(val) {
-  if (val == 'Account') {
-    router.push('/info')
-  } else {
-    $ZJMessage({
-      type: 'success',
-      message: t('info.login.loginOut'),
-      duration: 3000,
-    });
-  }
+
+const changeLanguage = (lang) => {
+  locale.value = lang
+  $ZJMessage({
+    type: 'success',
+    message: t('layout.ZJSet.ChangeSuccess'),
+    duration: 3000,
+  });
 }
+
 </script>
 
 <style scoped>

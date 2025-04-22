@@ -282,17 +282,31 @@ const routes = [
         meta: { icon: 'vue' },
         component: () => import('@/views/vue/searchRoute/index.vue')
       },
+      {
+        id: 604,
+        path: '/vue-i18n',
+        name: 'vue-i18n',
+        meta: { icon: 'vue' },
+        component: () => import('@/views/vue/vue-i18n/index.vue')
+      },
     ]
   },
   {
     id: 7,
+    path: '/notice',
+    name: '消息',
+    meta: { icon: 'notice' },
+    component: () => import('@/views/message/index.vue')
+  },
+  {
+    id: 8,
     path: '/info',
     name: '个人中心',
     meta: { icon: 'selfInfo' },
     component: () => import('@/views/info/index.vue')
   },
   {
-    id: 8,
+    id: 9,
     path: '/set',
     name: '设置',
     meta: { icon: 'set' },
