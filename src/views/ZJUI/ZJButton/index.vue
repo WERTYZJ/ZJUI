@@ -23,6 +23,15 @@
       <ZJButton type="warning" icon="message"></ZJButton>
     </div>
     <ZJCodeDisplay :code="vueCode2" language="vue" />
+     <p>图标位置(默认图标在文字左侧):iconRight(Boolean)</p>
+    <div class="ZJDisplayFlex m-t-10">
+      <ZJButton type="default" text="default" icon="message" iconRight></ZJButton>
+      <ZJButton type="success" text="success" icon="message" iconRight></ZJButton>
+      <ZJButton type="error" text="error" icon="message" iconRight></ZJButton>
+      <ZJButton type="info" text="info" icon="message" iconRight></ZJButton>
+      <ZJButton type="warning" text="warning" icon="message" iconRight></ZJButton>
+    </div>
+    <ZJCodeDisplay :code="vueCodeRight" language="vue" />
     <p>带图标和文字按钮:文字text="success"</p>
     <div class="ZJDisplayFlex m-t-10">
       <ZJButton type="default" text="default" icon="message"></ZJButton>
@@ -149,6 +158,16 @@ const vueCode6 = ref(
     >
   </ZJButton>
   <ZJButton type="info2" text="info2" dashed transparent></ZJButton>
+</template>
+`)
+
+const vueCodeRight = ref(
+  `<template>
+  <ZJButton type="default" text="default" icon="message" iconRight></ZJButton>
+  <ZJButton type="success" text="success" icon="message" iconRight></ZJButton>
+  <ZJButton type="error" text="error" icon="message" iconRight></ZJButton>
+  <ZJButton type="info" text="info" icon="message" iconRight></ZJButton>
+  <ZJButton type="warning" text="warning" icon="message" iconRight></ZJButton>
 </template>
 `)
 </script>

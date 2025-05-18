@@ -10,7 +10,8 @@
               <div class="boxList" v-for="(i, index) in filteredRoutes" :key="index" @click="openSearchPage(i.path)">
                 <div class="boxLeft">
                   <ZJSvgIcons :icon="i.icon"></ZJSvgIcons>
-                  <a>{{ i.name }}</a>
+                  <!-- <a>{{ i.name }}</a> -->
+                  <span v-html="i.name"></span>
                 </div>
               </div>
             </div>
@@ -37,9 +38,17 @@ const filteredRoutes = ref([]); // 用于存储过滤后的路由数据
 
 // 监听输入值的变化
 watch(ZJInputVal, (newValue) => {
+
+  const escapeRegExp = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+  const regex = new RegExp(`(${escapeRegExp(newValue)})`, 'gi')
+
   filteredRoutes.value = routeData.value.filter(item =>
     item.name.toLowerCase().includes(newValue.toLowerCase())
-  );
+  ).map(item => ({
+    ...item,
+    name: item.name.replace(regex, '<span style="color:var(--ZJ-default-main)">$1</span>')
+  }))
+
 });
 
 onMounted(() => {
@@ -167,5 +176,6 @@ input::placeholder {
   align-items: center;
   justify-content: center;
   gap: 10px;
+  color: var(--ZJ-main-text-color);
 }
 </style>

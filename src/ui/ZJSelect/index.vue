@@ -1,9 +1,9 @@
 <template>  
   <div :class="{ 'custom-select':this.size==null,'size40': this.size=='40',}">  
-    <div class="selected" @click="toggleDropdown">
-      <a>{{ selectedText || label }}</a>
+    <div class="selected m-pointer" @click="toggleDropdown">
+      <a class="m-pointer">{{ selectedText || label }}</a>
       <ZJSvgIcons icon="select"
-        :class="{'ZJRotate-icon-open': isIconOpen, 'ZJRotate-icon-close': !isIconOpen}"
+        :class="{'ZJRotate-icon-open m-pointer': isIconOpen, 'ZJRotate-icon-close m-pointer': !isIconOpen}"
       ></ZJSvgIcons>
       <!-- <img ref="img" src="../assets/ui/select.svg" alt=""> -->
     </div> 
@@ -165,9 +165,12 @@ export default {
 }  
 .dropdown li {  
   padding:8px 20px;  
+  margin:0 5px;
   cursor: pointer; 
   font-size: 14px;
   color:var(--ZJ-main-text-color); 
+  border-radius: var(--ZJ-main-border-radius-5);
+  transition: var(--ZJ-main-transition);
 }  
 .dropdown li:hover {  
   background: var(--ZJ-default-main-hover);

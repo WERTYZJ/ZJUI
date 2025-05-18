@@ -312,10 +312,97 @@ video {
   gap: 20px;
 }
 
+.m-pointer {
+  cursor: pointer;
+}
+
 .m-tb-10 {
   margin: 10px 0;
 }
 
 .m-t-10 {
   margin-top: 10px;
+}
+
+.m-flex {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.m-flex-wrap {
+  flex-wrap: wrap;
+}
+
+.m-flex-nowrap {
+  flex-wrap: nowrap;
+}
+
+.m-flex-shrink {
+  flex-shrink: 0
+}
+
+.m-col-center {
+  align-items: center;
+}
+
+.m-col-top {
+  align-items: flex-start;
+}
+
+.m-col-bottom {
+  align-items: flex-end;
+}
+
+.m-row-center {
+  justify-content: center;
+}
+
+.m-row-left {
+  justify-content: flex-start;
+}
+
+.m-row-right {
+  justify-content: flex-end;
+}
+
+.m-row-between {
+  justify-content: space-between;
+}
+
+.m-row-around {
+  justify-content: space-around;
+}
+
+.m-text-left {
+  text-align: left;
+}
+
+.m-text-center {
+  text-align: center;
+}
+
+.m-text-right {
+  text-align: right;
+}
+
+.m-flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.m-gap-5 {
+  gap: 5px;
+}
+
+.m-gap-10 {
+  gap: 10px;
+}
+
+.m-gap-15 {
+  gap: 15px;
+}
+
+.m-gap-20 {
+  gap: 20px;
 }
