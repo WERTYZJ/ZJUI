@@ -304,6 +304,9 @@ export default{
   font-size: 14px;
   font-weight: normal;
   color:var(--ZJ-main-text-color); 
+   border-radius: var(--ZJ-main-border-radius-5);
+  transition: var(--ZJ-main-transition);
+  margin:0 5px;
 }  
 .dropdown li:hover {  
   background: var(--ZJ-default-main-hover);

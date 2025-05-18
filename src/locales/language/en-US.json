@@ -18,6 +18,10 @@
       "DuplicateTheme": "Duplicate theme",
       "CancelTheme": "Cancel theme",
       "ChangeSuccess": "Language changed Successful!"
+    },
+    "welcome-footer":{
+      "t1":"Released under the MIT License.",
+      "t2":"Copyright © 2025-present ZJ-UI"
     }
   }
 }

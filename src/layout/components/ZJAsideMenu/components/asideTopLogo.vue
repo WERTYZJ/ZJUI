@@ -1,5 +1,5 @@
 <template>
-  <div class="ZJLogo">
+  <div class="ZJLogo" @click="userStore.layout.showWelcome = true;">
     <!-- <img src="@/assets/logo/logo.svg" alt=""> -->
     <ZJSvgIcons icon="ZJUILogo" style="height:32px;width:32px;border-radius:10px;"></ZJSvgIcons>
     <Transition name="leftBar">

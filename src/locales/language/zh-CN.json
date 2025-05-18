@@ -18,6 +18,10 @@
       "DuplicateTheme": "复制主题",
       "CancelTheme": "取消主题",
       "ChangeSuccess": "语言切换成功!"
+    },
+    "welcome-footer":{
+      "t1":"根据 MIT 许可证发布。",
+      "t2":"Copyright © 2025-present ZJ-UI"
     }
   }
 }

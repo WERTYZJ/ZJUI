@@ -1,6 +1,10 @@
 // src/store/index.js  
 import { defineStore } from "pinia";
 
+// 从 localStorage 读取整个 userData（假设 userData 是持久化的对象）
+// const userJSON = localStorage.getItem('user');
+// const user = userJSON ? JSON.parse(userJSON) : {};
+
 export const useUserStore = defineStore('user', {
   state: () => ({
     // 尝试从localStorage加载用户数据，如果没有则默认为空对象
@@ -52,6 +56,8 @@ export const useUserStore = defineStore('user', {
       showSearch: false,
       // 单页面全屏
       isFullScreenRouter: false,
+      // 是否展示欢迎页面
+      showWelcome:true,
     },
   }),
   actions: {
@@ -78,6 +84,17 @@ export const useUserStore = defineStore('user', {
   getters: {
     getUserData: (state) => state.userData,
   },
+  // 持久化存储
+  // persist:{
+  //   storage: sessionStorage,
+  // }
+  // persist:[
+  //   {
+  //     key: 'my-custom-key', // 自定义键名
+  //     storage: sessionStorage,
+  //     paths: ['state.layout.showWelcome'], // 仅持久化 layout.showWelcome
+  //   }
+  // ],
 });
 
 // 当需要以下情况时，使用 action：

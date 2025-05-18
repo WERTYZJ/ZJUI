@@ -1,7 +1,8 @@
 <template>
   <button :class="props.type" :style="ZJStyle">
-    <ZJSvgIcons v-if="props.icon" :icon="props.icon"></ZJSvgIcons>
+    <ZJSvgIcons v-if="props.icon && !iconRight" :icon="props.icon"></ZJSvgIcons>
     {{ props.text }}
+    <ZJSvgIcons v-if="props.icon && iconRight" :icon="props.icon"></ZJSvgIcons>
   </button>
 </template>
  
@@ -18,6 +19,10 @@ const props = defineProps({
   icon: {
     type: String,
     default: '',
+  },
+  iconRight: {
+    type: Boolean,
+    default:false,
   },
   text: {
     type: String,
@@ -42,19 +47,19 @@ const ZJStyle = computed(() => {
   if (props.transparent) {
     switch (props.type) {
       case 'success':
-        fontColor = 'var(--ZJ-button-success-dark)';
+        fontColor = 'var(--ZJ-success-dark)';
         break;
       case 'error':
-        fontColor = 'var(--ZJ-button-error-dark)';
+        fontColor = 'var(--ZJ-error-dark)';
         break;
       case 'info':
-        fontColor = 'var(--ZJ-button-info-dark)';
+        fontColor = 'var(--ZJ-info-dark)';
         break;
       case 'info2':
         fontColor = 'var(--ZJ-main-text-color)';
         break;
       case 'warning':
-        fontColor = 'var(--ZJ-button-warning-dark)';
+        fontColor = 'var(--ZJ-warning-dark)';
         break;
       default:
         fontColor = 'var(--ZJ-default-main)';
@@ -80,6 +85,10 @@ button {
   padding: var(--ZJ-button-padding);
   border-radius: var(--ZJ-button-border-radius);
   transition: var(--ZJ-button-transition);
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 5px;
 }
 
 .default {
@@ -99,63 +108,63 @@ button {
 
 
 .success {
-  background-color: var(--ZJ-button-success-dark);
-  border: var(--ZJ-button-success-border-dark);
+  background-color: var(--ZJ-success-dark);
+  border: var(--ZJ-success-border-dark);
 }
 
 .success:hover {
-  background-color: var(--ZJ-button-success-light);
-  border: var(--ZJ-button-success-border-light);
+  background-color: var(--ZJ-success-light);
+  border: var(--ZJ-success-border-light);
 }
 
 .success:active {
-  background-color: var(--ZJ-button-success-active);
-  border: var(--ZJ-button-success-active-border);
+  background-color: var(--ZJ-success-active);
+  border: var(--ZJ-success-active-border);
 }
 
 .error {
-  background-color: var(--ZJ-button-error-dark);
-  border: var(--ZJ-button-error-border-dark);
+  background-color: var(--ZJ-error-dark);
+  border: var(--ZJ-error-border-dark);
 }
 
 .error:hover {
-  background-color: var(--ZJ-button-error-light);
-  border: var(--ZJ-button-error-border-light);
+  background-color: var(--ZJ-error-light);
+  border: var(--ZJ-error-border-light);
 }
 
 .error:active {
-  background-color: var(--ZJ-button-error-active);
-  border: var(--ZJ-button-error-active-border);
+  background-color: var(--ZJ-error-active);
+  border: var(--ZJ-error-active-border);
 }
 
 .warning {
-  background-color: var(--ZJ-button-warning-dark);
-  border: var(--ZJ-button-warning-border-dark);
+  background-color: var(--ZJ-warning-dark);
+  border: var(--ZJ-warning-border-dark);
 }
 
 .warning:hover {
-  background-color: var(--ZJ-button-warning-light);
-  border: var(--ZJ-button-warning-border-light);
+  background-color: var(--ZJ-warning-light);
+  border: var(--ZJ-warning-border-light);
 }
 
 .warning:active {
-  background-color: var(--ZJ-button-warning-active);
-  border: var(--ZJ-button-warning-active-border);
+  background-color: var(--ZJ-warning-active);
+  border: var(--ZJ-warning-active-border);
 }
 
 .info {
-  background-color: var(--ZJ-button-info-dark);
-  border: var(--ZJ-button-info-border-dark);
+  background-color: var(--ZJ-info-dark);
+  border: var(--ZJ-info-border-dark);
 }
 
 .info:hover {
-  background-color: var(--ZJ-button-info-light);
-  border: var(--ZJ-button-info-border-light);
+  background-color: var(--ZJ-info-light);
+  border: var(--ZJ-info-border-light);
 }
 
 .info:active {
-  background-color: var(--ZJ-button-info-active);
-  border: var(--ZJ-button-info-active-border);
+  background-color: var(--ZJ-info-active);
+  border: var(--ZJ-info-active-border);
 }
 
 .info2 {

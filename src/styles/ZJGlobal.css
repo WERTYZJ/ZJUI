@@ -21,6 +21,7 @@
 
   /* dropdown */
   --ZJ-main-border-radius-dropdown: 4px;
+  --ZJ-main-border-radius-5: 5px;
 
   /* 默认主题 */
   --ZJ-default-main: #7F56D9;
@@ -50,6 +51,11 @@
   --ZJMain-width: calc(100vw - var(--ZJ-AsideMenu-width));
   --n-bezier: cubic-bezier(.4, 0, .2, 1);
 
+  --ZJ-welcome-name-background: -webkit-linear-gradient(120deg, #bd34fe 30%, #41d1ff);
+  --ZJ-welcome-image-background-image: linear-gradient(-45deg, #bd34fe 50%, #47caff 50%);
+  --ZJ-welcome-name-color: transparent;
+  --ZJ-welcome-image-filter: blur(70px);
+
 
   /* ZJButton */
   --ZJ-button-height: 34px;
@@ -58,31 +64,31 @@
   --ZJ-button-border-radius: 8px;
   --ZJ-button-transition: .3s;
   /* success */
-  --ZJ-button-success-light: #36ad6a;
-  --ZJ-button-success-dark: #18a058;
-  --ZJ-button-success-border-light: 1px solid #36ad6a;
-  --ZJ-button-success-border-dark: 1px solid #18a058;
-  --ZJ-button-success-active: #0c7a43;
-  --ZJ-button-success-active-border: 1px solid #0c7a43;
+  --ZJ-success-light: #36ad6a;
+  --ZJ-success-dark: #18a058;
+  --ZJ-success-border-light: 1px solid #36ad6a;
+  --ZJ-success-border-dark: 1px solid #18a058;
+  --ZJ-success-active: #0c7a43;
+  --ZJ-success-active-border: 1px solid #0c7a43;
   /* error */
-  --ZJ-button-error-light: #de576d;
-  --ZJ-button-error-dark: #D92D20;
-  --ZJ-button-error-border-light: 1px solid #de576d;
-  --ZJ-button-error-border-dark: 1px solid #d03050;
-  --ZJ-button-error-active: #ab1f3f;
-  --ZJ-button-error-active-border: 1px solid #ab1f3f;
+  --ZJ-error-light: #de576d;
+  --ZJ-error-dark: #D92D20;
+  --ZJ-error-border-light: 1px solid #de576d;
+  --ZJ-error-border-dark: 1px solid #d03050;
+  --ZJ-error-active: #ab1f3f;
+  --ZJ-error-active-border: 1px solid #ab1f3f;
   /* info */
-  --ZJ-button-info-light: #4098fc;
-  --ZJ-button-info-dark: #2080f0;
-  --ZJ-button-info-border-light: 1px solid #4098fc;
-  --ZJ-button-info-border-dark: 1px solid #2080f0;
-  --ZJ-button-info-active: #1060c9;
-  --ZJ-button-info-active-border: 1px solid #1060c9;
+  --ZJ-info-light: #4098fc;
+  --ZJ-info-dark: #2080f0;
+  --ZJ-info-border-light: 1px solid #4098fc;
+  --ZJ-info-border-dark: 1px solid #2080f0;
+  --ZJ-info-active: #1060c9;
+  --ZJ-info-active-border: 1px solid #1060c9;
   /* warning */
-  --ZJ-button-warning-light: #fcb040;
-  --ZJ-button-warning-dark: #f0a020;
-  --ZJ-button-warning-border-light: 1px solid #fcb040;
-  --ZJ-button-warning-border-dark: 1px solid #f0a020;
-  --ZJ-button-warning-active: #c97c10;
-  --ZJ-button-warning-active-border: 1px solid #c97c10;
+  --ZJ-warning-light: #fcb040;
+  --ZJ-warning-dark: #f0a020;
+  --ZJ-warning-border-light: 1px solid #fcb040;
+  --ZJ-warning-border-dark: 1px solid #f0a020;
+  --ZJ-warning-active: #c97c10;
+  --ZJ-warning-active-border: 1px solid #c97c10;
 }
