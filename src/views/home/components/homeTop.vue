@@ -4,13 +4,14 @@
       <div class="left-top">欢迎来到ZJUI-Admin !</div>
       <div class="left-center">
         <div class="left-center2">
-          <a class="left-center-l">$16,605</a>
-          <a class="left-center-r">avarage price</a>
+          <a class="left-center-l">安全运行</a>
+          <a class="left-center-r">99天</a>
         </div>
-        <div class="left-center3">market avarage is $16,224</div>
+        <div class="left-center3">有朋自远方来，不亦乐乎。</div>
       </div>
       <div class="left-bottom">
-        <ZJSvgIcons icon="right" height="30" width="30"></ZJSvgIcons>
+        <span class="m-pointer">开始新UI</span>
+        <ZJSvgIcons class="left-bottom-icon" icon="right" height="30" width="30" style="cursor: pointer;"></ZJSvgIcons>
       </div>
     </div>
 
@@ -48,17 +49,17 @@ const listData = ref([
 const homeTopRight = ref([
   {
     icon: require("@/assets/index/homeTop/car.svg"),
-    centerText: "1,174",
+    centerText: "1799",
     bottomText: "预览次数",
   },
   {
     icon: require("@/assets/index/homeTop/share.svg"),
-    centerText: "1,174",
+    centerText: "20",
     bottomText: "分享次数",
   },
   {
     icon: require("@/assets/index/homeTop/dollar.svg"),
-    centerText: "$1,116",
+    centerText: "$0",
     bottomText: "预估收益",
   },
 ])
@@ -128,6 +129,7 @@ function getTextBgColor(index) {
   flex-direction: column;
   word-break: keep-all;
   flex-shrink: 0;
+  gap: 5px;
 }
 
 .left-center2 {
@@ -158,13 +160,28 @@ function getTextBgColor(index) {
 }
 
 .left-bottom {
-  width: 50px;
   border-radius: 20px;
-  padding: 0px 10px;
+  padding: 5px 10px;
+  width: fit-content;
   background-color: #FF6370;
   display: flex;
-  justify-content: center;
   align-items: center;
+  gap: 5px;
+  color: var(--ZJ-main);
+  cursor: pointer;
+}
+.left-bottom-icon{
+  animation: icon 1s ease-in-out infinite alternate;;
+}
+
+@keyframes icon {
+  from{
+    opacity: 0.2;
+    transform: translateX(-5px); /* 向左偏移 */
+  }to{
+    opacity: 1;
+    transform: translateX(5px); /* 向右偏移 */
+  }
 }
 
 .right-box {

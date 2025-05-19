@@ -1,21 +1,21 @@
 <template>
-    <div class="barMain">
-        <div class="bar-l">
-            <div :class="{ 'barBox': true, 'barBoxActive': showbarBoxActive === i.path }" v-for="(i, index) in barData"
-                :key="index" @click="openRouter(i.path)">
-                <ZJSvgIcons :icon="i.icon" height="18px" width="18px"></ZJSvgIcons>
-                <a style="display:flex;min-width: fit-content;">{{ i.name }}</a>
-                <div class="barBorClose" v-if="i.name != 'home' && userStore.layout.showHeaderSildebarOpen"
-                    @click.stop="closeRouter(index)">
-                    <ZJSvgIcons icon="close" height="18px" width="18px"></ZJSvgIcons>
-                </div>
-            </div>
+  <div class="barMain">
+    <div class="bar-l">
+      <div :class="{ 'barBox': true, 'barBoxActive': showbarBoxActive === i.path }" v-for="(i, index) in barData"
+          :key="index" @click="openRouter(i.path)">
+          <ZJSvgIcons :icon="i.icon" height="18px" width="18px"></ZJSvgIcons>
+          <a style="display:flex;min-width: fit-content;">{{ i.name }}</a>
+          <div class="barBorClose" v-if="i.name != 'home' && userStore.layout.showHeaderSildebarOpen"
+              @click.stop="closeRouter(index)">
+              <ZJSvgIcons icon="close" height="18px" width="18px"></ZJSvgIcons>
         </div>
-        <div class="bar-r">
-            <reloadRoutre></reloadRoutre>
-            <fullScreenRouter></fullScreenRouter>
-        </div>
+      </div>
     </div>
+    <div class="bar-r">
+      <reloadRoutre></reloadRoutre>
+      <fullScreenRouter></fullScreenRouter>
+    </div>
+  </div>
 </template>
 
 <script setup name="ZJHeaderBar">
