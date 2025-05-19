@@ -8,9 +8,12 @@
         <span>{{ i.contributor }}</span>
       </div>
     </div>
+<<<<<<< HEAD
     <div class="welcome-contributors-btn">
       <ZJButton type="info2" text="成为赞助商" style="border-radius:20px;padding: 20px;color: var(--ZJ-main-text-color);" icon="right" iconRight></ZJButton>
     </div>
+=======
+>>>>>>> fc884e792301cf1e5502c457ee8161dd67fc3016
   </div>
 </template>
 
@@ -42,9 +45,12 @@ const welcomeData = ref([
 .welcome-contributors-title{
   margin-bottom: 80px;
 }
+<<<<<<< HEAD
 .welcome-contributors-btn{
   margin-top: 80px;
 }
+=======
+>>>>>>> fc884e792301cf1e5502c457ee8161dd67fc3016
 .welcome-body{
   width: 100%;
   display: grid;

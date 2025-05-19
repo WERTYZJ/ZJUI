@@ -9,7 +9,11 @@
           <span class="text-v">v1.0.0</span>
         </div>
         <div class="m-flex m-gap-15" style="margin-top: 20px;">
+<<<<<<< HEAD
           <ZJButton @click="open('goHome')" type="default" text="开始" style="border-radius:20px;padding: 20px;cursor: pointer;" icon="right" iconRight>
+=======
+          <ZJButton @click="open('goHome')" type="default" text="开始" style="border-radius:20px;padding: 20px;" icon="right" iconRight>
+>>>>>>> fc884e792301cf1e5502c457ee8161dd67fc3016
           </ZJButton>
           <ZJButton type="info" text="为什么选择ZJ-UI?" style="border-radius:20px;padding: 20px;"></ZJButton>
           <ZJButton type="success" text="在Gitee上查看" style="border-radius:20px;padding: 20px;"></ZJButton>
@@ -17,7 +21,11 @@
       </div>
       <div class="w-right">
         <div class="w-right-bg"></div>
+<<<<<<< HEAD
         <img class="w-right-img start-btn" src="@/assets/logo/w-logo-bg.svg" alt="">
+=======
+        <img class="w-right-img" src="@/assets/logo/w-logo-bg.svg" alt="">
+>>>>>>> fc884e792301cf1e5502c457ee8161dd67fc3016
       </div>
     </div>
     <div class="welcome-body m-flex-col m-gap-20">
