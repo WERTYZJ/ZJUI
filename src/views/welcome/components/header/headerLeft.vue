@@ -15,6 +15,7 @@ span {
   font-size: 15px;
   font-weight: bold;
   white-space: nowrap;
+  color: var(--ZJ-main-text-color);
 }
 </style>
 

@@ -36,6 +36,7 @@ function changeTheme(theme) {
       '--ZJ-AsideMenu-text-color': '#333639',
       '--ZJ-AsideMenu-hover': '#EFF0FF',
       '--ZJ-AsideMenu-hover2': '#F3F3F5',
+      '--ZJ-welcome-header-bg':'#ffffffcc'
     },
     dark: {
       '--ZJ-main': '#18181C',
@@ -52,6 +53,7 @@ function changeTheme(theme) {
       '--ZJ-AsideMenu-text-color': '#D5D5D6',
       '--ZJ-AsideMenu-hover': '#23243E',
       '--ZJ-AsideMenu-hover2': '#2D2D30',
+      '--ZJ-welcome-header-bg':'#101014e5'
     }
   };
 

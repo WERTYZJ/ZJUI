@@ -71,6 +71,7 @@ const changeLanguage = (lang) => {
   transition: all 0.2s ease-in-out;
   border-radius: 5px;
   color: var(--ZJ-main-text-color);
+  cursor: pointer;
 }
 
 .HeaderBarLi:hover {
@@ -117,5 +118,6 @@ const changeLanguage = (lang) => {
   letter-spacing: 0em;
   font-variation-settings: "opsz" auto;
   font-feature-settings: "kern" on;
+  cursor: pointer;
 }
 </style>

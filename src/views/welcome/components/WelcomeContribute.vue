@@ -41,6 +41,7 @@ const welcomeData = ref([
 }
 .welcome-contributors-title{
   margin-bottom: 80px;
+  color: var(--ZJ-main-text-color);
 }
 .welcome-body{
   width: 100%;

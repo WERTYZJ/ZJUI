@@ -161,7 +161,7 @@ function getTextBgColor(index) {
 
 .left-bottom {
   border-radius: 20px;
-  padding: 5px 10px;
+  padding: 5px 15px;
   width: fit-content;
   background-color: #FF6370;
   display: flex;

@@ -55,6 +55,7 @@
   --ZJ-welcome-image-background-image: linear-gradient(-45deg, #bd34fe 50%, #47caff 50%);
   --ZJ-welcome-name-color: transparent;
   --ZJ-welcome-image-filter: blur(70px);
+  --ZJ-welcome-header-bg: rgba(255, 255, 255, 0.8);
 
 
   /* ZJButton */

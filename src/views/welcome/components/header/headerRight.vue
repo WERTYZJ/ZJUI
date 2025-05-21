@@ -2,14 +2,22 @@
   <div class="m-flex m-gap-20 m-col-center">
     <div v-for="(i, index) in rightBar" :key="index" class="m-flex title">
       <span class="m-pointer">{{ i.text }}</span>
+    </div>
+    <hr>
+    <brightMode></brightMode>
+    <hr>
+    <language></language>
+    <hr>
+    <div v-for="(i, index) in rightIcon" :key="index" class="m-flex title">
       <ZJSvgIcons :icon="i.icon" style="height: 25px;width: 25px;"></ZJSvgIcons>
-      <hr v-if="index==4 || index==5 || index==6">
     </div>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
+import language from '@/layout/components/ZJHeader/components/language.vue';
+import brightMode from '@/layout/components/ZJHeader/components/brightMode.vue';
 
 const rightBar = ref([
   {
@@ -27,13 +35,10 @@ const rightBar = ref([
   {
     text: 'Version',
   },
-  {
-    text: '切换语言',
-  },
-  {
-    text: '切换主题',
-  },
-  {
+])
+
+const rightIcon = ref([
+   {
     // text: 'Twitter',
     icon:'Twitter',
   },
@@ -52,6 +57,8 @@ const rightBar = ref([
 .title {
   font-size: 15px;
   color: var(--ZJ-main-text-color);
+  cursor: pointer;
+  /* background-color: aqua; */
 }
 
 .title:hover {

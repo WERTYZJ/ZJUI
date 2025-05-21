@@ -1,7 +1,7 @@
 <template>
-  <div class="welcome">
+  <div class="welcome" ref="welcomeMain">
     <div class="welcome-box">
-      <WelcomeHeader></WelcomeHeader>
+      <WelcomeHeader :scrollTop="welcomeMainScrollTop"></WelcomeHeader>
       <WelcomeMain></WelcomeMain>
       <hr class="welcome-box-hr">
       <WelcomeContributors></WelcomeContributors>
@@ -22,6 +22,27 @@ import WelcomeContributors from "./components/WelcomeContributors.vue"
 import WelcomeContributeSelfe from "./components/WelcomeContributeSelfe.vue"
 import WelcomeContribute from "./components/WelcomeContribute.vue"
 import WelcomeFooter from "@/views/welcome/components/WelcomeFooter.vue"
+import { ref, onMounted, onUnmounted, watch } from 'vue';
+ 
+const welcomeMain = ref(null);
+const welcomeMainScrollTop = ref(0);
+ 
+const checkElementScrollPosition = () => {
+    welcomeMainScrollTop.value = welcomeMain.value.scrollTop;
+    // console.log("元素滚动位置:", welcomeMainScrollTop.value);
+}
+ 
+onMounted(() => {
+  if (welcomeMain.value) {
+    welcomeMain.value.addEventListener('scroll', checkElementScrollPosition);
+  }
+})
+ 
+onUnmounted(() => {
+  if (welcomeMain.value) {
+    welcomeMain.value.removeEventListener('scroll', checkElementScrollPosition);
+  }
+})
 </script>
 
 <style scoped>

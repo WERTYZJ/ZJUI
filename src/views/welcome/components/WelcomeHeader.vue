@@ -1,5 +1,5 @@
 <template>
-  <div class="welcome-header m-flex m-row-between">
+  <div class="welcome-header m-flex m-row-between" ref="welcomeHeader">
     <div class="welcome-header-box">
       <headerLeft></headerLeft>
       <headerRight></headerRight>
@@ -10,6 +10,31 @@
 <script setup>
 import headerLeft from "@/views/welcome/components/header/headerLeft.vue"
 import headerRight from "@/views/welcome/components/header/headerRight.vue"
+import { ref,defineProps,watch } from "vue";
+
+const props = defineProps({
+  scrollTop: {
+    type: String,
+    default: '',
+  },
+})
+
+const welcomeHeader = ref(null)
+
+watch(()=>props.scrollTop,(newVal)=>{
+  if (newVal <=0) {
+    welcomeHeader.value.classList.remove('welcome-header-top-style');
+  } else {
+    welcomeHeader.value.classList.add('welcome-header-top-style');
+  }
+  },
+  {
+    immediate: false,//默认加载一次
+    deep: true
+  }
+)
+
+
 </script>
 
 <style scoped>
@@ -18,7 +43,7 @@ import headerRight from "@/views/welcome/components/header/headerRight.vue"
   width: 100%;
   height: var(--ZJHeader-height);
   transition: var(--ZJ-main-transition);
-  border-bottom: var(--ZJ-main-border-light);
+  border-bottom:1px solid  var(--ZJ-main-hover);
   position: fixed;
   top: 0;
   left: 0;
@@ -30,6 +55,11 @@ import headerRight from "@/views/welcome/components/header/headerRight.vue"
   justify-content: center;
   box-sizing: border-box;
   padding: 0 32px;
+}
+.welcome-header-top-style {
+  background-color: var(--ZJ-welcome-header-bg);
+  box-shadow: 2px 12px 24px 0px rgba(9, 5, 21, 0.06);
+  backdrop-filter: blur(5px);
 }
 .welcome-header-box {
   /* background-color: antiquewhite; */
