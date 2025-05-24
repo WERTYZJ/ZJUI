@@ -70,5 +70,16 @@ const welcomeData = ref([
   font-weight: 500;
   color: var(--ZJ-main-text-label-color);
 }
+
+@media (max-width:890px) {
+  .welcome-body{
+    grid-template-columns: repeat(2,1fr);
+  }
+}
+@media (max-width:600px) {
+  .welcome-body{
+    grid-template-columns: repeat(1,1fr);
+  }
+}
 </style>
 

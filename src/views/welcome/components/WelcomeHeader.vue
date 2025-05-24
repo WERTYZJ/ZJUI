@@ -42,7 +42,6 @@ watch(()=>props.scrollTop,(newVal)=>{
   /* background-color: aqua; */
   width: 100%;
   height: var(--ZJHeader-height);
-  transition: var(--ZJ-main-transition);
   border-bottom:1px solid  var(--ZJ-main-hover);
   position: fixed;
   top: 0;

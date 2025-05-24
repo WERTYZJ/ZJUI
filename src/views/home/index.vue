@@ -35,7 +35,7 @@ const home1 = ref([
   {
     title: '联系方式',
     children: [
-      'QQ:2603267454@qq.com',
+      'QQ:671678579@qq.com',
     ]
   },
 ])

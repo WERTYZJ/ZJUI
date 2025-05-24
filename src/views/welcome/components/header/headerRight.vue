@@ -1,23 +1,33 @@
 <template>
   <div class="m-flex m-gap-20 m-col-center">
-    <div v-for="(i, index) in rightBar" :key="index" class="m-flex title">
+    <div v-for="(i, index) in rightBar" :key="index" class="m-flex title hide" @click="handleRightBar(index)">
       <span class="m-pointer">{{ i.text }}</span>
+    </div>
+    <div class="m-flex title left-hid" @click="handleRightBar(rightBar.length)">
+      <span class="m-pointer" ref="headerBarEl">{{ rightBar[rightBar.length-1].text }}</span>
+      <headerRightBar v-show="showHeaderRightBar" class="headerBarElPosition"></headerRightBar>
     </div>
     <hr>
     <brightMode></brightMode>
     <hr>
     <language></language>
-    <hr>
-    <div v-for="(i, index) in rightIcon" :key="index" class="m-flex title">
+    <hr class="hide">
+    <div v-for="(i, index) in rightIcon" :key="index" class="m-flex title hide" @click="handleRightIcon(index)">
       <ZJSvgIcons :icon="i.icon" style="height: 25px;width: 25px;"></ZJSvgIcons>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref,getCurrentInstance,onMounted,onUnmounted } from 'vue';
 import language from '@/layout/components/ZJHeader/components/language.vue';
 import brightMode from '@/layout/components/ZJHeader/components/brightMode.vue';
+import { useUserStore } from '@/store';
+import headerRightBar from '@/views/welcome/components/header/headerRightBar.vue';
+
+const userStore = useUserStore()
+const { appContext } = getCurrentInstance();
+const $ZJMessage = appContext.config.globalProperties.$ZJMessage;
 
 const rightBar = ref([
   {
@@ -37,6 +47,15 @@ const rightBar = ref([
   },
 ])
 
+const handleRightBar = (index)=>{
+  if(index>=0 && index!=rightBar.value.length){
+    userStore.layout.showWelcome = false;
+  }
+  if(index==rightBar.value.length){
+    showHeaderRightBar.value = !showHeaderRightBar.value
+  }
+}
+
 const rightIcon = ref([
    {
     // text: 'Twitter',
@@ -51,6 +70,49 @@ const rightIcon = ref([
     icon:'GitHub',
   },
 ])
+
+const handleRightIcon = (index)=>{
+  if(index==0 || index==2){
+     $ZJMessage({
+        type: 'warning',
+        message: '目前只有Gitee仓库哟！',
+      });
+      setTimeout(()=>{
+        $ZJMessage({
+          type: 'warning',
+          message: '正在跳转Gitee',
+        })
+        setTimeout(() => {
+          window.open('https://gitee.com/WERTYUZJ/zjui.git', '_blank');
+        }, 2000);
+      },2000)
+     return;
+  }
+  if(index==1){
+     window.open('https://gitee.com/WERTYUZJ/zjui.git', '_blank');
+     return;
+  }
+}
+
+const showHeaderRightBar = ref(false)
+const headerBarEl = ref(null)
+
+// 监听全局点击事件
+function handleClickOutside(event) {
+  if (headerBarEl.value && !headerBarEl.value.contains(event.target)) {
+    showHeaderRightBar.value = false;
+  }
+}
+// 组件挂载后添加事件监听
+onMounted(() => {
+  document.addEventListener('click', handleClickOutside);
+});
+
+// 组件卸载前移除事件监听
+onUnmounted(() => {
+  document.removeEventListener('click', handleClickOutside);
+});
+
 </script>
 
 <style scoped>
@@ -70,6 +132,22 @@ hr{
   width: 2px;
   background-color: var(--ZJ-main-hover);
   flex-shrink: 0;
+}
+.headerBarElPosition {
+  position: absolute;
+  top: 50px;
+}
+.left-hid{
+  display: none;
+}
+
+@media (max-width:920px) {
+  .hide{
+    display: none;
+  }
+  .left-hid{
+    display: block;
+  }
 }
 </style>
 

@@ -1,6 +1,6 @@
 <template>
   <div class="welcome-main">
-    <div class="m-flex m-row-between">
+    <div class="m-flex m-row-between main">
       <div class="w-left m-flex-col">
         <p class="text">ZJ-UI</p>
         <p class="text2">下一代前端ui框架</p>
@@ -8,7 +8,7 @@
           <span class="text3">随心所欲的组件尽情更改</span>
           <span class="text-v">v1.0.0</span>
         </div>
-        <div class="m-flex m-gap-15" style="margin-top: 20px;">
+        <div class="m-flex m-gap-15 w-button" style="margin-top: 20px;">
           <ZJButton @click="open('goHome')" type="default" text="开始" style="border-radius:20px;padding: 20px;cursor: pointer;" icon="right" iconRight>
           </ZJButton>
           <ZJButton type="info" text="为什么选择ZJ-UI?" style="border-radius:20px;padding: 20px;"></ZJButton>
@@ -163,6 +163,54 @@ const open = (val)=>{
   font-size: 14px;
   font-weight: 500;
   color: var(--ZJ-main-text-label-color);
+}
+
+@media (max-width:940px) {
+  .text{
+    display: none;
+  }
+  .text2{
+    font-size:6vw;
+  }
+  .text3{
+    font-size:3vw;
+  }
+  .w-left{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .main{
+    flex-direction: column-reverse;
+    padding-bottom: 30px;
+  }
+  .w-right-bg,.w-right-img{
+    width: 35vw;
+    height: 25vh;
+  }
+}
+@media (max-width:890px) {
+  .welcome-body{
+    grid-template-columns: repeat(2,1fr);
+  }
+}
+@media (max-width:600px) {
+  .welcome-body{
+    grid-template-columns: repeat(1,1fr);
+  }
+}
+@media (max-width:550px) {
+  .w-button{
+    display: flex;
+    flex-direction: column;
+  }
+  .w-right-bg,.w-right-img{
+    display: none;
+  }
+  .main{
+    padding: 40px 0;
+  }
 }
 </style>
 

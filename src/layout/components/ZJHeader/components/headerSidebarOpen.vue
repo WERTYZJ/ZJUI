@@ -5,11 +5,17 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref,onMounted } from 'vue';
 import { useUserStore } from '@/store';
 const userStore = useUserStore();
 
 const sidebarIcon = ref('sidebarOpen')
+
+onMounted(()=>{
+  if(!userStore.isSideBarOpen){
+    clickBtn();
+  }
+})
 
 function clickBtn() {
   // 获取当前 --ZJ-AsideMenu-width 的值
@@ -19,11 +25,12 @@ function clickBtn() {
 
   // 检查当前值，并设置新的值
   if (currentValue === '220px') {
+    userStore.isSideBarOpen = false
     document.documentElement.style.setProperty('--ZJ-AsideMenu-width', '56px');
   } else if (currentValue === '56px') {
+    userStore.isSideBarOpen = true
     document.documentElement.style.setProperty('--ZJ-AsideMenu-width', '220px');
   }
-  userStore.isSideBarOpen = !userStore.isSideBarOpen;
 }
 </script>
 

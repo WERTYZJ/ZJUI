@@ -1,35 +1,20 @@
 // src/store/index.js  
 import { defineStore } from "pinia";
 
-// 从 localStorage 读取整个 userData（假设 userData 是持久化的对象）
-// const userJSON = localStorage.getItem('user');
-// const user = userJSON ? JSON.parse(userJSON) : {};
+// 从 localStorage 读取整个 userData 初始化数据
+const localData = localStorage.getItem('user');
+let userLocalData = localData ? JSON.parse(localData) : {};
+
+console.log("asdas",userLocalData.isSideBarOpen)
 
 export const useUserStore = defineStore('user', {
   state: () => ({
     // 尝试从localStorage加载用户数据，如果没有则默认为空对象
-    userData: (function () {
-      try {
-        const userDataJSON = localStorage.getItem('userData');
-        if (userDataJSON) {
-          const userData = JSON.parse(userDataJSON);
-          // 检查userData是否是一个对象且包含id属性
-          if (typeof userData === 'object' && userData !== null && 'id' in userData) {
-            return userData;
-          }
-        }
-        // 如果userData不存在、不是对象或没有id属性，则返回null
-        return null;
-      } catch (error) {
-        // 如果JSON.parse失败（比如因为格式错误），也返回null
-        console.error('Error parsing userData from localStorage:', error);
-        return null;
-      }
-    })(),
+    userData:{},
     // 加载动画
     isLoading: false,
     // 侧边框
-    isSideBarOpen: true,
+    isSideBarOpen: userLocalData.isSideBarOpen ?? true,
     // 初始化选中侧边框
     ZJAsideMenuNameSelect: 'home',
     // 初始化测边框卡片
@@ -85,6 +70,9 @@ export const useUserStore = defineStore('user', {
     getUserData: (state) => state.userData,
   },
   // 持久化存储
+   persist:{
+    storage: localStorage,//指定需要的本地存储方式
+  }
   // persist:{
   //   storage: sessionStorage,
   // }
