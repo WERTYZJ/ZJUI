@@ -78,5 +78,26 @@ onUnmounted(() => {
   background-color:var(--ZJ-main-hover);
   margin: 80px 0;
 }
+@media (max-width:600px) {
+  .welcome-box{
+    margin: 0;
+  }
+}
+
+
+/* 设置滚动条的宽度 */
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+/* 设置滚动条滑块的样式 */
+::-webkit-scrollbar-thumb {
+  width: 0px;
+}
+
+/* 设置垂直滚动条的滑块样式 */
+::-webkit-scrollbar-thumb:vertical {
+  width: 0px;
+}
 </style>
 

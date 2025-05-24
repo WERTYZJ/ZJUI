@@ -17,5 +17,10 @@ span {
   white-space: nowrap;
   color: var(--ZJ-main-text-color);
 }
+@media (max-width:400px) {
+  span{
+    display: none;
+  }
+}
 </style>
 

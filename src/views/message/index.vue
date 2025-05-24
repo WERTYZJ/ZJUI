@@ -187,16 +187,14 @@
 <script>
 
 // import LoadingView from '@/ui/ZJ-loading.vue';
-import Time from '@/tools/timeTool';
-import FileSize from '@/tools/fileSizeTool';
+import Time from '@/utils/ZJTime';
+import FileSize from '@/utils/ZJFileSize';
 // import zim from '@/tools/ZIMConfig';
 // import ZJNoData from '@/ui/ZJ-noData.vue';
 // import { generateToken } from '@/tools/ZIMToken';
-import ZJMain from '@/layout/components/ZJMain/ZJMain.vue';
 
 export default {
   name: 'messageIndex',
-  components: { ZJMain },
   data() {
     return {
       // 展示返回

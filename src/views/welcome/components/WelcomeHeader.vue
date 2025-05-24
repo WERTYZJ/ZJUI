@@ -78,5 +78,10 @@ watch(()=>props.scrollTop,(newVal)=>{
   flex-shrink: 1; /* 允许在父容器空间不足时缩小 */
   overflow: hidden; /* 可选：防止内容溢出 */
 }
+@media (max-width:600px) {
+  .welcome-header{
+    padding:0 15px;
+  }
+}
 </style>
 

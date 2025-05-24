@@ -17,7 +17,7 @@
 </template>  
   
 <script>
-import FileSize from '@/tools/fileSizeTool';
+import FileSize from '@/utils/ZJFileSize';
 export default {  
   props: { 
     fileName: {  

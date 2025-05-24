@@ -5,8 +5,6 @@ import { defineStore } from "pinia";
 const localData = localStorage.getItem('user');
 let userLocalData = localData ? JSON.parse(localData) : {};
 
-console.log("asdas",userLocalData.isSideBarOpen)
-
 export const useUserStore = defineStore('user', {
   state: () => ({
     // 尝试从localStorage加载用户数据，如果没有则默认为空对象
