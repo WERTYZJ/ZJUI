@@ -1,11 +1,9 @@
 # ZJ-UI
 
 <a href="https://zj-ui.netlify.app" target="_blank">
-<img src="https://img.shields.io/badge/License-Apache--2.0-blue.svg" alt="License" />
+<img src="https://img.shields.io/badge/Vue-3.2.13-%236CB52D.svg" alt="License" />
 </a>
-<a href="https://zj-ui.netlify.app" target="_blank">
-<img src="https://img.shields.io/badge/RELEASE-v3.3.0-%23ff3f59.svg" alt="Release" />
-</a>
+
 
 ## 访问地址（Access address）
 https://zj-ui.netlify.app
