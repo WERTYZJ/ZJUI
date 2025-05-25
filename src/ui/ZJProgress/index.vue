@@ -4,50 +4,48 @@
   </div>
 </template>
 
-<script>
-export default{
-  props: {   
-    allCount: {  
-      type: [String, Number],  
-      default: null  
-    }  ,
-    finishCount:{
-      type: [String, Number],  
-      default: null  
-    }
-  }, 
-  data() {
-    return {
-      MainWidth:'',
-    }
+<script setup>
+import { ref, onMounted, onUnmounted, watch,defineProps } from 'vue'
+
+const props = defineProps({
+  allCount: {
+    type: [String, Number],
+    default: null
   },
-  mounted(){
-    this.updateWidth()
-    window.addEventListener('resize', this.updateWidth);
-    this.Progress();
-  },
-  unmounted() {
-    window.removeEventListener('resize', this.updateWidth);
-  },
-  watch:{
-    allCount(){
-      this.Progress();
-    },
-    finishCount(){
-      this.Progress();
-    },
-  },
-  methods: {
-   updateWidth(){
-    this.MainWidth = this.$refs.main.offsetWidth;
-    this.Progress()
-   },
-   Progress(){
-    this.$refs.finish.style.width = `${(this.MainWidth/this.allCount)* this.finishCount}px`
-   },
-   
+  finishCount: {
+    type: [String, Number],
+    default: null
+  }
+})
+
+const mainWidth = ref('')
+const main = ref(null)
+const finish = ref(null)
+
+const updateWidth = () => {
+  mainWidth.value = main.value.offsetWidth
+  progress()
+}
+
+const progress = () => {
+  if (main.value && finish.value && props.allCount) {
+    finish.value.style.width = `${(mainWidth.value / props.allCount) * props.finishCount}px`
   }
 }
+
+onMounted(() => {
+  updateWidth()
+  window.addEventListener('resize', updateWidth)
+  progress()
+})
+
+onUnmounted(() => {
+  window.removeEventListener('resize', updateWidth)
+})
+
+watch(() => [props.allCount, props.finishCount], () => {
+  progress()
+})
 </script>
 
 <style scoped>

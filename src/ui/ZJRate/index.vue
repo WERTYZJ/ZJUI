@@ -1,17 +1,18 @@
 <template>
 
-  <div :class="{'star-left-24':size==='default','star-left-32':size==='large','star-left-20':size==='small'}">
+  <div :class="{'star-left-24':props.size==='default','star-left-32':props.size==='large','star-left-20':props.size==='small'}">
     <img src="@/assets/ZJUI/ZJRate/star-p1.svg" alt="全星" v-for="n in fullStars" :key="n">  
     <img src="@/assets/ZJUI/ZJRate/star-p2.svg" alt="空星" v-for="n in (5-fullStars)" :key="n"> 
-    <a>{{ rate }}</a>
+    <a>{{ props.rate }}</a>
   </div>
 
 </template>
 
-<script>
+<script setup>
 
-export default{
-props: {  
+import { defineProps,computed } from 'vue';
+
+const props = defineProps({
   rate:{
     type: [String, Number],  
     default: null,
@@ -23,18 +24,11 @@ props: {
      type: [String],  
      default: 'default',
   }
-}, 
-rateStart() {
-  return {
-  }
-},
-computed: {  
-  // 使用计算属性来处理星星的显示逻辑  
-  fullStars() {  
-    return Math.floor(this.rate);  
-  }  
-},
-}
+})
+ // 使用计算属性来处理星星的显示逻辑  
+const fullStars = computed(() => {
+  return Math.floor(Number(props.rate));
+})
 </script>
 
 <style scoped>

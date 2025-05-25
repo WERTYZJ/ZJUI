@@ -238,16 +238,11 @@ watch(() => userStore.layout.showHeaderSildebarOpen, (val) => {
 
 /* 设置滚动条的宽度 */
 ::-webkit-scrollbar {
-  width: 0px;
+  height:0px;
 }
 
 /* 设置滚动条滑块的样式 */
 ::-webkit-scrollbar-thumb {
-  width: 0px;
-}
-
-/* 设置垂直滚动条的滑块样式 */
-::-webkit-scrollbar-thumb:vertical {
-  width: 0px;
+  height: 0px;
 }
 </style>

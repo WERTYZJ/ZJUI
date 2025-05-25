@@ -18,10 +18,67 @@
       "DuplicateTheme": "Duplicate theme",
       "CancelTheme": "Cancel theme",
       "ChangeSuccess": "Language changed Successful!"
+    }
+  },
+  "welcome": {
+    "header": {
+      "t1": "ZJ-UI (Official Documentation)",
+      "t2": "Copyright © 2025-present ZJ-UI",
+      "menu": {
+        "guide": "Guide",
+        "config": "Configuration",
+        "links": "Related Links",
+        "version": "Version"
+      }
     },
-    "welcome-footer":{
-      "t1":"Released under the MIT License.",
-      "t2":"Copyright © 2025-present ZJ-UI"
+    "main": {
+      "t1": "ZJ-UI",
+      "t2": "Next-generation frontend UI framework",
+      "t3": "Freely customize components as you wish",
+      "b1": "Get Started",
+      "b2": "Why choose ZJ-UI?",
+      "b3": "View on Gitee",
+      "items": [
+        {
+          "title": "Vue3 and above",
+          "content": "Faster startup speed, more secure."
+        },
+        {
+          "title": "Latest Pinia state management library",
+          "content": "Pinia is Vue's exclusive state management library that allows you to share state across components or pages."
+        },
+        {
+          "title": "Multilingual internationalization I18n",
+          "content": "Makes it easier for you to implement multilingual configuration."
+        },
+        {
+          "title": "Code highlighting with Highlight.js",
+          "content": "Makes document code clearer and 'what you see is what you get'."
+        },
+        {
+          "title": "Scalability",
+          "content": "You can freely change the desired style as you wish."
+        },
+        {
+          "title": "Modularity",
+          "content": "Modular management of UI components makes the structure clearer."
+        }
+      ]
+    },
+    "contributors": {
+      "t1": "ZJ-UI is free and open-source, supported by outstanding sponsors.",
+      "b1": "Become a Sponsor"
+    },
+    "contribute-selfe": {
+      "t1": "Thank you to the following sponsors for their support. With your help, ZJ-UI will continue to improve.",
+      "t2": "Sponsorship amount:"
+    },
+    "contribute": {
+      "t1": "There's a reason for every encounter. If you've come here today and like ZJ-UI, you can sponsor us through the following methods. We will remember your kindness!"
+    },
+    "footer": {
+      "t1": "Released under the MIT License.",
+      "t2": "Copyright © 2025-present ZJ-UI"
     }
   }
 }

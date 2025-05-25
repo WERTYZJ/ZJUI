@@ -1,11 +1,11 @@
 <template>
   <div class="welcome-contributors">
-    <div class="welcome-contributors-title">感谢以下赞助者的赞数和支持，我们ZJ-UI将越来越好。</div>
+    <div class="welcome-contributors-title">{{ t('welcome.contribute.t1') }}</div>
     <div class="welcome-body m-flex-col m-gap-15">
       <div class="welcome-body-box" v-for="(i,index) in welcomeData" :key="index">
         <img :src="i.icon" alt="">
         <span>{{ i.contributor }}</span>
-        <span>赞助金额:{{ i.price }}元</span>
+        <span>{{ t('welcome.contribute-selfe.t2') }}{{ i.price }}元</span>
       </div>
     </div>
   </div>
@@ -13,6 +13,8 @@
 
 <script setup>
 import { ref } from 'vue';
+import { useI18n } from 'vue-i18n';
+const {t} = useI18n()
 
 const welcomeData = ref([
   {

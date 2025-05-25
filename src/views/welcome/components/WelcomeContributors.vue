@@ -1,6 +1,6 @@
 <template>
   <div class="welcome-contributors">
-    <div class="welcome-contributors-title">ZJ-UI是免费和开源的，由出色的赞助商提供。</div>
+    <div class="welcome-contributors-title">{{ t('welcome.contributors.t1') }}</div>
     <div class="welcome-body m-flex-col m-gap-15">
       <div class="welcome-body-box" v-for="(i,index) in welcomeData" :key="index">
         <ZJSvgIcons v-if="index==0" icon="ZJUILogo" style="height: 40px;width: 40px;"></ZJSvgIcons>
@@ -9,13 +9,15 @@
       </div>
     </div>
     <div class="welcome-contributors-btn">
-      <ZJButton type="default" text="成为赞助商" style="border-radius:20px;padding: 20px;color: var(--ZJ-main-text-color);" icon="right" iconRight></ZJButton>
+      <ZJButton type="default" :text="t('welcome.contributors.b1')" style="border-radius:20px;padding: 20px;color: var(--ZJ-main-text-color);" icon="right" iconRight></ZJButton>
     </div>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
+import { useI18n } from 'vue-i18n';
+const {t} = useI18n()
 
 const welcomeData = ref([
   {

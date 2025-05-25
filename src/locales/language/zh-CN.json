@@ -18,8 +18,65 @@
       "DuplicateTheme": "复制主题",
       "CancelTheme": "取消主题",
       "ChangeSuccess": "语言切换成功!"
+    }
+  },
+  "welcome":{
+    "header":{
+      "t1":"ZJ-UI(官方文档)",
+      "t2":"Copyright © 2025-present ZJ-UI",
+      "menu": {
+        "guide": "指引",
+        "config": "配置",
+        "links": "相关链接",
+        "version": "版本"
+      }
     },
-    "welcome-footer":{
+    "main":{
+      "t1":"ZJ-UI",
+      "t2":"下一代前端ui框架",
+      "t3":"随心所欲的组件尽情更改",
+      "b1":"开始",
+      "b2":"为什么选择ZJ-UI?",
+      "b3":"在Gitee上查看",
+      "items":[
+        {
+          "title": "Vue3及以上版本",
+          "content": "更快的启动速度，更安全。"
+        },
+        {
+          "title": "最新的Pinia状态管理库",
+          "content": "Pinia 是 Vue 的专属状态管理库，它允许你跨组件或页面共享状态。"
+        },
+        {
+          "title": "多语言国际化I18n",
+          "content": "让你更轻松地实现多语言配置。"
+        },
+        {
+          "title": "代码高亮显示Highlight.js",
+          "content": "使文档代码更加清晰可见，所见皆所得。"
+        },
+        {
+          "title": "可拓展性",
+          "content": "可随意更改想要的样式，随行所欲。"
+        },
+        {
+          "title": "模块化",
+          "content": "模块化管理UI组件，结构更加清晰可见。"
+        }
+      ]
+    },
+    "contributors":{
+      "t1":"ZJ-UI是免费和开源的，由出色的赞助商提供。",
+      "b1":"成为赞助商"
+    },
+    "contribute-selfe":{
+      "t1":"感谢以下赞助者的赞数和支持，我们ZJ-UI将越来越好。",
+      "t2":"赞助金额:"
+    },
+    "contribute":{
+      "t1":"人生自是有缘，相逢未必偶然，如果你今天来到了这里，并且很喜欢ZJ-UI，您可以通过以下方式赞助我们，我们将铭记！"
+    },
+    "footer":{
       "t1":"根据 MIT 许可证发布。",
       "t2":"Copyright © 2025-present ZJ-UI"
     }

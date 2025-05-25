@@ -1,7 +1,7 @@
 <template>
   <div class="welcome-footer">
-    <p>{{t('layout.welcome-footer.t1')}}</p>
-    <p>{{ t('layout.welcome-footer.t2') }}</p>
+    <p>{{t('welcome.footer.t1')}}</p>
+    <p>{{ t('welcome.footer.t2') }}</p>
   </div>
 </template>
 

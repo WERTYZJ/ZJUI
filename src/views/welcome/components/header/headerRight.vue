@@ -19,33 +19,34 @@
 </template>
 
 <script setup>
-import { ref,getCurrentInstance,onMounted,onUnmounted } from 'vue';
+import { ref,getCurrentInstance,onMounted,onUnmounted, computed } from 'vue';
 import language from '@/layout/components/ZJHeader/components/language.vue';
 import brightMode from '@/layout/components/ZJHeader/components/brightMode.vue';
 import { useUserStore } from '@/store';
 import headerRightBar from '@/views/welcome/components/header/headerRightBar.vue';
+import { useI18n } from 'vue-i18n';
 
+const {t} = useI18n()
 const userStore = useUserStore()
 const { appContext } = getCurrentInstance();
 const $ZJMessage = appContext.config.globalProperties.$ZJMessage;
 
-const rightBar = ref([
-  {
-    text: '当前是ZJ-UI文档',
-  },
-  {
-    text: '指引',
-  },
-  {
-    text: '配置',
-  },
-  {
-    text: '相关链接',
-  },
-  {
-    text: 'Version',
-  },
-])
+const rightBar = computed(()=>{
+  return [
+    {
+      text: t('welcome.header.menu.guide'),
+    },
+    {
+      text: t('welcome.header.menu.config'),
+    },
+    {
+      text: t('welcome.header.menu.links'),
+    },
+    {
+      text: t('welcome.header.menu.version'),
+    },
+]
+})
 
 const handleRightBar = (index)=>{
   if(index>=0 && index!=rightBar.value.length){
@@ -84,7 +85,7 @@ const handleRightIcon = (index)=>{
         })
         setTimeout(() => {
           window.open('https://gitee.com/WERTYUZJ/zjui.git', '_blank');
-        }, 2000);
+        }, 1000);
       },2000)
      return;
   }

@@ -2,17 +2,17 @@
   <div class="welcome-main">
     <div class="m-flex m-row-between main">
       <div class="w-left m-flex-col">
-        <p class="text">ZJ-UI</p>
-        <p class="text2">下一代前端ui框架</p>
+        <p class="text">{{ t('welcome.main.t1') }}</p>
+        <p class="text2">{{ t('welcome.main.t2') }}</p>
         <div class="m-flex m-gap-10 m-flex-center" style="margin-top: 15px;">
-          <span class="text3">随心所欲的组件尽情更改</span>
+          <span class="text3">{{ t('welcome.main.t3') }}</span>
           <span class="text-v">v1.0.0</span>
         </div>
         <div class="m-flex m-gap-15 w-button" style="margin-top: 20px;">
-          <ZJButton @click="open('goHome')" type="default" text="开始" style="border-radius:20px;padding: 20px;cursor: pointer;" icon="right" iconRight>
+          <ZJButton @click="open('goHome')" type="default" :text="t('welcome.main.b1')" style="border-radius:20px;padding: 20px;cursor: pointer;" icon="right" iconRight>
           </ZJButton>
-          <ZJButton type="info" text="为什么选择ZJ-UI?" style="border-radius:20px;padding: 20px;"></ZJButton>
-          <ZJButton type="success" text="在Gitee上查看" style="border-radius:20px;padding: 20px;"></ZJButton>
+          <ZJButton type="info" :text="t('welcome.main.b2')" style="border-radius:20px;padding: 20px;"></ZJButton>
+          <ZJButton type="success" :text="t('welcome.main.b3')" style="border-radius:20px;padding: 20px;"></ZJButton>
         </div>
       </div>
       <div class="w-right">
@@ -31,42 +31,21 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import {computed } from 'vue';
 import { useUserStore } from '@/store';
+import { useI18n } from 'vue-i18n';
+const {t,tm} = useI18n()
 const userStore = useUserStore()
 
-const welcomeData = ref([
-  {
-    icon:'VueIcon',
-    title:'Vue3及以上版本',
-    content:'更快的启动速度，更安全。'
-  },
-  {
-    icon:'Pinia',
-    title:'最新的Pinia状态管理库',
-    content:'Pinia 是 Vue 的专属状态管理库，它允许你跨组件或页面共享状态。'
-  },
-  {
-    icon:'I18n',
-    title:'多语言国际化I18n',
-    content:'让你更轻松地实现多语言配置。'
-  },
-  {
-    icon:'HeightLight',
-    title:'代码高亮显示Highlight.js',
-    content:'使文档代码更加清晰可见，所见皆所得。'
-  },
-  {
-    icon:'Expand',
-    title:'可拓展性',
-    content:'可随意更改想要的样式，随行所欲。'
-  },
-  {
-    icon:'Module',
-    title:'模块化',
-    content:'模块化管理UI组件，结构更加清晰可见。'
-  },
-])
+const welcomeData = computed(() => {
+  const items = tm('welcome.main.items')
+  
+  return items.map((item, index) => ({
+    icon: ['VueIcon', 'Pinia', 'I18n', 'HeightLight', 'Expand', 'Module'][index],
+    title: item.title,
+    content: item.content
+  }))
+})
 
 const open = (val)=>{
   switch(val){

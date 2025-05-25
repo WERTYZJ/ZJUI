@@ -12,7 +12,7 @@ const showBackTop = ref(false);
 const props = defineProps({
   ZJTopHeight: {
     type: Number,
-    default: '',
+    default:0,
   },
   ZJTopElement: {
     type: Object, // 接收 ref 对象

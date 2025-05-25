@@ -1,17 +1,17 @@
 <template>
   <div
-    :class="{ 'noMoreData': true, 'noMoreData150': size == 150, 'noMoreData100': size == 100, 'noMoreData50': size == 50, 'noMoreDataAuto': size == 'auto' }">
-    <img v-if="icon == 1" src="@/assets/ZJUI/ZJNoData/NoMoreData.png" alt="">
-    <img v-if="icon == 2" src="@/assets/ZJUI/ZJNoData/MessageListAvatar.svg" alt="">
-    <p>{{ label }}</p>
+    :class="{ 'noMoreData': true, 'noMoreData150': props.size == 150, 'noMoreData100': props.size == 100, 'noMoreData50': props.size == 50, 'noMoreDataAuto': props.size == 'auto' }">
+    <img v-if="props.icon == 1" src="@/assets/ZJUI/ZJNoData/NoMoreData.png" alt="">
+    <img v-if="props.icon == 2" src="@/assets/ZJUI/ZJNoData/MessageListAvatar.svg" alt="">
+    <p>{{ props.label }}</p>
   </div>
 </template>  
   
-<script>
+<script setup>
+import { defineProps } from 'vue';
 
-export default {
-  props: {
-    icon: {
+const props =defineProps({
+  icon: {
       type: [String, Number],
       default: null
     },
@@ -23,14 +23,7 @@ export default {
       type: [String, Number],
       default: null
     },
-  },
-  data() {
-    return {
-
-    };
-  },
-  methods: {},
-};  
+})
 </script>  
   
 <style scoped>  .noMoreData {

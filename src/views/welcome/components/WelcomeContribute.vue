@@ -1,6 +1,6 @@
 <template>
   <div class="welcome-contributors">
-    <div class="welcome-contributors-title">人生自是有缘，相逢未必偶然，如果你今天来到了这里，并且很喜欢ZJ-UI，您可以通过以下方式赞助我们，我们将铭记！</div>
+    <div class="welcome-contributors-title">{{ t('welcome.contribute.t1') }}</div>
     <div class="welcome-body m-flex-col m-gap-15">
       <div class="welcome-body-box" v-for="(i,index) in welcomeData" :key="index">
         <img :src="i.icon" alt="">
@@ -12,6 +12,8 @@
 
 <script setup>
 import { ref } from 'vue';
+import { useI18n } from 'vue-i18n';
+const {t} = useI18n()
 
 const welcomeData = ref([
   {
