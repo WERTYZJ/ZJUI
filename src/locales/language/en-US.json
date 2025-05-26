@@ -44,6 +44,10 @@
           "content": "Faster startup speed, more secure."
         },
         {
+          "title": "Vite: The Ultra-Fast Bundling Tool",
+          "content": "Compared to Webpack, Vite offers deep optimizations for production builds, resulting in smaller, more efficient, and more convenient outputs."
+        },
+        {
           "title": "Latest Pinia state management library",
           "content": "Pinia is Vue's exclusive state management library that allows you to share state across components or pages."
         },
@@ -54,10 +58,6 @@
         {
           "title": "Code highlighting with Highlight.js",
           "content": "Makes document code clearer and 'what you see is what you get'."
-        },
-        {
-          "title": "Scalability",
-          "content": "You can freely change the desired style as you wish."
         },
         {
           "title": "Modularity",

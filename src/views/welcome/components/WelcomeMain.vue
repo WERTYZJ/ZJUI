@@ -43,7 +43,7 @@ const welcomeData = computed(() => {
   const items = tm('welcome.main.items')
   
   return items.map((item, index) => ({
-    icon: ['VueIcon', 'Pinia', 'I18n', 'HeightLight', 'Expand', 'Module'][index],
+    icon: ['VueIcon','ViteIcon', 'Pinia', 'I18n', 'HeightLight', 'Expand'][index],
     title: item.title,
     content: item.content
   }))

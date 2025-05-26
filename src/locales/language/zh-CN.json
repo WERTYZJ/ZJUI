@@ -39,9 +39,13 @@
       "b2":"为什么选择ZJ-UI?",
       "b3":"在Gitee上查看",
       "items":[
-        {
+        { 
           "title": "Vue3及以上版本",
           "content": "更快的启动速度，更安全。"
+        },
+        {
+          "title": "超快的打包工具Vite",
+          "content": "相比较Webpack,Vite对生产构建进行了深度优化，更小、更高效、更加便捷。"
         },
         {
           "title": "最新的Pinia状态管理库",
@@ -54,10 +58,6 @@
         {
           "title": "代码高亮显示Highlight.js",
           "content": "使文档代码更加清晰可见，所见皆所得。"
-        },
-        {
-          "title": "可拓展性",
-          "content": "可随意更改想要的样式，随行所欲。"
         },
         {
           "title": "模块化",
