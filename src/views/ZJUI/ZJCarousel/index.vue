@@ -26,21 +26,21 @@ import { ref } from "vue";
 
 const CarouselVal  = ref([
   { 
-    img:require('@/assets/logo/logo.png'),
+    img:'/src/assets/logo/logo.png',
     name: "Duff", 
     rate:2.3,
     lessons:'English,Spanish,French',
     content: "The teacher's English pronunciation is very standard and the teaching is excellent." 
   },
   { 
-    img:require('@/assets/logo/logo.png'),
+    img:'/src/assets/logo/logo.png',
     name: "ZhangJian", 
     rate:4.9,
     lessons:'English,Spanish,French',
     content: "The teacher's English pronunciation is very standard and the teaching is excellent." 
   },
   { 
-    img:require('@/assets/logo/logo.png'),
+    img:'/src/assets/logo/logo.png',
     name: "LiNaNa", 
     rate:3.5,
     lessons:'English,Spanish,French',

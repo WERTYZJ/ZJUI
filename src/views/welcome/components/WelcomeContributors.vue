@@ -21,7 +21,7 @@ const {t} = useI18n()
 
 const welcomeData = ref([
   {
-    icon:require('@/assets/logo/logo.png'),
+    icon:'/src/assets/logo/logo.png',
     contributor:'ZJ-UI'
   },
 ])

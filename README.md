@@ -1,7 +1,10 @@
 # ZJ-UI
 
 <a href="https://zj-ui.netlify.app" target="_blank">
-<img src="https://img.shields.io/badge/Vue-3.2.13-%236CB52D.svg" alt="License" />
+<img src="https://img.shields.io/badge/Vue-3.5.14-%236CB52D.svg" alt="License" />
+</a>
+<a href="https://zj-ui.netlify.app" target="_blank">
+<img src="https://img.shields.io/badge/Vite-6.3.5-%236CB52D.svg" alt="License" />
 </a>
 
 

@@ -16,10 +16,12 @@ import { ref } from 'vue';
 import { useUserStore } from '@/store';
 const userStore = useUserStore()
 
+const ZJUI_VERSION = import.meta.env.VITE_ZJUI_VERSION;
+
 const topMore = ref(
   [
   {
-    text: 'V1.0.0',
+    text: ZJUI_VERSION,
   },  
   {
     text: '当前是ZJ-UI文档',

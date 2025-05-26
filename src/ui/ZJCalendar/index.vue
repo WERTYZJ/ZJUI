@@ -23,7 +23,8 @@
           <div class="days-top">{{ item.date ? item.date.getDate() : '' }}</div>
           <div class="days-bottom" :class="BackgroundColor(item.type)">
             <div class="days-bottom-title">
-              <img :src="ImgColor(item.type)" alt="">
+              <!-- <img :src="ImgColor(item.type)" alt=""> -->
+              <ZJSvgIcons v-if="item.type" icon="clock" style="margin-right: 4px;width: 14px;height: 14px;padding:0" :class="TextColor(item.type)"></ZJSvgIcons>
               <a :class="TextColor(item.type)" v-if="item.type==1">pending</a>
               <a :class="TextColor(item.type)" v-if="item.type==2">upcoming</a>
               <a :class="TextColor(item.type)" v-if="item.type==3">Scheduled</a>
@@ -105,14 +106,14 @@ function TextColor(type) {
 // 卡片图片颜色 
 function ImgColor(type){
   switch (type) {  
-    case 5: return require('@/assets/ZJUI/ZJCalendar/tutor-board-InProcess.png');  
-    case 2: return require('@/assets/ZJUI/ZJCalendar/tutor-board-Uncoming.png');
-    case 1: return require('@/assets/ZJUI/ZJCalendar/tutor-board-Pending.png');  
-    case 3: return require('@/assets/ZJUI/ZJCalendar/tutor-board-Scheduled.png');
-    case 4: return require('@/assets/ZJUI/ZJCalendar/tutor-board-Scheduled.png');
-    case 7: return require('@/assets/ZJUI/ZJCalendar/tutor-board-Canceled.png');  
-    case 6: return require('@/assets/ZJUI/ZJCalendar/tutor-board-Completed.png');
-    case 8: return require('@/assets/ZJUI/ZJCalendar/tutor-board-Completed.png');
+    case 5: return '/src/assets/ZJUI/ZJCalendar/tutor-board-InProcess.png';  
+    case 2: return '/src/assets/ZJUI/ZJCalendar/tutor-board-Uncoming.png';
+    case 1: return '/src/assets/ZJUI/ZJCalendar/tutor-board-Pending.png';  
+    case 3: return '/src/assets/ZJUI/ZJCalendar/tutor-board-Scheduled.png';
+    case 4: return '/src/assets/ZJUI/ZJCalendar/tutor-board-Scheduled.png';
+    case 7: return '/src/assets/ZJUI/ZJCalendar/tutor-board-Canceled.png';  
+    case 6: return '/src/assets/ZJUI/ZJCalendar/tutor-board-Completed.png';
+    case 8: return '/src/assets/ZJUI/ZJCalendar/tutor-board-Completed.png';
     default:  
       return '';  
   }
@@ -409,7 +410,7 @@ border-radius: 0 0 0 10px;
   text-align: center;
   letter-spacing: 0em;
 }
-.days-bottom-title img{
+.days-bottom-title-img{
   margin-right: 4px;
   width: 12px;
   height: 12px;

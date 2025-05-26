@@ -6,7 +6,7 @@
         <p class="text2">{{ t('welcome.main.t2') }}</p>
         <div class="m-flex m-gap-10 m-flex-center" style="margin-top: 15px;">
           <span class="text3">{{ t('welcome.main.t3') }}</span>
-          <span class="text-v">v1.0.0</span>
+          <span class="text-v">{{ZJUI_VERSION}}</span>
         </div>
         <div class="m-flex m-gap-15 w-button" style="margin-top: 20px;">
           <ZJButton @click="open('goHome')" type="default" :text="t('welcome.main.b1')" style="border-radius:20px;padding: 20px;cursor: pointer;" icon="right" iconRight>
@@ -34,8 +34,10 @@
 import {computed } from 'vue';
 import { useUserStore } from '@/store';
 import { useI18n } from 'vue-i18n';
-const {t,tm} = useI18n()
-const userStore = useUserStore()
+const {t,tm} = useI18n();
+const userStore = useUserStore();
+
+const ZJUI_VERSION = import.meta.env.VITE_ZJUI_VERSION;
 
 const welcomeData = computed(() => {
   const items = tm('welcome.main.items')

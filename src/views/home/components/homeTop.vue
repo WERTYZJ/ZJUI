@@ -48,17 +48,17 @@ const listData = ref([
 
 const homeTopRight = ref([
   {
-    icon: require("@/assets/index/homeTop/car.svg"),
+    icon:"/src/assets/index/homeTop/car.svg",
     centerText: "1799",
     bottomText: "预览次数",
   },
   {
-    icon: require("@/assets/index/homeTop/share.svg"),
+    icon:"/src/assets/index/homeTop/share.svg",
     centerText: "20",
     bottomText: "分享次数",
   },
   {
-    icon: require("@/assets/index/homeTop/dollar.svg"),
+    icon:"/src/assets/index/homeTop/dollar.svg",
     centerText: "$0",
     bottomText: "预估收益",
   },

@@ -2,13 +2,13 @@
   <div class="main-top">
     <div class="main-top-left" @click="UploadAvatar()">
       <div class="before">
-        <img :src="BeforeUploadImg || require('@/assets/ZJUI/ZJCutAvatar/before.png')" @error="AvatarError">
+        <img :src="BeforeUploadImg || '/src/assets/ZJUI/ZJCutAvatar/before.png'" @error="AvatarError">
       </div>
       <div class="after">
         <img :src="avatarUrl" v-if="avatarUrl" class="img-send">
       </div>
       <img src="" alt="">
-      <div class="revise-img"><img :src="require('@/assets/ZJUI/ZJCutAvatar/before2.png')" alt=""></div>
+      <div class="revise-img"><img :src="'/src/assets/ZJUI/ZJCutAvatar/before2.png'" alt=""></div>
     </div>
   </div>
 
@@ -22,7 +22,7 @@
         <!-- <a>After cropping</a> -->
         <a>裁剪预览</a>
         <div class="afterCropper">
-          <img src="@/assets/ZJUI/ZJCutAvatar/img.png" style="position: absolute; z-index:0;">
+          <img src="/src/assets/ZJUI/ZJCutAvatar/img.png" style="position: absolute; z-index:0;">
           <img :src="CutImg" style="z-index:1;" />
         </div>
       </div>

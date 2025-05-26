@@ -17,11 +17,11 @@ const {t} = useI18n()
 
 const welcomeData = ref([
   {
-    icon:require('@/assets/ZJUI/ZJWelcome/Alipay.jpg'),
+    icon:'/src/assets/ZJUI/ZJWelcome/Alipay.jpg',
     contributor:'支付宝'
   },
   {
-    icon:require('@/assets/ZJUI/ZJWelcome/WeChat.png'),
+    icon:'/src/assets/ZJUI/ZJWelcome/WeChat.png',
     contributor:'微信'
   },
 ])

@@ -50,17 +50,17 @@ const getDialogIcons = computed(() => {
   if (props.isIcon) {
     switch (props.type) {
       case 'success':
-        return require('@/assets/ZJUI/ZJDialog/success.svg');
+        return '/src/assets/ZJUI/ZJDialog/success.svg';
       case 'delete':
-        return require('@/assets/ZJUI/ZJDialog/delete.svg');
+        return '/src/assets/ZJUI/ZJDialog/delete.svg';
       case 'info':
-        return require('@/assets/ZJUI/ZJDialog/success.svg');
+        return '/src/assets/ZJUI/ZJDialog/success.svg';
       case 'info2':
-        return require('@/assets/ZJUI/ZJDialog/success.svg');
+        return '/src/assets/ZJUI/ZJDialog/success.svg';
       case 'warning':
-        return require('@/assets/ZJUI/ZJDialog/warning.svg');
+        return '/src/assets/ZJUI/ZJDialog/warning.svg';
       default:
-        return require('@/assets/ZJUI/ZJDialog/success.svg');
+        return '/src/assets/ZJUI/ZJDialog/success.svg';
     }
   }
 })

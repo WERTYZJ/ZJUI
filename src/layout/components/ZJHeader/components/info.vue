@@ -11,7 +11,7 @@ import { ref, onMounted, onUnmounted } from 'vue';
 import infoHeaderBar from './infoHeaderBar.vue';
 
 const userName = ref('ZJUI-Admin');
-const userAvatar = ref(require('@/assets/logo/logo.png'))
+const userAvatar = ref('/src/assets/logo/logo.png')
 const showInfoHeaderBar = ref(false);
 
 function open(action) {
@@ -21,7 +21,7 @@ function open(action) {
 }
 // 图片错误处理
 function avatarSrcError() {
-  this.UserAvatar = require('@/assets/error/Avatar.svg');
+  userAvatar.value = '/src/assets/logo/logo.png';
 }
 
 const ZJHeaderInfoBox = ref(null);
