@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import { nextTick } from 'vue';
+
 export default{
   props:{
     verifyType:{

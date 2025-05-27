@@ -9,7 +9,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, defineProps, getCurrentInstance } from 'vue';
+
 import hljs from 'highlight.js';
 import 'highlight.js/styles/atom-one-light.css'; // 你可以选择其他样式
 const { appContext } = getCurrentInstance();

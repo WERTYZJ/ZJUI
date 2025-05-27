@@ -5,7 +5,6 @@
 </template>
 
 <script setup>
-import { ref, watch, onMounted, defineProps, defineEmits } from 'vue';
 
 const props = defineProps({
     ZJSwitchVal: {

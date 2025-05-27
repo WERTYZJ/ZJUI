@@ -8,14 +8,14 @@
         <Transition name="mask">
         <div class="photo-mask" v-if="item.showMask">
           <div class="photo-mask-main">
-            <img @click="MagnifyImg(item.src)" class="photo-mask-main-img" src="@/assets/ZJUI/ZJUpload/1.png" alt="">
-            <img @click="DeleteImg(index)" class="photo-mask-main-img" src="@/assets/ZJUI/ZJUpload/2.png" alt="">
+            <img @click="MagnifyImg(item.src)" class="photo-mask-main-img" src="/assets/ZJUI/ZJUpload/1.png" alt="">
+            <img @click="DeleteImg(index)" class="photo-mask-main-img" src="/assets/ZJUI/ZJUpload/2.png" alt="">
           </div>
         </div>
         </Transition>
       </div>
       </transition-group>
-      <img class="addImg" src="@/assets/ZJUI/ZJUpload/addPhoto.png" alt="" @click="addImg()">
+      <img class="addImg" src="/assets/ZJUI/ZJUpload/addPhoto.png" alt="" @click="addImg()">
     </div>
   </div>
 </template>
@@ -127,7 +127,7 @@ export default{
       });
     },
     AvatarError(event) {
-      event.target.src = require('@/assets/error/photoAvatarError.svg')
+      event.target.src = require('/error/photoAvatarError.svg')
     },
   },
 }

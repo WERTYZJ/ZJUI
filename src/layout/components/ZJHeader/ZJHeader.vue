@@ -17,7 +17,7 @@
 </template>
 
 <script setup>
-import router from '@/router';
+
 import headerSidebarOpen from './components/headerSidebarOpen.vue';
 import headerLeft from './components/headerLeft.vue';
 import headerRight from './components/headerRight.vue';

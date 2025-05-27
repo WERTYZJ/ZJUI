@@ -11,7 +11,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+
 const vueCode = ref(`
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue';

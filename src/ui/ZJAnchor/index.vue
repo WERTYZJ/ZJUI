@@ -29,7 +29,6 @@
 </template>
 
 <script setup>
-import { ref,defineProps,onMounted,onUnmounted } from 'vue';
 
 const props = defineProps({
   leftMenu:{
@@ -197,6 +196,6 @@ li:hover{
   top: -1px;
   z-index:-1;
   /* background-color: #7050E8; */
-  background-image: url('@/assets/ZJUI/ZJAnchor/1.svg');
+  background-image: url('/assets/ZJUI/ZJAnchor/1.svg');
 }
 </style>

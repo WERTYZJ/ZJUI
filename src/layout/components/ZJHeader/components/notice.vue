@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-import router from '@/router';
+
 const openNotice = () => {
   router.push('/notice')
 }

@@ -11,17 +11,16 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 const {t} = useI18n()
 
 const welcomeData = ref([
   {
-    icon:'/src/assets/ZJUI/ZJWelcome/Alipay.jpg',
+    icon: '/assets/ZJUI/ZJWelcome/Alipay.jpg',
     contributor:'支付宝'
   },
   {
-    icon:'/src/assets/ZJUI/ZJWelcome/WeChat.png',
+    icon:'/assets/ZJUI/ZJWelcome/WeChat.png',
     contributor:'微信'
   },
 ])

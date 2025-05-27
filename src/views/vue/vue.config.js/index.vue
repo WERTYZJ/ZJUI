@@ -14,7 +14,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+
 const vueCode = ref(`
 const { defineConfig } = require('@vue/cli-service')
 module.exports = defineConfig({

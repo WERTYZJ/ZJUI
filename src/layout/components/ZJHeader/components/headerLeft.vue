@@ -6,9 +6,7 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue';
-import { useRoute } from 'vue-router';
- 
+
 const route = useRoute();
 const routeName = ref(route.name);
  

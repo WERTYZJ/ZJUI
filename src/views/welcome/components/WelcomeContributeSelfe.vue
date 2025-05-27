@@ -12,13 +12,12 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 const {t} = useI18n()
 
 const welcomeData = ref([
   {
-    icon:'/src/assets/logo/logo.png',
+    icon:'/assets/logo/logo.png',
     contributor:'ヾAlexandrζ',
     price:'520'
   },

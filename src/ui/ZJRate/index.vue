@@ -1,16 +1,14 @@
 <template>
 
   <div :class="{'star-left-24':props.size==='default','star-left-32':props.size==='large','star-left-20':props.size==='small'}">
-    <img src="@/assets/ZJUI/ZJRate/star-p1.svg" alt="全星" v-for="n in fullStars" :key="n">  
-    <img src="@/assets/ZJUI/ZJRate/star-p2.svg" alt="空星" v-for="n in (5-fullStars)" :key="n"> 
+    <img src="/assets/ZJUI/ZJRate/star-p1.svg" alt="全星" v-for="n in fullStars" :key="n">  
+    <img src="/assets/ZJUI/ZJRate/star-p2.svg" alt="空星" v-for="n in (5-fullStars)" :key="n"> 
     <a>{{ props.rate }}</a>
   </div>
 
 </template>
 
 <script setup>
-
-import { defineProps,computed } from 'vue';
 
 const props = defineProps({
   rate:{

@@ -5,7 +5,6 @@
 </template>
 
 <script setup>
-import { ref, defineProps, watch } from 'vue';
 
 const showBackTop = ref(false);
 

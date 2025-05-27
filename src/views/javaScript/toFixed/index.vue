@@ -20,7 +20,6 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
 
 const vueCode=ref(
 `let numBer = 3.1415926;

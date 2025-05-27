@@ -5,7 +5,6 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, watch,defineProps } from 'vue'
 
 const props = defineProps({
   allCount: {

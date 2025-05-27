@@ -7,7 +7,6 @@
 </template>
  
 <script setup>
-import { defineProps, computed } from 'vue';
 
 // 接收 props
 const props = defineProps({

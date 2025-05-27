@@ -7,7 +7,7 @@
     <div class="g-main-box">
       <div class="g-main-box-bar" v-for="(item, index) in CarouselVal" :key="index" 
       :class="getSlideClass(index)">
-        <img :src="item?.img || '/src/assets/logo/logo.png'" @error="imgError" alt="">
+        <img :src="item?.img || '/assets/logo/logo.png'" @error="imgError" alt="">
         <div class="g-main-box-bar-right">
           <div class="g-main-box-bar-top">
             <p class="g-1">{{ item.name }}</p>
@@ -26,7 +26,6 @@
 </template>
 
 <script setup>
-import { ref,defineProps,onMounted } from 'vue';
 
 const props = defineProps({
   DefaultVal:{
@@ -70,7 +69,7 @@ function getSlideClass(index) {
   return '';
 }
 function imgError(event) {
-  event.target.src = '/src/assets/logo/logo.png';
+  event.target.src = '/assets/logo/logo.png';
 }
 </script>
 

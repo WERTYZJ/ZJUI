@@ -23,7 +23,7 @@
 </template>
 
 <script setup>
-import { ref, defineProps, defineEmits, computed } from 'vue';
+
 const props = defineProps({
   title: {
     type: String,
@@ -50,17 +50,17 @@ const getDialogIcons = computed(() => {
   if (props.isIcon) {
     switch (props.type) {
       case 'success':
-        return '/src/assets/ZJUI/ZJDialog/success.svg';
+        return '/assets/ZJUI/ZJDialog/success.svg';
       case 'delete':
-        return '/src/assets/ZJUI/ZJDialog/delete.svg';
+        return '/assets/ZJUI/ZJDialog/delete.svg';
       case 'info':
-        return '/src/assets/ZJUI/ZJDialog/success.svg';
+        return '/assets/ZJUI/ZJDialog/success.svg';
       case 'info2':
-        return '/src/assets/ZJUI/ZJDialog/success.svg';
+        return '/assets/ZJUI/ZJDialog/success.svg';
       case 'warning':
-        return '/src/assets/ZJUI/ZJDialog/warning.svg';
+        return '/assets/ZJUI/ZJDialog/warning.svg';
       default:
-        return '/src/assets/ZJUI/ZJDialog/success.svg';
+        return '/assets/ZJUI/ZJDialog/success.svg';
     }
   }
 })

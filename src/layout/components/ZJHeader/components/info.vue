@@ -7,11 +7,11 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue';
+
 import infoHeaderBar from './infoHeaderBar.vue';
 
 const userName = ref('ZJUI-Admin');
-const userAvatar = ref('/src/assets/logo/logo.png')
+const userAvatar = ref('/assets/logo/logo.png')
 const showInfoHeaderBar = ref(false);
 
 function open(action) {
@@ -21,7 +21,7 @@ function open(action) {
 }
 // 图片错误处理
 function avatarSrcError() {
-  userAvatar.value = '/src/assets/logo/logo.png';
+  userAvatar.value = '/assets/logo/logo.png';
 }
 
 const ZJHeaderInfoBox = ref(null);

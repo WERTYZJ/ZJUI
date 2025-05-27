@@ -31,7 +31,6 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
 
 const listData = ref([
   {
@@ -48,21 +47,22 @@ const listData = ref([
 
 const homeTopRight = ref([
   {
-    icon:"/src/assets/index/homeTop/car.svg",
+    icon:'/assets/index/homeTop/car.svg',
     centerText: "1799",
     bottomText: "预览次数",
   },
   {
-    icon:"/src/assets/index/homeTop/share.svg",
+    icon:'/assets/index/homeTop/share.svg',
     centerText: "20",
     bottomText: "分享次数",
   },
   {
-    icon:"/src/assets/index/homeTop/dollar.svg",
+    icon:'/assets/index/homeTop/dollar.svg',
     centerText: "$0",
     bottomText: "预估收益",
   },
 ])
+
 
 function getTextColor(index) {
   switch (index) {

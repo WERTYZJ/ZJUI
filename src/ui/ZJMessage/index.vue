@@ -8,7 +8,7 @@
 </template>
  
 <script setup>
-import { ref, onMounted, defineProps } from 'vue';
+
 import ZJSvgIcons from '../ZJSvgIcons/index.vue'
 
 // 接收 props

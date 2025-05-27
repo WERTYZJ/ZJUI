@@ -13,8 +13,9 @@
 </template>
 
 <script setup name="ZJHomeVue">
-import { ref } from 'vue';
+
 import homeTop from './components/homeTop.vue';
+
 const home1 = ref([
   {
     title: '项目特点',

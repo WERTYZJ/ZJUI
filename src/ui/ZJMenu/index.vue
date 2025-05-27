@@ -24,9 +24,9 @@
 </template>
 
 <script setup>
-import { ref, defineProps, onMounted, onUnmounted, defineEmits } from 'vue';
+
 import { useUserStore } from '@/store';
-import router from '@/router';
+// import router from '@/router';
 
 const userStore = useUserStore();
 const emits = defineEmits(['updateHeight']);

@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-import { ref,onMounted } from 'vue';
+
 import { useUserStore } from '@/store';
 const userStore = useUserStore();
 

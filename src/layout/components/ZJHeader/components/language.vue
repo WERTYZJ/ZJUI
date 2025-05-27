@@ -6,7 +6,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue';
+
 import languageHeaderBar from './languageHeaderBar.vue';
 
 const showInfoHeaderBar = ref(false);

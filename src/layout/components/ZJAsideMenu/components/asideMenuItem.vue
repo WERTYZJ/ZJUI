@@ -39,7 +39,7 @@
 </template>
 
 <script setup>
-import { ref, defineProps, computed, onMounted, onUnmounted, defineEmits } from 'vue';
+
 import { useUserStore } from '@/store';
 import router from '@/router';
 import AsideMenuItemCard from './asideMenuItemCard.vue';

@@ -13,7 +13,6 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
 
 const vueCode = ref(
   `this.content = this.content.replace(/<\/a >/g, '</a ></div >');

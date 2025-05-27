@@ -20,8 +20,6 @@
 
 <script setup>
 import availablDaysSelect from './availablDaysSelect.vue';
-import {ref,defineEmits,defineProps,onMounted} from 'vue';
-
 
 const emits = defineEmits(['availableData']);
 const props = defineProps({

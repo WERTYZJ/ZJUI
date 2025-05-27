@@ -22,7 +22,6 @@ import WelcomeContributors from "./components/WelcomeContributors.vue"
 import WelcomeContributeSelfe from "./components/WelcomeContributeSelfe.vue"
 import WelcomeContribute from "./components/WelcomeContribute.vue"
 import WelcomeFooter from "@/views/welcome/components/WelcomeFooter.vue"
-import { ref, onMounted, onUnmounted, watch } from 'vue';
  
 const welcomeMain = ref(null);
 const welcomeMainScrollTop = ref(0);

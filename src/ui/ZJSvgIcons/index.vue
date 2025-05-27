@@ -4,7 +4,7 @@
 </template>
 
 <script setup>
-import { defineProps, computed } from 'vue';
+
 import { icons } from './svgIcons'; // 假设 svgIcons.js 与 ZJSvgIcons.vue 在同一目录下
 
 const props = defineProps({

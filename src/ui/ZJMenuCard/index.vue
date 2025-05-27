@@ -20,7 +20,7 @@
 </template>
 
 <script setup>
-import { ref, defineProps, onMounted, computed, defineEmits } from 'vue';
+
 import router from '@/router';
 
 const emits = defineEmits(['closeAsideMenuCard']);

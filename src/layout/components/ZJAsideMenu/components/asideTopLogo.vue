@@ -1,6 +1,6 @@
 <template>
   <div class="ZJLogo" @click="userStore.layout.showWelcome = true;">
-    <!-- <img src="@/assets/logo/logo.svg" alt=""> -->
+    <!-- <img src="/logo/logo.svg" alt=""> -->
     <ZJSvgIcons icon="ZJUILogo" style="height:32px;width:32px;border-radius:10px;"></ZJSvgIcons>
     <Transition name="leftBar">
     <a v-if="userStore.isSideBarOpen==true">ZJUI-Admin</a>

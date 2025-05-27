@@ -9,14 +9,20 @@
 </template>
 
 <script setup name="ZJAsideMenu">
-import { ref, onMounted, watch, onUnmounted } from 'vue';
+
 import router from '@/router';
 import ZJLogo from './components/asideTopLogo.vue';
 import { useUserStore } from '@/store';
 import AsideMenuItem from './components/asideMenuItem.vue';
 
+
 const userStore = useUserStore();
 const menu = ref([])
+
+// ❌ 错误写法：router 是自定义实例，不通过自动导入
+// const router = useRouter()
+// menu.value = router.options.routes // 如果未挂载实例，此处会报错
+
 // 使用计算属性或onMounted来生成menu数据
 onMounted(() => {
   menu.value = router.options.routes

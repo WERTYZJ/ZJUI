@@ -36,7 +36,6 @@
 </template>
 
 <script setup>
-import {ref,defineEmits,defineProps,watch,onMounted} from 'vue';
 
 const props = defineProps({
   type:{

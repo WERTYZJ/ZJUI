@@ -10,7 +10,6 @@
 <script setup>
 import headerLeft from "@/views/welcome/components/header/headerLeft.vue"
 import headerRight from "@/views/welcome/components/header/headerRight.vue"
-import { ref,defineProps,watch } from "vue";
 
 const props = defineProps({
   scrollTop: {
