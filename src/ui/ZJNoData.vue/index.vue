@@ -1,9 +1,8 @@
 <template>
-  <div
-    :class="{ 'noMoreData': true, 'noMoreData150': props.size == 150, 'noMoreData100': props.size == 100, 'noMoreData50': props.size == 50, 'noMoreDataAuto': props.size == 'auto' }">
-    <img v-if="props.icon == 1" src="/assets/ZJUI/ZJNoData/NoMoreData.png" alt="">
-    <img v-if="props.icon == 2" src="/assets/ZJUI/ZJNoData/MessageListAvatar.svg" alt="">
-    <p>{{ props.label }}</p>
+  <div class="noMoreData" :style="iconStyle">
+    <img v-if="icon==1" style="iconStyle"  src="@/assets/images/ZJUI/ZJNoData/empty-1.svg" alt="">
+    <img v-if="icon==2" style="iconStyle"  src="@/assets/images/ZJUI/ZJNoData/empty-2.svg" alt="">
+    <p :style="fontStyle">{{ props.label }}</p>
   </div>
 </template>  
   
@@ -11,21 +10,31 @@
 
 const props =defineProps({
   icon: {
-      type: [String, Number],
-      default: null
-    },
-    label: {
-      type: [String, Number],
-      default: null
-    },
-    size: {
-      type: [String, Number],
-      default: null
-    },
+    type: [String, Number],
+    default: null
+  },
+  label: {
+    type: [String, Number],
+    default: null
+  },
+  fontStyle:{
+    type: Object,
+    default: () => ({
+      fontSize: '20px',
+      color:'var(--ZJ-main-text-label-color)',
+    })
+  },
+  iconStyle:{
+    type: Object,
+    default: () => ({
+      color:'#7050E8',
+    })
+  },
 })
 </script>  
   
-<style scoped>  .noMoreData {
+<style scoped> 
+ .noMoreData {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -51,69 +60,6 @@ const props =defineProps({
     object-fit: contain;
     /* 保持宽高比，缩放以适应容器 */
     /* background-color: #85b5bb; */
-  }
-
-  .noMoreData p {
-    font-family: "Courgette";
-    font-size: 30px;
-  }
-
-  /* 150 */
-  .noMoreData150 {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    height: 300px;
-    width: 100%;
-    /* background-color: antiquewhite; */
-  }
-
-  .noMoreData150 img {
-    max-width: 150px;
-    min-width: 100px;
-    height: 150px;
-    width: 100%;
-    /* 使图片宽度自适应容器宽度 */
-    height: auto;
-    /* 保持图片原始宽高比 */
-    object-fit: contain;
-    /* 保持宽高比，缩放以适应容器 */
-    /* background-color: #85b5bb; */
-  }
-
-  .noMoreData150 p {
-    font-size: 25px;
-  }
-
-  /* 100 */
-  .noMoreData100 {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    height: 170px;
-    width: 100%;
-    /* background-color: antiquewhite; */
-  }
-
-  .noMoreData100 img {
-    max-width: 100px;
-    min-width: 80px;
-    height: 150px;
-    width: 100%;
-    /* 使图片宽度自适应容器宽度 */
-    height: auto;
-    /* 保持图片原始宽高比 */
-    object-fit: contain;
-    /* 保持宽高比，缩放以适应容器 */
-    /* background-color: #85b5bb; */
-  }
-
-  .noMoreData100 p {
-    font-size: 20px;
   }
 
   /* auto */

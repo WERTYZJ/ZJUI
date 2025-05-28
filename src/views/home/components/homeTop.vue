@@ -47,17 +47,17 @@ const listData = ref([
 
 const homeTopRight = ref([
   {
-    icon:'/assets/index/homeTop/car.svg',
+    icon:new URL('@/assets/images/index/homeTop/car.svg',import.meta.url).href,
     centerText: "1799",
     bottomText: "预览次数",
   },
   {
-    icon:'/assets/index/homeTop/share.svg',
+    icon:new URL('@/assets/images/index/homeTop/share.svg',import.meta.url).href,
     centerText: "20",
     bottomText: "分享次数",
   },
   {
-    icon:'/assets/index/homeTop/dollar.svg',
+    icon:new URL('@/assets/images/index/homeTop/dollar.svg',import.meta.url).href,
     centerText: "$0",
     bottomText: "预估收益",
   },

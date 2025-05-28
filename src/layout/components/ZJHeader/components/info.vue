@@ -1,7 +1,7 @@
 <template>
   <div class="ZJHeaderInfoBox" @click="open('openInfoHeaderBar')" ref="ZJHeaderInfoBox">
     <a>{{ userName }}</a>
-    <img :src="userAvatar" @error="avatarSrcError()" alt="">
+    <img src="@/assets/images/logo/logo.png" alt="">
     <infoHeaderBar v-show="showInfoHeaderBar" class="ZJHeaderBar"></infoHeaderBar>
   </div>
 </template>
@@ -11,17 +11,13 @@
 import infoHeaderBar from './infoHeaderBar.vue';
 
 const userName = ref('ZJUI-Admin');
-const userAvatar = ref('/assets/logo/logo.png')
+// const userAvatar = ref('@/assetsimages/logo/logo.png')
 const showInfoHeaderBar = ref(false);
 
 function open(action) {
   if (action == 'openInfoHeaderBar') {
     showInfoHeaderBar.value = !showInfoHeaderBar.value
   }
-}
-// 图片错误处理
-function avatarSrcError() {
-  userAvatar.value = '/assets/logo/logo.png';
 }
 
 const ZJHeaderInfoBox = ref(null);

@@ -6,7 +6,7 @@
           <div class="ZJInputMain" v-show="userStore.layout.showSearch" ref="setMainEl">
             <input v-model="ZJInputVal" placeholder="请输入搜索内容">
             <div class="bottom">
-              <ZJNoData v-if="filteredRoutes.length < 1" icon="2" label="暂无数据" size="100"></ZJNoData>
+              <ZJNoData v-if="filteredRoutes.length < 1" icon="1" label="暂无数据" :iconStyle="{height:'300px',}"></ZJNoData>
               <div class="boxList" v-for="(i, index) in filteredRoutes" :key="index" @click="openSearchPage(i.path)">
                 <div class="boxLeft">
                   <ZJSvgIcons :icon="i.icon"></ZJSvgIcons>

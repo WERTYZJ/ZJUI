@@ -2,13 +2,15 @@
   <div class="main-top">
     <div class="main-top-left" @click="UploadAvatar()">
       <div class="before">
-        <img :src="BeforeUploadImg || '/assets/ZJUI/ZJCutAvatar/before.png'" @error="AvatarError">
+        <ZJSvgIcons icon="avatar" style="height:100px;width: 100px;border-radius: 50%;"></ZJSvgIcons>
       </div>
       <div class="after">
         <img :src="avatarUrl" v-if="avatarUrl" class="img-send">
       </div>
       <img src="" alt="">
-      <div class="revise-img"><img :src="'/assets/ZJUI/ZJCutAvatar/before2.png'" alt=""></div>
+      <div class="revise-img">
+        <ZJSvgIcons icon="edit"></ZJSvgIcons>
+      </div>
     </div>
   </div>
 
@@ -22,7 +24,7 @@
         <!-- <a>After cropping</a> -->
         <a>裁剪预览</a>
         <div class="afterCropper">
-          <img src="/assets/ZJUI/ZJCutAvatar/img.png" style="position: absolute; z-index:0;">
+          <ZJSvgIcons icon="avatar" style="height:100px;width: 100px;border-radius: 50%;position: absolute; z-index:0"></ZJSvgIcons>
           <img :src="CutImg" style="z-index:1;" />
         </div>
       </div>
@@ -204,11 +206,10 @@ export default {
 }
 
 .afterCropper img {
-  width: 116px;
-  height: 116px;
+  width: 120px;
+  height: 120px;
   overflow: hidden;
   border-radius: 50%;
-  border: 2px solid var(--ZJ-default-main);
 }
 
 

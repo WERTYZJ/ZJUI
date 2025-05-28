@@ -8,14 +8,14 @@
         <Transition name="mask">
         <div class="photo-mask" v-if="item.showMask">
           <div class="photo-mask-main">
-            <img @click="MagnifyImg(item.src)" class="photo-mask-main-img" src="/assets/ZJUI/ZJUpload/1.png" alt="">
-            <img @click="DeleteImg(index)" class="photo-mask-main-img" src="/assets/ZJUI/ZJUpload/2.png" alt="">
+            <ZJSvgIcons @click="MagnifyImg(item.src)" icon="search" style="cursor: pointer;"></ZJSvgIcons>
+            <ZJSvgIcons @click="DeleteImg(index)" icon="delete" style="cursor: pointer;"></ZJSvgIcons>
           </div>
         </div>
         </Transition>
       </div>
       </transition-group>
-      <img class="addImg" src="/assets/ZJUI/ZJUpload/addPhoto.png" alt="" @click="addImg()">
+      <ZJSvgIcons @click="addImg()" class="addImg" icon="upload" style="height:60px;width:60px;padding: 30px;"></ZJSvgIcons>
     </div>
   </div>
 </template>
@@ -126,9 +126,6 @@ export default{
 
       });
     },
-    AvatarError(event) {
-      event.target.src = require('/error/photoAvatarError.svg')
-    },
   },
 }
 </script>
@@ -203,6 +200,7 @@ cursor: pointer;
 .addImg:hover{
   border: 1px dashed var(--ZJ-default-main);
   border-radius: 10px;
+  color: var(--ZJ-default-main);
 }
 .addImg{
   width: 119px;
@@ -222,6 +220,7 @@ cursor: pointer;
   justify-content: space-around;
   height: 30px;
   width:90px;
+  color: var(--ZJ-main);
 }
 .photo-mask{
   width:120px;

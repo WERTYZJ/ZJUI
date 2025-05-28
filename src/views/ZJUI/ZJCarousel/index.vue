@@ -22,25 +22,24 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
 
 const CarouselVal  = ref([
   { 
-    img:'/src/assets/logo/logo.png',
+    img:'https://c-ssl.dtstatic.com/uploads/blog/202304/15/20230415081411_f2e46.thumb.400_0.jpg',
     name: "Duff", 
     rate:2.3,
     lessons:'English,Spanish,French',
     content: "The teacher's English pronunciation is very standard and the teaching is excellent." 
   },
   { 
-    img:'/src/assets/logo/logo.png',
+    img:'https://c-ssl.dtstatic.com/uploads/blog/202304/15/20230415081411_f2e46.thumb.400_0.jpg',
     name: "ZhangJian", 
     rate:4.9,
     lessons:'English,Spanish,French',
     content: "The teacher's English pronunciation is very standard and the teaching is excellent." 
   },
   { 
-    img:'/src/assets/logo/logo.png',
+    img:'https://c-ssl.dtstatic.com/uploads/blog/202304/15/20230415081411_f2e46.thumb.400_0.jpg',
     name: "LiNaNa", 
     rate:3.5,
     lessons:'English,Spanish,French',
@@ -62,21 +61,21 @@ import { ref } from "vue";
 
 const CarouselVal  = ref([
   { 
-    img:require('/logo/logo.png'),
+    img:'https://c-ssl.dtstatic.com/uploads/blog/202304/15/20230415081411_f2e46.thumb.400_0.jpg',
     name: "Duff", 
     rate:2.3,
     lessons:'English,Spanish,French',
     content: "The teacher's English pronunciation is very standard and the teaching is excellent." 
   },
   { 
-    img:require('/logo/logo.png'),
+    img:'https://c-ssl.dtstatic.com/uploads/blog/202304/15/20230415081411_f2e46.thumb.400_0.jpg',
     name: "ZhangJian", 
     rate:4.9,
     lessons:'English,Spanish,French',
     content: "The teacher's English pronunciation is very standard and the teaching is excellent." 
   },
   { 
-    img:require('/logo/logo.png'),
+    img:'https://c-ssl.dtstatic.com/uploads/blog/202304/15/20230415081411_f2e46.thumb.400_0.jpg',
     name: "LiNaNa", 
     rate:3.5,
     lessons:'English,Spanish,French',

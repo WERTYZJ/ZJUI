@@ -7,7 +7,7 @@
     <div class="g-main-box">
       <div class="g-main-box-bar" v-for="(item, index) in CarouselVal" :key="index" 
       :class="getSlideClass(index)">
-        <img :src="item?.img || '/assets/logo/logo.png'" @error="imgError" alt="">
+        <img :src="item?.img" alt="">
         <div class="g-main-box-bar-right">
           <div class="g-main-box-bar-top">
             <p class="g-1">{{ item.name }}</p>
@@ -68,9 +68,7 @@ function getSlideClass(index) {
   }
   return '';
 }
-function imgError(event) {
-  event.target.src = '/assets/logo/logo.png';
-}
+
 </script>
 
 <style scoped>

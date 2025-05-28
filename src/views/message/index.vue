@@ -19,8 +19,8 @@
               <div class="avatar">
                 <img
                   v-if="item.conversationAvatarUrl == '' || item.conversationAvatarUrl == undefined || item.conversationAvatarUrl == null"
-                  :src="'/assets/ZJUI/ZJChat/error/MessageListAvatar.svg'" :onError='AvatarError'>
-                <img v-if="item.conversationAvatarUrl" :src="item.conversationAvatarUrl" :onError='AvatarError'>
+                  src="@/assets/images/logo/logo.png">
+                <img v-if="item.conversationAvatarUrl" :src="item.conversationAvatarUrl" >
               </div>
               <div class="user-right">
                 <div class="user-right-box">
@@ -76,9 +76,9 @@
     <div class="dia-right" ref="showRight">
       <div class="dia-right-top">
         <div class="dia-right-top-box"><img v-show="showBackList" @click="backList()" class="dia-right-top-box-back"
-            :src="'/assets/ZJUI/ZJChat/Message/back.svg'" alt=""><a>{{ showUserName }}</a></div>
+            src="@/assets/images/ZJUI/ZJChat/Message/back.svg" alt=""><a>{{ showUserName }}</a></div>
         <div class="dia-right-top-box" @click="() => open('openRightMore')" ref="rightMore">
-          <img :src="'/assets/ZJUI/ZJChat/Message/topBarMore.svg'" alt="">
+          <img src="@/assets/images/ZJUI/ZJChat/Message/topBarMore.svg" alt="">
         </div>
         <div class="dia-right-top-more" v-show="showDiaRightMore">
           <div v-for="data in diaRightMore" :key="data" class="MouseRight-menu">
@@ -96,11 +96,9 @@
           <div :class="{ 'msg-box-left': true, 'right': item.senderUserID == this.selfUserID }">
             <div class="msg-head-img">
               <img v-if="item.senderUserID == this.showUserID"
-                :src="this.showUserAvatar || '/assets/ZJUI/ZJChat/error/MessageListAvatar.svg'"
-                :onError='AvatarError'>
+                :src="this.showUserAvatar">
               <img v-if="item.senderUserID == this.selfUserID"
-                :src="this.selfAvatar || '/assets/ZJUI/ZJChat/error/MessageListAvatar.svg'"
-                :onError='AvatarError'>
+                :src="this.selfAvatar">
             </div>
 
             <div v-if="item.type == 1" class="msg-textarea">
@@ -150,7 +148,7 @@
                 :FinishCount="finishFileSize" isProgress='true'></LoadingView> -->
       </div>
       <div class="dia-right-backBottom" v-show="showBackBottom" @click="scrollToBottom">
-        <img :src="'/assets/ZJUI/ZJChat/mouseRight/Message-backBottom.svg'" alt="">
+        <img :src="'@/assets/images//ZJUI/ZJChat/mouseRight/Message-backBottom.svg'" alt="">
       </div>
       <div class="dia-right-bottom-bar">
 
@@ -177,7 +175,7 @@
       <div class="dia-right-bottom">
         <textarea placeholder="Your massage" v-model="msg" id="sendMsg" name="sendMsg" @keydown="enter($event)"
           aria-label="发送消息"></textarea>
-        <button @click="sendTextMsg()" class="send-btn"><img :src="'/assets/ZJUI/ZJChat/message-send.svg'"
+        <button @click="sendTextMsg()" class="send-btn"><img src="@/assets/images/ZJUI/ZJChat/message-send.svg"
             alt=""></button>
       </div>
     </div>
@@ -212,13 +210,13 @@ export default {
       ],
       // 自己相关
       selfUserID: 123456789,
-      selfAvatar: '',
+      selfAvatar:new URL('@/assets/images/logo/logo.png',import.meta.url).href,
       selfName: '',
       msg: '',// 消息 
       showBackList: false,
       showUserName: 'ZIUI客服1号',// 好友名字
       showUserID: 123456, //好友id
-      showUserAvatar: '/assets/ZJUI/ZJChat/tutor-over5-p1.png',//好友头像
+      showUserAvatar: new URL('@/assets/images/logo/logo.png',import.meta.url).href,//好友头像
       showUserType: '',//消息类型,单聊，多聊
       ifMsgScrollTop: false,
       // 用户列表
@@ -226,7 +224,7 @@ export default {
         {
           conversationName: 'ZIUI客服1号',
           conversationID: 123456,
-          conversationAvatarUrl: '/assets/ZJUI/ZJChat/tutor-over5-p1.png',
+          conversationAvatarUrl:this.showUserAvatar,
           type: 1,
           isPinned: true,
           orderKey: 1734586556666,
@@ -240,7 +238,7 @@ export default {
         {
           conversationName: 'ZIUI客服2号',
           conversationID: 123456,
-          conversationAvatarUrl: '/assets/ZJUI/ZJChat/tutor-over5-p2.png',
+          conversationAvatarUrl: this.showUserAvatar,
           type: 1,
           isPinned: false,
           orderKey: 1714586556966,
@@ -254,7 +252,7 @@ export default {
         {
           conversationName: 'ZIUI客服3号',
           conversationID: 123456,
-          conversationAvatarUrl: '/assets/ZJUI/ZJChat/tutor-students-p1.png',
+          conversationAvatarUrl: this.showUserAvatar,
           type: 1,
           isPinned: false,
           orderKey: 1724586556666,
@@ -268,7 +266,7 @@ export default {
         {
           conversationName: 'ZIUI客服1号',
           conversationID: 123456,
-          conversationAvatarUrl: '/assets/ZJUI/ZJChat/tutor-over5-p1.png',
+          conversationAvatarUrl: this.showUserAvatar,
           type: 1,
           isPinned: false,
           orderKey: 1734586556666,
@@ -282,7 +280,7 @@ export default {
         {
           conversationName: 'ZIUI客服2号',
           conversationID: 123456,
-          conversationAvatarUrl: '/assets/ZJUI/ZJChat/tutor-over5-p2.png',
+          conversationAvatarUrl: this.showUserAvatar,
           type: 1,
           isPinned: false,
           orderKey: 1704586556966,
@@ -296,7 +294,7 @@ export default {
         {
           conversationName: '岳山',
           conversationID: 123456,
-          conversationAvatarUrl: '/assets/ZJUI/ZJChat/tutor-students-p1.png',
+          conversationAvatarUrl: this.showUserAvatar,
           type: 1,
           isPinned: false,
           orderKey: 1664586556666,
@@ -310,7 +308,7 @@ export default {
         {
           conversationName: 'ZIUI客服1号',
           conversationID: 123456,
-          conversationAvatarUrl: '/assets/ZJUI/ZJChat/tutor-over5-p1.png',
+          conversationAvatarUrl: this.showUserAvatar,
           type: 1,
           isPinned: false,
           orderKey: 1684586556666,
@@ -324,7 +322,7 @@ export default {
         {
           conversationName: 'ZIUI客服2号',
           conversationID: 123456,
-          conversationAvatarUrl: '/assets/ZJUI/ZJChat/tutor-over5-p2.png',
+          conversationAvatarUrl: this.showUserAvatar,
           type: 1,
           isPinned: false,
           orderKey: 1764586556966,
@@ -338,7 +336,7 @@ export default {
         {
           conversationName: 'ZIUI客服3号',
           conversationID: 123456,
-          conversationAvatarUrl: '/assets/ZJUI/ZJChat/tutor-students-p1.png',
+          conversationAvatarUrl: this.showUserAvatar,
           type: 1,
           isPinned: false,
           orderKey: 1654586556666,
@@ -352,7 +350,7 @@ export default {
         {
           conversationName: 'ZIUI客服1号',
           conversationID: 123456,
-          conversationAvatarUrl: '/assets/ZJUI/ZJChat/tutor-over5-p1.png',
+          conversationAvatarUrl: this.showUserAvatar,
           type: 1,
           isPinned: false,
           orderKey: 1734586556666,
@@ -366,7 +364,7 @@ export default {
         {
           conversationName: 'Enggsd',
           conversationID: 123456,
-          conversationAvatarUrl: '/assets/ZJUI/ZJChat/tutor-over5-p2.png',
+          conversationAvatarUrl: this.showUserAvatar,
           type: 1,
           isPinned: true,
           orderKey: 1764586556966,
@@ -380,7 +378,7 @@ export default {
         {
           conversationName: 'ZIUI客服3号',
           conversationID: 123456,
-          conversationAvatarUrl: '/assets/ZJUI/ZJChat/tutor-students-p1.png',
+          conversationAvatarUrl: this.showUserAvatar,
           type: 1,
           isPinned: false,
           orderKey: 1774586556666,
@@ -461,40 +459,40 @@ export default {
         {
           name: '置顶',
           name2: '取消置顶',
-          img: '/assets/ZJUI/ZJChat/mouseRight/a-1.png',
-          img2: '/assets/ZJUI/ZJChat/mouseRight/a-1-2.png',
+          img:new URL('@/assets/images/ZJUI/ZJChat/mouseRight/a-1.png',import.meta.url).href,
+          img2:new URL('@/assets/images/ZJUI/ZJChat/mouseRight/a-1-2.png',import.meta.url).href,
           value: 1
         },
         {
           name: '查看账号',
-          img: '/assets/ZJUI/ZJChat/mouseRight/a-2.png',
+          img:new URL('@/assets/images/ZJUI/ZJChat/mouseRight/a-2.png',import.meta.url).href,
           value: 2
         },
         {
           name: '标记已读',
           name2: '标记未读',
-          img: '/assets/ZJUI/ZJChat/mouseRight/a-3.png',
-          img2: '/assets/ZJUI/ZJChat/mouseRight/a-3-2.png',
+          img:new URL('@/assets/images/ZJUI/ZJChat/mouseRight/a-3.png',import.meta.url).href,
+          img2:new URL('@/assets/images/ZJUI/ZJChat/mouseRight/a-3-2.png',import.meta.url).href,
           value: 3
         },
         {
           name: '打开独立聊天窗口',
-          img: '/assets/ZJUI/ZJChat/mouseRight/a-4.png',
+          img:new URL('@/assets/images/ZJUI/ZJChat/mouseRight/a-4.png',import.meta.url).href,
           value: 4
         },
         {
           name: '设置免打扰',
-          img: '/assets/ZJUI/ZJChat/mouseRight/a-5.png',
+          img:new URL('@/assets/images/ZJUI/ZJChat/mouseRight/a-5.png',import.meta.url).href,
           value: 5
         },
         {
           name: '从消息列表中删除',
-          img: '/assets/ZJUI/ZJChat/mouseRight/a-6.png',
+          img:new URL('@/assets/images/ZJUI/ZJChat/mouseRight/a-6.png',import.meta.url).href,
           value: 6
         },
         {
           name: '屏蔽此人消息',
-          img: '/assets/ZJUI/ZJChat/mouseRight/a-7.png',
+          img:new URL('@/assets/images/ZJUI/ZJChat/mouseRight/a-7.png',import.meta.url).href,
           value: 7
         },
       ],
@@ -503,7 +501,7 @@ export default {
         {
           name: '删除所有消息',
           name2: '',
-          img: '/assets/ZJUI/ZJChat/mouseRight/a-6.png',
+          img:new URL('@/assets/images/ZJUI/ZJChat/mouseRight/a-6.png',import.meta.url).href,
           value: 1,
         },
       ],
@@ -513,33 +511,33 @@ export default {
       bottomBar: [
         {
           val: 1,
-          img: '/assets/ZJUI/ZJChat/Message/emo.svg',
-          img2: '/assets/ZJUI/ZJChat/Message/emo-2.svg',
+          img:new URL('@/assets/images/ZJUI/ZJChat/Message/emo.svg',import.meta.url).href,
+          img2:new URL('@/assets/images/ZJUI/ZJChat/Message/emo-2.svg',import.meta.url).href,
         },
         {
           val: 2,
-          img: '/assets/ZJUI/ZJChat/Message/image.svg',
-          img2: '/assets/ZJUI/ZJChat/Message/image-2.svg',
+          img:new URL('@/assets/images/ZJUI/ZJChat/Message/image.svg',import.meta.url).href,
+          img2:new URL('@/assets/images/ZJUI/ZJChat/Message/image-2.svg',import.meta.url).href,
         },
         {
           val: 3,
-          img: '/assets/ZJUI/ZJChat/Message/video.svg',
-          img2: '/assets/ZJUI/ZJChat/Message/video-2.svg',
+          img:new URL('@/assets/images/ZJUI/ZJChat/Message/video.svg',import.meta.url).href,
+          img2:new URL('@/assets/images/ZJUI/ZJChat/Message/video-2.svg',import.meta.url).href,
         },
         {
           val: 4,
-          img: '/assets/ZJUI/ZJChat/Message/audio.svg',
-          img2: '/assets/ZJUI/ZJChat/Message/audio-2.svg',
+          img:new URL('@/assets/images/ZJUI/ZJChat/Message/audio.svg',import.meta.url).href,
+          img2:new URL('@/assets/images/ZJUI/ZJChat/Message/audio-2.svg',import.meta.url).href,
         },
         {
           val: 5,
-          img: '/assets/ZJUI/ZJChat/Message/file.svg',
-          img2: '/assets/ZJUI/ZJChat/Message/file-2.svg',
+          img:new URL('@/assets/images/ZJUI/ZJChat/Message/file.svg',import.meta.url).href,
+          img2:new URL('@/assets/images/ZJUI/ZJChat/Message/file-2.svg',import.meta.url).href,
         },
         {
           val: 6,
-          img: '/assets/ZJUI/ZJChat/Message/document.svg',
-          img2: '/assets/ZJUI/ZJChat/Message/document-2.svg',
+          img:new URL('@/assets/images/ZJUI/ZJChat/Message/document.svg',import.meta.url).href,
+          img2:new URL('@/assets/images/ZJUI/ZJChat/Message/document-2.svg',import.meta.url).href,
         },
       ],
       hoverBottomBarImgSrc: null, // 用于存储当前悬停的图片 URL  
@@ -1554,9 +1552,6 @@ export default {
         this.showVerity = false;
       }
     },
-    AvatarError(event) {
-      event.target.src = '/assets/ZJUI/ZJChat/error/MessageListAvatar.svg';
-    }
   }
 }
 </script>

@@ -17,7 +17,7 @@
       </div>
       <div class="w-right">
         <div class="w-right-bg"></div>
-        <img class="w-right-img" src="/assets/logo/w-logo-bg.svg" alt="">
+        <img class="w-right-img" src="@/assets/images/logo/w-logo-bg.svg" alt="">
       </div>
     </div>
     <div class="welcome-body m-flex-col m-gap-20">

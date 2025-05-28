@@ -6,11 +6,12 @@
       </template>
       <h3>下拉时间选择用来选择具体时间</h3>
       <p>标签名字:label="暂无数据"(不必须)</p>
-      <p>图标样式:icon="2"(可选数据1、2)</p>
-      <p>大小:size="150"(可选数据150、100、50)</p>
+      <p>图标样式:icon="1"(可选数据1、2)</p>
+      <p>字体样式:fontStyle</p>
+      <p>整体图标大小:iconStyle</p>
       <div class="ZJDisplayFlex m-t-10">
        <ZJNoData
-        icon="2"
+        icon="1"
         label="暂无数据"
         size="150"
        ></ZJNoData>
@@ -26,7 +27,7 @@ import { ref } from "vue";
 const vueCode=ref(
 `<template>
   <ZJNoData
-    icon="2"
+    icon="1"
     label="暂无数据"
     size="150"
     ></ZJNoData>

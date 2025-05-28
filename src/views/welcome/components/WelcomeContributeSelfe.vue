@@ -17,7 +17,7 @@ const {t} = useI18n()
 
 const welcomeData = ref([
   {
-    icon:'/assets/logo/logo.png',
+    icon:new URL('@/assets/images/logo/logo.png',import.meta.url).href,
     contributor:'ヾAlexandrζ',
     price:'520'
   },
