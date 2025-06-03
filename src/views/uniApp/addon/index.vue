@@ -9,13 +9,15 @@
       <p>官方文档：<a>https://www.mescroll.com/uni.html</a></p>
       <p>2.监听scroll-view滚动条的上下滚动状态</p>
       <ZJCodeDisplay :code="vueCode" language="vue" />
+      <p>3.获取设备信息的uniApp函数</p>
+      <ZJCodeDisplay :code="vueCode3" language="vue" />
     </ZJMain>
   </div>
 </template>
 
 <script setup>
-const vueCode = ref(`
 
+const vueCode = ref(`
 <scroll-view scroll-y @scroll="handleScroll">
   // 主要内容
   <view class="comment">
@@ -47,5 +49,18 @@ handleScroll(event) {
     })
     
   },
+`)
+
+const vueCode3 = ref(`
+//获取整个页面的高度，从而计算出页面可用的高度，因为使用了自定义的navbar所以this.pageHeight不是单纯的res.windowHeight。（ps: uview组件的navbar高度是固定的44px,不包括statusBarHeight）
+			uni.getSystemInfo({
+				success: (res) => {
+					let bottomArea = 0;
+					if (res.safeAreaInsets && res.safeAreaInsets.bottom) {
+						bottomArea = res.safeAreaInsets.bottom;
+					}
+					this.height = (res.windowHeight - res.statusBarHeight - 44) + 'px';
+				}
+			})
 `)
 </script>
