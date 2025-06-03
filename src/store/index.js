@@ -8,7 +8,7 @@ let userLocalData = localData ? JSON.parse(localData) : {};
 export const useUserStore = defineStore('user', {
   state: () => ({
     // 尝试从localStorage加载用户数据，如果没有则默认为空对象
-    userData:{},
+    userData: {},
     // 加载动画
     isLoading: false,
     // 侧边框
@@ -40,23 +40,10 @@ export const useUserStore = defineStore('user', {
       // 单页面全屏
       isFullScreenRouter: false,
       // 是否展示欢迎页面
-      showWelcome:true,
+      showWelcome: true,
     },
   }),
   actions: {
-    async setUserData(userData) {
-      this.userData = userData;
-      // 更新状态后，保存到localStorage
-      localStorage.setItem('userData', JSON.stringify(userData));
-    },
-    // 更新用户头像
-    addFieldToUserData(fieldName, fieldValue) {
-      this.userData = {
-        ...this.userData,
-        [fieldName]: fieldValue,
-      };
-      localStorage.setItem('userData', JSON.stringify(this.userData));
-    },
     startLoading() {
       this.isLoading = true;
     },
@@ -68,7 +55,7 @@ export const useUserStore = defineStore('user', {
     getUserData: (state) => state.userData,
   },
   // 持久化存储
-   persist:{
+  persist: {
     storage: localStorage,//指定需要的本地存储方式
   }
   // persist:{

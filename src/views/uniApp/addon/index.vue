@@ -7,10 +7,45 @@
       <p>1.mescrol</p>
       <p>mescroll的uni版本, 是在 uni-app 运行的下拉刷新和上拉加载的组件</p>
       <p>官方文档：<a>https://www.mescroll.com/uni.html</a></p>
+      <p>2.监听scroll-view滚动条的上下滚动状态</p>
+      <ZJCodeDisplay :code="vueCode" language="vue" />
     </ZJMain>
   </div>
 </template>
 
 <script setup>
+const vueCode = ref(`
 
+<scroll-view scroll-y @scroll="handleScroll">
+  // 主要内容
+  <view class="comment">
+    // 次要内容	当滚动出现此内容显示在可视窗口的时候，执行的逻辑
+  </view>
+</scroll-view>
+
+handleScroll(event) {
+    const scrollHeight = event.detail.scrollHeight
+    const scrollTop = event.detail.scrollTop;
+    const scrollBottom = scrollHeight - scrollTop - 500
+    // console.log('xsdasdasd:', event.detail);
+    // console.log('距离底部:', scrollBottom);
+    
+    this.$u.getRect('.comment').then(rect => {
+      const talkHeight = rect.height
+      // console.log("asdasd",rect)
+      if(scrollBottom<talkHeight){
+        this.onViewScroll()
+        // console.log('距离底部:', scrollBottom);
+        this.showComment = true;
+        this.showCommentInput = true;
+        this.$emit("showCommentInput", this.showCommentInput);
+      }else{
+        this.showComment = false;
+        this.showCommentInput = false
+        this.$emit("showCommentInput", this.showCommentInput);
+      }
+    })
+    
+  },
+`)
 </script>

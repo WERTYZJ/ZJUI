@@ -258,6 +258,12 @@ const routes = [
     component: () => import('@/views/message/index.vue')
   },
   {
+    path: '/friendChains',
+    name: '宝藏网站',
+    meta: { icon: 'notice' },
+    component: () => import('@/views/friendChains/index.vue')
+  },
+  {
     path: '/info',
     name: '个人中心',
     meta: { icon: 'selfInfo' },
