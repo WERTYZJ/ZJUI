@@ -24,7 +24,7 @@
         <!-- <a>After cropping</a> -->
         <a>裁剪预览</a>
         <div class="afterCropper">
-          <ZJSvgIcons icon="avatar" style="height:100px;width: 100px;border-radius: 50%;position: absolute; z-index:0"></ZJSvgIcons>
+          <ZJSvgIcons icon="avatar" style="height:120px;width: 120px;border-radius: 50%;position: absolute; z-index:0"></ZJSvgIcons>
           <img :src="CutImg" style="z-index:1;" />
         </div>
       </div>
@@ -203,12 +203,13 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+  border-radius: 50%;
 }
 
 .afterCropper img {
   width: 120px;
   height: 120px;
-  overflow: hidden;
   border-radius: 50%;
 }
 

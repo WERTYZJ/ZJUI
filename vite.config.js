@@ -17,6 +17,7 @@ export default defineConfig({
       dts: true // 生成自动导入的类型声明文件
     })
   ],
+
   resolve: {
     alias: {
       "~": fileURLToPath(new URL("./", import.meta.url)),
@@ -24,10 +25,21 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'), // 确保别名配置正确
     }
   },
+
+  // Terser压缩配置
+  terserOptions: {
+    compress: {
+      drop_console: true,  // 移除console
+      drop_debugger: true  // 移除debugger
+    },
+    format: {
+      comments: false // 移除注释
+    }
+  },
+
   server: {
-    // 服务启动时是否自动打开浏览器
-    open: true,
-    port: 5200, // 保持原有端口
+    open: true,// 服务启动时是否自动打开浏览器
+    port: 5200,
     // 本地跨域代理 -> 代理到服务器的接口地址
     // proxy: {
     //   "/api": {
@@ -38,8 +50,10 @@ export default defineConfig({
     //   },
     // },
   },
+
   build: {
     outDir: 'dist', // 保持原有输出目录
+    assetsDir: 'assets', // 静态资源目录
     assetsInlineLimit: 4096 // 调整资源内联阈值
   }
 })

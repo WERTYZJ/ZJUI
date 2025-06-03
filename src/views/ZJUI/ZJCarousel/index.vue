@@ -25,21 +25,21 @@
 
 const CarouselVal  = ref([
   { 
-    img:'https://c-ssl.dtstatic.com/uploads/blog/202304/15/20230415081411_f2e46.thumb.400_0.jpg',
+    img:'/src/assets/images/logo/logo.png',
     name: "Duff", 
     rate:2.3,
     lessons:'English,Spanish,French',
     content: "The teacher's English pronunciation is very standard and the teaching is excellent." 
   },
   { 
-    img:'https://c-ssl.dtstatic.com/uploads/blog/202304/15/20230415081411_f2e46.thumb.400_0.jpg',
+    img:'/src/assets/images/logo/logo.png',
     name: "ZhangJian", 
     rate:4.9,
     lessons:'English,Spanish,French',
     content: "The teacher's English pronunciation is very standard and the teaching is excellent." 
   },
   { 
-    img:'https://c-ssl.dtstatic.com/uploads/blog/202304/15/20230415081411_f2e46.thumb.400_0.jpg',
+    img:'/src/assets/images/logo/logo.png',
     name: "LiNaNa", 
     rate:3.5,
     lessons:'English,Spanish,French',

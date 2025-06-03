@@ -1,8 +1,8 @@
 <template>
   <div class="barMain">
-    <div class="bar-l">
+    <div class="bar-l" ref="barContainer">
       <div :class="{ 'barBox': true, 'barBoxActive': showbarBoxActive === i.path }" v-for="(i, index) in barData"
-          :key="index" @click="openRouter(i.path)">
+          :key="index" @click="openRouter(i.path,index,$event)" ref="barBoxes">
           <ZJSvgIcons :icon="i.icon" height="18px" width="18px"></ZJSvgIcons>
           <a style="display:flex;min-width: fit-content;">{{ i.name }}</a>
           <div class="barBorClose" v-if="i.name != 'home' && userStore.layout.showHeaderSildebarOpen"
@@ -19,7 +19,7 @@
 </template>
 
 <script setup name="ZJHeaderBar">
-import { ref, watch } from "vue";
+import { onMounted, ref, watch } from "vue";
 import fullScreenRouter from "./components/fullScreenRouter.vue"
 import reloadRoutre from "./components/reloadRouter.vue";
 import { useRouter, useRoute } from 'vue-router';
@@ -55,7 +55,43 @@ const closeRouter = (index) => {
     // console.log('打印当前激活的路由记录:', route)
 };
 
-const openRouter = (path) => {
+const openRouter = (path,index,event) => {
+    const target = event.currentTarget
+    // 调用判断函数
+    const isVisible = isElementVisibleInParent(target)
+    const element = barBoxes.value[index]
+    // 方法1：获取计算样式（推荐）
+    // const computedStyle = window.getComputedStyle(element)
+    // const elWidth = parseFloat(computedStyle.width) || 0;
+    // 方法2：获取布局尺寸（包含边框/内边距）
+    // const rect = element.getBoundingClientRect()
+    // const layoutWidth = rect.width
+    // console.log("width",elWidth)
+    // console.log('当前元素可视状态:', isVisible ? '可见' : '不可见')
+    // 获取元素宽度和位置信息
+    const rect = element.getBoundingClientRect()
+    const parentRect = barContainer.value.getBoundingClientRect()
+    const parentScroll = barContainer.value
+   // 仅当不可见时执行滚动
+    if (!isVisible) {
+        // 计算滚动方向
+        const isRightOverflow = rect.right > parentRect.right
+        const isLeftOverflow = rect.left < parentRect.left
+    
+        // 计算滚动距离（带边界保护）
+        let scrollDistance = 0
+        if (isRightOverflow) {
+            scrollDistance = (rect.right - parentRect.right)*2 + 20 // 右侧溢出时右滚
+        } else if (isLeftOverflow) {
+            scrollDistance = -(parentRect.left*2 - rect.left + 20) // 左侧溢出时左滚
+        }
+    
+        // 执行滚动（添加平滑过渡）
+        parentScroll.scrollTo({
+            left: parentScroll.scrollLeft + scrollDistance,
+            behavior: 'smooth'
+        })
+    }
     router.push(`${path}`)
     // 打印完整路由配置
     // console.log('打印完整路由配置:', router.options.routes)
@@ -96,7 +132,6 @@ watch(
 )
 
 //上下导航存在时的函数
-
 watch(() => userStore.layout.showHeaderSildebarOpen, (val) => {
     let names = new Set();
     barData.value.forEach((i) => {
@@ -145,6 +180,36 @@ watch(() => userStore.layout.showHeaderSildebarOpen, (val) => {
     }
 )
 
+// 判断可视化
+const barContainer = ref(null)
+const barBoxes = ref([])
+ 
+// 判断元素是否在父容器内可见
+const isElementVisibleInParent = (child) => {
+  if (!barContainer.value || !child) return false
+ 
+  const parentRect = barContainer.value.getBoundingClientRect()
+  const childRect = child.getBoundingClientRect()
+ 
+  // 转换坐标系到父容器
+  const parentTop = parentRect.top + window.scrollY
+  const parentLeft = parentRect.left + window.scrollX
+ 
+  // 计算相对位置
+  const relativeTop = childRect.top - parentTop
+  const relativeBottom = relativeTop + childRect.height
+  const relativeLeft = childRect.left - parentLeft
+  const relativeRight = relativeLeft + childRect.width
+ 
+  // 判断条件
+  return (
+    relativeTop >= 0 &&
+    relativeBottom <= parentRect.height &&
+    relativeLeft >= 0 &&
+    relativeRight <= parentRect.width
+  )
+}
+ 
 </script>
 
 <style scoped>

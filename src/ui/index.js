@@ -27,6 +27,7 @@ import ZJSwitch from './ZJSwitch/index.vue';
 import ZJInput from "./ZJInput/index.vue"
 // 导入函数
 import ZJMessage from "./ZJMessage/ZJMessage.js";
+import { ZJ_GetImage } from "../utils/ZJUtils.js";
 
 // 对外暴露插件对象，注册全局组件
 const components = {
@@ -69,6 +70,7 @@ const ZJUI = {
     });
     // 注册 ZJMessage 为全局方法
     app.config.globalProperties.$ZJMessage = ZJMessage;
+    app.config.globalProperties.$ZJ_GetImage = ZJ_GetImage;
   }
 };
 
