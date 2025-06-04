@@ -7,7 +7,7 @@
       <div class="main">
         <div class="main-box" v-for="(i, index) in frendlyChains" :key="index">
           <div class="left">
-            <img :src="i.icon" alt="icon">
+            <img :src="i.img || i.icon" @error="errorImg" alt="icon">
           </div>
           <div class="right">
             <div class="right-title" :style="{ color: `${i.titleColor}` }">{{ i.title }}</div>
@@ -24,22 +24,28 @@ const frendlyChains = ref([
   {
     icon: '/ZJUI.png',
     title: "Green Video",
-    titleColor: "green",
+    titleColor: "#36ad6a",
     content: "GreenVideo的使用是完全免费的，在这里你们能够将视频网址输入此地并下载视频。"
   },
   {
     icon: '/ZJUI.png',
-    title: "Green Video",
-    titleColor: "green",
-    content: "GreenVideo的使用是完全免费的，在这里你们能够将视频网址输入此地并下载视频。"
+    img: 'https://sqlpub.com/logo.svg',
+    title: "SQLPub",
+    titleColor: "#7F56D9",
+    content: "SQLPub 提供最新版本、甚至是开发者版本的 MySQL 服务器测试服务。"
   },
   {
     icon: '/ZJUI.png',
-    title: "Green Video",
-    titleColor: "green",
-    content: "GreenVideo的使用是完全免费的，在这里你们能够将视频网址输入此地并下载视频。"
+    img: 'https://tools.pdf24.org/static/img/pageIcons/svg/default.svg?v=5cae54fd',
+    title: "https://tools.pdf24.org/zh/",
+    titleColor: "#4098fc",
+    content: "免费且易于使用的在线PDF工具。"
   },
 ])
+
+const errorImg = (event) => {
+  event.target.src = '/ZJUI.png'
+}
 </script>
 
 <style scoped>
@@ -56,7 +62,7 @@ const frendlyChains = ref([
   gap: 20px;
   padding: 20px;
   background-color: var(--ZJ-main-hover);
-  border-radius:var(--ZJ-main-border-radius-10);
+  border-radius: var(--ZJ-main-border-radius-10);
 }
 
 .left {
@@ -68,7 +74,7 @@ const frendlyChains = ref([
 .left img {
   height: 40px;
   width: 40px;
-   border-radius:var(--ZJ-main-border-radius-10);
+  border-radius: var(--ZJ-main-border-radius-10);
 }
 
 .right {

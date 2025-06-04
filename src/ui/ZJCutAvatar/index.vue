@@ -24,7 +24,8 @@
         <!-- <a>After cropping</a> -->
         <a>裁剪预览</a>
         <div class="afterCropper">
-          <ZJSvgIcons icon="avatar" style="height:120px;width: 120px;border-radius: 50%;position: absolute; z-index:0"></ZJSvgIcons>
+          <ZJSvgIcons icon="avatar" style="height:120px;width: 120px;border-radius: 50%;position: absolute; z-index:0">
+          </ZJSvgIcons>
           <img :src="CutImg" style="z-index:1;" />
         </div>
       </div>
@@ -67,7 +68,7 @@ export default {
       if (this.$refs.image) {
         this.myCropper = new Cropper(this.$refs.image, {
           viewMode: 1,
-          dragMode: 'none',  // 修正拼写错误 dragNode -> dragMode
+          dragMode: 'none',
           initialAspectRatio: 1,
           aspectRatio: 1,
           background: false,

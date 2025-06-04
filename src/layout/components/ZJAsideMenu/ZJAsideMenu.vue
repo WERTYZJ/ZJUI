@@ -5,6 +5,7 @@
       <AsideMenuItem v-for="(item, index) in menu" :key="index" :item="item" :clickSelectedIndex="clickSelectedIndex"
         :index="index" />
     </div>
+    <AsideMenuWeather></AsideMenuWeather>
   </div>
 </template>
 
@@ -14,6 +15,7 @@ import router from '@/router';
 import ZJLogo from './components/asideTopLogo.vue';
 import { useUserStore } from '@/store';
 import AsideMenuItem from './components/asideMenuItem.vue';
+import AsideMenuWeather from './components/asideMenuWeather.vue';
 
 
 const userStore = useUserStore();
@@ -116,7 +118,7 @@ a {
   flex-direction: column;
   overflow-y: auto;
   overflow-x: hidden;
-  max-height: calc(100vh - 56px);
+  max-height: calc(100vh - 56px - 120px);
 }
 
 .menuMain::-webkit-scrollbar {

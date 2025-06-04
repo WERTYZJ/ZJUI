@@ -1,17 +1,18 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/ZJUI.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- 字体 -->
-    <!-- <link rel="preload" as="style" crossorigin href="https://fontsapi.zeoseven.com/388/main/result.css"
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/ZJUI.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- 字体 -->
+  <!-- <link rel="preload" as="style" crossorigin href="https://fontsapi.zeoseven.com/388/main/result.css"
       onload="this.rel='stylesheet'" onerror="this.href='https://fontsapi-storage.zeoseven.com/388/main/result.css'" />
     <noscript>
       <link rel="stylesheet" href="https://fontsapi.zeoseven.com/388/main/result.css" />
     </noscript> -->
-    <title>ZJ-UI</title>
-    <style>
+  <title>ZJ-UI</title>
+  <style>
     /* body {
       font-family: "Nowar Neo Sans CN UI";
       font-weight: normal;
@@ -138,16 +139,17 @@
       animation-delay: -0.1s;
     }
   </style>
-  </head>
-  <body>
-    <div id="loader" class="box">
+</head>
+
+<body>
+  <div id="loader" class="box">
     <div class="center">
-      <div style="margin-right: 10px;">
+      <div>
         <svg viewBox="25 25 50 50" class="container">
           <circle cx="50" cy="50" r="20" class="loader"></circle>
         </svg>
       </div>
-      <div style="margin-left: 10px;">
+      <div>
         <p class="text">
           <span class="letter letter1">L</span>
           <span class="letter letter2">o</span>
@@ -164,18 +166,19 @@
     </div>
 
   </div>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
-    <script>
-      document.onreadystatechange = function () {
-        if (document.readyState !== "complete") {
-          document.querySelector("body").style.visibility = "hidden";
-          document.querySelector("#loader").style.visibility = "visible";
-        } else {
-          document.querySelector("#loader").style.display = "none";
-          document.querySelector("body").style.visibility = "visible";
-        }
-      };
-    </script>
-  </body>
+  <div id="app"></div>
+  <script type="module" src="/src/main.js"></script>
+  <script>
+    document.onreadystatechange = function () {
+      if (document.readyState !== "complete") {
+        document.querySelector("body").style.visibility = "hidden";
+        document.querySelector("#loader").style.visibility = "visible";
+      } else {
+        document.querySelector("#loader").style.display = "none";
+        document.querySelector("body").style.visibility = "visible";
+      }
+    };
+  </script>
+</body>
+
 </html>

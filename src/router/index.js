@@ -260,7 +260,7 @@ const routes = [
   {
     path: '/friendChains',
     name: '宝藏网站',
-    meta: { icon: 'notice' },
+    meta: { icon: 'webSet' },
     component: () => import('@/views/friendChains/index.vue')
   },
   {
@@ -268,12 +268,6 @@ const routes = [
     name: '个人中心',
     meta: { icon: 'selfInfo' },
     component: () => import('@/views/info/index.vue')
-  },
-  {
-    path: '/set',
-    name: '设置',
-    meta: { icon: 'set' },
-    component: () => import('@/views/set/index.vue')
   },
   // {
   //   path: '/InProcess/:roomID',

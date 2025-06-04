@@ -47,20 +47,19 @@ handleScroll(event) {
         this.$emit("showCommentInput", this.showCommentInput);
       }
     })
-    
-  },
+  }
 `)
 
 const vueCode3 = ref(`
 //获取整个页面的高度，从而计算出页面可用的高度，因为使用了自定义的navbar所以this.pageHeight不是单纯的res.windowHeight。（ps: uview组件的navbar高度是固定的44px,不包括statusBarHeight）
-			uni.getSystemInfo({
-				success: (res) => {
-					let bottomArea = 0;
-					if (res.safeAreaInsets && res.safeAreaInsets.bottom) {
-						bottomArea = res.safeAreaInsets.bottom;
-					}
-					this.height = (res.windowHeight - res.statusBarHeight - 44) + 'px';
-				}
-			})
+  uni.getSystemInfo({
+    success: (res) => {
+      let bottomArea = 0;
+      if (res.safeAreaInsets && res.safeAreaInsets.bottom) {
+        bottomArea = res.safeAreaInsets.bottom;
+      }
+      this.height = (res.windowHeight - res.statusBarHeight - 44) + 'px';
+    }
+  })
 `)
 </script>
