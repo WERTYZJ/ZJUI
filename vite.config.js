@@ -41,14 +41,19 @@ export default defineConfig({
     open: true,// 服务启动时是否自动打开浏览器
     port: 5200,
     // 本地跨域代理 -> 代理到服务器的接口地址
-    // proxy: {
-    //   "/api": {
-    //     target: env.VITE_API_BASE_URL, // 后台服务器地址
-    //     changeOrigin: true, // 是否允许不同源
-    //     secure: false, // 支持https
-    //     rewrite: (path) => path.replace(/^\/api/, ""),
-    //   },
-    // },
+    proxy: {
+      // "/api": {
+      //   target: env.VITE_API_BASE_URL, // 后台服务器地址
+      //   changeOrigin: true, // 是否允许不同源
+      //   secure: false, // 支持https
+      //   rewrite: (path) => path.replace(/^\/api/, ""),
+      // },
+      '/api/tianqi': {
+        target: 'https://whyta.cn',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api\/tianqi/, '/api/tianqi'), // Path rewrite
+      }
+    },
   },
 
   build: {

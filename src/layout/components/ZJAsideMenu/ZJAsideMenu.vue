@@ -118,7 +118,7 @@ a {
   flex-direction: column;
   overflow-y: auto;
   overflow-x: hidden;
-  max-height: calc(100vh - 56px - 120px);
+  height: calc(100vh - 56px - 140px);
 }
 
 .menuMain::-webkit-scrollbar {
