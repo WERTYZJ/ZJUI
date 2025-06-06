@@ -32,8 +32,9 @@
 
 <script setup>
 import axios from "axios";
-import { ref,getCurrentInstance,onMounted } from "vue";
+import { ref, getCurrentInstance, onMounted } from "vue";
 import { useUserStore } from '@/store';
+import { getWeather } from "@/api/modules/silderBar";
 
 const userStore = useUserStore();
 const { appContext } = getCurrentInstance();
@@ -67,7 +68,7 @@ onMounted(() => {
 //       const latitude = position.coords.latitude;   // 纬度
 //       const longitude = position.coords.longitude; // 经度
 //       const accuracy = position.coords.accuracy;   // 精度（米）
-      
+
 //       console.log("当前位置：", {
 //         latitude,
 //         longitude,
@@ -118,14 +119,14 @@ onMounted(() => {
 //   );
 // }
 
- // 根据坐标获取城市信息
+// 根据坐标获取城市信息
 // async function getCityFromCoords(lat, lng) {  
 //   try {
 //       // 使用Nominatim API进行反向地理编码
 //       const response = await fetch(
 //           `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=10&addressdetails=1`
 //       );
-      
+
 //       if (!response.ok) {
 //         $ZJMessage({
 //           type: 'error',
@@ -133,9 +134,9 @@ onMounted(() => {
 //           duration: 2000,
 //         });
 //       }
-      
+
 //       const data = await response.json();
-      
+
 //       // 检查是否有地址信息
 //       if (!data.address) {
 //         $ZJMessage({
@@ -144,10 +145,10 @@ onMounted(() => {
 //           duration: 2000,
 //         });
 //       }
-      
+
 //       // 提取地址信息
 //       const address = data.address;
-      
+
 //       // 确定城市名称（不同地区可能有不同字段）
 //       const cityName = 
 //           address.city || 
@@ -168,25 +169,20 @@ onMounted(() => {
 // }
 
 const getWeatherData = () => {
-  const params ={
+  const params = {
     key: '36de5db81215',
-    city:city.value,
+    city: city.value,
   }
-  // https://whyta.cn/api/tianqi
-  axios({
-    method: 'get',
-    url: '/api/tianqi',
-    params:params,
-  })
+  getWeather(params)
     .then(res => {
       // console.log(res.data)
       if (res.data.status == 1) {
-        const a =res.data.lives[0]
+        const a = res.data.lives[0]
         weather.value = a.weather;
         const dateObj = new Date(a.reporttime);
         const formattedObj = `${(dateObj.getMonth() + 1).toString().padStart(2, '0')}/${dateObj.getDate().toString().padStart(2, '0')}`;
         time.value = formattedObj
-        winddirection.value =a.winddirection;
+        winddirection.value = a.winddirection;
         temperature.value = a.temperature;
         humidity.value = a.humidity
       } else {
@@ -219,39 +215,46 @@ const getWeatherData = () => {
 
 .top {
   display: flex;
-  justify-content:end;
+  justify-content: end;
   align-items: center;
 }
-.top img{
+
+.top img {
   height: 80px;
   width: 80px;
   position: absolute;
-  left:0px;
-  top:-10px;
+  left: 0px;
+  top: -10px;
 }
-.top-temperature{
+
+.top-temperature {
   font-size: 18px;
-  margin-top:10px;
+  margin-top: 10px;
   font-weight: bold;
 }
+
 .bottom {
   display: flex;
   justify-content: space-between;
 }
-.bottom-left{
+
+.bottom-left {
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
-.bottom-right{
+
+.bottom-right {
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
+
 span {
   color: var(--ZJ-main-message-color);
 }
-.main-2{
+
+.main-2 {
   background-color: var(--ZJ-default-main);
   display: flex;
   flex-direction: column;
@@ -262,19 +265,22 @@ span {
   border-radius: var(--ZJ-main-border-radius-10);
   position: relative;
 }
-.top-2{
+
+.top-2 {
   display: flex;
   flex-direction: column;
-  gap:5px;
+  gap: 5px;
 }
-.top-2 img{
-  height:50px;
+
+.top-2 img {
+  height: 50px;
   width: 50px;
   position: absolute;
-  top:-8px;
-  left:0px;
+  top: -8px;
+  left: 0px;
 }
-.top-2-span1{
-  margin-top:27px;
+
+.top-2-span1 {
+  margin-top: 27px;
 }
 </style>

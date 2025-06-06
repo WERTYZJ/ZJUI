@@ -3,7 +3,7 @@ import axios from 'axios'
 // src/someModule.js
 import store from '@/store'
 import router from '@/router'
-import {getCurrentInstance} from '@/vue'
+import { getCurrentInstance } from '@/vue'
 
 const ZJUI_BASE_API_URL = import.meta.env.VITE_ZJUI_BASE_API_URL
 

@@ -2,7 +2,7 @@
   <div>
     <ZJMain>
       <template #header>
-        <h2>宝藏网站</h2>
+        <h2>学习链接</h2>
       </template>
       <div class="main">
         <div class="main-box" v-for="(i, index) in frendlyChains" :key="index" @click="handelBox(path)">
@@ -24,34 +24,19 @@
 const frendlyChains = ref([
   {
     icon: '/ZJUI.png',
-    title: "Green Video",
-    titleColor: "#36ad6a",
-    path: 'https://greenvideo.cc/',
-    content: "GreenVideo的使用是完全免费的，在这里你们能够将视频网址输入此地并下载视频。"
-  },
-  {
-    icon: '/ZJUI.png',
-    img: 'https://sqlpub.com/logo.svg',
-    title: "SQLPub",
-    titleColor: "#7F56D9",
-    path: 'https://www.sqlpub.com/',
-    content: "SQLPub 提供最新版本、甚至是开发者版本的 MySQL 服务器测试服务。"
-  },
-  {
-    icon: '/ZJUI.png',
-    img: 'https://tools.pdf24.org/static/img/pageIcons/svg/default.svg?v=5cae54fd',
-    title: "PDF24",
+    img: '',
+    title: "JWT",
     titleColor: "#4098fc",
-    path: 'https://tools.pdf24.org/zh/',
-    content: "免费且易于使用的在线PDF工具。"
+    path: 'https://blog.51cto.com/u_16175478/12761202',
+    content: "在Java中，JWT(JSON Web Token) 常用来身份校验和信息交换，增强安全性。"
   },
   {
     icon: '/ZJUI.png',
     img: '',
-    title: "得奇小说网",
-    titleColor: "#de576d",
-    path: 'https://www.deqixs.com/',
-    content: "免费的小说txt下载网站。"
+    title: "TS(TypeScript)",
+    titleColor: "#fcb040",
+    path: ' https://zhuanlan.zhihu.com/p/505175155',
+    content: "对比与JS，TS是JS的超集，简单的说就是在 JavaScript 的基础上加入了类型系统，让每个参数都有明确的意义，从而带来了更加智能的提示。"
   },
 ])
 
@@ -105,7 +90,5 @@ const handelBox = (path) => {
 
 .right-content {
   font-size: 14px;
-  /* overflow: hidden;
-  text-overflow: ellipsis; */
 }
 </style>

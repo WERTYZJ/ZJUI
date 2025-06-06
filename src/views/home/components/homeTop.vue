@@ -47,17 +47,17 @@ const listData = ref([
 
 const homeTopRight = ref([
   {
-    icon:new URL('@/assets/images/index/homeTop/car.svg',import.meta.url).href,
+    icon: new URL('@/assets/images/index/homeTop/car.svg', import.meta.url).href,
     centerText: "1799",
     bottomText: "预览次数",
   },
   {
-    icon:new URL('@/assets/images/index/homeTop/share.svg',import.meta.url).href,
+    icon: new URL('@/assets/images/index/homeTop/share.svg', import.meta.url).href,
     centerText: "20",
     bottomText: "分享次数",
   },
   {
-    icon:new URL('@/assets/images/index/homeTop/dollar.svg',import.meta.url).href,
+    icon: new URL('@/assets/images/index/homeTop/dollar.svg', import.meta.url).href,
     centerText: "$0",
     bottomText: "预估收益",
   },
@@ -170,17 +170,22 @@ function getTextBgColor(index) {
   color: var(--ZJ-main);
   cursor: pointer;
 }
-.left-bottom-icon{
-  animation: icon 1s ease-in-out infinite alternate;;
+
+.left-bottom-icon {
+  animation: icon 1s ease-in-out infinite alternate;
 }
 
 @keyframes icon {
-  from{
+  from {
     opacity: 0.2;
-    transform: translateX(-5px); /* 向左偏移 */
-  }to{
+    transform: translateX(-5px);
+    /* 向左偏移 */
+  }
+
+  to {
     opacity: 1;
-    transform: translateX(5px); /* 向右偏移 */
+    transform: translateX(5px);
+    /* 向右偏移 */
   }
 }
 
