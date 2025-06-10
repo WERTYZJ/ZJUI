@@ -2,6 +2,18 @@ import { http } from '@/api/utils/interceptors'
 
 
 // 登录
-export const userLogin = (params = {}) => http.get('/user/userLogin', { params: params});
+export const userLogin = (params = {}) => {
+  return http({
+    url: '/user/userLogin',
+    method: 'get',
+    params: params
+  })
+};
+
 // 用户获取个人信息
-export const getUserInfo = () => http.get('/user/getUserInfo');
+export const getUserInfo = () => {
+  return http({
+    url: '/user/getUserInfo',
+    method: 'get',
+  })
+};
