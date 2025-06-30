@@ -10,7 +10,7 @@ import { icons } from './svgIcons'; // 假设 svgIcons.js 与 ZJSvgIcons.vue 在
 const props = defineProps({
   icon: {
     type: String,
-    required: true
+    required: false
   },
   width: {
     type: String,

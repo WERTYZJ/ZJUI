@@ -1,26 +1,27 @@
 <template>
   <div>
-
-    <div class="main" v-if="userStore.isSideBarOpen">
-      <div class="top">
-        <img src="@/assets/layout/weather/1.png" alt="">
-        <span class="top-temperature">{{ temperature }} ℃</span>
-      </div>
-      <div class="bottom">
-        <div class="bottom-left">
-          <span>天气 : {{ weather }}</span>
-          <span>{{ time }}</span>
+    <Transition name="leftBar">
+      <div class="main" v-if="userStore.isSideBarOpen">
+        <div class="top">
+          <img :src="getWeatherIcon(weather)" alt="">
+          <span class="top-temperature">{{ temperature }} ℃</span>
         </div>
-        <div class="bottom-right">
-          <span>{{ winddirection }} 风</span>
-          <span>湿度 : {{ humidity }}</span>
+        <div class="bottom">
+          <div class="bottom-left">
+            <span>{{ province }} {{ weather }}</span>
+            <span>{{ time }}</span>
+          </div>
+          <div class="bottom-right">
+            <span>{{ winddirection }} 风</span>
+            <span>湿度 : {{ humidity }}</span>
+          </div>
         </div>
       </div>
-    </div>
+    </Transition>
 
     <div class="main-2" v-if="!userStore.isSideBarOpen">
       <div class="top-2">
-        <img src="@/assets/layout/weather/1.png" alt="">
+        <img :src="getWeatherIcon(weather)" alt="">
         <span class="top-2-span1">{{ temperature }}℃</span>
         <span>{{ weather }}</span>
         <span>{{ winddirection }}</span>
@@ -31,7 +32,7 @@
 </template>
 
 <script setup>
-import axios from "axios";
+
 import { ref, getCurrentInstance, onMounted } from "vue";
 import { useUserStore } from '@/store';
 import { getWeather } from "@/api/modules/silderBar";
@@ -46,6 +47,7 @@ const winddirection = ref('');
 const temperature = ref('');
 const humidity = ref('');
 const city = ref('烟台');
+const province = ref('')
 
 onMounted(() => {
   getWeatherData()
@@ -185,6 +187,7 @@ const getWeatherData = () => {
         winddirection.value = a.winddirection;
         temperature.value = a.temperature;
         humidity.value = a.humidity
+        province.value = a.province
       } else {
         $ZJMessage({
           type: 'error',
@@ -198,11 +201,78 @@ const getWeatherData = () => {
     })
 }
 
+const getWeatherIcon = (weather) => {
+  switch (weather) {
+    case '多云':
+      return new URL('@/assets/layout/weather/1.png', import.meta.url).href;
+    case '小雨':
+      return new URL('@/assets/layout/weather/2.png', import.meta.url).href;
+    case '大雨':
+      return new URL('@/assets/layout/weather/3.png', import.meta.url).href;
+    case '中雨':
+      return new URL('@/assets/layout/weather/4.png', import.meta.url).href;
+    case '雷电':
+      return new URL('@/assets/layout/weather/5.png', import.meta.url).href;
+    case '大雪':
+      return new URL('@/assets/layout/weather/6.png', import.meta.url).href;
+    case '雾':
+      return new URL('@/assets/layout/weather/7.png', import.meta.url).href;
+    case '扬沙':
+      return new URL('@/assets/layout/weather/8.png', import.meta.url).href;
+    case '沙':
+      return new URL('@/assets/layout/weather/9.png', import.meta.url).href;
+    case '霜降':
+      return new URL('@/assets/layout/weather/10.png', import.meta.url).href;
+    case '小雪':
+      return new URL('@/assets/layout/weather/11.png', import.meta.url).href;
+    case '夜晚':
+      return new URL('@/assets/layout/weather/12.png', import.meta.url).href;
+    case '夜雨':
+      return new URL('@/assets/layout/weather/13.png', import.meta.url).href;
+    case '中夜雨':
+      return new URL('@/assets/layout/weather/14.png', import.meta.url).href;
+    case '雷阵雨':
+      return new URL('@/assets/layout/weather/15.png', import.meta.url).href;
+    case '夜霜降':
+      return new URL('@/assets/layout/weather/16.png', import.meta.url).href;
+    case '夜扬沙':
+      return new URL('@/assets/layout/weather/17.png', import.meta.url).href;
+    case '夜晚':
+      return new URL('@/assets/layout/weather/18.png', import.meta.url).href;
+    case '晴':
+      return new URL('@/assets/layout/weather/19.png', import.meta.url).href;
+    case '多云2':
+      return new URL('@/assets/layout/weather/20.png', import.meta.url).href;
+    case '夜多云':
+      return new URL('@/assets/layout/weather/21.png', import.meta.url).href;
+    case '太阳雾':
+      return new URL('@/assets/layout/weather/22.png', import.meta.url).href;
+    case '雷雨':
+      return new URL('@/assets/layout/weather/23.png', import.meta.url).href;
+    case '雨雨':
+      return new URL('@/assets/layout/weather/24.png', import.meta.url).href;
+    case '晴2':
+      return new URL('@/assets/layout/weather/25.png', import.meta.url).href;
+    case '多云2':
+      return new URL('@/assets/layout/weather/26.png', import.meta.url).href;
+    case '阴':
+      return new URL('@/assets/layout/weather/27.png', import.meta.url).href;
+    case '夜晚扬尘':
+      return new URL('@/assets/layout/weather/28.png', import.meta.url).href;
+    case '龙卷风':
+      return new URL('@/assets/layout/weather/29.png', import.meta.url).href;
+    case '霜降':
+      return new URL('@/assets/layout/weather/30.png', import.meta.url).href;
+    default:
+      return new URL('@/assets/layout/weather/20.png', import.meta.url).href;
+  }
+}
+
 </script>
 
 <style scoped>
 .main {
-  background-color: var(--ZJ-default-main);
+  background-color: var(--ZJ-default-main-hover);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -248,17 +318,19 @@ const getWeatherData = () => {
   display: flex;
   flex-direction: column;
   gap: 5px;
+  align-items: flex-end;
 }
 
 span {
-  color: var(--ZJ-main-message-color);
+  color: var(--ZJ-default-main);
 }
 
 .main-2 {
-  background-color: var(--ZJ-default-main);
+  background-color: var(--ZJ-default-main-hover);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
   padding: 10px 5px;
   margin: 10px 5px;
   height: 100px;
@@ -269,6 +341,8 @@ span {
 .top-2 {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 5px;
 }
 

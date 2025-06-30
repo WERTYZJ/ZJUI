@@ -5,7 +5,7 @@
         <h2>学习链接</h2>
       </template>
       <div class="main">
-        <div class="main-box" v-for="(i, index) in frendlyChains" :key="index" @click="handelBox(path)">
+        <div class="main-box" v-for="(i, index) in frendlyChains" :key="index" @click="handelBox(i.path)">
           <div class="left">
             <img :src="i.img || i.icon" @error="errorImg" alt="icon">
           </div>

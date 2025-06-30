@@ -83,7 +83,7 @@ const { t } = useI18n();
 // 使用计算属性动态生成
 const SetZhuTi = computed(() => [
   {
-    title: t('layout.ZJSet.ThemeConfiguration'),
+    title: t('layout.ZJSet.ThemeMode.DarkSidebar'),
     value: false,
   },
   {
@@ -191,11 +191,13 @@ function acceptSwitchVal(e, index) {
         document.documentElement.style.setProperty('--ZJ-default-main-hover', '#EFF0FF');
         document.documentElement.style.setProperty('--ZJ-default-main-hover2', '#cdb0ff');
         document.documentElement.style.setProperty('--ZJ-default-main-hover3', '#e8d9ff');
+        document.documentElement.style.setProperty('--ZJ-AsideMenu-hover', '#EFF0FF');
       } else {
         document.documentElement.style.setProperty('--ZJ-default-main', '#717171');
         document.documentElement.style.setProperty('--ZJ-default-main-hover', '#f0f0f0');
         document.documentElement.style.setProperty('--ZJ-default-main-hover2', '#b5b5b5');
         document.documentElement.style.setProperty('--ZJ-default-main-hover3', '#dfdfdf');
+        document.documentElement.style.setProperty('--ZJ-AsideMenu-hover', '#f0f0f0');
       }
       break;
     case 2:

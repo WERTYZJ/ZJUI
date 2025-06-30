@@ -259,12 +259,12 @@ const routes = [
   },
   {
     path: '/friendChains',
-    name: '宝藏网站',
+    name: '工具链接',
     meta: { icon: 'webSet' },
     component: () => import('@/views/friendChains/index.vue')
   },
   {
-    path: '/friendChains',
+    path: '/studyChains',
     name: '学习链接',
     meta: { icon: 'studyChains' },
     component: () => import('@/views/studyChains/index.vue')
