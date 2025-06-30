@@ -17,16 +17,24 @@ const props = defineProps({
   placeholder: {
     type: String,
     default: '',
+  },
+  val: {
+    type: String,
+    default: '',
   }
 });
 
 const emits = defineEmits(['ZJInputVal'])
 
 watch(() => ZJInputVal.value, (newVal) => {
-  console.log("ZJInputVal", newVal)
+  // console.log("ZJInputVal", newVal)
   emits('ZJInputVal', newVal)
 })
 
+onMounted(() => {
+  // console.log("sadasd", props.val)
+  ZJInputVal.value = props.val
+})
 
 </script>
 
@@ -40,6 +48,7 @@ input {
   outline: 2px solid var(--ZJ-main-hover);
   text-indent: 10px;
   color: var(--ZJ-main-text-color);
+  font-size: 14px;
 }
 
 input:focus {
@@ -51,7 +60,7 @@ input::placeholder {
   background-repeat: no-repeat;
   background-position-x: calc(100% - 15px);
   background-position-y: center;
-  font-size: 14px;
+  /* font-size: 14px; */
   font-weight: normal;
   color: var(--ZJ-main-text-label-color);
 }

@@ -22,21 +22,21 @@ import WelcomeContributors from "./components/WelcomeContributors.vue"
 import WelcomeContributeSelfe from "./components/WelcomeContributeSelfe.vue"
 import WelcomeContribute from "./components/WelcomeContribute.vue"
 import WelcomeFooter from "@/views/welcome/components/WelcomeFooter.vue"
- 
+
 const welcomeMain = ref(null);
 const welcomeMainScrollTop = ref(0);
- 
+
 const checkElementScrollPosition = () => {
-    welcomeMainScrollTop.value = welcomeMain.value.scrollTop;
-    // console.log("元素滚动位置:", welcomeMainScrollTop.value);
+  welcomeMainScrollTop.value = welcomeMain.value.scrollTop;
+  // console.log("元素滚动位置:", welcomeMainScrollTop.value);
 }
- 
+
 onMounted(() => {
   if (welcomeMain.value) {
     welcomeMain.value.addEventListener('scroll', checkElementScrollPosition);
   }
 })
- 
+
 onUnmounted(() => {
   if (welcomeMain.value) {
     welcomeMain.value.removeEventListener('scroll', checkElementScrollPosition);
@@ -52,7 +52,7 @@ onUnmounted(() => {
   right: 0;
   bottom: 0;
   background-color: var(--ZJ-main);
-  z-index: 3;
+  z-index: 4;
   display: flex;
   justify-content: center;
   overflow-y: auto;
@@ -68,17 +68,19 @@ onUnmounted(() => {
   min-width: auto;
   margin: 0 32px;
 }
-.welcome-box-hr{
+
+.welcome-box-hr {
   border: none;
   height: 1px;
-  width:100%;
+  width: 100%;
   box-sizing: border-box;
   flex-shrink: 0;
-  background-color:var(--ZJ-main-hover);
+  background-color: var(--ZJ-main-hover);
   margin: 80px 0;
 }
+
 @media (max-width:600px) {
-  .welcome-box{
+  .welcome-box {
     margin: 0;
   }
 }

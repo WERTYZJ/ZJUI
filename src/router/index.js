@@ -1,6 +1,14 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 
 const routes = [
+  // {
+  //   path: '/login',
+  //   name: 'login',
+  //   meta: {
+  //     fullPage: true // 自定义元信息标记全屏页面
+  //   },
+  //   component: () => import('@/views/home/index.vue')
+  // },
   {
     path: '/home',
     name: 'home',
@@ -295,5 +303,15 @@ const router = createRouter({
   history: createWebHashHistory(),
   routes
 })
+
+// router.beforeEach((to, from, next) => {
+//   let token = sessionStorage.getItem('token');
+
+//   if (token || to.path === "/login") {
+//     next();
+//   } else {
+//     next("/login");
+//   }
+// })
 
 export default router

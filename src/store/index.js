@@ -8,7 +8,7 @@ let userLocalData = localData ? JSON.parse(localData) : {};
 export const useUserStore = defineStore('user', {
   state: () => ({
     // 尝试从localStorage加载用户数据，如果没有则默认为空对象
-    userData: {},
+    userData: userLocalData.userData ?? {},
     // 加载动画
     isLoading: false,
     // 侧边框

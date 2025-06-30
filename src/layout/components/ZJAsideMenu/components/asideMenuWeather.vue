@@ -239,9 +239,9 @@ const getWeatherIcon = (weather) => {
       return new URL('@/assets/layout/weather/17.png', import.meta.url).href;
     case '夜晚':
       return new URL('@/assets/layout/weather/18.png', import.meta.url).href;
-    case '晴':
-      return new URL('@/assets/layout/weather/19.png', import.meta.url).href;
     case '多云2':
+      return new URL('@/assets/layout/weather/19.png', import.meta.url).href;
+    case '晴':
       return new URL('@/assets/layout/weather/20.png', import.meta.url).href;
     case '夜多云':
       return new URL('@/assets/layout/weather/21.png', import.meta.url).href;

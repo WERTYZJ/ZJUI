@@ -1,16 +1,16 @@
 <template>
   <div class="ZJHeaderInfoBox" @click="open('openInfoHeaderBar')" ref="ZJHeaderInfoBox">
-    <a>{{ userName }}</a>
-    <img src="@/assets/images/logo/logo.png" alt="">
+    <a>{{ userStore.userData.userName }}</a>
+    <img :src="userStore.userData.userAvatar" alt="">
     <infoHeaderBar v-show="showInfoHeaderBar" class="ZJHeaderBar"></infoHeaderBar>
   </div>
 </template>
 
 <script setup>
-
+import { useUserStore } from '../../../../store';
 import infoHeaderBar from './infoHeaderBar.vue';
 
-const userName = ref('ZJUI-Admin');
+const userStore = useUserStore();
 // const userAvatar = ref('@/assetsimages/logo/logo.png')
 const showInfoHeaderBar = ref(false);
 
