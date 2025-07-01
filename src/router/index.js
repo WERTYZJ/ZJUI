@@ -24,19 +24,19 @@ const routes = [
       {
         path: '/ZJCard',
         name: 'ZJCard',
-        meta: { icon: 'card' },
+        meta: { icon: 'button' },
         component: () => import('@/views/ZJUI/ZJCard/index.vue'),
       },
       {
         path: '/ZJCodeDisplay',
         name: 'ZJCodeDisplay',
-        meta: { icon: 'copy' },
+        meta: { icon: 'button' },
         component: () => import('@/views/ZJUI/ZJCodeDisplay/index.vue'),
       },
       {
         path: '/ZJMessage',
         name: 'ZJMessage',
-        meta: { icon: 'message' },
+        meta: { icon: 'button' },
         component: () => import('@/views/ZJUI/ZJMessage/index.vue')
       },
       {
@@ -195,6 +195,20 @@ const routes = [
   },
   {
     path: '',
+    name: 'uniApp',
+    meta: { icon: 'uniApp' },
+    component: '',
+    children: [
+      {
+        path: '/listen',
+        name: '监听滚动条',
+        meta: { icon: 'uniApp' },
+        component: () => import('@/views/uniApp/listen/index.vue')
+      },
+    ]
+  },
+  {
+    path: '',
     name: 'javaScript',
     meta: { icon: 'javaScript' },
     component: '',
@@ -210,20 +224,6 @@ const routes = [
         name: 'js函数',
         meta: { icon: 'message' },
         component: () => import('@/views/javaScript/function/index.vue')
-      },
-    ]
-  },
-  {
-    path: '',
-    name: 'pinia',
-    meta: { icon: 'pinia' },
-    component: '',
-    children: [
-      {
-        path: '/Vuex-Pinia',
-        name: 'Vuex转换Pinia',
-        meta: { icon: 'javaScript' },
-        component: () => import('@/views/pinia/Vuex-Pinia/index.vue')
       },
     ]
   },
@@ -256,6 +256,12 @@ const routes = [
         name: 'vue-i18n',
         meta: { icon: 'vue' },
         component: () => import('@/views/vue/vue-i18n/index.vue')
+      },
+      {
+        path: '/Vuex-Pinia',
+        name: 'Vuex转换Pinia',
+        meta: { icon: 'pinia' },
+        component: () => import('@/views/pinia/Vuex-Pinia/index.vue')
       },
     ]
   },

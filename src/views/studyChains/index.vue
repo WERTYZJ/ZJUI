@@ -91,4 +91,16 @@ const handelBox = (path) => {
 .right-content {
   font-size: 14px;
 }
+
+@media (max-width:1200px) {
+  .main {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width:800px) {
+  .main {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
 </style>
