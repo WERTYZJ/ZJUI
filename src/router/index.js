@@ -14,10 +14,9 @@ const routes = [
  * @param {number} userType 
  */
 
-
 export const getRoutes = (userType) => {
   const routesList = {
-    0: [
+    1: [
       {
         path: '/home',
         name: 'home',
@@ -45,7 +44,7 @@ export const getRoutes = (userType) => {
         ]
       },
     ],
-    1: [
+    2: [
       {
         path: '/notice',
         name: '消息',
@@ -71,7 +70,7 @@ export const getRoutes = (userType) => {
         component: () => import('@/views/info/index.vue')
       },
     ],
-    2: [
+    3: [
       {
         path: '/home',
         name: 'home',
@@ -369,9 +368,12 @@ export const getRoutes = (userType) => {
     ]
   }
 
-  // routesList[userType].forEach(route => {
-  //   router.addRoute(route)
-  // })
+  // 添加动态路由
+  routesList[userType].forEach(route => {
+    router.addRoute(route)
+  })
+  // 添加到路由中
+  router.options.routes = [...routesList[userType]];
 
   return routesList[userType]
 }
@@ -379,7 +381,7 @@ export const getRoutes = (userType) => {
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes: getRoutes(2)
+  routes: routes
 })
 
 // router.beforeEach((to, from, next) => {

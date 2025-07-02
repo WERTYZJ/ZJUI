@@ -29,7 +29,7 @@ const menu = ref([])
 onMounted(() => {
   // menu.value = router.getRoutes();
   // 动态添加的路由不会修改router.options.routes， 
-  menu.value = router.options.routes
+  menu.value = userStore.routerList
   // console.log(router.options.routes)
 });
 

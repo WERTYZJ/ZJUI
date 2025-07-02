@@ -42,6 +42,7 @@ export const useUserStore = defineStore('user', {
       // 是否展示欢迎页面
       showWelcome: true,
     },
+    routerList: []
   }),
   actions: {
     startLoading() {

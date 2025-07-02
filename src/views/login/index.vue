@@ -10,19 +10,21 @@
       </div>
       <div class="box-main">
         <!-- <ZJButton type="info" text="注册" class="btn-login"></ZJButton> -->
+        <ZJSelect :label="userType[2].label" :options="userType" @ZJSelectVal="userTypeVal"></ZJSelect>
         <ZJButton type="default" text="登录" class="btn-login" @click="clickLogin()"></ZJButton>
+        <div class="box-footer">
+          <span>忘记密码</span>
+          <span>注册</span>
+        </div>
       </div>
-      <div class="box-footer">
-        <span>忘记密码</span>
-        <span>注册</span>
-      </div>
+
     </div>
     <div class="login-footer-img">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
         <path fill="#0099ff" fill-opacity="1" d="M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,
-                                                        864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,
-                                                        320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,
-                                                        320,288,320C192,320,96,320,48,320L0,320Z">
+                                864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,
+                                320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,
+                                320,288,320C192,320,96,320,48,320L0,320Z">
         </path>
       </svg>
     </div>
@@ -44,6 +46,23 @@ const $ZJMessage = appContext.config.globalProperties.$ZJMessage;
 const account = ref('123456');
 const password = ref('admin123');
 
+const userType = ref([
+  {
+    label: "用户",
+    value: 1,
+  },
+  {
+    label: "管理员",
+    value: 2,
+  },
+  {
+    label: "超级管理员",
+    value: 3,
+  },
+])
+
+const userTypeVal = ref(3);
+
 const clickLogin = () => {
   userStore.isLoading = true;
   setTimeout(() => {
@@ -53,13 +72,12 @@ const clickLogin = () => {
       token: 'asdsadasfdfgdfghfhfh445asd',
       userAvatar: "/logo.png",
       userName: "ZJUI-Admin",
-      userType: 0,
+      userType: userTypeVal.value,
     }
 
     // 动态添加路由
-    // const routesList = getRoutes(userStore.userData.userType);
-    // router.options.routes = [...routesList];
-    // console.log("router.options.routes", router.options.routes)
+    const list = getRoutes(userStore.userData.userType);
+    userStore.routerList = list;
 
     $ZJMessage({
       type: 'success',
@@ -107,7 +125,7 @@ const clickLogin = () => {
 .box {
   position: relative;
   width: 320px;
-  height: 400px;
+  height: 420px;
   display: flex;
   gap: 30px;
   flex-direction: column;

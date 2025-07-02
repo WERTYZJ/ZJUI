@@ -5,7 +5,7 @@ import router from './router'
 import ZJUI from './ui/index'
 import '@/styles/ZJGlobal.css'
 import i18n from './locales/i18n'
-import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
 
 const app = createApp(App)
 const pinia = createPinia();

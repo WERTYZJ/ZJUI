@@ -16,11 +16,14 @@
 
 import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router';
+import { useUserStore } from '../../../../store';
 
 const router = useRouter();
 const { t } = useI18n();
 const { appContext } = getCurrentInstance();
 const $ZJMessage = appContext.config.globalProperties.$ZJMessage;
+const userStore = useUserStore();
+
 const topMore = ref(
   [
     {
@@ -38,7 +41,9 @@ const topMore = ref(
 function HeaderTopBar(val) {
   if (val == 'Account') {
     router.push('/info')
-  } else {
+  } else if (val == 'Logout') {
+    userStore.userData = {};
+    userStore.routerList = [];
     $ZJMessage({
       type: 'success',
       message: t('info.login.loginOut'),
