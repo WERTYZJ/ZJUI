@@ -5,15 +5,12 @@ import store from '@/store'
 import router from '@/router'
 import { getCurrentInstance } from '@/vue'
 
-const ZJUI_BASE_API_URL = import.meta.env.VITE_ZJUI_BASE_API_URL
-
-
 const { appContext } = getCurrentInstance();
 const $ZJMessage = appContext.config.globalProperties.$ZJMessage;
 
 // 创建一个 Axios 实例
 export const http = axios.create({
-  baseURL: ZJUI_BASE_API_URL,
+  baseURL: import.meta.env.VITE_ZJUI_BASE_API_URL,
   timeout: 10000
 })
 

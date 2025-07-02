@@ -13,9 +13,11 @@ export const ZJ_GetImage = (path) => {
  * func是需要执行的函数
  * wait 是延迟的时间
  */
+
 // 搜索输入框：用户在输入时，连续触发 keyup 事件，只有在输入结束后才发送请求。
 // 窗口调整：用户调整浏览器窗口大小时，频繁触发 resize 事件。防抖可以确保调整结束后再执行相应操作。
 // 表单验证：用户输入表单数据时，可以用防抖来减少频繁的验证请求。
+
 export const ZJ_Debounce = (func, wait) => {
   // 保存定时器的引用
   let timeout;
