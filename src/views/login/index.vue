@@ -10,7 +10,7 @@
       </div>
       <div class="box-main">
         <!-- <ZJButton type="info" text="注册" class="btn-login"></ZJButton> -->
-        <ZJSelect :label="userType[2].label" :options="userType" @ZJSelectVal="userTypeVal"></ZJSelect>
+        <ZJSelect :label="userType[2].label" :options="userType" @ZJSelectVal="userTypeVal = $event"></ZJSelect>
         <ZJButton type="default" text="登录" class="btn-login" @click="clickLogin()"></ZJButton>
         <div class="box-footer">
           <span>忘记密码</span>
