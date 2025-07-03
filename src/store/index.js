@@ -15,6 +15,8 @@ export const useUserStore = defineStore('user', {
     isSideBarOpen: userLocalData.isSideBarOpen ?? true,
     // 初始化选中侧边框
     ZJAsideMenuNameSelect: 'home',
+    // 初始化选中路由
+    ZJAsideMenuSelectPath: '/home',
     // 初始化测边框卡片
     ZJAsideMenuCardNameSelect: null,
     // 初始化测边框卡片索引
@@ -42,6 +44,7 @@ export const useUserStore = defineStore('user', {
       // 是否展示欢迎页面
       showWelcome: true,
     },
+    // 动态路由列表
     routerList: []
   }),
   actions: {

@@ -41,7 +41,6 @@ const ifChildMenuOpen = ref(false);
 // const childMenuBoxElement = ref(null);
 
 function clickSelectedIndex(name, index, path) {
-
   // let childMenu
   // if(userStore.isSideBarOpen==true){
   //   childMenu = childMenuBoxElement.value[index];

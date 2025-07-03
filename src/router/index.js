@@ -1,4 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
+import { useUserStore } from '../store';
 
 const routes = [
   {
@@ -6,6 +7,12 @@ const routes = [
     name: 'home',
     meta: { icon: 'home' },
     component: () => import('@/views/home/index.vue')
+  },
+  {
+    path: '/info',
+    name: '个人中心',
+    meta: { icon: 'selfInfo' },
+    component: () => import('@/views/info/index.vue')
   },
 ]
 
@@ -17,12 +24,6 @@ const routes = [
 export const getRoutes = (userType) => {
   const routesList = {
     1: [
-      {
-        path: '/home',
-        name: 'home',
-        meta: { icon: 'home' },
-        component: () => import('@/views/home/index.vue')
-      },
       {
         path: '',
         name: 'javaScript',
@@ -46,12 +47,6 @@ export const getRoutes = (userType) => {
     ],
     2: [
       {
-        path: '/notice',
-        name: '消息',
-        meta: { icon: 'notice' },
-        component: () => import('@/views/message/index.vue')
-      },
-      {
         path: '/friendChains',
         name: '工具链接',
         meta: { icon: 'webSet' },
@@ -62,24 +57,12 @@ export const getRoutes = (userType) => {
         name: '学习链接',
         meta: { icon: 'studyChains' },
         component: () => import('@/views/studyChains/index.vue')
-      },
-      {
-        path: '/info',
-        name: '个人中心',
-        meta: { icon: 'selfInfo' },
-        component: () => import('@/views/info/index.vue')
-      },
+      }
     ],
     3: [
       {
-        path: '/home',
-        name: 'home',
-        meta: { icon: 'home' },
-        component: () => import('@/views/home/index.vue')
-      },
-      {
         path: '',
-        name: 'ZJUI-Home',
+        name: 'ZJUI',
         meta: { icon: 'ZJUI' },
         component: '',
         children: [
@@ -345,12 +328,6 @@ export const getRoutes = (userType) => {
         meta: { icon: 'studyChains' },
         component: () => import('@/views/studyChains/index.vue')
       },
-      {
-        path: '/info',
-        name: '个人中心',
-        meta: { icon: 'selfInfo' },
-        component: () => import('@/views/info/index.vue')
-      },
       // {
       //   path: '/InProcess/:roomID',
       //   name: 'InProcess',
@@ -368,14 +345,15 @@ export const getRoutes = (userType) => {
     ]
   }
 
+  // 添加到路由中
+  router.options.routes = [...routes, ...routesList[userType]];
+
   // 添加动态路由
-  routesList[userType].forEach(route => {
+  router.options.routes.forEach(route => {
     router.addRoute(route)
   })
-  // 添加到路由中
-  router.options.routes = [...routesList[userType]];
 
-  return routesList[userType]
+  return router.options.routes
 }
 
 
@@ -385,13 +363,20 @@ const router = createRouter({
 })
 
 // router.beforeEach((to, from, next) => {
-//   let token = sessionStorage.getItem('token');
-
-//   if (token || to.path === "/login") {
+//   // let token = sessionStorage.getItem('token');
+//   // if (token || to.path === "/login") {
+//   //   next();
+//   // } else {
+//   //   next("/login");
+//   // }
+//   const userStore = useUserStore()
+//   // 检查是否已恢复路由
+//   if (routerStore.isRoutesRestored) {
 //     next();
-//   } else {
-//     next("/login");
+//     return;
 //   }
+// });
+
 // })
 
 export default router

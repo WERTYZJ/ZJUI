@@ -137,7 +137,7 @@
   transform: translateY(-5%);
 }
 
-/* 路由跳转动画 */
+/* 路由跳转动画router3 */
 .fade-slide-leave-active,
 .fade-slide-enter-active {
   transition: all 0.4s ease-in-out;
@@ -149,6 +149,21 @@
 }
 
 .fade-slide-leave-to {
+  opacity: 1;
+  transform: translateX(30px);
+}
+
+/* 路由跳转动画router4 */
+.fade-router-enter-active {
+  transition: all 0.4s ease-in-out;
+}
+
+.fade-router-enter-from {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+
+.fade-router-leave-to {
   opacity: 1;
   transform: translateX(30px);
 }

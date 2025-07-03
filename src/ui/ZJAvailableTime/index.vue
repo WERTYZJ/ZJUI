@@ -161,4 +161,5 @@ function acceptShowDataAll(val) {
   color: #9E9E9E;
   font-size: 14px;
   margin-top: 15px;
-}</style>
+}
+</style>

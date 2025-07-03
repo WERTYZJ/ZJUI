@@ -8,10 +8,7 @@
       <p>标签名字:label="请选择日期"(不必须)</p>
       <p>使用ZJSelectTimeVal接收选择到的日期单选value数值:@ZJSelectTimeVal="ZJSelectTimeVal = $event"</p>
       <div class="ZJDisplayFlex m-t-10">
-       <ZJSelectTime
-        label="请选择具体时间"
-        @ZJSelectTimeVal="ZJSelectTimeVal = $event"
-       ></ZJSelectTime>
+        <ZJSelectTime label="请选择具体时间" @ZJSelectTimeVal="ZJSelectTimeVal = $event"></ZJSelectTime>
       </div>
       <ZJCodeDisplay :code="vueCode" language="vue" />
     </ZJMain>
@@ -19,16 +16,20 @@
 </template>
 
 <script setup>
-import { ref,watch } from "vue";
+import { ref, watch } from "vue";
 
-const ZJSelectTimeVal = ref(null);
+const ZJSelectTimeVal = ref('');
 
-watch(()=>ZJSelectTimeVal.value,(newVal)=>{
-  console.log("ZJSelectTimeVal",newVal)
-})
+watch(ZJSelectTimeVal, (newVal) => {
+  console.log("ZJSelectTimeVal", newVal)
+},
+  {
+    immediate: true
+  }
+)
 
-const vueCode=ref(
-`<template>
+const vueCode = ref(
+  `<template>
   <ZJSelectTime
     label="请选择具体时间"
     @ZJSelectTimeVal="ZJSelectTimeVal = $event"
@@ -39,8 +40,12 @@ import { ref, watch } from "vue";
 
 const ZJSelectTimeVal = ref(null);
 
-watch(()=>ZJSelectTimeVal.value,(newVal)=>{
-  console.log("ZJSelectTimeVal",newVal)
-})
+watch(ZJSelectTimeVal, (newVal) => {
+  console.log("ZJSelectTimeVal", newVal)
+},
+  {
+    immediate: true
+  }
+)
 `)
 </script>

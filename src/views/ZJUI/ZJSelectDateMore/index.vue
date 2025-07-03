@@ -9,11 +9,7 @@
       <p>使用StartTime接收选择到的起始日期:@StartTime="StartTime = $event"</p>
       <p>使用EndTime接收选择到的结束日期:@EndTime="EndTime = $event"</p>
       <div class="ZJDisplayFlex m-t-10">
-       <ZJSelectDateMore
-        label="请选择日期时间段"
-        @StartTime="StartTime = $event"
-        @EndTime="EndTime = $event"
-       ></ZJSelectDateMore>
+        <ZJSelectDateMore label="请选择日期时间段" @StartTime="StartTime = $event" @EndTime="EndTime = $event"></ZJSelectDateMore>
       </div>
       <ZJCodeDisplay :code="vueCode" language="vue" />
     </ZJMain>
@@ -21,18 +17,18 @@
 </template>
 
 <script setup>
-import { ref,watch } from "vue";
+import { ref, watch } from "vue";
 
-const StartTime = ref(null);
-const EndTime = ref(null);
+const StartTime = ref('');
+const EndTime = ref('');
 
-watch(()=>{
-  console.log("StartTime",StartTime.value)
-  console.log("EndTime",EndTime.value)
-})
+watch([StartTime, EndTime], ([startTime, endTime]) => {
+  console.log("StartTime", startTime)
+  console.log("EndTime", endTime)
+}, { immediate: true })
 
-const vueCode=ref(
-`<template>
+const vueCode = ref(
+  `<template>
   <ZJSelectDateMore
     label="请选择日期时间段"
     @StartTime="StartTime = $event"
@@ -45,9 +41,9 @@ import { ref,watch } from "vue";
 const StartTime = ref(null);
 const EndTime = ref(null);
 
-watch(()=>{
-  console.log("StartTime",StartTime.value)
-  console.log("EndTime",EndTime.value)
-})
+watch([StartTime, EndTime], ([startTime, endTime]) => {
+  console.log("StartTime", startTime)
+  console.log("EndTime", endTime)
+}, { immediate: true })
 `)
 </script>

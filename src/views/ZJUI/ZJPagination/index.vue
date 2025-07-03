@@ -10,11 +10,8 @@
       <p>每页最大数据数量:maxPageCount="20"(不必须,默认20)</p>
       <p>选择每一页面数据时,传递的页数page,数量size函数:@showPageCount="AcceptPageCount"</p>
       <div class="ZJDisplayFlex m-t-10">
-        <ZJPagination
-          everyPageCount="16"
-          maxPageCount="20"
-          allDataCount="100"
-          @showPageCount="AcceptPageCount"></ZJPagination>
+        <ZJPagination :everyPageCount="16" :maxPageCount="20" :allDataCount="100" @showPageCount="AcceptPageCount">
+        </ZJPagination>
       </div>
       <ZJCodeDisplay :code="vueCode" language="vue" />
     </ZJMain>
@@ -24,13 +21,13 @@
 <script setup>
 import { ref } from "vue";
 
-function AcceptPageCount(page,size){
-  console.log("page",page)
-  console.log("size",size)
+function AcceptPageCount(page, size) {
+  console.log("page", page)
+  console.log("size", size)
 }
 
-const vueCode=ref(
-`<template>
+const vueCode = ref(
+  `<template>
   <ZJPagination
     everyPageCount="16"
     maxPageCount="20"

@@ -15,7 +15,7 @@ const props = defineProps({
   },
   ZJTopElement: {
     type: Object, // 接收 ref 对象
-    default: null,
+    default: () => ({}),
   }
 })
 

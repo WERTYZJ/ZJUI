@@ -44,6 +44,7 @@ import "cropperjs/dist/cropper.css";
 
 export default {
   // props:['AvatarUrl'],
+  emits: ['avatarUrl'],
   data() {
     return {
       myCropper: null,

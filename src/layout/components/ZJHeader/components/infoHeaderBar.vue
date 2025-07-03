@@ -38,12 +38,31 @@ const topMore = ref(
     },
   ])
 // 头部下拉框
-function HeaderTopBar(val) {
+async function HeaderTopBar(val) {
   if (val == 'Account') {
     router.push('/info')
   } else if (val == 'Logout') {
-    userStore.userData = {};
-    userStore.routerList = [];
+    await router.push('/home');
+    // 移除动态路由
+    const removeRoutes = (routes) => {
+      routes.forEach(i => {
+        if (router.hasRoute(i.name)) {
+          router.removeRoute(i.name)
+        }
+        if (i.children && i.children.length > 0) {
+          removeRoutes(i.children)
+        }
+      })
+    }
+    removeRoutes(userStore.routerList);
+    // // 移除个人信息
+    // userStore.userData = {};
+    // // 移除持久化路由
+    // userStore.routerList = [];
+    // userStore.ZJAsideMenuNameSelect = "home";
+
+    location.reload();
+    window.localStorage.removeItem('user');
     $ZJMessage({
       type: 'success',
       message: t('info.login.loginOut'),

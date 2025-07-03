@@ -1,11 +1,12 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import App from './App.vue'
-import router from './router'
+import router, { getRoutes } from './router'
 import ZJUI from './ui/index'
 import '@/styles/ZJGlobal.css'
 import i18n from './locales/i18n'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
+import { useUserStore } from './store'
 
 const app = createApp(App)
 const pinia = createPinia();
@@ -25,5 +26,15 @@ app.use(ZJUI)
 // 挂载多语言i8n
 app.use(i18n)
 
+// 刷新页面恢复路由
+const restoreRoutes = async () => {
+  const userStore = useUserStore();
+  if (userStore.userData) {
+    await getRoutes(userStore.userData.userType || 1);
+    // 跳转到当前打开的页面
+    router.push(userStore.ZJAsideMenuSelectPath)
+  }
+}
+restoreRoutes();
 
 app.mount('#app')

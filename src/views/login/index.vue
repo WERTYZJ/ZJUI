@@ -7,10 +7,13 @@
         </div>
         <ZJInput @ZJInputVal="$event => account" placeholder="账号" :val="account"></ZJInput>
         <ZJInput @ZJInputVal="$event => password" placeholder="密码" :val="password"></ZJInput>
+        <ZJSelect :label="userType[2].label" :options="userType" @ZJSelectVal="userTypeVal = $event" :selectStyle="{
+          height: '38px', 'border-radius': '10px', outline: '2px solid var(--ZJ-main-hover)', border: 'none'
+        }">
+        </ZJSelect>
       </div>
       <div class="box-main">
         <!-- <ZJButton type="info" text="注册" class="btn-login"></ZJButton> -->
-        <ZJSelect :label="userType[2].label" :options="userType" @ZJSelectVal="userTypeVal = $event"></ZJSelect>
         <ZJButton type="default" text="登录" class="btn-login" @click="clickLogin()"></ZJButton>
         <div class="box-footer">
           <span>忘记密码</span>
@@ -21,10 +24,8 @@
     </div>
     <div class="login-footer-img">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-        <path fill="#0099ff" fill-opacity="1" d="M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,
-                                864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,
-                                320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,
-                                320,288,320C192,320,96,320,48,320L0,320Z">
+        <path fill="#0099ff" fill-opacity="1"
+          d="M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
         </path>
       </svg>
     </div>
@@ -76,8 +77,8 @@ const clickLogin = () => {
     }
 
     // 动态添加路由
-    const list = getRoutes(userStore.userData.userType);
-    userStore.routerList = list;
+    const routerList = getRoutes(userStore.userData.userType);
+    userStore.routerList = routerList;
 
     $ZJMessage({
       type: 'success',
@@ -177,5 +178,10 @@ const clickLogin = () => {
 
 span {
   font-size: 14px;
+  cursor: pointer;
+}
+
+span:hover {
+  color: var(--ZJ-default-main);
 }
 </style>

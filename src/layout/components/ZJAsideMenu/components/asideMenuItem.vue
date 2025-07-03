@@ -85,7 +85,7 @@ function updateHeight(val, type) {
 }
 
 function toggleChildMenu(name, index, path) {
-
+  userStore.ZJAsideMenuSelectPath = path;
   const selectBarName = userStore.ZJAsideMenuNameSelect;
   if (selectBarName != name) {
     childMenuHeight.value = 0;
