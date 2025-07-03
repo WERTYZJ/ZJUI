@@ -20,7 +20,7 @@
                 <img
                   v-if="item.conversationAvatarUrl == '' || item.conversationAvatarUrl == undefined || item.conversationAvatarUrl == null"
                   src="@/assets/images/logo/logo.png">
-                <img v-if="item.conversationAvatarUrl" :src="item.conversationAvatarUrl" >
+                <img v-if="item.conversationAvatarUrl" :src="item.conversationAvatarUrl">
               </div>
               <div class="user-right">
                 <div class="user-right-box">
@@ -86,19 +86,17 @@
           </div>
         </div>
       </div>
-      <div class="dia-right-load" v-show="showGetMsgLoad">
+      <!-- <div class="dia-right-load" v-show="showGetMsgLoad">
         <div class="dia-right-load-box" v-loading="loading" element-loading-background="rgba(255,255,255, 0)"></div>
-      </div>
+      </div> -->
       <div class="dia-right-main" ref="mainScroll">
         <!-- <el-scrollbar max-height="525px" ref="scrollbarRef"> -->
 
         <div v-for="(item) in msgList" :key="item.messageID" class="msg-box" ref="targetMessageRef">
           <div :class="{ 'msg-box-left': true, 'right': item.senderUserID == this.selfUserID }">
             <div class="msg-head-img">
-              <img v-if="item.senderUserID == this.showUserID"
-                :src="this.showUserAvatar">
-              <img v-if="item.senderUserID == this.selfUserID"
-                :src="this.selfAvatar">
+              <img v-if="item.senderUserID == this.showUserID" :src="this.showUserAvatar">
+              <img v-if="item.senderUserID == this.selfUserID" :src="this.selfAvatar">
             </div>
 
             <div v-if="item.type == 1" class="msg-textarea">
@@ -210,13 +208,13 @@ export default {
       ],
       // 自己相关
       selfUserID: 123456789,
-      selfAvatar:new URL('@/assets/images/logo/logo.png',import.meta.url).href,
+      selfAvatar: new URL('@/assets/images/logo/logo.png', import.meta.url).href,
       selfName: '',
       msg: '',// 消息 
       showBackList: false,
       showUserName: 'ZIUI客服1号',// 好友名字
       showUserID: 123456, //好友id
-      showUserAvatar: new URL('@/assets/images/logo/logo.png',import.meta.url).href,//好友头像
+      showUserAvatar: new URL('@/assets/images/logo/logo.png', import.meta.url).href,//好友头像
       showUserType: '',//消息类型,单聊，多聊
       ifMsgScrollTop: false,
       // 用户列表
@@ -224,7 +222,7 @@ export default {
         {
           conversationName: 'ZIUI客服1号',
           conversationID: 123456,
-          conversationAvatarUrl:this.showUserAvatar,
+          conversationAvatarUrl: this.showUserAvatar,
           type: 1,
           isPinned: true,
           orderKey: 1734586556666,
@@ -459,40 +457,40 @@ export default {
         {
           name: '置顶',
           name2: '取消置顶',
-          img:new URL('@/assets/images/ZJUI/ZJChat/mouseRight/a-1.png',import.meta.url).href,
-          img2:new URL('@/assets/images/ZJUI/ZJChat/mouseRight/a-1-2.png',import.meta.url).href,
+          img: new URL('@/assets/images/ZJUI/ZJChat/mouseRight/a-1.png', import.meta.url).href,
+          img2: new URL('@/assets/images/ZJUI/ZJChat/mouseRight/a-1-2.png', import.meta.url).href,
           value: 1
         },
         {
           name: '查看账号',
-          img:new URL('@/assets/images/ZJUI/ZJChat/mouseRight/a-2.png',import.meta.url).href,
+          img: new URL('@/assets/images/ZJUI/ZJChat/mouseRight/a-2.png', import.meta.url).href,
           value: 2
         },
         {
           name: '标记已读',
           name2: '标记未读',
-          img:new URL('@/assets/images/ZJUI/ZJChat/mouseRight/a-3.png',import.meta.url).href,
-          img2:new URL('@/assets/images/ZJUI/ZJChat/mouseRight/a-3-2.png',import.meta.url).href,
+          img: new URL('@/assets/images/ZJUI/ZJChat/mouseRight/a-3.png', import.meta.url).href,
+          img2: new URL('@/assets/images/ZJUI/ZJChat/mouseRight/a-3-2.png', import.meta.url).href,
           value: 3
         },
         {
           name: '打开独立聊天窗口',
-          img:new URL('@/assets/images/ZJUI/ZJChat/mouseRight/a-4.png',import.meta.url).href,
+          img: new URL('@/assets/images/ZJUI/ZJChat/mouseRight/a-4.png', import.meta.url).href,
           value: 4
         },
         {
           name: '设置免打扰',
-          img:new URL('@/assets/images/ZJUI/ZJChat/mouseRight/a-5.png',import.meta.url).href,
+          img: new URL('@/assets/images/ZJUI/ZJChat/mouseRight/a-5.png', import.meta.url).href,
           value: 5
         },
         {
           name: '从消息列表中删除',
-          img:new URL('@/assets/images/ZJUI/ZJChat/mouseRight/a-6.png',import.meta.url).href,
+          img: new URL('@/assets/images/ZJUI/ZJChat/mouseRight/a-6.png', import.meta.url).href,
           value: 6
         },
         {
           name: '屏蔽此人消息',
-          img:new URL('@/assets/images/ZJUI/ZJChat/mouseRight/a-7.png',import.meta.url).href,
+          img: new URL('@/assets/images/ZJUI/ZJChat/mouseRight/a-7.png', import.meta.url).href,
           value: 7
         },
       ],
@@ -501,7 +499,7 @@ export default {
         {
           name: '删除所有消息',
           name2: '',
-          img:new URL('@/assets/images/ZJUI/ZJChat/mouseRight/a-6.png',import.meta.url).href,
+          img: new URL('@/assets/images/ZJUI/ZJChat/mouseRight/a-6.png', import.meta.url).href,
           value: 1,
         },
       ],
@@ -511,33 +509,33 @@ export default {
       bottomBar: [
         {
           val: 1,
-          img:new URL('@/assets/images/ZJUI/ZJChat/Message/emo.svg',import.meta.url).href,
-          img2:new URL('@/assets/images/ZJUI/ZJChat/Message/emo-2.svg',import.meta.url).href,
+          img: new URL('@/assets/images/ZJUI/ZJChat/Message/emo.svg', import.meta.url).href,
+          img2: new URL('@/assets/images/ZJUI/ZJChat/Message/emo-2.svg', import.meta.url).href,
         },
         {
           val: 2,
-          img:new URL('@/assets/images/ZJUI/ZJChat/Message/image.svg',import.meta.url).href,
-          img2:new URL('@/assets/images/ZJUI/ZJChat/Message/image-2.svg',import.meta.url).href,
+          img: new URL('@/assets/images/ZJUI/ZJChat/Message/image.svg', import.meta.url).href,
+          img2: new URL('@/assets/images/ZJUI/ZJChat/Message/image-2.svg', import.meta.url).href,
         },
         {
           val: 3,
-          img:new URL('@/assets/images/ZJUI/ZJChat/Message/video.svg',import.meta.url).href,
-          img2:new URL('@/assets/images/ZJUI/ZJChat/Message/video-2.svg',import.meta.url).href,
+          img: new URL('@/assets/images/ZJUI/ZJChat/Message/video.svg', import.meta.url).href,
+          img2: new URL('@/assets/images/ZJUI/ZJChat/Message/video-2.svg', import.meta.url).href,
         },
         {
           val: 4,
-          img:new URL('@/assets/images/ZJUI/ZJChat/Message/audio.svg',import.meta.url).href,
-          img2:new URL('@/assets/images/ZJUI/ZJChat/Message/audio-2.svg',import.meta.url).href,
+          img: new URL('@/assets/images/ZJUI/ZJChat/Message/audio.svg', import.meta.url).href,
+          img2: new URL('@/assets/images/ZJUI/ZJChat/Message/audio-2.svg', import.meta.url).href,
         },
         {
           val: 5,
-          img:new URL('@/assets/images/ZJUI/ZJChat/Message/file.svg',import.meta.url).href,
-          img2:new URL('@/assets/images/ZJUI/ZJChat/Message/file-2.svg',import.meta.url).href,
+          img: new URL('@/assets/images/ZJUI/ZJChat/Message/file.svg', import.meta.url).href,
+          img2: new URL('@/assets/images/ZJUI/ZJChat/Message/file-2.svg', import.meta.url).href,
         },
         {
           val: 6,
-          img:new URL('@/assets/images/ZJUI/ZJChat/Message/document.svg',import.meta.url).href,
-          img2:new URL('@/assets/images/ZJUI/ZJChat/Message/document-2.svg',import.meta.url).href,
+          img: new URL('@/assets/images/ZJUI/ZJChat/Message/document.svg', import.meta.url).href,
+          img2: new URL('@/assets/images/ZJUI/ZJChat/Message/document-2.svg', import.meta.url).href,
         },
       ],
       hoverBottomBarImgSrc: null, // 用于存储当前悬停的图片 URL  
