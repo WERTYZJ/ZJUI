@@ -54,11 +54,11 @@ async function HeaderTopBar(val) {
         }
       })
     }
-    removeRoutes(userStore.routerList);
+    removeRoutes(userStore.ZJRouterList);
     // // 移除个人信息
     // userStore.userData = {};
     // // 移除持久化路由
-    // userStore.routerList = [];
+    // userStore.ZJRouterList = [];
     // userStore.ZJAsideMenuNameSelect = "home";
 
     location.reload();

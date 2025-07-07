@@ -189,11 +189,12 @@ const getWeatherData = () => {
         humidity.value = a.humidity
         province.value = a.province
       } else {
-        $ZJMessage({
-          type: 'error',
-          message: "获取天气失败！",
-          duration: 2000,
-        });
+        console.error("获取天气失败!")
+        // $ZJMessage({
+        //   type: 'error',
+        //   message: "获取天气失败！",
+        //   duration: 2000,
+        // });
         weather.value = '晴';
         const dateObj = new Date();
         const formattedObj = `${(dateObj.getMonth() + 1).toString().padStart(2, '0')}/${dateObj.getDate().toString().padStart(2, '0')}`;

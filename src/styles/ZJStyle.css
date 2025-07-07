@@ -1,7 +1,7 @@
 * {
   padding: 0;
   margin: 0;
-  scrollbar-width: 10px;
+  /* scrollbar-width: 10px; */
   -webkit-tap-highlight-color: transparent;
   cursor: default;
   /* 禁用选择 */

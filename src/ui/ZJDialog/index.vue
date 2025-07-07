@@ -50,17 +50,17 @@ const getDialogIcons = computed(() => {
   if (props.isIcon) {
     switch (props.type) {
       case 'success':
-        return new URL('@/assets/images/ZJUI/ZJDialog/success.svg',import.meta.url).href;
+        return new URL('@/assets/images/ZJUI/ZJDialog/success.svg', import.meta.url).href;
       case 'delete':
-        return new URL('@/assets/images/ZJUI/ZJDialog/delete.svg',import.meta.url).href;
+        return new URL('@/assets/images/ZJUI/ZJDialog/delete.svg', import.meta.url).href;
       case 'info':
-        return new URL('@/assets/images/ZJUI/ZJDialog/success.svg',import.meta.url).href;
+        return new URL('@/assets/images/ZJUI/ZJDialog/success.svg', import.meta.url).href;
       case 'info2':
-        return new URL('@/assets/images/ZJUI/ZJDialog/success.svg',import.meta.url).href;
+        return new URL('@/assets/images/ZJUI/ZJDialog/success.svg', import.meta.url).href;
       case 'warning':
-        return new URL('@/assets/images/ZJUI/ZJDialog/warning.svg',import.meta.url).href;
+        return new URL('@/assets/images/ZJUI/ZJDialog/warning.svg', import.meta.url).href;
       default:
-        return new URL('@/assets/images/ZJUI/ZJDialog/success.svg',import.meta.url).href;
+        return new URL('@/assets/images/ZJUI/ZJDialog/success.svg', import.meta.url).href;
     }
   }
 })
@@ -87,6 +87,11 @@ const getDialogIcons = computed(() => {
   justify-content: center;
   align-items: center;
   gap: 10px;
+}
+
+.ZJDialog-header-left img {
+  height: 40px;
+  width: 40px;
 }
 
 .title {
