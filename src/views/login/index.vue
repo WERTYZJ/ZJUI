@@ -78,7 +78,7 @@ const clickLogin = () => {
 
     // 动态添加路由
     const routerList = getRoutes(userStore.userData.userType);
-    userStore.routerList = routerList;
+    userStore.ZJRouterList = routerList;
 
     $ZJMessage({
       type: 'success',

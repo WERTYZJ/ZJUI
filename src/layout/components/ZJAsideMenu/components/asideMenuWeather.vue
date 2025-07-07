@@ -194,6 +194,14 @@ const getWeatherData = () => {
           message: "获取天气失败！",
           duration: 2000,
         });
+        weather.value = '晴';
+        const dateObj = new Date();
+        const formattedObj = `${(dateObj.getMonth() + 1).toString().padStart(2, '0')}/${dateObj.getDate().toString().padStart(2, '0')}`;
+        time.value = formattedObj
+        winddirection.value = '西南';
+        temperature.value = 32;
+        humidity.value = 20;
+        province.value = '烟台';
       }
     })
     .catch(err => {

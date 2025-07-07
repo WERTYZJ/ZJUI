@@ -1,21 +1,21 @@
 <template>
-  <div class="barMain">
-    <div class="bar-l" ref="barContainer">
-      <div :class="{ 'barBox': true, 'barBoxActive': showbarBoxActive === i.path }" v-for="(i, index) in barData"
-          :key="index" @click="openRouter(i.path,index,$event)" ref="barBoxes">
-          <ZJSvgIcons :icon="i.icon" height="18px" width="18px"></ZJSvgIcons>
-          <a style="display:flex;min-width: fit-content;">{{ i.name }}</a>
-          <div class="barBorClose" v-if="i.name != 'home' && userStore.layout.showHeaderSildebarOpen"
-              @click.stop="closeRouter(index)">
-              <ZJSvgIcons icon="close" height="18px" width="18px"></ZJSvgIcons>
+    <div class="barMain">
+        <div class="bar-l" ref="barContainer">
+            <div :class="{ 'barBox': true, 'barBoxActive': showbarBoxActive === i.path }" v-for="(i, index) in barData"
+                :key="index" @click="openRouter(i.path, index, $event)" ref="barBoxes">
+                <ZJSvgIcons :icon="i.icon" height="18px" width="18px"></ZJSvgIcons>
+                <a style="display:flex;min-width: fit-content;">{{ i.name }}</a>
+                <div class="barBorClose" v-if="i.name != 'home' && userStore.layout.showHeaderSildebarOpen"
+                    @click.stop="closeRouter(index)">
+                    <ZJSvgIcons icon="close" height="18px" width="18px"></ZJSvgIcons>
+                </div>
+            </div>
         </div>
-      </div>
+        <div class="bar-r">
+            <reloadRoutre></reloadRoutre>
+            <fullScreenRouter></fullScreenRouter>
+        </div>
     </div>
-    <div class="bar-r">
-      <reloadRoutre></reloadRoutre>
-      <fullScreenRouter></fullScreenRouter>
-    </div>
-  </div>
 </template>
 
 <script setup name="ZJHeaderBar">
@@ -28,7 +28,12 @@ import { useUserStore } from '@/store';
 const userStore = useUserStore();
 
 
-const barData = ref([])
+const barData = ref([]);
+
+onMounted(() => {
+    barData.value = userStore.ZJHeaderBarList
+})
+
 // 获取路由实例
 const routerList = useRouter()
 // 获取当前路由对象
@@ -55,7 +60,7 @@ const closeRouter = (index) => {
     // console.log('打印当前激活的路由记录:', route)
 };
 
-const openRouter = (path,index,event) => {
+const openRouter = (path, index, event) => {
     const target = event.currentTarget
     // 调用判断函数
     const isVisible = isElementVisibleInParent(target)
@@ -72,20 +77,20 @@ const openRouter = (path,index,event) => {
     const rect = element.getBoundingClientRect()
     const parentRect = barContainer.value.getBoundingClientRect()
     const parentScroll = barContainer.value
-   // 仅当不可见时执行滚动
+    // 仅当不可见时执行滚动
     if (!isVisible) {
         // 计算滚动方向
         const isRightOverflow = rect.right > parentRect.right
         const isLeftOverflow = rect.left < parentRect.left
-    
+
         // 计算滚动距离（带边界保护）
         let scrollDistance = 0
         if (isRightOverflow) {
-            scrollDistance = (rect.right - parentRect.right)*2 + 20 // 右侧溢出时右滚
+            scrollDistance = (rect.right - parentRect.right) * 2 + 20 // 右侧溢出时右滚
         } else if (isLeftOverflow) {
-            scrollDistance = -(parentRect.left*2 - rect.left + 20) // 左侧溢出时左滚
+            scrollDistance = -(parentRect.left * 2 - rect.left + 20) // 左侧溢出时左滚
         }
-    
+
         // 执行滚动（添加平滑过渡）
         parentScroll.scrollTo({
             left: parentScroll.scrollLeft + scrollDistance,
@@ -183,33 +188,33 @@ watch(() => userStore.layout.showHeaderSildebarOpen, (val) => {
 // 判断可视化
 const barContainer = ref(null)
 const barBoxes = ref([])
- 
+
 // 判断元素是否在父容器内可见
 const isElementVisibleInParent = (child) => {
-  if (!barContainer.value || !child) return false
- 
-  const parentRect = barContainer.value.getBoundingClientRect()
-  const childRect = child.getBoundingClientRect()
- 
-  // 转换坐标系到父容器
-  const parentTop = parentRect.top + window.scrollY
-  const parentLeft = parentRect.left + window.scrollX
- 
-  // 计算相对位置
-  const relativeTop = childRect.top - parentTop
-  const relativeBottom = relativeTop + childRect.height
-  const relativeLeft = childRect.left - parentLeft
-  const relativeRight = relativeLeft + childRect.width
- 
-  // 判断条件
-  return (
-    relativeTop >= 0 &&
-    relativeBottom <= parentRect.height &&
-    relativeLeft >= 0 &&
-    relativeRight <= parentRect.width
-  )
+    if (!barContainer.value || !child) return false
+
+    const parentRect = barContainer.value.getBoundingClientRect()
+    const childRect = child.getBoundingClientRect()
+
+    // 转换坐标系到父容器
+    const parentTop = parentRect.top + window.scrollY
+    const parentLeft = parentRect.left + window.scrollX
+
+    // 计算相对位置
+    const relativeTop = childRect.top - parentTop
+    const relativeBottom = relativeTop + childRect.height
+    const relativeLeft = childRect.left - parentLeft
+    const relativeRight = relativeLeft + childRect.width
+
+    // 判断条件
+    return (
+        relativeTop >= 0 &&
+        relativeBottom <= parentRect.height &&
+        relativeLeft >= 0 &&
+        relativeRight <= parentRect.width
+    )
 }
- 
+
 </script>
 
 <style scoped>
@@ -303,11 +308,11 @@ const isElementVisibleInParent = (child) => {
 
 /* 设置滚动条的宽度 */
 ::-webkit-scrollbar {
-  height:0px;
+    height: 0px;
 }
 
 /* 设置滚动条滑块的样式 */
 ::-webkit-scrollbar-thumb {
-  height: 0px;
+    height: 0px;
 }
 </style>

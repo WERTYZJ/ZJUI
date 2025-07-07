@@ -45,7 +45,9 @@ export const useUserStore = defineStore('user', {
       showWelcome: true,
     },
     // 动态路由列表
-    routerList: []
+    ZJRouterList: [],
+    // 头部导航路由列表
+    ZJHeaderBarList: [],
   }),
   actions: {
     startLoading() {

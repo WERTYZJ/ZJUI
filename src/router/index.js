@@ -1,5 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
-import { useUserStore } from '../store';
+// import { useUserStore } from '../store';
 
 const routes = [
   {
@@ -7,13 +7,7 @@ const routes = [
     name: 'home',
     meta: { icon: 'home' },
     component: () => import('@/views/home/index.vue')
-  },
-  {
-    path: '/info',
-    name: '个人中心',
-    meta: { icon: 'selfInfo' },
-    component: () => import('@/views/info/index.vue')
-  },
+  }
 ]
 
 /**
@@ -44,6 +38,12 @@ export const getRoutes = (userType) => {
           },
         ]
       },
+      {
+        path: '/info',
+        name: '个人中心',
+        meta: { icon: 'selfInfo' },
+        component: () => import('@/views/info/index.vue')
+      },
     ],
     2: [
       {
@@ -57,7 +57,13 @@ export const getRoutes = (userType) => {
         name: '学习链接',
         meta: { icon: 'studyChains' },
         component: () => import('@/views/studyChains/index.vue')
-      }
+      },
+      {
+        path: '/info',
+        name: '个人中心',
+        meta: { icon: 'selfInfo' },
+        component: () => import('@/views/info/index.vue')
+      },
     ],
     3: [
       {
@@ -317,6 +323,32 @@ export const getRoutes = (userType) => {
         component: () => import('@/views/message/index.vue')
       },
       {
+        path: '',
+        name: '题目相关',
+        meta: { icon: 'question' },
+        component: '',
+        children: [
+          {
+            path: '/单词得分结果',
+            name: '单词得分结果',
+            meta: { icon: 'question' },
+            component: () => import('@/views/question/question/index.vue'),
+          },
+          {
+            path: '/heightLight',
+            name: 'heightLight',
+            meta: { icon: 'question' },
+            component: () => import('@/views/question/heightLight/index.vue'),
+          },
+          // {
+          //   path: '/highLightSentence',
+          //   name: 'highLightSentence',
+          //   meta: { icon: 'question' },
+          //   component: () => import('@/views/question/highLightSentence/index.vue'),
+          // },
+        ]
+      },
+      {
         path: '/friendChains',
         name: '工具链接',
         meta: { icon: 'webSet' },
@@ -327,6 +359,12 @@ export const getRoutes = (userType) => {
         name: '学习链接',
         meta: { icon: 'studyChains' },
         component: () => import('@/views/studyChains/index.vue')
+      },
+      {
+        path: '/info',
+        name: '个人中心',
+        meta: { icon: 'selfInfo' },
+        component: () => import('@/views/info/index.vue')
       },
       // {
       //   path: '/InProcess/:roomID',

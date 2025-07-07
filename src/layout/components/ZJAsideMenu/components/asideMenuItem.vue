@@ -8,6 +8,10 @@
         <Transition name="leftBar">
           <a v-if="userStore.isSideBarOpen">{{ item.name }}</a>
         </Transition>
+        <!-- <ZJSvgIcons :icon="item.meta.icon" v-if="level < 1"></ZJSvgIcons>
+        <Transition name="leftBar">
+          <a v-if="userStore.isSideBarOpen" :style="{ 'margin-left': level > 1 ? '60px' : '60px' }">{{ item.name }}</a>
+        </Transition> -->
       </div>
       <ZJSvgIcons :class="{ 'ZJRotate-icon-open': isChildMenuOpen, 'ZJRotate-icon-close': !isChildMenuOpen }"
         icon="select" v-if="item.children && item.children.length && userStore.isSideBarOpen" />

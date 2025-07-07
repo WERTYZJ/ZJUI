@@ -72,7 +72,7 @@ onMounted(() => {
   }
 
   // 从根路由开始处理
-  processRoutes(userStore.routerList)
+  processRoutes(userStore.ZJRouterList)
   // processRoutes(router.getRoutes())
   // processRoutes(route.options.routes)
   // console.log("route", routeData.value)
