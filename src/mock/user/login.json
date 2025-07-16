@@ -1,6 +1,7 @@
-const login = {
+{
   "status": 200,
   "message": "操作成功",
+  "timestamp": 1745651836861,
   "data": [
     {
       "id": 14,
@@ -9,6 +10,5 @@ const login = {
       "type": 2,
       "token": "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxNCIsInN1YiI6InVzZXJUb2tlbiIsImlhdCI6MTc0NTY1MTgzNiwiZXhwIjoxNzQ1NjUxODk2fQ.r8_WWOxF_aA1yaE4laP84s2aUu_NdK5YLHsT0hWClNs"
     }
-  ],
-  "timestamp": 1745651836861
+  ]
 }

@@ -366,6 +366,20 @@ export const getRoutes = (userType) => {
         meta: { icon: 'selfInfo' },
         component: () => import('@/views/info/index.vue')
       },
+      {
+        path: '',
+        name: '系统管理',
+        meta: { icon: 'set' },
+        component: '',
+        children: [
+          {
+            path: '/system/role',
+            name: '角色管理',
+            meta: { icon: 'question' },
+            component: () => import('@/views/system/role.vue'),
+          },
+        ]
+      },
       // {
       //   path: '/InProcess/:roomID',
       //   name: 'InProcess',
@@ -397,7 +411,9 @@ export const getRoutes = (userType) => {
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes: routes
+  routes: routes,
+  // 刷新时，滚动条位置还原
+  scrollBehavior: () => ({ left: 0, top: 0 })
 })
 
 // router.beforeEach((to, from, next) => {

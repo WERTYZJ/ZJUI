@@ -172,41 +172,59 @@ onMounted(() => {
 
 const getWeatherData = () => {
   const params = {
-    key: '36de5db81215',
+    key: 'd5c296b91907',
     city: city.value,
   }
+  const weatherData = {
+    "status": 1,
+    "message": "success",
+    "data": {
+      "FeelsLikeC": "26",
+      "FeelsLikeF": "78",
+      "cloudcover": "100",
+      "humidity": "92",
+      "localObsDateTime": "2025-07-16 01:25 PM",
+      "observation_time": "05:25 AM",
+      "precipInches": "0.0",
+      "precipMM": "0.0",
+      "pressure": "998",
+      "pressureInches": "29",
+      "temp_C": "23",
+      "temp_F": "74",
+      "uvIndex": "2",
+      "visibility": "10",
+      "visibilityMiles": "6",
+      "weatherCode": "176",
+      "weatherDesc": "多云",
+      "weatherIconUrl": [],
+      "winddirection": "西北",
+      "winddirDegree": "9",
+      "windspeedKmph": "9",
+      "windspeedMiles": "6",
+      "city": "烟台"
+    }
+  }
+
+  const getWeatherData = () => {
+    const a = weatherData.data
+    weather.value = a.weatherDesc;
+    const dateObj = new Date(a.localObsDateTime);
+    const formattedObj = `${(dateObj.getMonth() + 1).toString().padStart(2, '0')}/${dateObj.getDate().toString().padStart(2, '0')}`;
+    time.value = formattedObj
+    winddirection.value = a.winddirection;
+    temperature.value = a.temp_C;
+    humidity.value = a.humidity
+    province.value = a.city
+  }
+
   getWeather(params)
     .then(res => {
       // console.log(res.data)
-      if (res.data.status == 1) {
-        const a = res.data.lives[0]
-        weather.value = a.weather;
-        const dateObj = new Date(a.reporttime);
-        const formattedObj = `${(dateObj.getMonth() + 1).toString().padStart(2, '0')}/${dateObj.getDate().toString().padStart(2, '0')}`;
-        time.value = formattedObj
-        winddirection.value = a.winddirection;
-        temperature.value = a.temperature;
-        humidity.value = a.humidity
-        province.value = a.province
-      } else {
-        console.error("获取天气失败!")
-        // $ZJMessage({
-        //   type: 'error',
-        //   message: "获取天气失败！",
-        //   duration: 2000,
-        // });
-        weather.value = '晴';
-        const dateObj = new Date();
-        const formattedObj = `${(dateObj.getMonth() + 1).toString().padStart(2, '0')}/${dateObj.getDate().toString().padStart(2, '0')}`;
-        time.value = formattedObj
-        winddirection.value = '西南';
-        temperature.value = 32;
-        humidity.value = 20;
-        province.value = '烟台';
-      }
+      getWeatherData();
     })
     .catch(err => {
       console.log('操作失败' + err);
+      getWeatherData();
     })
 }
 
