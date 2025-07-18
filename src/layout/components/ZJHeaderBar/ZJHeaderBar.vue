@@ -2,7 +2,7 @@
     <div class="barMain">
         <div class="bar-l" ref="barContainer">
             <div :class="{ 'barBox': true, 'barBoxActive': showbarBoxActive === i.path }" v-for="(i, index) in barData"
-                :key="index" @click="openRouter(i.path, index, $event)" ref="barBoxes">
+                :key="index" @click="openRouter(i.path, i.name, index, $event)" ref="barBoxes">
                 <ZJSvgIcons :icon="i.icon" height="18px" width="18px"></ZJSvgIcons>
                 <a style="display:flex;min-width: fit-content;">{{ i.name }}</a>
                 <div class="barBorClose" v-if="i.name != 'home' && userStore.layout.showHeaderSildebarOpen"
@@ -60,7 +60,7 @@ const closeRouter = (index) => {
     // console.log('打印当前激活的路由记录:', route)
 };
 
-const openRouter = (path, index, event) => {
+const openRouter = (path, name, index, event) => {
     const target = event.currentTarget
     // 调用判断函数
     const isVisible = isElementVisibleInParent(target)
@@ -98,6 +98,8 @@ const openRouter = (path, index, event) => {
         })
     }
     router.push(`${path}`)
+    userStore.ZJAsideMenuSelectPath = path;
+    userStore.ZJAsideMenuNameSelect = name;
     // 打印完整路由配置
     // console.log('打印完整路由配置:', router.options.routes)
     // 打印当前激活的路由记录
