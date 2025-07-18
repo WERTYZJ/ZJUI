@@ -23,7 +23,7 @@
         </div>
       </div>
       <div class="role-footer">
-        <ZJPagination everyPageCount="16" maxPageCount="20" allDataCount="100" @showPageCount="AcceptPageCount">
+        <ZJPagination everyPageCount="10" maxPageCount="20" :allDataCount="22" @showPageCount="AcceptPageCount">
         </ZJPagination>
       </div>
     </ZJMain>
