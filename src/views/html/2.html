@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>句子高亮背景</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: hsl(0, 87%, 94%);
+    }
+
+    .main {
+      width: 800px;
+      background: #f8f8f8;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .box a {
+      font-size: 18px;
+      line-height: 3;
+      /* padding: 8px 15px; */
+      /* margin: 5px 3px; */
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 500;
+      /* background-color: #000000cc; */
+    }
+
+    .box span {
+      font-size: 18px;
+      line-height: 3;
+      padding: 8px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 500;
+      /* background-color: #000000cc; */
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="main">
+      <div class="box" id="content">
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+    new Vue({
+      el: '#content',
+      data: {
+
+        colorArrey: [
+          { bg: "#d8f0d8", text: "#4CAF50" },
+          { bg: "#cae6fd", text: "#589be0" },
+          { bg: "#ffe3cc", text: "#FFA500" },
+          { bg: "#fbddda", text: "#FF5252" },
+        ],
+
+        textContent: `
+          <a i='1'>
+          <span i='1'>Port State Control (PSC)</span> 
+          <span i='2'>is the inspection of foreign ships</span>
+          <span i='3'>in national ports</span> 
+          <span i='4'>to verify</span>
+          <span i='5'>that the condition of the ship and its equipment</span>
+          <span i='6'>comply with the requirements of international regulations</span>
+          <span i='7'>and that the ship is manned and operated</span>
+          <span i='8'>in compliance with these rules.</span>
+          </a>
+          <a i='2'>
+          <span i='9'>Many of IMO's most important technical conventions</span> 
+          <span i='10'>contain provisions for ships to be inspected</span> 
+          <span i='11'>when they visit foreign ports to ensure that they meet IMO requirements.</span>
+          </a>
+          <a i='3'>
+          <span i='12'>These inspections were originally intended</span>
+          <span i='13'>to be a back up to flag State implementation,</span>
+          <span i='14'>but experience has shown</span>
+          <span i='15'>that they can be extremely effective,</span>
+          <span i='16'>especially if organized on a regional basis.</span>
+          </a>
+          <a i='4'>
+          <span i='17'>A ship going to a port in one country</span> 
+          <span i='18'>will normally visit other countries in the region</span>
+          <span i='19'>before embarking on its return voyage</span>
+          <span i='20'>and it is to everybody's advantage</span> 
+          <span i='21'>if inspections can be closely coordinated.</span>
+          </a>
+        `,
+        colorIndex: 1,
+      },
+      mounted() {
+        this.applyColors()
+      },
+      methods: {
+        applyColors() {
+          const container = document.getElementById('content');
+          container.innerHTML = this.textContent;
+          const as = container.querySelectorAll('span');
+
+          as.forEach(a => {
+            const i = parseInt(a.getAttribute('i'));
+
+            a.style.backgroundColor = '#cae6fd';
+            // a.style.color = '#000000';
+            // a.addEventListener('click', () => this.clickContent(i - 1));
+          });
+
+          const aas = container.querySelectorAll('a');
+
+          aas.forEach(a => {
+            const i = parseInt(a.getAttribute('i'));
+            a.addEventListener('click', () => this.clickContent(i - 1));
+          });
+        },
+        clickContent(i) {
+          console.log("ii", i)
+          const container = document.getElementById('content');
+          const a = container.querySelectorAll('a');
+          a[i].style.color = '#589be0';
+          if (i != this.colorIndex) {
+            // a[this.colorIndex].style.backgroundColor = '#cae6fd';
+            a[this.colorIndex].style.color = '#000000';
+            // a[i].style.backgroundColor = '#cae6fd';
+            a[i].style.color = '#589be0';
+          }
+
+          this.colorIndex = i
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>
