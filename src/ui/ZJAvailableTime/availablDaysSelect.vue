@@ -107,7 +107,7 @@ const sun = ref(['Sunday', ...Array(48).fill('')]);
 
 const monT = ref([]);
 function clickMon(index) {
-  if (props.type == 1) {
+  if (props.type == 1 && index > 0) {
     const a = mon.value[index];
     const timeVal = title.value[index]
     if (a == '' || a == 'false') {
@@ -125,7 +125,7 @@ function clickMon(index) {
 
 const thuT = ref([]);
 function clickThu(index) {
-  if (props.type == 1) {
+  if (props.type == 1 && index > 0) {
     const a = thu.value[index];
     const timeVal = title.value[index]
     if (a == '' || a == 'false') {
@@ -143,7 +143,7 @@ function clickThu(index) {
 
 const wedT = ref([]);
 function clickWed(index) {
-  if (props.type == 1) {
+  if (props.type == 1 && index > 0) {
     const a = wed.value[index];
     const timeVal = title.value[index]
     if (a == '' || a == 'false') {
@@ -161,7 +161,7 @@ function clickWed(index) {
 
 const tueT = ref([]);
 function clickTue(index) {
-  if (props.type == 1) {
+  if (props.type == 1 && index > 0) {
     const a = tue.value[index];
     const timeVal = title.value[index]
     if (a == '' || a == 'false') {
@@ -179,7 +179,7 @@ function clickTue(index) {
 
 const friT = ref([]);
 function clickFri(index) {
-  if (props.type == 1) {
+  if (props.type == 1 && index > 0) {
     const a = fri.value[index];
     const timeVal = title.value[index]
     if (a == '' || a == 'false') {
@@ -197,7 +197,7 @@ function clickFri(index) {
 
 const satT = ref([]);
 function clickSat(index) {
-  if (props.type == 1) {
+  if (props.type == 1 && index > 0) {
     const a = sat.value[index];
     const timeVal = title.value[index]
     if (a == '' || a == 'false') {
@@ -215,7 +215,7 @@ function clickSat(index) {
 
 const sunT = ref([]);
 function clickSun(index) {
-  if (props.type == 1) {
+  if (props.type == 1 && index > 0) {
     const a = sun.value[index];
     const timeVal = title.value[index]
     if (a == '' || a == 'false') {
