@@ -26,7 +26,7 @@ const frendlyChains = ref([
     icon: '/ZJUI.png',
     img: '',
     title: "JWT",
-    titleColor: "#4098fc",
+    titleColor: "#36ad6a",
     path: 'https://blog.51cto.com/u_16175478/12761202',
     content: "在Java中，JWT(JSON Web Token) 常用来身份校验和信息交换，增强安全性。"
   },
@@ -35,8 +35,24 @@ const frendlyChains = ref([
     img: '',
     title: "TS(TypeScript)",
     titleColor: "#fcb040",
-    path: ' https://zhuanlan.zhihu.com/p/505175155',
+    path: 'https://zhuanlan.zhihu.com/p/505175155',
     content: "对比与JS，TS是JS的超集，简单的说就是在 JavaScript 的基础上加入了类型系统，让每个参数都有明确的意义，从而带来了更加智能的提示。"
+  },
+  {
+    icon: '/ZJUI.png',
+    img: 'https://static.jyshare.com/images/favicon.ico',
+    title: "菜鸟教程",
+    titleColor: "#4098fc",
+    path: 'https://www.runoob.com/',
+    content: "菜鸟教程是一个提供各种编程语言、技术和工具的在线学习平台，涵盖了HTML、CSS、JavaScript、Python、Java、C、SQL、AI等多个领域。"
+  },
+  {
+    icon: '/ZJUI.png',
+    img: 'https://static.jyshare.com/images/favicon.ico',
+    title: "w3school",
+    titleColor: "#7F56D9",
+    path: 'https://www.w3school.com.cn/jsref/jsref_obj_math.asp',
+    content: "w3school是一个提供各种编程语言、技术和工具的在线学习平台，涵盖了HTML、CSS、JavaScript、Python、Java、C、SQL、AI等多个领域。"
   },
 ])
 

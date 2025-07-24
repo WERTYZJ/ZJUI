@@ -3,8 +3,8 @@
   <div class="ZJCodeDisplay">
     <ZJSvgIcons icon="copy" class="copyIcon" @click="handleCopy"></ZJSvgIcons>
     <pre>
-      <code class="code-display" :class="language" ref="codeBlock">{{ code }}</code>
-    </pre>
+        <code class="code-display" :class="language" ref="codeBlock">{{ code }}</code>
+      </pre>
   </div>
 </template>
 
