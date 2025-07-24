@@ -6,49 +6,49 @@
           <div class="available-body-box" v-for="i in title" :key="i">{{ i }}</div>
         </div>
         <div>
-          <div @click="clickMon(index)"
+          <div @click="clickSelectData('mon', index, 'monT')"
             :class="{ 'available-body-box': true, 'available-body-box-selected': m == 'true', 'available-body-box-false': m == '' || m == 'false' }"
             v-for="(m, index) in mon" :key="index">
             <div v-if="index < 1">{{ m }}</div>
           </div>
         </div>
         <div>
-          <div @click="clickThu(index)"
+          <div @click="clickSelectData('thu', index, 'thuT')"
             :class="{ 'available-body-box': true, 'available-body-box-selected': m == 'true', 'available-body-box-false': m == '' || m == 'false' }"
             v-for="(m, index) in thu" :key="index">
             <div v-if="index < 1">{{ m }}</div>
           </div>
         </div>
         <div>
-          <div @click="clickWed(index)"
+          <div @click="clickSelectData('wed', index, 'wedT')"
             :class="{ 'available-body-box': true, 'available-body-box-selected': m == 'true', 'available-body-box-false': m == '' || m == 'false' }"
             v-for="(m, index) in wed" :key="index">
             <div v-if="index < 1">{{ m }}</div>
           </div>
         </div>
         <div>
-          <div @click="clickTue(index)"
+          <div @click="clickSelectData('tue', index, 'tueT')"
             :class="{ 'available-body-box': true, 'available-body-box-selected': m == 'true', 'available-body-box-false': m == '' || m == 'false' }"
             v-for="(m, index) in tue" :key="index">
             <div v-if="index < 1">{{ m }}</div>
           </div>
         </div>
         <div>
-          <div @click="clickFri(index)"
+          <div @click="clickSelectData('fri', index, 'friT')"
             :class="{ 'available-body-box': true, 'available-body-box-selected': m == 'true', 'available-body-box-false': m == '' || m == 'false' }"
             v-for="(m, index) in fri" :key="index">
             <div v-if="index < 1">{{ m }}</div>
           </div>
         </div>
         <div>
-          <div @click="clickSat(index)"
+          <div @click="clickSelectData('sat', index, 'satT')"
             :class="{ 'available-body-box': true, 'available-body-box-selected': m == 'true', 'available-body-box-false': m == '' || m == 'false' }"
             v-for="(m, index) in sat" :key="index">
             <div v-if="index < 1">{{ m }}</div>
           </div>
         </div>
         <div class="uuu">
-          <div @click="clickSun(index)"
+          <div @click="clickSelectData('sun', index, 'sunT')"
             :class="{ 'available-body-box': true, 'available-body-box-selected': m == 'true', 'available-body-box-false': m == '' || m == 'false' }"
             v-for="(m, index) in sun" :key="index">
             <div v-if="index < 1">{{ m }}</div>
@@ -104,132 +104,52 @@ const fri = ref(['Friday', ...Array(48).fill('')]);
 const sat = ref(['Saturday', ...Array(48).fill('')]);
 const sun = ref(['Sunday', ...Array(48).fill('')]);
 
-
 const monT = ref([]);
-function clickMon(index) {
-  if (props.type == 1 && index > 0) {
-    const a = mon.value[index];
-    const timeVal = title.value[index]
-    if (a == '' || a == 'false') {
-      mon.value[index] = 'true';
-      monT.value.push(timeVal);
-    } else {
-      mon.value[index] = 'false';
-      const deleteIndex = monT.value.indexOf(timeVal);
-      if (deleteIndex !== -1) {
-        monT.value.splice(deleteIndex, 1);
-      }
-    }
-  }
-}
-
 const thuT = ref([]);
-function clickThu(index) {
-  if (props.type == 1 && index > 0) {
-    const a = thu.value[index];
-    const timeVal = title.value[index]
-    if (a == '' || a == 'false') {
-      thu.value[index] = 'true';
-      thuT.value.push(timeVal);
-    } else {
-      thu.value[index] = 'false';
-      const deleteIndex = thuT.value.indexOf(timeVal);
-      if (deleteIndex !== -1) {
-        thuT.value.splice(deleteIndex, 1);
-      }
-    }
-  }
-}
-
 const wedT = ref([]);
-function clickWed(index) {
-  if (props.type == 1 && index > 0) {
-    const a = wed.value[index];
-    const timeVal = title.value[index]
-    if (a == '' || a == 'false') {
-      wed.value[index] = 'true';
-      wedT.value.push(timeVal);
-    } else {
-      wed.value[index] = 'false';
-      const deleteIndex = wedT.value.indexOf(timeVal);
-      if (deleteIndex !== -1) {
-        wedT.value.splice(deleteIndex, 1);
-      }
-    }
-  }
-}
-
 const tueT = ref([]);
-function clickTue(index) {
-  if (props.type == 1 && index > 0) {
-    const a = tue.value[index];
-    const timeVal = title.value[index]
-    if (a == '' || a == 'false') {
-      tue.value[index] = 'true';
-      tueT.value.push(timeVal);
-    } else {
-      tue.value[index] = 'false';
-      const deleteIndex = tueT.value.indexOf(timeVal);
-      if (deleteIndex !== -1) {
-        tueT.value.splice(deleteIndex, 1);
-      }
-    }
-  }
-}
-
 const friT = ref([]);
-function clickFri(index) {
-  if (props.type == 1 && index > 0) {
-    const a = fri.value[index];
-    const timeVal = title.value[index]
-    if (a == '' || a == 'false') {
-      fri.value[index] = 'true';
-      friT.value.push(timeVal);
-    } else {
-      fri.value[index] = 'false';
-      const deleteIndex = friT.value.indexOf(timeVal);
-      if (deleteIndex !== -1) {
-        friT.value.splice(deleteIndex, 1);
-      }
-    }
-  }
-}
-
 const satT = ref([]);
-function clickSat(index) {
+const sunT = ref([]);
+
+const refMap = {
+  mon: mon.value,
+  monT: monT.value,
+  thu: thu.value,
+  thuT: thuT.value,
+  wed: wed.value,
+  wedT: wedT.value,
+  tue: tue.value,
+  tueT: tueT.value,
+  fri: fri.value,
+  friT: friT.value,
+  sat: sat.value,
+  satT: satT.value,
+  sun: sun.value,
+  sunT: sunT.value
+};
+
+function clickSelectData(showKey, index, selectKey) {
+
+  const showData = refMap[showKey];
+  const selectData = refMap[selectKey];
+
   if (props.type == 1 && index > 0) {
-    const a = sat.value[index];
+    const a = showData[index];
     const timeVal = title.value[index]
     if (a == '' || a == 'false') {
-      sat.value[index] = 'true';
-      satT.value.push(timeVal);
+      showData[index] = 'true';
+      selectData.push(timeVal);
     } else {
-      sat.value[index] = 'false';
-      const deleteIndex = satT.value.indexOf(timeVal);
+      showData[index] = 'false';
+      const deleteIndex = selectData.indexOf(timeVal);
       if (deleteIndex !== -1) {
-        satT.value.splice(deleteIndex, 1);
+        selectData.splice(deleteIndex, 1);
       }
     }
   }
 }
 
-const sunT = ref([]);
-function clickSun(index) {
-  if (props.type == 1 && index > 0) {
-    const a = sun.value[index];
-    const timeVal = title.value[index]
-    if (a == '' || a == 'false') {
-      sun.value[index] = 'true';
-      sunT.value.push(timeVal);
-    } else {
-      sun.value[index] = 'false';
-      const deleteIndex = sunT.value.indexOf(timeVal);
-      if (deleteIndex !== -1) {
-        sunT.value.splice(deleteIndex, 1);
-      }
-    }
-  }
-}
 
 const emits = defineEmits(['close', 'showSelectData', 'showSelectDataAll']);
 
