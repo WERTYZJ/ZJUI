@@ -349,6 +349,20 @@ export const getRoutes = (userType) => {
         ]
       },
       {
+        path: '',
+        name: '系统管理',
+        meta: { icon: 'set' },
+        component: '',
+        children: [
+          {
+            path: '/system/role',
+            name: '角色管理',
+            meta: { icon: 'question' },
+            component: () => import('@/views/system/role.vue'),
+          },
+        ]
+      },
+      {
         path: '/friendChains',
         name: '工具链接',
         meta: { icon: 'webSet' },
@@ -365,20 +379,6 @@ export const getRoutes = (userType) => {
         name: '个人中心',
         meta: { icon: 'selfInfo' },
         component: () => import('@/views/info/index.vue')
-      },
-      {
-        path: '',
-        name: '系统管理',
-        meta: { icon: 'set' },
-        component: '',
-        children: [
-          {
-            path: '/system/role',
-            name: '角色管理',
-            meta: { icon: 'question' },
-            component: () => import('@/views/system/role.vue'),
-          },
-        ]
       },
       // {
       //   path: '/InProcess/:roomID',

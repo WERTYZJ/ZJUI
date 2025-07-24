@@ -183,7 +183,7 @@ const getWeatherData = () => {
       "FeelsLikeF": "78",
       "cloudcover": "100",
       "humidity": "92",
-      "localObsDateTime": "2025-07-16 01:25 PM",
+      "localObsDateTime": new Date(),
       "observation_time": "05:25 AM",
       "precipInches": "0.0",
       "precipMM": "0.0",
