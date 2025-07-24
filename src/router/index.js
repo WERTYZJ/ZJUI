@@ -312,7 +312,13 @@ export const getRoutes = (userType) => {
             path: '/Vuex-Pinia',
             name: 'Vuex转换Pinia',
             meta: { icon: 'pinia' },
-            component: () => import('@/views/pinia/Vuex-Pinia/index.vue')
+            component: () => import('@/views/vue/Vuex-Pinia/index.vue')
+          },
+          {
+            path: '/node-nvm',
+            name: 'node版本控制',
+            meta: { icon: 'vue' },
+            component: () => import('@/views/vue/node/index.vue')
           },
         ]
       },
