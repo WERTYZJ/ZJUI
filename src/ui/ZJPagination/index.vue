@@ -23,8 +23,8 @@
       </div>
 
       <div class="right-box" v-if="this.pageCount <= 4">
-        <div :class="{ 'p-right-box': true, 'p-right-box-select': this.selectPageCount == item }" v-for="item in pageCount"
-          :key="item" @click="clickPage(item)">{{ item }}</div>
+        <div :class="{ 'p-right-box': true, 'p-right-box-select': this.selectPageCount == item }"
+          v-for="item in pageCount" :key="item" @click="clickPage(item)">{{ item }}</div>
       </div>
 
       <div class="right-box" v-if="this.pageCount > 4">
@@ -56,11 +56,11 @@ export default {
       default: null
     },
     everyPageCount: {
-      type: Number,
+      type: [String, Number],
       default: 10,
     },
     maxPageCount: {
-      type: Number,
+      type: [String, Number],
       default: null,
     },
   },
@@ -314,4 +314,5 @@ export default {
 
 .dropdown li:hover {
   background: var(--ZJ-default-main-hover);
-}</style>
+}
+</style>

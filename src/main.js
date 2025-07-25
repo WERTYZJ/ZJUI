@@ -35,6 +35,6 @@ const restoreRoutes = async () => {
     router.push(userStore.ZJAsideMenuSelectPath)
   }
 }
-restoreRoutes();
+await restoreRoutes();
 
 app.mount('#app')

@@ -89,9 +89,13 @@ function updateHeight(val, type) {
 }
 
 function toggleChildMenu(name, index, path) {
-  userStore.ZJAsideMenuSelectPath = path;
-  const selectBarName = userStore.ZJAsideMenuNameSelect;
-  if (selectBarName != name) {
+
+  if (path != '') {
+    userStore.ZJAsideMenuNameSelect = name;
+    userStore.ZJAsideMenuSelectPath = path;
+  }
+
+  if (userStore.ZJAsideMenuNameSelect != name) {
     childMenuHeight.value = 0;
   } else {
     if (userStore.isSideBarOpen == true && childMenuBoxElement.value) {
@@ -99,7 +103,7 @@ function toggleChildMenu(name, index, path) {
     }
   }
 
-  userStore.ZJAsideMenuNameSelect = name;
+
   isChildMenuOpen.value = !isChildMenuOpen.value;
 
   if (props.level == 0) {

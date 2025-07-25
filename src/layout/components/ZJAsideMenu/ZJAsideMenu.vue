@@ -34,7 +34,7 @@ onMounted(() => {
 });
 
 
-const selectedIndex = ref('home');
+const selectedIndex = ref();
 const showChildMenu = ref(0);
 const ifChildMenuOpen = ref(false);
 // const childMenuHeight = ref(0);
@@ -76,7 +76,12 @@ function handleClickOutside(event) {
 }
 
 onMounted(() => {
-  router.push(`/${selectedIndex.value}`)
+  if (userStore.ZJAsideMenuSelectPath == '') {
+    router.push('/home')
+  } else {
+    router.push(`${userStore.ZJAsideMenuSelectPath}`)
+  }
+
   document.addEventListener('click', handleClickOutside);
 });
 
