@@ -106,6 +106,9 @@ const openRouter = (path, name, index, event) => {
     // console.log('打印当前激活的路由记录:', route)
 };
 
+// 判断可视化
+const barContainer = ref(null)
+const barBoxes = ref([])
 const beforeDataList = ref([]) //保存点击前数据
 watch(
     () => route,
@@ -129,6 +132,16 @@ watch(
                 icon: val.meta.icon,
                 path: val.fullPath,
             });
+            // 点击新页面后滚动条横向滚动到最右侧
+            const container = barContainer.value;
+            nextTick(() => {
+                container.scrollLeft = container.scrollWidth;
+            });
+            console.log("container.scrollWidth", container.scrollWidth)
+            // container.scrollTo({
+            //     left: container.scrollWidth,
+            //     behavior: 'smooth'
+            // });
         }
         showbarBoxActive.value = val.path;
     },
@@ -187,9 +200,6 @@ watch(() => userStore.layout.showHeaderSildebarOpen, (val) => {
     }
 )
 
-// 判断可视化
-const barContainer = ref(null)
-const barBoxes = ref([])
 
 // 判断元素是否在父容器内可见
 const isElementVisibleInParent = (child) => {
