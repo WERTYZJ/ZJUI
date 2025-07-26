@@ -3,8 +3,8 @@
   <div class="ZJCodeDisplay">
     <ZJSvgIcons icon="copy" class="copyIcon" @click="handleCopy"></ZJSvgIcons>
     <pre>
-        <code class="code-display" :class="language" ref="codeBlock">{{ code }}</code>
-      </pre>
+              <code class="code-display" :class="language" ref="codeBlock">{{ code }}</code>
+            </pre>
   </div>
 </template>
 
@@ -85,7 +85,7 @@ onMounted(() => {
   border-radius: 5px;
   position: absolute;
   right: 6px;
-  top: 30px;
+  top: 25px;
 }
 
 .copyIcon:hover {

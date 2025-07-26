@@ -276,6 +276,12 @@ export const getRoutes = (userType) => {
             meta: { icon: 'message' },
             component: () => import('@/views/javaScript/function/index.vue')
           },
+          {
+            path: '/animation',
+            name: 'animation',
+            meta: { icon: 'message' },
+            component: () => import('@/views/javaScript/animation/index.vue')
+          },
         ]
       },
       {
@@ -319,6 +325,12 @@ export const getRoutes = (userType) => {
             name: 'node版本控制',
             meta: { icon: 'vue' },
             component: () => import('@/views/vue/node/index.vue')
+          },
+          {
+            path: '/transition',
+            name: 'transition',
+            meta: { icon: 'vue' },
+            component: () => import('@/views/vue/transition/index.vue')
           },
         ]
       },
