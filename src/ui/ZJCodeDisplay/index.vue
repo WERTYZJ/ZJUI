@@ -1,10 +1,12 @@
 <!-- eslint-disable vue/no-dupe-keys -->
 <template>
-  <div class="ZJCodeDisplay">
-    <ZJSvgIcons icon="copy" class="copyIcon" @click="handleCopy"></ZJSvgIcons>
-    <pre>
-              <code class="code-display" :class="language" ref="codeBlock">{{ code }}</code>
-            </pre>
+  <div>
+    <div class="ZJCodeDisplay">
+      <ZJSvgIcons icon="hide" class="hideIcon" @click="handleHide" height="24px" width="24px"></ZJSvgIcons>
+      <ZJSvgIcons icon="copy" class="copyIcon" @click="handleCopy"></ZJSvgIcons>
+      <div class="hideElStyle code-display" v-show="hideStates">代码已折叠，点击右侧按钮展开代码。</div>
+      <pre v-show="!hideStates"><code class="code-display" :class="language" ref="codeBlock">{{ code }}</code></pre>
+    </div>
   </div>
 </template>
 
@@ -24,12 +26,17 @@ const props = defineProps({
   language: {
     type: String,
     default: 'vue' // 默认语言
+  },
+  hideText: {
+    type: Boolean,
+    default: false
   }
 })
 
 const codeBlock = ref(null);
 
 const copied = ref(false); // 添加复制状态
+const hideStates = ref()// 添加隐藏代码状态
 
 // 复制处理函数
 const handleCopy = async () => {
@@ -54,8 +61,26 @@ const handleCopy = async () => {
   }
 };
 
+const handleHide = () => {
+  hideStates.value = !hideStates.value;
+  if (hideStates.value) {
+    $ZJMessage({
+      type: 'success',
+      message: '折叠成功！',
+      duration: 3000,
+    });
+  } else {
+    $ZJMessage({
+      type: 'success',
+      message: '展开成功！',
+      duration: 3000,
+    });
+  }
+}
+
 onMounted(() => {
   hljs.highlightElement(codeBlock.value);
+  hideStates.value = props.hideText
 });
 
 </script>
@@ -63,6 +88,7 @@ onMounted(() => {
 <style scoped>
 .ZJCodeDisplay {
   position: relative;
+  padding: 20px 0;
 }
 
 .code-display {
@@ -88,7 +114,24 @@ onMounted(() => {
   top: 25px;
 }
 
-.copyIcon:hover {
+.hideIcon {
+  background-color: var(--ZJ-main-code-copy-bg);
+  height: 20px;
+  width: 20px;
+  padding: 2px;
+  border-radius: 5px;
+  position: absolute;
+  right: 40px;
+  top: 25px;
+}
+
+.copyIcon:hover,
+.hideIcon:hover {
   color: var(--ZJ-default-main);
+}
+
+.hideElStyle {
+  width: calc(100% - 20px);
+  line-height: 18px;
 }
 </style>

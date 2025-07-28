@@ -64,7 +64,7 @@
           </div>
         </div> -->
 
-      <ZJCodeDisplay :code="vueCode" language="vue" />
+      <ZJCodeDisplay :code="vueCode" language="vue" hideText />
     </ZJMain>
   </div>
 </template>
