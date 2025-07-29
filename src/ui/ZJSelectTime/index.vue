@@ -12,21 +12,24 @@
         </div>
         <div class="main">
           <div class="main-box">
-            <div @click="HandelHour(item)" :class="{ 'main-box-select': true, 'main-box-selected': this.HourVal === item }"
-              v-for="item in Hour" :key="item"><a>{{ item }}</a></div>
+            <div @click="HandelHour(item)"
+              :class="{ 'main-box-select': true, 'main-box-selected': this.HourVal === item }" v-for="item in Hour"
+              :key="item"><a>{{ item }}</a></div>
           </div>
           <div class="main-box">
-            <div @click="HandelMinutes(item)" :class="{ 'main-box-select': true, 'main-box-selected': this.MinutesVal === item }"
-              v-for="item in Minutes" :key="item"><a>{{ item }}</a></div>
+            <div @click="HandelMinutes(item)"
+              :class="{ 'main-box-select': true, 'main-box-selected': this.MinutesVal === item }" v-for="item in Minutes"
+              :key="item"><a>{{ item }}</a></div>
           </div>
           <div class="main-box">
-            <div @click="HandelSecond(item)" :class="{ 'main-box-select': true, 'main-box-selected': this.SecondVal === item }"
-              v-for="item in Second" :key="item"><a>{{ item }}</a></div>
+            <div @click="HandelSecond(item)"
+              :class="{ 'main-box-select': true, 'main-box-selected': this.SecondVal === item }" v-for="item in Second"
+              :key="item"><a>{{ item }}</a></div>
           </div>
         </div>
         <div class="bottom">
-          <button class="bottom-left-btn" @click="Cancel()">Cancel</button>
-          <button class="bottom-right-btn" @click="selectItem()">Ok</button>
+          <button class="bottom-left-btn" @click="Cancel()">取消</button>
+          <button class="bottom-right-btn" @click="selectItem()">确定</button>
         </div>
 
       </div>
@@ -183,6 +186,7 @@ export default {
    justify-content: end;
    gap: 20px;
    padding: 10px;
+   font-size: 14px;
  }
 
  .bottom-left-btn {
@@ -306,4 +310,5 @@ export default {
  .Select-leave-to {
    opacity: 0;
    transform: translateY(-5%);
- }</style>
+ }
+</style>

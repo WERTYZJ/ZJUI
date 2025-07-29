@@ -2,7 +2,8 @@
     <div class="barMain">
         <div class="bar-l" ref="barContainer">
             <div :class="{ 'barBox': true, 'barBoxActive': showbarBoxActive === i.path }" v-for="(i, index) in barData"
-                :key="index" @click="openRouter(i.path, i.name, index, $event)" ref="barBoxes">
+                :key="index" @click="openRouter(i.path, i.name, index, $event)"
+                @click.right="openHeaderBarTools($event, index)" ref="barBoxes">
                 <ZJSvgIcons :icon="i.icon" height="18px" width="18px"></ZJSvgIcons>
                 <a style="display:flex;min-width: fit-content;">{{ i.name }}</a>
                 <div class="barBorClose" v-if="i.name != 'home' && userStore.layout.showHeaderSildebarOpen"
@@ -15,6 +16,9 @@
             <reloadRoutre></reloadRoutre>
             <fullScreenRouter></fullScreenRouter>
         </div>
+        <headerBarTools v-show="showHeaderBarTools" class="headerBarTools" @selectedBarTools="acceptBarTools"
+            :style="{ top: contextMenuTop + 'px', left: contextMenuLeft + 'px' }">
+        </headerBarTools>
     </div>
 </template>
 
@@ -25,6 +29,7 @@ import reloadRoutre from "./components/reloadRouter.vue";
 import { useRouter, useRoute } from 'vue-router';
 import router from "@/router";
 import { useUserStore } from '@/store';
+import headerBarTools from "./components/headerBarTools.vue";
 const userStore = useUserStore();
 
 
@@ -38,17 +43,23 @@ onMounted(() => {
 const routerList = useRouter()
 // 获取当前路由对象
 const route = useRoute();
-
+// 当前已经激活路由
 const showbarBoxActive = ref();
+// 是否展示当前路由工具弹窗
+const showHeaderBarTools = ref(false);
+
+const closeRouterIndex = ref();
 
 const closeRouter = (index) => {
 
     const a = barData.value;
     if ((a.length - 1) == index) {
         showbarBoxActive.value = a[index - 1].path;
+        updateStore(a[index - 1].name, a[index - 1].path);
     }
     if ((a.length - 1) > index) {
         showbarBoxActive.value = a[index + 1].path;
+        updateStore(a[index + 1].name, a[index + 1].path);
     }
     router.push(`${showbarBoxActive.value}`);
     barData.value.splice(index, 1);
@@ -98,8 +109,7 @@ const openRouter = (path, name, index, event) => {
         })
     }
     router.push(`${path}`)
-    userStore.ZJAsideMenuSelectPath = path;
-    userStore.ZJAsideMenuNameSelect = name;
+    updateStore(name, path);
     // 打印完整路由配置
     // console.log('打印完整路由配置:', router.options.routes)
     // 打印当前激活的路由记录
@@ -137,7 +147,7 @@ watch(
             nextTick(() => {
                 container.scrollLeft = container.scrollWidth;
             });
-            console.log("container.scrollWidth", container.scrollWidth)
+            // console.log("container.scrollWidth", container.scrollWidth)
             // container.scrollTo({
             //     left: container.scrollWidth,
             //     behavior: 'smooth'
@@ -227,6 +237,59 @@ const isElementVisibleInParent = (child) => {
     )
 }
 
+
+const contextMenuTop = ref(0);
+const contextMenuLeft = ref(0);
+
+const openHeaderBarTools = (event, index) => {
+
+    closeRouterIndex.value = index
+    showHeaderBarTools.value = true;
+
+    // 获取鼠标点击位置
+    const x = event.layerX;
+    const y = event.layerY;
+
+    // // 获取页面的高度
+    const pageHeight = window.innerHeight;
+
+    // // 设置弹出框位置，不超过页面底部边缘
+    const contextMenuHeight = 250
+    const adjustedTop = Math.min(y, pageHeight - contextMenuHeight);
+    contextMenuTop.value = adjustedTop;
+    contextMenuLeft.value = x;
+
+    // // 阻止默认右键菜单弹出
+    event.preventDefault();
+    // // 点击页面其他地方时隐藏右键菜单框
+    document.addEventListener('click', hideContextMenu);
+}
+// 隐藏右键菜单框
+const hideContextMenu = () => {
+    // 隐藏右键菜单框
+    showHeaderBarTools.value = false;
+    document.removeEventListener('click', hideContextMenu);
+}
+const acceptBarTools = (index) => {
+    if (index == 0) {
+        closeRouter(closeRouterIndex.value);
+    } else if (index == 1) {
+        barData.value = []
+        barData.value.push({
+            name: 'home',
+            icon: 'home',
+            path: '/home',
+        });
+        userStore.ZJHeaderBarList = barData.value;
+        updateStore('home', '/home');
+        router.push('home');
+    }
+}
+// 更新持久化状态
+const updateStore = (name, path) => {
+    userStore.ZJAsideMenuNameSelect = name;
+    userStore.ZJAsideMenuSelectPath = path;
+}
 </script>
 
 <style scoped>
@@ -241,6 +304,7 @@ const isElementVisibleInParent = (child) => {
     box-shadow: 0 1px 1px 1px var(--ZJ-main-hover);
     z-index: 0;
     transition: var(--ZJ-main-transition-width);
+    position: relative;
 }
 
 .bar-l {
@@ -326,5 +390,9 @@ const isElementVisibleInParent = (child) => {
 /* 设置滚动条滑块的样式 */
 ::-webkit-scrollbar-thumb {
     height: 0px;
+}
+
+.headerBarTools {
+    position: absolute;
 }
 </style>
