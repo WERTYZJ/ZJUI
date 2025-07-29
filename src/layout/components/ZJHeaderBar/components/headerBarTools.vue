@@ -43,7 +43,6 @@ const selectTools = (index) => {
   border-radius: 5px;
   display: flex;
   flex-direction: column;
-  z-index: 1;
 }
 
 .HeaderBarHr {

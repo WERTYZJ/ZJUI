@@ -139,9 +139,9 @@ onMounted(() => {
 function ClickbujuVal(index) {
   bujuVal.value = index;
   // 获取当前 --ZJ-AsideMenu-width 的值
-  const currentValue = getComputedStyle(document.documentElement)
-    .getPropertyValue('--ZJ-AsideMenu-width')
-    .trim();
+  // const currentValue = getComputedStyle(document.documentElement)
+  //   .getPropertyValue('--ZJ-AsideMenu-width')
+  //   .trim();
   switch (index) {
     case 1:
       document.documentElement.style.setProperty('--ZJ-AsideMenu-width', '56px');

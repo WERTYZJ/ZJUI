@@ -43,7 +43,7 @@ function enter(event) {
   background-color: var(--ZJ-main);
   transition: var(--ZJ-main-transition-width);
   box-shadow: 0 1px 1px 1px var(--ZJ-main-hover);
-  z-index: 1;
+  z-index: 2;
 }
 
 .header-box {

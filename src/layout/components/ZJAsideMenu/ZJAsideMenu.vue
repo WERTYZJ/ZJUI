@@ -106,7 +106,7 @@ watch(() => userStore.isSideBarOpen, (newVal) => {
   box-shadow: 2px 0 8px 2px rgb(29, 35, 41, 0.05);
   color: var(--ZJ-AsideMenu-text-color);
   transition: var(--ZJ-main-transition-width);
-  z-index: 2;
+  z-index: 3;
   flex-shrink: 0;
   overflow: hidden;
 }
