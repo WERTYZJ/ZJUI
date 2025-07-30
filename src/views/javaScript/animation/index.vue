@@ -39,6 +39,7 @@ const animations = ref([
   { name: '水纹波动动画 ani-water', value: 'ani-water', },
   { name: '扩散波纹带底色动画 ani-water2', value: 'ani-water2', },
   { name: '加载动画 loader', value: 'loader', },
+  { name: '加载动画 loader-line', value: 'loader-line', },
 ]);
 
 
