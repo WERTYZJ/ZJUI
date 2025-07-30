@@ -18,7 +18,7 @@
           </div>
         </template>
       </ZJCard>
-      <ZJCodeDisplay :code="vueCode" language="vue" hideText />
+      <ZJCodeDisplay v-if="showCodeEl" :code="vueCode" language="vue" hideText />
     </ZJMain>
   </div>
 </template>
@@ -54,11 +54,13 @@ const selectAnimation = (anim) => {
   }, 50);
 };
 
+const showCodeEl = ref(false)
 const readZJTransitionCss = () => {
   // 使用动态导入，并添加raw查询参数
   import('/src/styles/ZJTransition.css?raw')
     .then(res => {
       vueCode.value = res.default;
+      showCodeEl.value = true
     })
     .catch(error => {
       console.error('Failed to load CSS file:', error);

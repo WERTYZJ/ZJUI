@@ -274,9 +274,24 @@
     }
 
     /* 说明文本 */
+    /* 作用对象：元素背后的内容（背景）
+      效果：对元素后方的内容进行模糊处理，常用于创建毛玻璃效果
+      兼容性：现代浏览器支持（需无前缀），Safari需要-webkit-前缀
+      典型应用场景：导航栏、侧边栏等需要背景模糊的覆盖层
+      -webkit-backdrop-filter: blur(10px)
+      与标准版的唯一区别：带-webkit-前缀的旧版语法
+      兼容性：主要用于Safari 9+等WebKit内核浏览器
+      注意：现代浏览器已支持无前缀版本，建议同时使用两者保证兼容性
+      filter: blur(10px)
+      作用对象：元素自身及其所有子内容
+      效果：对整个元素（包括内容）进行模糊处理
+      兼容性：所有现代浏览器支持
+      典型应用场景：图片模糊处理、加载状态模糊效果 */
     .instructions {
       background: rgba(255, 255, 255, 0.2);
-      backdrop-filter: blur(10px);
+      /* backdrop-filter: blur(10px); */
+      --webkit-backdrop-filter: blur(10px);
+      filter: blur(10px);
       border-radius: 12px;
       padding: 20px;
       margin-top: 30px;

@@ -21,12 +21,12 @@ const topMore = ref(
     {
       name: '关闭全部',
     },
-    // {
-    //   name: '关闭上一个',
-    // },
-    // {
-    //   name: '关闭下一个',
-    // },
+    {
+      name: '关闭左侧全部',
+    },
+    {
+      name: '关闭右侧全部',
+    },
   ])
 
 const selectTools = (index) => {

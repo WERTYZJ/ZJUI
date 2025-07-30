@@ -270,9 +270,16 @@ const hideContextMenu = () => {
   document.removeEventListener('click', hideContextMenu);
 }
 const acceptBarTools = (index) => {
+  const upDateRouterAndStore = () => {
+    if (showbarBoxActive.value != barData.value[closeRouterIndex.value].path) {
+      router.push(barData.value[closeRouterIndex.value].path);
+      updateStore(barData.value[closeRouterIndex.value].name, barData.value[closeRouterIndex.value].path);
+    }
+  }
   if (index == 0) {
     closeRouter(closeRouterIndex.value);
-  } else if (index == 1) {
+  }
+  if (index == 1) {
     barData.value = []
     barData.value.push({
       name: 'home',
@@ -282,6 +289,14 @@ const acceptBarTools = (index) => {
     userStore.ZJHeaderBarList = barData.value;
     updateStore('home', '/home');
     router.push('home');
+  }
+  if (index == 2) {
+    upDateRouterAndStore();
+    barData.value.splice(1, closeRouterIndex.value - 1);
+  }
+  if (index == 3) {
+    upDateRouterAndStore();
+    barData.value.splice(closeRouterIndex.value + 1, barData.value.length - closeRouterIndex.value);
   }
 }
 // 更新持久化状态

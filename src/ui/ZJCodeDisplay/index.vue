@@ -63,25 +63,45 @@ const handleCopy = async () => {
 
 const handleHide = () => {
   hideStates.value = !hideStates.value;
-  if (hideStates.value) {
-    $ZJMessage({
-      type: 'success',
-      message: '折叠成功！',
-      duration: 3000,
-    });
-  } else {
-    $ZJMessage({
-      type: 'success',
-      message: '展开成功！',
-      duration: 3000,
-    });
+  $ZJMessage({
+    type: 'success',
+    message: hideStates.value ? '折叠成功！' : '展开成功！',
+    duration: 3000,
+  });
+}
+
+const initHeighLight = () => {
+  if (!codeBlock.value || !props.code) return;
+
+  try {
+    // 先清除现有高亮
+    const pre = codeBlock.value.parentElement;
+    pre.classList.remove('hljs');
+
+    // 重新高亮
+    hljs.highlightElement(codeBlock.value);
+  } catch (error) {
+    console.error('代码高亮失败:', error);
   }
 }
 
+// 监听代码内容变化
+watch(() => props.code, (newCode, oldCode) => {
+  // 只有当代码从空变为有内容时执行高亮
+  if (!oldCode && newCode) {
+    nextTick(initHeighLight);
+  }
+});
+
 onMounted(() => {
-  hljs.highlightElement(codeBlock.value);
+  if (props.code) {
+    nextTick(initHeighLight);
+  }
   hideStates.value = props.hideText
 });
+
+
+
 
 </script>
 
