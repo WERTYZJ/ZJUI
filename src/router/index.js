@@ -282,6 +282,12 @@ export const getRoutes = (userType) => {
             meta: { icon: 'message' },
             component: () => import('@/views/javaScript/animation/index.vue')
           },
+          {
+            path: '/game',
+            name: 'game',
+            meta: { icon: 'javaScript' },
+            component: () => import('@/views/javaScript/game/index.vue')
+          },
         ]
       },
       {

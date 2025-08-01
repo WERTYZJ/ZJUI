@@ -19,27 +19,26 @@
         <div v-for="day in weekdays" :key="day">{{ day }}</div>
       </div>
       <div class="days">
-        <div class="days-main" v-for="item in daysOfMonth" :key="item.date"
-          :class="{ 'is-normal': true, 'is-empty': item.isEmpty, 'is-today': item.isToday }"
-          @click="openBoard(item.date, item.isEmpty)">
-          <div class="days-top">{{ item.date ? item.date.getDate() : '' }}</div>
-          <div class="days-bottom" :class="BackgroundColor(item.type)">
-            <div class="days-bottom-title">
-              <!-- <img :src="ImgColor(item.type)" alt=""> -->
-              <ZJSvgIcons v-if="item.type" icon="clock" style="margin-right: 4px;width: 14px;height: 14px;padding:0"
-                :class="TextColor(item.type)"></ZJSvgIcons>
-              <a :class="TextColor(item.type)" v-if="item.type == 1">pending</a>
-              <a :class="TextColor(item.type)" v-if="item.type == 2">upcoming</a>
-              <a :class="TextColor(item.type)" v-if="item.type == 3">Scheduled</a>
-              <a :class="TextColor(item.type)" v-if="item.type == 4">Rescheduled</a>
-              <a :class="TextColor(item.type)" v-if="item.type == 5">In Process</a>
-              <a :class="TextColor(item.type)" v-if="item.type == 6">Completed</a>
-              <a :class="TextColor(item.type)" v-if="item.type == 7">Canceled</a>
-              <a :class="TextColor(item.type)" v-if="item.type == 8">Appealing</a>
+        <div class="days-main" v-for="i in daysOfMonth" :key="i.date"
+          :class="{ 'is-normal': true, 'is-empty': i.isEmpty, 'is-today': i.isToday }"
+          @click="openBoard(i.date, i.isEmpty)">
+          <div class="days-top">{{ i.date ? i.date.getDate() : '' }}</div>
+          <div class="days-bottom" :style="{ 'background': BackgroundColor(i.type) }">
+            <div class="days-bottom-title" :style="{ color: TextColor(i.type) }">
+              <ZJSvgIcons v-if="i.type" icon="clock" style="margin-right: 4px;width: 14px;height: 14px;padding:0;">
+              </ZJSvgIcons>
+              <a v-if="i.type == 1">pending</a>
+              <a v-if="i.type == 2">upcoming</a>
+              <a v-if="i.type == 3">Scheduled</a>
+              <a v-if="i.type == 4">Rescheduled</a>
+              <a v-if="i.type == 5">In Process</a>
+              <a v-if="i.type == 6">Completed</a>
+              <a v-if="i.type == 7">Canceled</a>
+              <a v-if="i.type == 8">Appealing</a>
 
             </div>
-            <div class="days-bottom-time"><a :class="TextColor(item.type)">{{ item.time }}</a></div>
-            <div class="days-bottom-class"><a :class="TextColor(item.type)">{{ item.class }}</a></div>
+            <div class="days-bottom-time"><a :style="{ color: TextColor(i.type) }">{{ i.time }}</a></div>
+            <div class="days-bottom-class"><a :style="{ color: TextColor(i.type) }">{{ i.class }}</a></div>
           </div>
         </div>
 
@@ -75,52 +74,36 @@ const daysOfMonth = ref([]);
 onMounted(() => {
   generateDaysOfMonth();
 })
-
 // 卡片背景颜色
 function BackgroundColor(type) {
   switch (type) {
-    case 5: return 'bg-color-1';
-    case 2: return 'bg-color-2';
-    case 1: return 'bg-color-3';
-    case 3: return 'bg-color-4';
-    case 4: return 'bg-color-4';
-    case 7: return 'bg-color-5';
-    case 6: return 'bg-color-6';
-    case 8: return 'bg-color-6';
+    case 5: return '#D0F3E9';
+    case 2: return '#DEFFE0';
+    case 1: return '#DEEFFF';
+    case 3: return '#E4D4FC';
+    case 4: return '#E4D4FC';
+    case 7: return '#EAEAEA';
+    case 6: return '#FFE3E1';
+    case 8: return '#FFE3E1';
     default:
-      return '';
+      return 'transparent';
   }
 }
 // 卡片文字颜色  
 function TextColor(type) {
   switch (type) {
-    case 5: return 'text-color-1';
-    case 2: return 'text-color-2';
-    case 1: return 'text-color-3';
-    case 3: return 'text-color-4';
-    case 4: return 'text-color-4';
-    case 7: return 'text-color-5';
-    case 6: return 'text-color-6';
-    case 8: return 'text-color-6';
+    case 5: return '#07996F';
+    case 2: return '#178A1E';
+    case 1: return '#0D4B86';
+    case 3: return '#43148A';
+    case 4: return '#43148A';
+    case 7: return '#000000';
+    case 6: return '#BF1F1F';
+    case 8: return '#BF1F1F';
     default:
-      return '';
+      return '#000000';
   }
 }
-// 卡片图片颜色 原来图片已经被ZJSvgIcons替代
-// function ImgColor(type){
-//   switch (type) {  
-//     case 5: return '/src/assets/ZJUI/ZJCalendar/tutor-board-InProcess.png';  
-//     case 2: return '/src/assets/ZJUI/ZJCalendar/tutor-board-Uncoming.png';
-//     case 1: return '/src/assets/ZJUI/ZJCalendar/tutor-board-Pending.png';  
-//     case 3: return '/src/assets/ZJUI/ZJCalendar/tutor-board-Scheduled.png';
-//     case 4: return '/src/assets/ZJUI/ZJCalendar/tutor-board-Scheduled.png';
-//     case 7: return '/src/assets/ZJUI/ZJCalendar/tutor-board-Canceled.png';  
-//     case 6: return '/src/assets/ZJUI/ZJCalendar/tutor-board-Completed.png';
-//     case 8: return '/src/assets/ZJUI/ZJCalendar/tutor-board-Completed.png';
-//     default:  
-//       return '';  
-//   }
-// }
 // 上一个月
 function prevMonth() {
   currentMonth.value--;
@@ -416,7 +399,7 @@ function BackToday() {
   display: flex;
   flex-direction: column;
   padding: 10px 10px 6px 10px;
-  /* height:68px; */
+  min-height: 68px;
   border-radius: 6px;
   margin: 4px;
   /* background: #D0F3E9; */
@@ -432,7 +415,7 @@ function BackToday() {
 .days-bottom-title a {
   display: flex;
   flex-wrap: wrap;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: normal;
   line-height: 100%;
   text-align: center;
@@ -457,61 +440,6 @@ function BackToday() {
   /* display: flex; */
   /* flex-wrap: wrap; */
 }
-
-
-/* 背景色类 */
-.bg-color-1 {
-  background-color: #D0F3E9;
-}
-
-.bg-color-2 {
-  background-color: #DEFFE0;
-}
-
-.bg-color-3 {
-  background-color: #DEEFFF;
-}
-
-.bg-color-4 {
-  background-color: #E4D4FC;
-}
-
-.bg-color-5 {
-  background-color: #EAEAEA;
-}
-
-.bg-color-6 {
-  background-color: #FFE3E1;
-}
-
-.text-color-1 {
-  color: #07996F;
-}
-
-.text-color-2 {
-  color: #178A1E;
-}
-
-.text-color-3 {
-  color: #0D4B86;
-}
-
-.text-color-4 {
-  color: #43148A;
-}
-
-.text-color-5 {
-  color: #000000;
-}
-
-.text-color-6 {
-  color: #BF1F1F;
-}
-
-.text-default-color {
-  color: #000000;
-}
-
 
 /* 正常情况 */
 .is-normal:hover {
@@ -567,4 +495,5 @@ line-height: 30px;   */
     font-weight: 600;
     line-height: 100%;
   }
-}</style>
+}
+</style>
