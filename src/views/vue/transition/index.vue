@@ -5,7 +5,7 @@
         <h2>transition(vue动画效果)</h2>
       </template>
 
-      <ZJCard>
+      <ZJCard style="padding: 10px;">
         <div class="ani-box">
           <transition :name="selectedAnimation">
             <div v-if="showCardContent" class="ani-card"></div>
@@ -57,7 +57,7 @@ const selectAnimation = (anim) => {
 const showCodeEl = ref(false)
 const readZJTransitionCss = () => {
   // 使用动态导入，并添加raw查询参数
-  import('/src/styles/ZJTransition.css?raw')
+  import('/src/ui/styles/ZJTransition.css?raw')
     .then(res => {
       vueCode.value = res.default;
       showCodeEl.value = true

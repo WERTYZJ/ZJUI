@@ -5,7 +5,7 @@
         <h2>animation(动画效果)</h2>
       </template>
       <p>1.1 css动画</p>
-      <ZJCard>
+      <ZJCard style="padding: 10px;">
         <div class="ani-box">
           <div v-if="showCardContent" :class="selectedAnimation"></div>
         </div>
@@ -18,10 +18,10 @@
       </ZJCard>
       <ZJCodeDisplay :code="vueCode" language="vue" hideText />
       <p>1.2 js点赞动画 使用到第三方库@mojs/core</p>
-      <ZJCard>
+      <ZJCard style="padding: 10px;">
         <anHeart></anHeart>
-        <ZJCodeDisplay :code="anHeartCode" language="vue" hideText />
       </ZJCard>
+      <ZJCodeDisplay :code="anHeartCode" language="vue" hideText />
     </ZJMain>
   </div>
 </template>
