@@ -3,7 +3,7 @@ import { createPinia } from 'pinia'
 import App from './App.vue'
 import router, { getRoutes } from './router'
 import ZJUI from './ui/index'
-import '@/styles/ZJGlobal.css'
+import '@/ui/styles/ZJGlobal.css'
 import i18n from './locales/i18n'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
 import { useUserStore } from './store'

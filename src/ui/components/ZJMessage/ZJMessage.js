@@ -1,5 +1,5 @@
 // ZJMessage.js
-import { createApp } from 'vue';
+import { computed, createApp } from 'vue';
 import MessageBox from './index.vue';
 
 let messageInstance = null; // 用于存储当前的消息实例
@@ -28,7 +28,7 @@ const ZJMessage = (options) => {
   // 创建挂载节点并添加到文档中
   mountNode = document.createElement('div');
   document.body.appendChild(mountNode);
-  
+
   messageInstance.mount(mountNode);
 
   // 设置一个定时器来自动卸载消息（基于duration）
@@ -41,7 +41,7 @@ const ZJMessage = (options) => {
         mountNode = null; // 重置挂载节点
         closeTimer = null; // 重置定时器
       }
-    }, options.duration+500);
+    }, options.duration + 500);
   }
 };
 

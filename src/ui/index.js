@@ -1,33 +1,34 @@
 // 导入组件
-import ZJMain from "./ZJMain/index.vue";
-import ZJCard from "./ZJCard/index.vue";
-import ZJCodeDisplay from './ZJCodeDisplay/index.vue';
-import ZJSvgIcons from './ZJSvgIcons/index.vue';
-import ZJButton from './ZJButton/index.vue';
-import ZJMenu from "./ZJMenu/index.vue";
-import ZJProgress from "./ZJProgress/index.vue";
-import ZJProgressCircle from "./ZJProgressCircle/index.vue";
-import ZJRate from "./ZJRate/index.vue";
-import ZJPagination from "./ZJPagination/index.vue";
-import ZJSelect from "./ZJSelect/index.vue";
-import ZJSelectDate from "./ZJSelectDate/index.vue";
-import ZJSelectDateMore from "./ZJSelectDateMore/index.vue";
-import ZJSelectTime from "./ZJSelectTime/index.vue";
-import ZJNoData from "./ZJNoData.vue/index.vue";
-import ZJLoading from "./ZJLoading/index2.vue";
-import ZJCutAvatar from "./ZJCutAvatar/index.vue";
-import ZJUpload from "./ZJUpload/index.vue";
-import ZJCalendar from "./ZJCalendar/index.vue";
-import ZJAnchor from "./ZJAnchor/index.vue";
-import ZJDialog from "./ZJDialog/index.vue";
-import ZJBackTop from "./ZJBackTop/index.vue";
-import ZJCarousel from "./ZJCarousel/index.vue";
-import ZJAvailableTime from "./ZJAvailableTime/index.vue";
-import ZJSwitch from './ZJSwitch/index.vue';
-import ZJInput from "./ZJInput/index.vue"
+import ZJMain from "./components/ZJMain/index.vue";
+import ZJCard from "./components/ZJCard/index.vue";
+import ZJCodeDisplay from './components/ZJCodeDisplay/index.vue';
+import ZJSvgIcons from './components/ZJSvgIcons/index.vue';
+import ZJButton from './components/ZJButton/index.vue';
+import ZJMenu from "./components/ZJMenu/index.vue";
+import ZJProgress from "./components/ZJProgress/index.vue";
+import ZJProgressCircle from "./components/ZJProgressCircle/index.vue";
+import ZJRate from "./components/ZJRate/index.vue";
+import ZJPagination from "./components/ZJPagination/index.vue";
+import ZJSelect from "./components/ZJSelect/index.vue";
+import ZJSelectDate from "./components/ZJSelectDate/index.vue";
+import ZJSelectDateMore from "./components/ZJSelectDateMore/index.vue";
+import ZJSelectTime from "./components/ZJSelectTime/index.vue";
+import ZJNoData from "./components/ZJNoData.vue/index.vue";
+import ZJLoading from "./components/ZJLoading/index2.vue";
+import ZJCutAvatar from "./components/ZJCutAvatar/index.vue";
+import ZJUpload from "./components/ZJUpload/index.vue";
+import ZJCalendar from "./components/ZJCalendar/index.vue";
+import ZJAnchor from "./components/ZJAnchor/index.vue";
+import ZJDialog from "./components/ZJDialog/index.vue";
+import ZJBackTop from "./components/ZJBackTop/index.vue";
+import ZJCarousel from "./components/ZJCarousel/index.vue";
+import ZJAvailableTime from "./components/ZJAvailableTime/index.vue";
+import ZJSwitch from './components/ZJSwitch/index.vue';
+import ZJInput from "./components/ZJInput/index.vue";
+import ZJInputOTP from "./components/ZJInputOTP/index.vue"
 // 导入函数
-import ZJMessage from "./ZJMessage/ZJMessage.js";
-import { ZJ_GetImage } from "../utils/ZJUtils.js";
+import ZJMessage from "./components/ZJMessage/ZJMessage.js";
+import { ZJ_GetImage } from "./utils/ZJUtils.js";
 
 // 对外暴露插件对象，注册全局组件
 const components = {
@@ -56,7 +57,8 @@ const components = {
   ZJCarousel,
   ZJAvailableTime,
   ZJSwitch,
-  ZJInput
+  ZJInput,
+  ZJInputOTP
 };
 
 // 插件对象

@@ -242,6 +242,12 @@ export const getRoutes = (userType) => {
             meta: { icon: 'button' },
             component: () => import('@/views/ZJUI/ZJInput/index.vue')
           },
+          {
+            path: '/ZJInputOTP',
+            name: 'ZJInputOTP',
+            meta: { icon: 'button' },
+            component: () => import('@/views/ZJUI/ZJInputOTP/index.vue')
+          },
         ]
       },
       {
@@ -287,6 +293,12 @@ export const getRoutes = (userType) => {
             name: 'game',
             meta: { icon: 'javaScript' },
             component: () => import('@/views/javaScript/game/index.vue')
+          },
+          {
+            path: '/Dom',
+            name: 'Dom',
+            meta: { icon: 'javaScript' },
+            component: () => import('@/views/javaScript/dom/index.vue')
           },
         ]
       },
