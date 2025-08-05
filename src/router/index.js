@@ -248,6 +248,12 @@ export const getRoutes = (userType) => {
             meta: { icon: 'button' },
             component: () => import('@/views/ZJUI/ZJInputOTP/index.vue')
           },
+          {
+            path: '/ZJDrag',
+            name: 'ZJDrag',
+            meta: { icon: 'button' },
+            component: () => import('@/views/ZJUI/ZJDrag/index.vue')
+          },
         ]
       },
       {

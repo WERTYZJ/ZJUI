@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js拖拽</title>
+  <style>
+    .content {
+      display: flex;
+      width: 50%;
+      margin: 50px auto;
+    }
+
+    .box1 {
+      box-sizing: border-box;
+    }
+
+    .item {
+      width: 150px;
+      height: 40px;
+      color: #fff;
+      background-color: rgb(63, 127, 255);
+      margin: 0 0 10px 0;
+      text-align: center;
+      line-height: 40px;
+      cursor: pointer;
+    }
+
+    .box2 {
+      margin-left: 30px;
+    }
+
+    tr {
+      width: 100%;
+    }
+
+    td {
+      width: 150px;
+      height: 40px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="content">
+    <div class="box1">
+      <div draggable="true" class="item">数据一</div>
+      <div draggable="true" class="item">数据二</div>
+      <div draggable="true" class="item">数据三</div>
+      <div draggable="true" class="item">数据四</div>
+      <div draggable="true" class="item">数据五</div>
+    </div>
+
+    <div class="box2">
+      <table border="1">
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</body>
+
+
+<script>
+  // 实现拖拽左侧的div到右侧的表格中
+  var items = document.querySelectorAll('.item');
+  var tds = document.querySelectorAll('td');
+  var index = 0; // 记录当前拖拽的元素
+
+  // 给左侧的div添加拖拽事件
+  for (var i = 0; i < items.length; i++) {
+    // 给每个元素添加索引
+    items[i].ondragstart = function (e) {
+      e.dataTransfer.setData('text/plain', e.target.innerHTML);
+      e.dataTransfer.setData('text/plain', e.target.innerHTML);
+    }
+    // 记录当前拖拽的元素
+    items[i].ondragend = function (e) {
+      e.dataTransfer.setData('text/plain', e.target.innerHTML);
+      e.dataTransfer.setData('text/plain', e.target.innerHTML);
+    }
+  }
+
+  // 给右侧的td添加拖拽事件
+  for (var i = 0; i < tds.length; i++) {
+
+    // 这一步是必须的，阻止默认行为 否则ondrop事件不会触发
+    tds[i].ondragover = function (e) {
+      e.preventDefault();
+      // 已经有一个元素放置到td上了，则不执行
+      if (e.target.innerHTML) {
+        return;
+      }
+      // 给当前td添加一个背景色 移动到td上时显示
+      e.target.style.backgroundColor = 'blue';
+    }
+
+    // 当鼠标离开td时，清除背景色
+    tds[i].ondragleave = function (e) {
+      // 已经有一个元素放置到td上了，则不执行
+      if (e.target.innerHTML) {
+        return;
+      }
+      e.target.style.backgroundColor = '';
+    }
+
+    // ondrop事件可以获取到最终放置的元素
+    tds[i].ondrop = function (e) {
+      e.preventDefault();
+
+      // 已经有一个元素放置到td上了，则不执行
+      if (e.target.innerHTML) {
+        return;
+      }
+
+      // 获取当前拖拽元素的值
+      var data = e.dataTransfer.getData('text/plain');
+      // 设置给当前td的值
+      e.target.innerHTML = data;
+      console.log(e.target.innerHTML);
+
+      // 获取当前被拖拽的元素的样式，然后添加给右侧的td
+      var style = window.getComputedStyle(items[index]);
+      e.target.style.backgroundColor = style.backgroundColor;
+      e.target.style.color = style.color;
+      e.target.style.border = style.border;
+      e.target.style.width = style.width;
+      e.target.style.height = style.height;
+      e.target.style.textAlign = style.textAlign;
+    }
+  }
+</script>
+
+</html>

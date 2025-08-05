@@ -25,7 +25,8 @@ import ZJCarousel from "./components/ZJCarousel/index.vue";
 import ZJAvailableTime from "./components/ZJAvailableTime/index.vue";
 import ZJSwitch from './components/ZJSwitch/index.vue';
 import ZJInput from "./components/ZJInput/index.vue";
-import ZJInputOTP from "./components/ZJInputOTP/index.vue"
+import ZJInputOTP from "./components/ZJInputOTP/index.vue";
+import ZJDrag from "./components/ZJDrag/index.vue";
 // 导入函数
 import ZJMessage from "./components/ZJMessage/ZJMessage.js";
 import { ZJ_GetImage } from "./utils/ZJUtils.js";
@@ -58,7 +59,8 @@ const components = {
   ZJAvailableTime,
   ZJSwitch,
   ZJInput,
-  ZJInputOTP
+  ZJInputOTP,
+  ZJDrag
 };
 
 // 插件对象

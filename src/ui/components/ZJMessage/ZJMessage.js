@@ -1,5 +1,5 @@
 // ZJMessage.js
-import { computed, createApp } from 'vue';
+import { createApp } from 'vue';
 import MessageBox from './index.vue';
 
 let messageInstance = null; // 用于存储当前的消息实例
