@@ -4,7 +4,6 @@
       <div v-for="(i, index) in leftBarList" :key="index" draggable="true" class="item"
         :style="{ color: getColor('text', index), backgroundColor: getColor('bg', index) }">{{ i.name }}</div>
     </div>
-
     <div class="selectBox">
       <table border="1">
         <tr v-for="(i, index) in 6" :key="index">

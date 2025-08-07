@@ -295,10 +295,26 @@ export const getRoutes = (userType) => {
             component: () => import('@/views/javaScript/animation/index.vue')
           },
           {
-            path: '/game',
+            path: '',
             name: 'game',
             meta: { icon: 'javaScript' },
-            component: () => import('@/views/javaScript/game/index.vue')
+            component: '',
+            children: [
+              {
+                path: '/moveBox',
+                name: 'moveBox',
+                meta: { icon: 'javaScript' },
+                component: () => import('@/views/javaScript/game/moveBox.vue')
+
+              },
+              {
+                path: '/moveRole',
+                name: 'moveRole',
+                meta: { icon: 'javaScript' },
+                component: () => import('@/views/javaScript/game/moveRole.vue')
+
+              },
+            ]
           },
           {
             path: '/Dom',
