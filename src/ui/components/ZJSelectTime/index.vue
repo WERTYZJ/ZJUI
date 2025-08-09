@@ -63,7 +63,7 @@ export default {
       HourVal: '05',
       Second: Array.from({ length: 60 }, (v, i) => (i + 0).toString().padStart(2, '0')),
       Minutes: Array.from({ length: 60 }, (v, i) => (i + 0).toString().padStart(2, '0')),
-      Hour: Array.from({ length: 24 }, (v, i) => (i + 1).toString().padStart(2, '0')),
+      Hour: Array.from({ length: 23 }, (v, i) => (i + 1).toString().padStart(2, '0')),
       selectedText: this.value ? this.findOptionText(this.value) : '',
       isDropdownVisible: false,
       isIconOpen: false,
@@ -181,7 +181,7 @@ export default {
 
  .bottom {
    /* background-color: antiquewhite; */
-   border: var(--ZJ-main-border-light);
+   border-top: var(--ZJ-main-border-light);
    display: flex;
    justify-content: end;
    gap: 20px;
@@ -230,29 +230,28 @@ export default {
    display: flex;
    justify-content: center;
    align-items: center;
-   min-width: 300px;
  }
 
  .selected {
-   background: var(--ZJ-main);
    height: 32px;
-   border-radius: var(--ZJ-main-border-radius);
-   padding: 0 12px 0 15px;
-   border: var(--ZJ-main-border-light);
-   gap: 5px;
-   width: 100%;
    position: relative;
+   padding: 0 12px 0 15px;
    display: flex;
    justify-content: space-between;
    align-items: center;
+   gap: 5px;
    font-size: 14px;
    font-weight: normal;
+   border-radius: var(--ZJ-main-border-radius);
    color: var(--ZJ-main-text-label-color);
+   border: var(--ZJ-main-hover);
+   background: var(--ZJ-main-hover);
  }
 
  .dropdown {
    position: absolute;
    top: 47px;
+   left: 0;
    width: 100%;
    min-width: 300px;
    max-height: 300px;
@@ -260,7 +259,6 @@ export default {
    transition: height 0.2s;
    border-radius: var(--ZJ-main-border-radius-dropdown);
    box-shadow: var(--ZJ-main-box-shadow);
-   border: var(--ZJ-main-border-light);
    background-color: var(--ZJ-main-message-color);
    z-index: 2;
  }
@@ -274,20 +272,6 @@ export default {
    height: 0;
    transform: rotate(-45deg);
    border-top: solid 15px var(--ZJ-main-message-color);
-   border-left: solid 15px transparent;
-   border-bottom: solid 15px transparent;
-   z-index: 2;
- }
-
- .dropdown::before {
-   content: '';
-   top: -10px;
-   position: absolute;
-   left: calc(50% - 5px);
-   width: 0;
-   height: 0;
-   transform: rotate(-45deg);
-   border-top: solid 15px #DCDCDC;
    border-left: solid 15px transparent;
    border-bottom: solid 15px transparent;
    z-index: 2;
