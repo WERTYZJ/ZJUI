@@ -8,7 +8,7 @@
         <ZJInput @ZJInputVal="$event => account" placeholder="账号" :val="account"></ZJInput>
         <ZJInput @ZJInputVal="$event => password" placeholder="密码" :val="password"></ZJInput>
         <ZJSelect :label="userType[2].label" :options="userType" @ZJSelectVal="userTypeVal = $event" :selectStyle="{
-          height: '38px', 'border-radius': '10px', outline: '2px solid var(--ZJ-main-hover)', border: 'none'
+          height: '38px', 'border-radius': '10px', outline: '2px solid var(--ZJ-main-hover)', border: 'none', background: 'var(--ZJ-main)'
         }">
         </ZJSelect>
       </div>

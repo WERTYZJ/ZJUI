@@ -183,8 +183,8 @@
 <script>
 
 // import LoadingView from '@/ui/ZJ-loading.vue';
-import Time from '@/utils/ZJTime';
-import FileSize from '@/utils/ZJFileSize';
+import Time from '@/ui/utils/ZJTime';
+import FileSize from '@/ui/utils/ZJFileSize';
 // import zim from '@/tools/ZIMConfig';
 // import ZJNoData from '@/ui/ZJ-noData.vue';
 // import { generateToken } from '@/tools/ZIMToken';

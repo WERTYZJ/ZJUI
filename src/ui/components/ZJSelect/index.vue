@@ -1,6 +1,6 @@
 <template>
-  <div :class="{ 'custom-select': this.size == null, 'size40': this.size == '40', }">
-    <div class="selected m-pointer" @click="toggleDropdown" :style="selectStyle">
+  <div class="custom-select">
+    <div class="selected m-pointer" ref="clickDropdownEl" @click="toggleDropdown" :style="selectStyle">
       <a class="m-pointer">{{ selectedText || label }}</a>
       <ZJSvgIcons icon="select"
         :class="{ 'ZJRotate-icon-open m-pointer': isIconOpen, 'ZJRotate-icon-close m-pointer': !isIconOpen }">
@@ -8,10 +8,10 @@
       <!-- <img ref="img" src="../assets/ui/select.svg" alt=""> -->
     </div>
     <Transition name="Select">
-      <div class="dropdown" v-if="isDropdownVisible" :style="dropMneuStyle">
+      <div class="dropdown" v-show="isDropdownVisible" :style="dropMenuStyle" ref="clickDropdownBoxEl">
         <ul>
           <li v-for="item in options" :key="item.value" @click="selectItem(item)">
-            {{ item.label || item }}
+            {{ item.label ?? item }}
           </li>
         </ul>
       </div>
@@ -19,87 +19,90 @@
   </div>
 </template>  
   
-<script>
+<script setup>
+import { ref, watch, onBeforeUnmount } from 'vue'
 
-export default {
-  name: 'ZJDropDownSelect',
-  props: {
-    options: {
-      type: Array,
-      required: true,
-      default: () => []
-    },
-    value: {
-      type: [String, Number],
-      default: null
-    },
-    label: {
-      type: [String, Number],
-      default: null
-    },
-    size: {
-      type: [String, Number],
-      default: null
-    },
-    selectStyle: {
-      type: Object,
-      default: () => ({})
-    },
-    dropMneuStyle: {
-      type: Object,
-      default: () => ({})
-    },
+const props = defineProps({
+  options: {
+    type: Array,
+    required: true,
+    default: () => []
   },
-  data() {
-    return {
-      selectedText: this.label ? this.findOptionText(this.label) : '',
-      isDropdownVisible: false,
-      isIconOpen: false,
-    };
+  value: {
+    type: [String, Number],
+    default: null
   },
-  mounted() {
-    // console.log(this.size)
-    document.addEventListener('click', this.handleOutsideClick);
+  label: {
+    type: [String, Number],
+    default: null
   },
-  beforeUnmount() {
-    document.removeEventListener('click', this.handleOutsideClick);
+  size: {
+    type: [String, Number],
+    default: null
   },
-  methods: {
-    handleOutsideClick(e) {
-      // 检查点击是否发生在下拉框或其子元素之外  
-      if (!this.$el.contains(e.target) && this.isDropdownVisible) {
-        this.isDropdownVisible = false;
-        this.isIconOpen = false;
-      }
-    },
-    toggleDropdown() {
-      this.isDropdownVisible = !this.isDropdownVisible;
-      if (this.isDropdownVisible === true) {
-        this.isIconOpen = true;
-      } else if (this.isDropdownVisible === false) {
-        this.isIconOpen = false;
-      }
-
-    },
-    selectItem(item) {
-      this.$emit('ZJSelectVal', item.value || item);
-      this.selectedText = item.label || item;
-      this.isDropdownVisible = false;
-      this.isIconOpen = false;
-    },
-    findOptionText(value) {
-      return this.options.find(option => option.value === value)?.text || '';
-    }
+  selectStyle: {
+    type: Object,
+    default: () => ({})
   },
-  watch: {
-    value(newVal, oldVal) {
-      if (newVal !== oldVal) {
-        this.selectedText = this.findOptionText(newVal);
-      }
-    }
+  dropMenuStyle: {
+    type: Object,
+    default: () => ({})
   }
-};  
-</script>  
+})
+
+const emit = defineEmits(['ZJSelectVal']);
+
+const findOptionText = (value) => {
+  return props.options.find(option => option.value === value)?.text || ''
+}
+
+// 响应式状态
+const selectedText = ref(props.label ? findOptionText(props.label) : '')
+const isDropdownVisible = ref(false)
+const isIconOpen = ref(false)
+
+const clickDropdownEl = ref(null);
+const clickDropdownBoxEl = ref(null);
+
+const handleOutsideClick = (e) => {
+  if (clickDropdownEl.value && !clickDropdownEl.value.contains(e.target)
+    && !clickDropdownBoxEl.value.contains(e.target)) {
+    isDropdownVisible.value = false
+    isIconOpen.value = false
+  }
+}
+
+const toggleDropdown = () => {
+  isDropdownVisible.value = !isDropdownVisible.value
+  isIconOpen.value = isDropdownVisible.value
+}
+
+const selectItem = (item) => {
+  emit('ZJSelectVal', item.value ?? item)
+  selectedText.value = item.label ?? item
+  isDropdownVisible.value = false
+  isIconOpen.value = false
+}
+
+onBeforeUnmount(() => {
+  document.removeEventListener('click', handleOutsideClick)
+})
+
+// 监听器
+watch(() => props.value, (newVal, oldVal) => {
+  if (newVal !== oldVal) {
+    selectedText.value = findOptionText(newVal)
+  }
+})
+
+watch(() => clickDropdownBoxEl.value, (newVal) => {
+  if (newVal == null) {
+    document.removeEventListener('click', handleOutsideClick)
+  } else {
+    document.addEventListener('click', handleOutsideClick)
+  }
+})
+</script>
   
 <style scoped>
 .custom-select {
@@ -111,20 +114,19 @@ export default {
 }
 
 .selected {
-  background: var(--ZJ-main);
   height: 32px;
-  border-radius: var(--ZJ-main-border-radius);
-  padding: 0 12px 0 15px;
-  border: var(--ZJ-main-border-light);
-  gap: 5px;
-  width: 100%;
   position: relative;
+  padding: 0 12px 0 15px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 5px;
   font-size: 14px;
   font-weight: normal;
+  border-radius: var(--ZJ-main-border-radius);
   color: var(--ZJ-main-text-label-color);
+  border: var(--ZJ-main-hover);
+  background: var(--ZJ-main-hover);
 }
 
 .dropdown::after {
@@ -141,29 +143,15 @@ export default {
   z-index: 2;
 }
 
-.dropdown::before {
-  content: '';
-  top: -10px;
-  position: absolute;
-  left: calc(50% - 5px);
-  width: 0;
-  height: 0;
-  transform: rotate(-45deg);
-  border-top: solid 15px #DCDCDC;
-  border-left: solid 15px transparent;
-  border-bottom: solid 15px transparent;
-  z-index: 2;
-}
-
 .dropdown {
   position: absolute;
   top: 47px;
+  left: 0;
   width: 100%;
   border-radius: var(--ZJ-main-border-radius-dropdown);
   max-height: 200px;
   min-height: 100%;
   box-shadow: var(--ZJ-main-box-shadow);
-  border: var(--ZJ-main-border-light);
   background-color: var(--ZJ-main-message-color);
   z-index: 2;
 }

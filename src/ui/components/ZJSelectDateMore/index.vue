@@ -1,259 +1,438 @@
 <template>
   <div class="custom-select">
-    <div class="selected" @click="toggleDropdown">
-      <a>{{ StartSelectedText + EndSelectedText || label }}</a>
+    <div class="selected" @click="toggleDropdown" ref="clickDropdownEl"><a>{{ selectedText || label }}</a>
       <ZJSvgIcons icon="select" :class="{ 'ZJRotate-icon-open': isIconOpen, 'ZJRotate-icon-close': !isIconOpen }">
       </ZJSvgIcons>
     </div>
     <Transition name="Select">
-      <div class="dropdown" v-if="isDropdownVisible">
-        <Transition name="Date">
-          <div v-show="StartTime">
-            <div class="header">
-              <button @click="prevMonth">
-                <ZJSvgIcons icon="select" style="transform:rotate(90deg);"></ZJSvgIcons>
-              </button>
-              <span>Start&nbsp;&nbsp;&nbsp;{{ currentYear }}&nbsp;&nbsp;{{ currentMonth + 1 }}</span>
-              <button @click="nextMonth">
-                <ZJSvgIcons icon="select" style="transform:rotate(270deg);"></ZJSvgIcons>
-              </button>
+      <div class="dropdown" v-show="isDropdownVisible" ref="clickDropdownBoxEl">
+        <div class="dropdown-start">
+          <div class="header">
+            <button @click="prevMonth">
+              <ZJSvgIcons icon="select" style="transform:rotate(90deg);"></ZJSvgIcons>
+            </button>
+            <div class="header-center">
+              <ZJSelect :label="currentYear" :options="yearList" :selectStyle="{ 'border-radius': '5px', }"
+                :value="currentYear" :dropMenuStyle="{ 'border-radius': '5px', 'width': '100px' }"
+                @ZJSelectVal="currentYear = $event">
+              </ZJSelect>
+              <ZJSelect :label="MonthInEnglish[currentMonth]" :selectStyle="{ 'border-radius': '5px' }"
+                :dropMenuStyle="{ 'border-radius': '5px', width: '130px' }" :options="monthList" :value="currentMonth"
+                @ZJSelectVal="currentMonth = $event">
+              </ZJSelect>
             </div>
-            <div class="weekdays">
-              <div v-for="day in weekdays" :key="day">{{ day }}</div>
-            </div>
-            <div class="days">
-              <div v-for="day in daysOfMonth" :key="day.date"
-                :class="{ 'is-normal': true, 'is-empty': day.isEmpty, 'is-today': day.isToday }"
-                @click="StartSelectItem(day.date)">
-                {{ day.date ? day.date.getDate() : '' }}
-              </div>
+            <button @click="nextMonth">
+              <ZJSvgIcons icon="select" style="transform:rotate(270deg);"></ZJSvgIcons>
+            </button>
+          </div>
+          <div class="weekdays">
+            <div v-for="day in weekdays" :key="day">{{ day }}</div>
+          </div>
+          <div class="days">
+            <div v-for="(day, index) in daysOfMonth" :key="day.date"
+              :class="{ 'is-normal': true, 'is-empty': day.isEmpty, 'is-today': day.isToday, 'is-selected': startActiveTab == day.date }"
+              @click="selectItem(day, index)">
+              {{ day.date ? day.date.getDate() : '' }}
             </div>
           </div>
-        </Transition>
-        <Transition name="Date">
-          <div v-show="EndTime">
-            <div class="header">
-              <button @click="prevMonth">
-                <ZJSvgIcons icon="select" style="transform:rotate(90deg);"></ZJSvgIcons>
-              </button>
-              <span>End&nbsp;&nbsp;&nbsp;{{ currentYear }}&nbsp;&nbsp;{{ this.currentMonth + 1 }}</span>
-              <button @click="nextMonth">
-                <ZJSvgIcons icon="select" style="transform:rotate(270deg);"></ZJSvgIcons>
-              </button>
+        </div>
+        <div class="dropdown-end">
+          <div class="header">
+            <button @click="prevMonth2">
+              <ZJSvgIcons icon="select" style="transform:rotate(90deg);"></ZJSvgIcons>
+            </button>
+            <div class="header-center">
+              <ZJSelect :label="currentYear2" :options="yearList" :selectStyle="{ 'border-radius': '5px', }"
+                :value="currentYear2" :dropMenuStyle="{ 'border-radius': '5px', 'width': '100px' }"
+                @ZJSelectVal="currentYear2 = $event">
+              </ZJSelect>
+              <ZJSelect :label="MonthInEnglish[currentMonth2]" :selectStyle="{ 'border-radius': '5px' }"
+                :dropMenuStyle="{ 'border-radius': '5px', width: '130px' }" :options="monthList" :value="currentMonth2"
+                @ZJSelectVal="currentMonth2 = $event">
+              </ZJSelect>
             </div>
-            <div class="weekdays">
-              <div v-for="day in weekdays" :key="day">{{ day }}</div>
-            </div>
-            <div class="days">
-              <div v-for="day in daysOfMonth" :key="day.date"
-                :class="{ 'is-normal': true, 'is-empty': day.isEmpty, 'is-today': day.isToday }"
-                @click="EndSelectItem(day.date)">
-                {{ day.date ? day.date.getDate() : '' }}
-              </div>
+            <button @click="nextMonth2">
+              <ZJSvgIcons icon="select" style="transform:rotate(270deg);"></ZJSvgIcons>
+            </button>
+          </div>
+          <div class="weekdays">
+            <div v-for="day in weekdays" :key="day">{{ day }}</div>
+          </div>
+          <div class="days">
+            <div v-for="(day, index) in daysOfMonth2" :key="day.date"
+              :class="{ 'is-normal': true, 'is-empty': day.isEmpty, 'is-today': day.isToday, 'is-selected': day.isSelected }"
+              @click="selectItem2(day, index)">
+              {{ day.date ? day.date.getDate() : '' }}
             </div>
           </div>
-        </Transition>
+        </div>
       </div>
     </Transition>
   </div>
 </template>  
   
-<script>
-export default {
-  name: 'DateSelect',
-  props: {
-    options: {
-      type: Array,
-      required: false,
-      default: () => []
-    },
-    value: {
-      type: [String, Number],
-      default: null
-    },
-    label: {
-      type: [String, Number],
-      default: null
+<script setup>
+import { ref, watch, onMounted, onBeforeUnmount } from 'vue';
+
+const props = defineProps({
+  options: {
+    type: Array,
+    required: false,
+    default: () => []
+  },
+  value: {
+    type: [String, Number],
+    default: null
+  },
+  label: {
+    type: [String, Number],
+    default: null
+  }
+})
+
+const emit = defineEmits(['StartTime', 'EndTime'])
+
+// 月份
+const MonthInEnglish = ref([
+  'January', 'February', 'March',
+  'April', 'May', 'June',
+  'July', 'August', 'September',
+  'October', 'November', 'December'
+])
+
+const currentYear = ref(new Date().getFullYear())
+const currentMonth = ref(new Date().getMonth())
+const weekdays = ref(['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'])
+const daysOfMonth = ref([]);
+const selectedText = ref(props.value ? findOptionText(props.value) : '')
+const isDropdownVisible = ref(false)
+const isIconOpen = ref(false)
+const yearList = ref([])
+const monthList = ref([])
+const startTime = ref('')
+const endTime = ref('')
+const startActiveTab = ref()
+const endActiveTab = ref()
+
+// 上一个月
+const prevMonth = () => {
+  currentMonth.value--
+  if (currentMonth.value < 0) {
+    currentMonth.value = 11
+    currentYear.value--
+  }
+}
+
+// 下一个月
+const nextMonth = () => {
+  currentMonth.value++
+  if (currentMonth.value > 11) {
+    currentMonth.value = 0
+    currentYear.value++
+  }
+}
+
+// 获取日期数据
+const generateDaysOfMonth = () => {
+  const daysInMonth = new Date(currentYear.value, currentMonth.value + 1, 0).getDate()
+  const today = new Date()
+  const firstDayOfMonth = new Date(currentYear.value, currentMonth.value, 1).getDay()
+
+  daysOfMonth.value = []
+
+  // 填充前置槽位
+  const daysInLastMonth = new Date(currentYear.value, currentMonth.value, 0).getDate();
+  for (let i = daysInLastMonth - firstDayOfMonth + 1; i <= daysInLastMonth; i++) {
+    const currentDate = new Date(currentYear.value, currentMonth.value - 1, i);
+    daysOfMonth.value.push({
+      date: currentDate,
+      isEmpty: true,
+      isToday: false,
+      isSelected: false
+    })
+  }
+
+  // 填充日期
+  for (let day = 1; day <= daysInMonth; day++) {
+    const currentDate = new Date(currentYear.value, currentMonth.value, day);
+    // console.log("currentDate", daysInMonth)
+    daysOfMonth.value.push({
+      date: currentDate,
+      isEmpty: false,
+      isToday: currentDate.toDateString() === today.toDateString(),
+      isSelected: +startActiveTab.value === +currentDate
+    })
+  }
+
+  // 填充后置槽位
+  const endCount = 7 - daysOfMonth.value.length % 7;
+  for (let l = 1; l <= endCount && endCount < 7; l++) {
+    const currentDate = new Date(currentYear.value, currentMonth.value + 1, l);
+    daysOfMonth.value.push({
+      date: currentDate,
+      isEmpty: true,
+      isToday: false,
+      isSelected: false
+    })
+  }
+}
+
+const clickDropdownEl = ref(null);
+const clickDropdownBoxEl = ref(null);
+const handleOutsideClick = (e) => {
+  if (clickDropdownEl.value && !clickDropdownEl.value.contains(e.target)
+    && !clickDropdownBoxEl.value.contains(e.target)) {
+    isIconOpen.value = false
+    isDropdownVisible.value = false
+  }
+}
+
+const toggleDropdown = () => {
+  isIconOpen.value = !isIconOpen.value
+  isDropdownVisible.value = !isDropdownVisible.value
+}
+
+// 选择日期
+const activeTabstates = ref('')
+const selectItem = (val, index) => {
+  if (!val.isEmpty) {
+    const formattedDate = `${currentYear.value}-${(currentMonth.value + 1).toString().padStart(2, '0')}-${val.date.getDate().toString().padStart(2, '0')}`
+    startTime.value = formattedDate
+    const valid = validateDateRange(startTime.value, endTime.value);
+    if ((startTime.value && endTime.value) || (startTime.value && endTime.value == '')) {
+      endTime.value = '';
+      selectedText.value = formattedDate;
     }
-  },
-  data() {
-    return {
-      StartTime: true,
-      EndTime: false,
-      // 时间
-      currentDate: new Date(),
-      currentYear: new Date().getFullYear(),
-      currentMonth: new Date().getMonth(),
-      weekdays: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-      daysOfMonth: [],
-      StartSelectedText: this.value ? this.findOptionText(this.value) : '',
-      StartTime2: '',
-      EndSelectedText: this.value ? this.findOptionText(this.value) : '',
-      EndTime2: '',
-      isDropdownVisible: false,
-      isIconOpen: false,
-    };
-  },
-  mounted() {
-    this.generateDaysOfMonth();
-    document.addEventListener('click', this.handleOutsideClick);
-  },
-  beforeUnmount() {
-    document.removeEventListener('click', this.handleOutsideClick);
-  },
-  methods: {
-    // 上一个月
-    prevMonth() {
-      this.currentMonth--;
-      if (this.currentMonth < 0) {
-        this.currentMonth = 11;
-        this.currentYear--;
+    if (valid == 0) {
+      const dateRange = `${startTime.value} -- ${endTime.value}`;
+      startActiveTab.value = val.date;
+      if (activeTabstates.value == '') {
+        daysOfMonth.value[index].isSelected = true
+        activeTabstates.value = index
+      } else {
+        daysOfMonth.value[activeTabstates.value].isSelected = false;
+        activeTabstates.value = index;
+        daysOfMonth.value[index].isSelected = true;
       }
-      this.generateDaysOfMonth();
-    },
-    // 下一个月
-    nextMonth() {
-      this.currentMonth++;
-      if (this.currentMonth > 11) {
-        this.currentMonth = 0;
-        this.currentYear++;
-      }
-      this.generateDaysOfMonth();
-    },
-    // 获取当月天数,并比较
-    generateDaysOfMonth() {
-      const currentYear = this.currentYear;
-      const currentMonth = this.currentMonth; // 注意：getMonth() 返回的是 0-11  
-      const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate(); // 获取当前月份的天数  
+      selectedText.value = dateRange;
+      emit('StartTime', formattedDate);
+    }
+  }
+}
 
-      const today = new Date(); // 获取今天的日期  
-      const todayYear = today.getFullYear();
-      const todayMonth = today.getMonth();
-      const todayDay = today.getDate();
+const findOptionText = (value) => {
+  return props.options.find(option => option.value === value)?.text || ''
+}
 
-      // 假设每周从周日开始（0 表示周日，6 表示周六）  
-      // 你可以根据需要调整 firstDayOfWeek 的值  
-      const firstDayOfWeek = 1;
+// 初始化选择数据
+const getSelecteData = () => {
+  // 年份
+  for (let i = currentYear.value; i >= 1970; i--) {
+    yearList.value.push({
+      label: i,
+      value: i
+    })
+  }
+  // 月份
+  for (let i = 0; i <= 11; i++) {
+    monthList.value.push({
+      label: MonthInEnglish.value[i],
+      value: i
+    })
+  }
+}
 
-      // 获取当前月份第一天的星期几（0-6）  
-      const firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay();
+const validateDateRange = (startTimeStr, endTimeStr) => {
+  if (startTimeStr != '' && endTimeStr == '') return 0;
+  // 解析日期并验证格式
+  const startDate = new Date(startTimeStr);
+  const endDate = new Date(endTimeStr);
 
-      // 计算需要填充的空槽位数量  
-      const emptySlots = (firstDayOfWeek - firstDayOfMonth + 7) % 7;
+  // 比较时间戳（精确到天）
+  const startTimestamp = new Date(
+    startDate.getFullYear(),
+    startDate.getMonth(),
+    startDate.getDate()
+  ).getTime();
 
-      // 初始化 daysOfMonth 数组  
-      this.daysOfMonth = [];
+  const endTimestamp = new Date(
+    endDate.getFullYear(),
+    endDate.getMonth(),
+    endDate.getDate()
+  ).getTime();
 
-      for (let i = 0; i < emptySlots; i++) {
-        this.daysOfMonth.push({ date: null, isEmpty: true, isToday: false });
-      }
+  // 核心比较逻辑
+  if (endTimestamp > startTimestamp) {
+    return 0;
+  } else if (endTimestamp === startTimestamp) {
+    return 1;
+  } else {
+    return 1;
+  }
+}
 
-      // 填充当前月份的天数  
-      for (let day = 1; day <= daysInMonth; day++) {
-        const currentDate = new Date(currentYear, currentMonth, day);
-        const isToday = currentDate.getFullYear() === todayYear && currentDate.getMonth() === todayMonth && currentDate.getDate() === todayDay;
-        this.daysOfMonth.push({
-          date: currentDate,
-          isEmpty: false,
-          isToday: isToday
-        });
-      }
-    },
-    // 点击外隐藏
-    handleOutsideClick(e) {
-      // 检查点击是否发生在下拉框或其子元素之外  
-      if (!this.$el.contains(e.target) && this.isDropdownVisible) {
-        this.isDropdownVisible = false;
-        this.isIconOpen = false;
-      }
-    },
-    // 下拉
-    toggleDropdown() {
-      this.isDropdownVisible = !this.isDropdownVisible;
-      this.isIconOpen = !this.isIconOpen;
-    },
-    // 起始日期选择
-    StartSelectItem(date) {
-      if (date != null) {
-        let a = date.getDate()
-        const Date = this.currentYear + '-' + (this.currentMonth + 1).toString().padStart(2, '0') + '-' + a.toString().padStart(2, '0') + ' - ';
-        this.StartTime2 = this.currentYear + '-' + (this.currentMonth + 1).toString().padStart(2, '0') + '-' + a.toString().padStart(2, '0');
-        this.$emit('input', Date);
-        this.StartSelectedText = Date;
-        // this.isDropdownVisible = false; 
-        this.StartTime = false;
-        this.EndTime = true;
-      }
-    },
-    // 结束日期选择
-    EndSelectItem(date) {
-      if (date != null) {
-        let a = date.getDate()
-        const val = this.currentYear + '-' + (this.currentMonth + 1).toString().padStart(2, '0') + '-' + a.toString().padStart(2, '0');
-        this.EndTime2 = val
-        let start = new Date(this.StartTime2);
-        let end = new Date(this.EndTime2);
-        if (end > start) {
+// 生命周期
+onMounted(() => {
+  generateDaysOfMonth();
+  generateDaysOfMonth2();
+  getSelecteData();
+})
 
-          this.EndSelectedText = val;
+onBeforeUnmount(() => {
+  document.removeEventListener('click', handleOutsideClick)
+})
 
-          // var selectDate = this.StartTime2 + '-' + this.EndTime2
-          this.$emit('StartTime', this.StartTime2);
-          this.$emit('EndTime', this.EndTime2);
+watch(() => props.value, (newVal, oldVal) => {
+  if (newVal !== oldVal) {
+    selectedText.value = findOptionText(newVal)
+  }
+})
 
-          this.StartTime = true;
-          this.EndTime = false;
-          this.currentYear = new Date().getFullYear(),
-            this.currentMonth = new Date().getMonth(),
-            this.isDropdownVisible = false;
-          this.isIconOpen = false;
+watch(() => clickDropdownBoxEl.value, (newVal) => {
+  if (newVal == null) {
+    document.removeEventListener('click', handleOutsideClick)
+  } else {
+    document.addEventListener('click', handleOutsideClick)
+  }
+})
+
+watch(() => currentYear.value, (newVal) => {
+  generateDaysOfMonth();
+})
+
+watch(() => currentMonth.value, (newVal) => {
+  generateDaysOfMonth();
+})
+
+
+
+const currentYear2 = ref(new Date().getFullYear())
+const currentMonth2 = ref(new Date().getMonth())
+const daysOfMonth2 = ref([])
+
+// 上一个月
+const prevMonth2 = () => {
+  currentMonth2.value--
+  if (currentMonth2.value < 0) {
+    currentMonth2.value = 11
+    currentYear2.value--
+  }
+}
+
+// 下一个月
+const nextMonth2 = () => {
+  currentMonth2.value++
+  if (currentMonth2.value > 11) {
+    currentMonth2.value = 0
+    currentYear2.value++
+  }
+}
+
+// 获取日期数据
+const generateDaysOfMonth2 = () => {
+  const daysInMonth = new Date(currentYear2.value, currentMonth2.value + 1, 0).getDate()
+  const today = new Date()
+  const firstDayOfMonth = new Date(currentYear2.value, currentMonth2.value, 1).getDay()
+
+  daysOfMonth2.value = []
+
+  // 填充前置槽位
+  const daysInLastMonth = new Date(currentYear2.value, currentMonth2.value, 0).getDate();
+  for (let i = daysInLastMonth - firstDayOfMonth + 1; i <= daysInLastMonth; i++) {
+    const currentDate = new Date(currentYear.value, currentMonth.value - 1, i);
+    daysOfMonth2.value.push({
+      date: currentDate,
+      isEmpty: true,
+      isToday: false,
+      isSelected: false,
+    })
+  }
+
+  // 填充日期
+  for (let day = 1; day <= daysInMonth; day++) {
+    const currentDate = new Date(currentYear2.value, currentMonth2.value, day);
+    // console.log("currentDate", daysInMonth)
+    daysOfMonth2.value.push({
+      date: currentDate,
+      isEmpty: false,
+      isToday: currentDate.toDateString() === today.toDateString(),
+      isSelected: +endActiveTab.value === +currentDate
+    })
+  }
+
+  // 填充后置槽位
+  const endCount = 7 - daysOfMonth2.value.length % 7;
+  for (let l = 1; l <= endCount && endCount < 7; l++) {
+    const currentDate = new Date(currentYear2.value, currentMonth2.value + 1, l);
+    daysOfMonth2.value.push({
+      date: currentDate,
+      isEmpty: true,
+      isToday: false,
+      isSelected: false,
+    })
+  }
+}
+
+// 选择日期
+const activeTabstates2 = ref('')
+const selectItem2 = (val, index) => {
+  if (!val.isEmpty) {
+    if (startTime.value != '') {
+      const formattedDate = `${currentYear2.value}-${(currentMonth2.value + 1).toString().padStart(2, '0')}-${val.date.getDate().toString().padStart(2, '0')}`
+      endTime.value = formattedDate;
+      const valid = validateDateRange(startTime.value, endTime.value);
+      if (valid == 0) {
+        const dateRange = `${startTime.value} -- ${endTime.value}`;
+        selectedText.value = dateRange;
+        endActiveTab.value = val.date;
+        emit('EndTime', formattedDate);
+        startActiveTab.value = val.date;
+        if (activeTabstates2.value == '') {
+          daysOfMonth2.value[index].isSelected = true
+          activeTabstates2.value = index
         } else {
-          this.$ZJMessage({
-            type: 'warning',
-            message: '结束时间必须在起始时间之后',
-          })
+          daysOfMonth2.value[activeTabstates2.value].isSelected = false;
+          activeTabstates2.value = index;
+          daysOfMonth2.value[index].isSelected = true;
         }
-
-      }
-    },
-    findOptionText(value) {
-      return this.options.find(option => option.value === value)?.text || '';
-    }
-  },
-  watch: {
-    value(newVal, oldVal) {
-      if (newVal !== oldVal) {
-        this.selectedText = this.findOptionText(newVal);
+        isDropdownVisible.value = false;
+        isIconOpen.value = false;
       }
     }
   }
-};  
-</script>  
+}
 
+watch(() => currentYear2.value, (newVal) => {
+  generateDaysOfMonth2();
+})
+
+watch(() => currentMonth2.value, (newVal) => {
+  generateDaysOfMonth2();
+})
+</script>
+  
 <style scoped> .header {
    display: flex;
    justify-content: space-between;
    align-items: center;
-   padding: 10px 20px;
+   padding: 15px 15px 10px 15px;
    /* background-color: #a4fce0; */
  }
 
- .header span {
-   font-size: 16px;
-   font-weight: normal;
-   color: var(--ZJ-main-text-color);
+ .header-center {
+   display: flex;
+   gap: 15px;
  }
 
  .header button {
    border: none;
    padding: 5px;
-   border-radius: 5px;
+   border-radius: 50%;
    cursor: pointer;
    display: flex;
    align-items: center;
    justify-content: center;
-   background-color: var(--ZJ-main-message-color);
-   border: var(--ZJ-main-border-light);
+   background-color: var(--ZJ-main-hover);
  }
 
  .header button:hover {
@@ -268,97 +447,107 @@ export default {
    padding: 10px 0;
    font-size: 14px;
    margin: 0 10px;
-   border-bottom: var(--ZJ-main-border-light);
+   font-weight: bold;
  }
 
  .days {
    display: grid;
    text-align: center;
    grid-template-columns: repeat(7, 1fr);
-   /* background-color: #eaff7f;  */
-   padding: 10px;
+   /* background-color: #eaff7f; */
+   padding: 10px 15px 15px 15px;
+   gap: 4px;
  }
 
  .days div {
    text-align: center;
-   height: 30px;
-   line-height: 30px;
+   height: 35px;
+   line-height: 35px;
    font-size: 14px;
    cursor: default;
+   border-radius: 5px;
    /* background-color: antiquewhite; */
  }
 
  /* 正常情况 */
- .is-normal:hover {
-   /* height: 30px;  
-  line-height: 30px;   */
+ .is-normal {
    background-color: var(--ZJ-main-hover);
-   border-radius: 5px;
+
+ }
+
+ .is-normal:hover {
+   box-shadow: inset 0 0 0 2px var(--ZJ-default-main);
+   background-color: var(--ZJ-default-main-hover);
+   color: var(--ZJ-default-main);
  }
 
  /* 为空情况 */
  .is-empty,
  .is-empty:hover {
+   /* background-color: var(--ZJ-main-hover); */
    background-color: var(--ZJ-main-message-color);
-   border-radius: 5px;
+   color: var(--ZJ-main-text-label-color);
  }
 
  /* 今天的日期样式 */
  .is-today,
  .is-today:hover {
-   background: var(--ZJ-default-main-hover);
+   background-color: var(--ZJ-default-main-hover);
    color: var(--ZJ-default-main);
-   border-radius: 5px;
+   font-weight: bold;
  }
 
-
+ /* 选中日期样式 */
+ .is-selected,
+ .is-selected:hover {
+   color: var(--ZJ-main);
+   background-color: var(--ZJ-default-main);
+ }
 
  .custom-select {
    position: relative;
-   /* display: inline-block;   */
    display: flex;
    justify-content: center;
    align-items: center;
-   min-width: 350px;
  }
 
  .selected {
-   background: var(--ZJ-main);
    height: 32px;
-   border-radius: var(--ZJ-main-border-radius);
-   padding: 0 12px 0 15px;
-   border: var(--ZJ-main-border-light);
-   gap: 5px;
    width: 100%;
    position: relative;
+   padding: 0 12px 0 15px;
    display: flex;
    justify-content: space-between;
    align-items: center;
+   gap: 5px;
    font-size: 14px;
    font-weight: normal;
+   border-radius: var(--ZJ-main-border-radius);
    color: var(--ZJ-main-text-label-color);
+   border: var(--ZJ-main-hover);
+   background: var(--ZJ-main-hover);
  }
 
  .dropdown {
    position: absolute;
    top: 47px;
+   left: 0;
    width: 100%;
-   min-width: 350px;
-   max-height: 300px;
+   width: 641px;
    min-height: 100%;
    transition: height 0.2s;
    border-radius: var(--ZJ-main-border-radius-dropdown);
    box-shadow: var(--ZJ-main-box-shadow);
-   border: var(--ZJ-main-border-light);
    background-color: var(--ZJ-main-message-color);
    z-index: 2;
+   display: flex;
  }
 
  .dropdown::after {
    content: '';
    top: -9px;
    position: absolute;
-   left: calc(50% - 5px);
+   left: 10%;
    width: 0;
    height: 0;
    transform: rotate(-45deg);
@@ -368,18 +557,14 @@ export default {
    z-index: 2;
  }
 
- .dropdown::before {
-   content: '';
-   top: -10px;
-   position: absolute;
-   left: calc(50% - 5px);
-   width: 0;
-   height: 0;
-   transform: rotate(-45deg);
-   border-top: solid 15px #DCDCDC;
-   border-left: solid 15px transparent;
-   border-bottom: solid 15px transparent;
-   z-index: 2;
+ .dropdown-start,
+ .dropdown-end {
+   flex-shrink: 0;
+   width: 320px;
+ }
+
+ .dropdown-start {
+   border-right: var(--ZJ-main-border-light);
  }
 
  /* 动画 */
@@ -399,27 +584,5 @@ export default {
  .Select-leave-to {
    opacity: 0;
    transform: translateY(-5%);
- }
-
-
- /*  */
- /* Date */
- /*  */
- .Date-enter-active {
-   opacity: 0;
-   transition: all 0.5s ease;
- }
-
- .Date-enter-to {
-   opacity: 1;
-   transition: all 0.5s ease;
- }
-
- .Date-leave-active {
-   opacity: 1;
- }
-
- .Date-leave-to {
-   opacity: 0;
  }
 </style>
