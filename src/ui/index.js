@@ -29,7 +29,7 @@ import ZJInputOTP from "./components/ZJInputOTP/index.vue";
 import ZJDrag from "./components/ZJDrag/index.vue";
 // 导入函数
 import ZJMessage from "./components/ZJMessage/ZJMessage.js";
-import { ZJ_GetImage } from "./utils/ZJUtils.js";
+import { ZJ_GetImage, ZJ_ErrorImg } from "./utils/ZJUtils.js";
 
 // 对外暴露插件对象，注册全局组件
 const components = {
@@ -63,18 +63,24 @@ const components = {
   ZJDrag
 };
 
+const funComponents = {
+  ZJMessage,
+  ZJ_GetImage,
+  ZJ_ErrorImg,
+}
+
 // 插件对象
 const ZJUI = {
   // install方法，用于安装插件
   install(app) {
-    // 使用Object.keys()遍历对象的所有键
+    // 使用Object.keys()遍历对象的所有键,动态注册全局组件
     Object.keys(components).forEach((key) => {
-      // 动态注册全局组件
       app.component(key, components[key]);
     });
-    // 注册 ZJMessage 为全局方法
-    app.config.globalProperties.$ZJMessage = ZJMessage;
-    app.config.globalProperties.$ZJ_GetImage = ZJ_GetImage;
+    // 注册全局方法
+    Object.keys(funComponents).forEach((key) => {
+      app.config.globalProperties[`$${key}`] = funComponents[key];
+    });
   }
 };
 

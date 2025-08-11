@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div :style="{ paddingLeft: level > 0 ? menuChildLeft() : undefined }"
+    <div v-if="item.path != '/:pathMatch(.*)*'" :style="{ paddingLeft: level > 0 ? menuChildLeft() : undefined }"
       :class="{ 'menuFather': true, 'selected': item.name === userStore.ZJAsideMenuNameSelect }"
       @click="toggleChildMenu(item.name, props.index, item.path)">
       <div class="menuFather-icon">

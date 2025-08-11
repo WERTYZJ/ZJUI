@@ -75,7 +75,6 @@ export const ZJ_Throttle = (func, wait) => {
     }
   };
 }
-
 // 使用示例
 // 原始的滚动事件处理函数
 // function handleScroll() {
@@ -85,3 +84,7 @@ export const ZJ_Throttle = (func, wait) => {
 // const throttledScrollHandler = throttle(handleScroll, 200);
 // // 监听滚动事件，并使用节流后的函数
 // window.addEventListener('scroll', throttledScrollHandler);
+
+export const ZJ_ErrorImg = (event) => {
+  event.target.src = '/ZJ-error-image.svg'
+}

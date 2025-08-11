@@ -7,7 +7,13 @@ const routes = [
     name: 'home',
     meta: { icon: 'home' },
     component: () => import('@/views/home/index.vue')
-  }
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'pageNotFound',
+    meta: { icon: 'error404' },
+    component: () => import('@/views/error/404.vue')
+  },
 ]
 
 /**
@@ -431,6 +437,12 @@ export const getRoutes = (userType) => {
         name: '学习链接',
         meta: { icon: 'studyChains' },
         component: () => import('@/views/studyChains/index.vue')
+      },
+      {
+        path: '/404',
+        name: '404',
+        meta: { icon: 'error404' },
+        component: () => import('@/views/error/404.vue')
       },
       {
         path: '/info',

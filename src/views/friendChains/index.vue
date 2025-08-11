@@ -7,10 +7,10 @@
       <div class="main">
         <div class="main-box" v-for="(i, index) in frendlyChains" :key="index" @click="handelBox(i.path)">
           <div class="left">
-            <img :src="i.img || i.icon" @error="errorImg" alt="icon">
+            <img :src="i.icon" @error="$ZJ_ErrorImg" alt="icon">
           </div>
           <div class="right">
-            <div class="right-title" :style="{ color: `${i.titleColor}` }">{{ i.title }}</div>
+            <div class="right-title" :style="{ color: getColor(index) }">{{ i.title }}</div>
             <div class="right-content">{{ i.content }}</div>
           </div>
         </div>
@@ -21,43 +21,67 @@
 
 <script setup>
 
+import { ref, getCurrentInstance } from 'vue'
+const { appContext } = getCurrentInstance();
+const $ZJ_ErrorImg = appContext.config.globalProperties.$ZJ_ErrorImg;
+
+const getColor = (index) => {
+  const colorArrey = [
+    { bg: "#d8f0d8", text: "#4CAF50" },
+    { bg: "#cae6fd", text: "#589be0" },
+    { bg: "#ffe3cc", text: "#FFA500" },
+    { bg: "#fbddda", text: "#FF5252" },
+    { bg: "#EFF0FF", text: "#7F56D9" },
+  ];
+  const colorIndex = index % colorArrey.length;
+  const color = colorArrey[colorIndex].text;
+  return color;
+}
+
 const frendlyChains = ref([
   {
     icon: '/ZJUI.png',
     title: "Green Video",
-    titleColor: "#36ad6a",
     path: 'https://greenvideo.cc/',
     content: "GreenVideo的使用是完全免费的，在这里你们能够将视频网址输入此地并下载视频。"
   },
   {
-    icon: '/ZJUI.png',
-    img: 'https://sqlpub.com/logo.svg',
+    icon: 'https://sqlpub.com/logo.svg',
     title: "SQLPub",
-    titleColor: "#7F56D9",
     path: 'https://www.sqlpub.com/',
     content: "SQLPub 提供最新版本、甚至是开发者版本的 MySQL 服务器测试服务。"
   },
   {
-    icon: '/ZJUI.png',
-    img: 'https://tools.pdf24.org/static/img/pageIcons/svg/default.svg?v=5cae54fd',
+    icon: 'https://tools.pdf24.org/static/img/pageIcons/svg/default.svg?v=5cae54fd',
     title: "PDF24",
-    titleColor: "#4098fc",
     path: 'https://tools.pdf24.org/zh/',
     content: "免费且易于使用的在线PDF工具。"
   },
   {
     icon: '/ZJUI.png',
-    img: '',
     title: "得奇小说网",
-    titleColor: "#de576d",
     path: 'https://www.deqixs.com/',
     content: "免费的小说txt下载网站。"
   },
+  {
+    icon: '',
+    title: "CSS3剪贴路径(Clip-path)在线生成器工具",
+    path: 'https://tools.jb51.net/code/css3path',
+    content: "CSS3剪贴路径(Clip-path)在线生成器工具。"
+  },
+  {
+    icon: '',
+    title: "替换PNG图片中的任意颜色为新颜色",
+    path: 'https://www.lzltool.cn/Toolkit/ChangePngColor',
+    content: "替换PNG图片中的任意颜色为新颜色的工具。"
+  },
+  {
+    icon: '',
+    title: "脚本之家在线工具",
+    path: 'https://tools.jb51.net/#home',
+    content: "万能大全的工具合集。"
+  },
 ])
-
-const errorImg = (event) => {
-  event.target.src = '/ZJUI.png'
-}
 
 const handelBox = (path) => {
   window.open(path, '_blank')
