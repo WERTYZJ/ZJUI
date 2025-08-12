@@ -20,10 +20,10 @@
       "ChangeSuccess": "语言切换成功!"
     }
   },
-  "welcome":{
-    "header":{
-      "t1":"ZJ-UI(官方文档)",
-      "t2":"Copyright © 2025-present ZJ-UI",
+  "welcome": {
+    "header": {
+      "t1": "ZJ-UI(官方文档)",
+      "t2": "Copyright © 2025-present ZJ-UI",
       "menu": {
         "guide": "指引",
         "config": "配置",
@@ -31,15 +31,15 @@
         "version": "版本"
       }
     },
-    "main":{
-      "t1":"ZJ-UI",
-      "t2":"下一代前端ui框架",
-      "t3":"随心所欲的组件尽情更改",
-      "b1":"开始",
-      "b2":"为什么选择ZJ-UI?",
-      "b3":"在Gitee上查看",
-      "items":[
-        { 
+    "main": {
+      "t1": "ZJ-UI",
+      "t2": "下一代前端ui框架",
+      "t3": "随心所欲的组件尽情更改",
+      "b1": "开始",
+      "b2": "在Gitee上查看",
+      "b3": "在GitHub上查看",
+      "items": [
+        {
           "title": "Vue3及以上版本",
           "content": "更快的启动速度，更安全。"
         },
@@ -65,20 +65,20 @@
         }
       ]
     },
-    "contributors":{
-      "t1":"ZJ-UI是免费和开源的，由出色的赞助商提供。",
-      "b1":"成为赞助商"
+    "contributors": {
+      "t1": "ZJ-UI是免费和开源的，由出色的赞助商提供。",
+      "b1": "成为赞助商"
     },
-    "contribute-selfe":{
-      "t1":"感谢以下赞助者的赞数和支持，我们ZJ-UI将越来越好。",
-      "t2":"赞助金额:"
+    "contribute-selfe": {
+      "t1": "感谢以下赞助者的赞数和支持，我们ZJ-UI将越来越好。",
+      "t2": "赞助金额:"
     },
-    "contribute":{
-      "t1":"人生自是有缘，相逢未必偶然，如果你今天来到了这里，并且很喜欢ZJ-UI，您可以通过以下方式赞助我们，我们将铭记！"
+    "contribute": {
+      "t1": "人生自是有缘，相逢未必偶然，如果你今天来到了这里，并且很喜欢ZJ-UI，您可以通过以下方式赞助我们，我们将铭记！"
     },
-    "footer":{
-      "t1":"根据 MIT 许可证发布。",
-      "t2":"Copyright © 2025-present ZJ-UI"
+    "footer": {
+      "t1": "根据 MIT 许可证发布。",
+      "t2": "Copyright © 2025-present ZJ-UI"
     }
   }
 }

@@ -6,13 +6,16 @@
         <p class="text2">{{ t('welcome.main.t2') }}</p>
         <div class="m-flex m-gap-10 m-flex-center" style="margin-top: 15px;">
           <span class="text3">{{ t('welcome.main.t3') }}</span>
-          <span class="text-v">{{ZJUI_VERSION}}</span>
+          <span class="text-v">{{ ZJUI_VERSION }}</span>
         </div>
         <div class="m-flex m-gap-15 w-button" style="margin-top: 20px;">
-          <ZJButton @click="open('goHome')" type="default" :text="t('welcome.main.b1')" style="border-radius:20px;padding: 20px;cursor: pointer;" icon="right" iconRight>
+          <ZJButton @click="open('goHome')" type="default" :text="t('welcome.main.b1')"
+            style="border-radius:20px;padding: 20px;cursor: pointer;" icon="right" iconRight>
           </ZJButton>
-          <ZJButton type="info" :text="t('welcome.main.b2')" style="border-radius:20px;padding: 20px;"></ZJButton>
-          <ZJButton type="success" :text="t('welcome.main.b3')" style="border-radius:20px;padding: 20px;"></ZJButton>
+          <ZJButton @click="open('goGitee')" type="info" :text="t('welcome.main.b2')"
+            style="border-radius:20px;padding: 20px;"></ZJButton>
+          <ZJButton @click="open('goGitHub')" type="success" :text="t('welcome.main.b3')"
+            style="border-radius:20px;padding: 20px;"></ZJButton>
         </div>
       </div>
       <div class="w-right">
@@ -21,8 +24,10 @@
       </div>
     </div>
     <div class="welcome-body m-flex-col m-gap-20">
-      <div class="welcome-body-box" v-for="(i,index) in welcomeData" :key="index">
-        <ZJSvgIcons :icon="i.icon" class="welcome-body-box-icon" style="background-color:var(--ZJ-main-hover);padding:5px;border-radius:5px;height: 25px;width: 25px;"></ZJSvgIcons>
+      <div class="welcome-body-box" v-for="(i, index) in welcomeData" :key="index">
+        <ZJSvgIcons :icon="i.icon" class="welcome-body-box-icon"
+          style="background-color:var(--ZJ-main-hover);padding:5px;border-radius:5px;height: 25px;width: 25px;">
+        </ZJSvgIcons>
         <p>{{ i.title }}</p>
         <span>{{ i.content }}</span>
       </div>
@@ -33,26 +38,32 @@
 <script setup>
 import { useUserStore } from '@/store';
 import { useI18n } from 'vue-i18n';
-const {t,tm} = useI18n();
+const { t, tm } = useI18n();
 const userStore = useUserStore();
 
 const ZJUI_VERSION = import.meta.env.VITE_ZJUI_VERSION;
 
 const welcomeData = computed(() => {
   const items = tm('welcome.main.items')
-  
+
   return items.map((item, index) => ({
-    icon: ['VueIcon','ViteIcon', 'Pinia', 'I18n', 'HeightLight', 'Expand'][index],
+    icon: ['VueIcon', 'ViteIcon', 'Pinia', 'I18n', 'HeightLight', 'Expand'][index],
     title: item.title,
     content: item.content
   }))
 })
 
-const open = (val)=>{
-  switch(val){
+const open = (val) => {
+  switch (val) {
     case 'goHome':
       userStore.layout.showWelcome = false;
-      break
+      break;
+    case 'goGitee':
+      window.open('https://gitee.com/WERTYUZJ/zjui.git', '_blank');
+      break;
+    case 'goGitHub':
+      window.open('https://github.com/WERTYZJ/ZJUI', '_blank');
+      break;
   }
 }
 
@@ -100,6 +111,7 @@ const open = (val)=>{
   font-weight: bold;
   font-size: 14px;
 }
+
 .w-right {
   position: relative;
   z-index: -1;
@@ -120,24 +132,28 @@ const open = (val)=>{
   top: 0;
   left: 0;
 }
-.welcome-body{
-  margin-top:10px;
+
+.welcome-body {
+  margin-top: 10px;
   display: grid;
-  grid-template-columns: repeat(3,1fr);
+  grid-template-columns: repeat(3, 1fr);
 }
-.welcome-body-box{
+
+.welcome-body-box {
   background-color: var(--ZJ-main-bg-color);
-  border-radius:15px;
+  border-radius: 15px;
   padding: 24px;
 }
-.welcome-body-box p{
+
+.welcome-body-box p {
   line-height: 24px;
   font-size: 16px;
   font-weight: 600;
   color: var(--ZJ-main-text-color);
   margin: 20px 0 8px 0;
 }
-.welcome-body-box span{
+
+.welcome-body-box span {
   padding-top: 8px;
   line-height: 24px;
   font-size: 14px;
@@ -146,49 +162,61 @@ const open = (val)=>{
 }
 
 @media (max-width:940px) {
-  .text{
+  .text {
     display: none;
   }
-  .text2{
-    font-size:6vw;
+
+  .text2 {
+    font-size: 6vw;
   }
-  .text3{
-    font-size:3vw;
+
+  .text3 {
+    font-size: 3vw;
   }
-  .w-left{
+
+  .w-left {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
   }
-  .main{
+
+  .main {
     flex-direction: column-reverse;
     padding-bottom: 30px;
   }
-  .w-right-bg,.w-right-img{
+
+  .w-right-bg,
+  .w-right-img {
     width: 35vw;
     height: 25vh;
   }
 }
+
 @media (max-width:890px) {
-  .welcome-body{
-    grid-template-columns: repeat(2,1fr);
+  .welcome-body {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
+
 @media (max-width:600px) {
-  .welcome-body{
-    grid-template-columns: repeat(1,1fr);
+  .welcome-body {
+    grid-template-columns: repeat(1, 1fr);
   }
 }
+
 @media (max-width:550px) {
-  .w-button{
+  .w-button {
     display: flex;
     flex-direction: column;
   }
-  .w-right-bg,.w-right-img{
+
+  .w-right-bg,
+  .w-right-img {
     display: none;
   }
-  .main{
+
+  .main {
     padding: 40px 0;
   }
 }

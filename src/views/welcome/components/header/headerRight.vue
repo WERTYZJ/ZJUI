@@ -73,12 +73,26 @@ const rightIcon = ref([
 ])
 
 const handleRightIcon = (index) => {
-  if (index == 0 || index == 2) {
-    window.open('https://github.com/WERTYZJ/ZJUI', '_blank');
+  if (index == 0) {
+    $ZJMessage({
+      type: 'warning',
+      message: '目前只有Gitee和GitHub仓库哟！',
+    });
+    // setTimeout(()=>{
+    //   $ZJMessage({
+    //     type: 'warning',
+    //     message: '正在跳转Gitee',
+    //   })
+    //   setTimeout(() => {
+    //     window.open('https://gitee.com/WERTYUZJ/zjui.git', '_blank');
+    //   }, 1000);
+    // },2000)
   }
   if (index == 1) {
     window.open('https://gitee.com/WERTYUZJ/zjui.git', '_blank');
-    return;
+  }
+  if (index == 2) {
+    window.open('https://github.com/WERTYZJ/ZJUI', '_blank');
   }
 }
 
