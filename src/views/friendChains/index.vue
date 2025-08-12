@@ -81,6 +81,12 @@ const frendlyChains = ref([
     path: 'https://tools.jb51.net/#home',
     content: "万能大全的工具合集。"
   },
+  {
+    icon: '',
+    title: "如何使用Netlify之前端HTML+后端Node.js的简单部署",
+    path: 'https://blog.csdn.net/qq_42489313/article/details/145992896',
+    content: "netlify的自动化部署方法。"
+  },
 ])
 
 const handelBox = (path) => {

@@ -1,15 +1,15 @@
 # ZJ-UI
 
-<a href="https://zj-ui.netlify.app" target="_blank">
+<a href="https://zjui.netlify.app/" target="_blank">
 <img src="https://img.shields.io/badge/Vue-3.5.14-%236CB52D.svg" alt="License" />
 </a>
-<a href="https://zj-ui.netlify.app" target="_blank">
+<a href="https://zjui.netlify.app/" target="_blank">
 <img src="https://img.shields.io/badge/Vite-6.3.5-%236CB52D.svg" alt="License" />
 </a>
 
 
 ## 访问地址（Access address）
-https://zj-ui.netlify.app
+https://zjui.netlify.app/
 
 ## 简介（ZH）
 这是一个vue3的前端UI组件库,名字叫做（zhang jian-UI）这不仅仅是一个UI组件库，还是一个超好看的后台管理模板，支持主题，国际化等多种功能，与诸君共赏！
@@ -22,6 +22,7 @@ This is a vue3 front-end UI component library, the name is (zhang jian-UI) This 
 |         | 前端                                                         | 后端                                                         |
 | :------ | :----------------------------------------------------------- | :----------------------------------------------------------- |
 | Gitee   | [WERTYUZJ/zjui](https://gitee.com/WERTYUZJ/zjui.git) | [暂未开放](https://gitee.com/WERTYUZJ/zjui.git) |
+| GitHub  | [WERTYUZJ/zjui](https://github.com/WERTYZJ/ZJUI) | [暂未开放](https://github.com/WERTYZJ/ZJUI) |
 
 ## 系统截图
 

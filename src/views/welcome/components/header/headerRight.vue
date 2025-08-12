@@ -4,7 +4,7 @@
       <span class="m-pointer">{{ i.text }}</span>
     </div>
     <div class="m-flex title left-hid" @click="handleRightBar(rightBar.length)">
-      <span class="m-pointer" ref="headerBarEl">{{ rightBar[rightBar.length-1].text }}</span>
+      <span class="m-pointer" ref="headerBarEl">{{ rightBar[rightBar.length - 1].text }}</span>
       <headerRightBar v-show="showHeaderRightBar" class="headerBarElPosition"></headerRightBar>
     </div>
     <hr>
@@ -26,12 +26,12 @@ import { useUserStore } from '@/store';
 import headerRightBar from '@/views/welcome/components/header/headerRightBar.vue';
 import { useI18n } from 'vue-i18n';
 
-const {t} = useI18n()
+const { t } = useI18n()
 const userStore = useUserStore()
 const { appContext } = getCurrentInstance();
 const $ZJMessage = appContext.config.globalProperties.$ZJMessage;
 
-const rightBar = computed(()=>{
+const rightBar = computed(() => {
   return [
     {
       text: t('welcome.header.menu.guide'),
@@ -45,53 +45,40 @@ const rightBar = computed(()=>{
     {
       text: t('welcome.header.menu.version'),
     },
-]
+  ]
 })
 
-const handleRightBar = (index)=>{
-  if(index>=0 && index!=rightBar.value.length){
+const handleRightBar = (index) => {
+  if (index >= 0 && index != rightBar.value.length) {
     userStore.layout.showWelcome = false;
   }
-  if(index==rightBar.value.length){
+  if (index == rightBar.value.length) {
     showHeaderRightBar.value = !showHeaderRightBar.value
   }
 }
 
 const rightIcon = ref([
-   {
+  {
     // text: 'Twitter',
-    icon:'Twitter',
+    icon: 'Twitter',
   },
   {
     // text: 'Gitee',
-    icon:'Gitee',
+    icon: 'Gitee',
   },
   {
     // text: 'GitHub',
-    icon:'GitHub',
+    icon: 'GitHub',
   },
 ])
 
-const handleRightIcon = (index)=>{
-  if(index==0 || index==2){
-     $ZJMessage({
-        type: 'warning',
-        message: '目前只有Gitee仓库哟！',
-      });
-      setTimeout(()=>{
-        $ZJMessage({
-          type: 'warning',
-          message: '正在跳转Gitee',
-        })
-        setTimeout(() => {
-          window.open('https://gitee.com/WERTYUZJ/zjui.git', '_blank');
-        }, 1000);
-      },2000)
-     return;
+const handleRightIcon = (index) => {
+  if (index == 0 || index == 2) {
+    window.open('https://github.com/WERTYZJ/ZJUI', '_blank');
   }
-  if(index==1){
-     window.open('https://gitee.com/WERTYUZJ/zjui.git', '_blank');
-     return;
+  if (index == 1) {
+    window.open('https://gitee.com/WERTYUZJ/zjui.git', '_blank');
+    return;
   }
 }
 
@@ -127,28 +114,31 @@ onUnmounted(() => {
 .title:hover {
   color: var(--ZJ-default-main);
 }
-hr{
+
+hr {
   border: none;
-  height:25px;
+  height: 25px;
   width: 2px;
   background-color: var(--ZJ-main-hover);
   flex-shrink: 0;
 }
+
 .headerBarElPosition {
   position: absolute;
   top: 50px;
 }
-.left-hid{
+
+.left-hid {
   display: none;
 }
 
 @media (max-width:920px) {
-  .hide{
+  .hide {
     display: none;
   }
-  .left-hid{
+
+  .left-hid {
     display: block;
   }
-}
-</style>
+}</style>
 
