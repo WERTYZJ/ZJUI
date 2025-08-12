@@ -10,10 +10,10 @@
 <img src="https://img.shields.io/badge/pinia-3.0.2-yellow" alt="License" />
 </a>
 <a href="https://zjui.netlify.app/" target="_blank">
-<img src="https://img.shields.io/badge/vue-i18n-11.1.4-red" alt="License" />
+<img src="https://img.shields.io/badge/vue_i18n-11.1.4-red" alt="License" />
 </a>
 <a href="https://zjui.netlify.app/" target="_blank">
-<img src="https://img.shields.io/badge/vue-router-4.5.1-pink" alt="License" />
+<img src="https://img.shields.io/badge/vue_router-4.5.1-pink" alt="License" />
 </a>
 
 ## 访问地址（Access address）
