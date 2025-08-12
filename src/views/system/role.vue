@@ -2,9 +2,10 @@
   <div>
     <ZJMain>
       <div class="role-header">
-        <ZJInput @ZJInputVal="$event => searchRoleKey" placeholder="请输入角色内容" :val="searchRoleKey"></ZJInput>
-        <ZJButton type="default" text="搜索"></ZJButton>
-        <ZJButton type="error" text="重置"></ZJButton>
+        <ZJInput @ZJInputVal="$event => resetVal($event)" placeholder="请输入角色内容" :val="searchRoleKey" ref="ZJInputEl">
+        </ZJInput>
+        <ZJButton type="default" text="搜索" icon="search"></ZJButton>
+        <ZJButton @click="handelReset" type="error" text="重置" icon="reload"></ZJButton>
       </div>
       <div class="role-main">
         <div class="role-main-box-tab">
@@ -31,8 +32,11 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
-import roleData from "../../mock/system/role.json"
+import { ref, onMounted, getCurrentInstance } from 'vue';
+import roleData from "../../mock/system/role.json";
+
+const { appContext } = getCurrentInstance();
+const $ZJ_Throttle = appContext.config.globalProperties.$ZJ_Throttle;
 
 const searchRoleKey = ref('')
 
@@ -47,13 +51,23 @@ const roleDataListTab = ref([
 ])
 
 onMounted(() => {
-  roleDataList.value = roleData.data
+  roleDataList.value = roleData.data;
 })
 
 function AcceptPageCount(page, size) {
   console.log("page", page)
   console.log("size", size)
 }
+
+const resetVal = (newVal) => {
+  searchRoleKey.value = newVal
+}
+
+const ZJInputEl = ref(null)
+const handelReset = $ZJ_Throttle(() => {
+  console.log("防抖点击")
+  ZJInputEl.value.reSetVal();
+}, 2000)
 
 
 // webpack获取静态页面的方法

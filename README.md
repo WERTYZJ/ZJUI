@@ -30,7 +30,7 @@ This is a vue3 front-end UI component library, the name is (zhang jian-UI) This 
 |         | 前端                                                         | 后端                                                         |
 | :------ | :----------------------------------------------------------- | :----------------------------------------------------------- |
 | Gitee   | [WERTYUZJ/zjui](https://gitee.com/WERTYUZJ/zjui.git) | [暂未开放](https://gitee.com/WERTYUZJ/zjui.git) |
-| GitHub  | [WERTYUZJ/zjui](https://github.com/WERTYZJ/ZJUI) | [暂未开放](https://github.com/WERTYZJ/ZJUI) |
+| GitHub  | [WERTYUZJ/ZJUI](https://github.com/WERTYZJ/ZJUI) | [暂未开放](https://github.com/WERTYZJ/ZJUI) |
 
 ## 系统截图
 

@@ -5,7 +5,7 @@
 
 <script setup>
 
-import { icons } from './components/ZJIcons'; // 假设 svgIcons.js 与 ZJSvgIcons.vue 在同一目录下
+import { icons } from './components/ZJIcons';
 
 const props = defineProps({
   icon: {

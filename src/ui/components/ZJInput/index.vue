@@ -27,15 +27,21 @@ const props = defineProps({
 const emits = defineEmits(['ZJInputVal'])
 
 watch(() => ZJInputVal.value, (newVal) => {
-  // console.log("ZJInputVal", newVal)
   emits('ZJInputVal', newVal)
 })
 
+const reSetVal = () => {
+  ZJInputVal.value = ''
+}
+
 onMounted(() => {
-  // console.log("sadasd", props.val)
   ZJInputVal.value = props.val
 })
 
+// 暴露方法给父组件
+defineExpose({
+  reSetVal
+})
 </script>
 
 <style scoped>

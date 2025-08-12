@@ -183,8 +183,7 @@
 <script>
 
 // import LoadingView from '@/ui/ZJ-loading.vue';
-import Time from '@/ui/utils/ZJTime';
-import FileSize from '@/ui/utils/ZJFileSize';
+import { ZJ_Time, ZJ_FileSize } from '../../ui/utils/ZJUtils';
 // import zim from '@/tools/ZIMConfig';
 // import ZJNoData from '@/ui/ZJ-noData.vue';
 // import { generateToken } from '@/tools/ZIMToken';
@@ -596,13 +595,13 @@ export default {
   computed: {
     // 使用computed属性来缓存msgTime函数的结果,解决时间报错问题
     msgTime() {
-      return Time();
+      return ZJ_Time();
     },
     userDataStore() {
       return this.$store.getters.getUserData;
     },
     FileSize() {
-      return FileSize();
+      return ZJ_FileSize();
     },
   },
   mounted() {

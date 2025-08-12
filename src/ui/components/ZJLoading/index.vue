@@ -17,7 +17,7 @@
 </template>  
   
 <script>
-import FileSize from '@/ui/utils/ZJFileSize';
+import { ZJ_FileSize } from '../../utils/ZJUtils';
 export default {
   props: {
     fileName: {
@@ -42,7 +42,7 @@ export default {
   },
   computed: {
     FileSize() {
-      return FileSize();
+      return ZJ_FileSize();
     },
   },
   watch: {
@@ -198,4 +198,5 @@ export default {
     50% {
       transform: scale(1.2, 1);
     }
-  }</style>
+  }
+</style>

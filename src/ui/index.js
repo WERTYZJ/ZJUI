@@ -28,8 +28,18 @@ import ZJInput from "./components/ZJInput/index.vue";
 import ZJInputOTP from "./components/ZJInputOTP/index.vue";
 import ZJDrag from "./components/ZJDrag/index.vue";
 // 导入函数
-import ZJMessage from "./components/ZJMessage/ZJMessage.js";
-import { ZJ_GetImage, ZJ_ErrorImg } from "./utils/ZJUtils.js";
+import {
+  ZJ_GetImage,
+  ZJ_ErrorImg,
+  ZJ_Debounce,
+  ZJ_Throttle,
+  ZJ_Time,
+  ZJ_FileSize,
+} from "./utils/ZJUtils.js";
+
+import {
+  ZJMessage,
+} from "./utils/ZJUI.js";
 
 // 对外暴露插件对象，注册全局组件
 const components = {
@@ -67,6 +77,10 @@ const funComponents = {
   ZJMessage,
   ZJ_GetImage,
   ZJ_ErrorImg,
+  ZJ_Debounce,
+  ZJ_Throttle,
+  ZJ_Time,
+  ZJ_FileSize,
 }
 
 // 插件对象

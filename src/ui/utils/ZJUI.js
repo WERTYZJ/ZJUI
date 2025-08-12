@@ -1,6 +1,6 @@
-// ZJMessage.js
+//ZJUI.js
 import { createApp } from 'vue';
-import MessageBox from './index.vue';
+import MessageBox from '../components/ZJMessage/index.vue';
 
 let messageInstance = null; // 用于存储当前的消息实例
 let mountNode = null; // 用于存储当前的挂载节点
@@ -45,4 +45,6 @@ const ZJMessage = (options) => {
   }
 };
 
-export default ZJMessage;
+export {
+  ZJMessage,
+};
