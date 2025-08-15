@@ -87,6 +87,12 @@ const frendlyChains = ref([
     path: 'https://blog.csdn.net/qq_42489313/article/details/145992896',
     content: "netlify的自动化部署方法。"
   },
+  {
+    icon: '',
+    title: "uniapp使用uview-plus(vue3项目)",
+    path: 'https://blog.csdn.net/qq_16182677/article/details/129935901',
+    content: "uniapp中安装uview-plus"
+  },
 ])
 
 const handelBox = (path) => {
