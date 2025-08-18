@@ -93,6 +93,12 @@ const frendlyChains = ref([
     path: 'https://blog.csdn.net/qq_16182677/article/details/129935901',
     content: "uniapp中安装uview-plus"
   },
+  {
+    icon: '',
+    title: "JS数组函数 reduce() 的用法—包含基础、进阶、高阶用法",
+    path: 'https://blog.csdn.net/sunyctf/article/details/134491546',
+    content: "reduce() 的用法"
+  },
 ])
 
 const handelBox = (path) => {

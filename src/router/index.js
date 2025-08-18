@@ -295,6 +295,12 @@ export const getRoutes = (userType) => {
             component: () => import('@/views/javaScript/function/index.vue')
           },
           {
+            path: '/function2',
+            name: 'js函数2',
+            meta: { icon: 'message' },
+            component: () => import('@/views/javaScript/function/index2.vue')
+          },
+          {
             path: '/animation',
             name: 'animation',
             meta: { icon: 'message' },

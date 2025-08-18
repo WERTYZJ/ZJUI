@@ -12,7 +12,7 @@ export default defineConfig({
     AutoImport({
       imports: [
         'vue',
-        'vue-router' // 如果需要路由相关 API
+        'vue-router', // 如果需要路由相关 API
       ],
       dts: true // 生成自动导入的类型声明文件
     })

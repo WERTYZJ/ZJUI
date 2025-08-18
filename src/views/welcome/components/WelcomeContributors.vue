@@ -2,28 +2,41 @@
   <div class="welcome-contributors">
     <div class="welcome-contributors-title">{{ t('welcome.contributors.t1') }}</div>
     <div class="welcome-body m-flex-col m-gap-15">
-      <div class="welcome-body-box" v-for="(i,index) in welcomeData" :key="index">
-        <ZJSvgIcons v-if="index==0" icon="ZJUILogo" style="height: 40px;width: 40px;"></ZJSvgIcons>
+      <div class="welcome-body-box" v-for="(i, index) in welcomeData" :key="index">
+        <ZJSvgIcons v-if="index == 0" icon="ZJUILogo" style="height: 40px;width: 40px;"></ZJSvgIcons>
         <img v-else :src="i.icon" alt="">
         <span>{{ i.contributor }}</span>
       </div>
     </div>
     <div class="welcome-contributors-btn">
-      <ZJButton type="default" :text="t('welcome.contributors.b1')" style="border-radius:20px;padding: 20px;color: var(--ZJ-main-text-color);" icon="right" iconRight></ZJButton>
+      <ZJButton type="default" :text="t('welcome.contributors.b1')" @click="clickBecome"
+        style="border-radius:20px;padding: 20px;color: var(--ZJ-main-text-color);" icon="right" iconRight></ZJButton>
     </div>
+    <ZJDialog v-show="showZJDialog" title="基础信息" type="info" isIcon @closeZJDialog="clickBecome()">
+      <p>成为赞助者,请添加QQ:671678579,或者扫描下方二维码直接赞助我们。</p>
+      <template #footer>
+        <ZJButton type="info2" text="取消" transparent @click="clickBecome()"></ZJButton>
+        <ZJButton type="default" text="确定" @click="clickBecome()"></ZJButton>
+      </template>
+    </ZJDialog>
   </div>
 </template>
 
 <script setup>
 import { useI18n } from 'vue-i18n';
-const {t} = useI18n()
+const { t } = useI18n()
 
 const welcomeData = ref([
   {
-    icon:'/logo/logo.png',
-    contributor:'ZJ-UI'
+    icon: '/logo/logo.png',
+    contributor: 'ZJ-UI'
   },
 ])
+
+const showZJDialog = ref(false);
+const clickBecome = () => {
+  showZJDialog.value = !showZJDialog.value
+}
 </script>
 
 <style scoped>
@@ -40,19 +53,23 @@ const welcomeData = ref([
   justify-content: center;
   align-items: center;
 }
-.welcome-contributors-title{
+
+.welcome-contributors-title {
   margin-bottom: 80px;
   color: var(--ZJ-main-text-color);
 }
-.welcome-contributors-btn{
+
+.welcome-contributors-btn {
   margin-top: 80px;
 }
-.welcome-body{
+
+.welcome-body {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(3,1fr);
+  grid-template-columns: repeat(3, 1fr);
 }
-.welcome-body-box{
+
+.welcome-body-box {
   background-color: var(--ZJ-main-bg-color);
   border-radius: var(--ZJ-main-border-radius-10);
   padding: 24px;
@@ -62,28 +79,33 @@ const welcomeData = ref([
   gap: 20px;
   cursor: pointer;
 }
-.welcome-body-box:hover{
+
+.welcome-body-box:hover {
   background-color: var(--ZJ-AsideMenu-hover);
   transition: var(--ZJ-main-transition);
 }
-.welcome-body-box img{
+
+.welcome-body-box img {
   height: 40px;
   width: 40px;
-  border-radius:10px;
+  border-radius: 10px;
 }
-.welcome-body-box span{
+
+.welcome-body-box span {
   font-size: 14px;
   font-weight: 500;
   color: var(--ZJ-main-text-label-color);
 }
+
 @media (max-width:890px) {
-  .welcome-body{
-    grid-template-columns: repeat(2,1fr);
+  .welcome-body {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
+
 @media (max-width:600px) {
-  .welcome-body{
-    grid-template-columns: repeat(1,1fr);
+  .welcome-body {
+    grid-template-columns: repeat(1, 1fr);
   }
 }
 </style>

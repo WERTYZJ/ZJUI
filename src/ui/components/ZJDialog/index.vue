@@ -74,6 +74,7 @@ const getDialogIcons = computed(() => {
   border-radius: var(--ZJ-main-border-radius-10);
   background: var(--ZJ-main-message-color);
   color: var(--ZJ-main-text-color);
+  max-width: 450px;
 }
 
 .ZJDialog-header {
