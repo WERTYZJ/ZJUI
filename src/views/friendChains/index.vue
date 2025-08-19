@@ -81,24 +81,6 @@ const frendlyChains = ref([
     path: 'https://tools.jb51.net/#home',
     content: "万能大全的工具合集。"
   },
-  {
-    icon: '',
-    title: "如何使用Netlify之前端HTML+后端Node.js的简单部署",
-    path: 'https://blog.csdn.net/qq_42489313/article/details/145992896',
-    content: "netlify的自动化部署方法。"
-  },
-  {
-    icon: '',
-    title: "uniapp使用uview-plus(vue3项目)",
-    path: 'https://blog.csdn.net/qq_16182677/article/details/129935901',
-    content: "uniapp中安装uview-plus"
-  },
-  {
-    icon: '',
-    title: "JS数组函数 reduce() 的用法—包含基础、进阶、高阶用法",
-    path: 'https://blog.csdn.net/sunyctf/article/details/134491546',
-    content: "reduce() 的用法"
-  },
 ])
 
 const handelBox = (path) => {

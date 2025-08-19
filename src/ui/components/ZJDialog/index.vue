@@ -40,8 +40,6 @@ const props = defineProps({
 })
 const emit = defineEmits(['closeZJDialog'])
 
-const showDialog = ref(false)
-
 function close() {
   emit('closeZJDialog');
 }

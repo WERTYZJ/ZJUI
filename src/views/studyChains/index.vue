@@ -63,6 +63,30 @@ const frendlyChains = ref([
     path: 'https://www.w3school.com.cn/jsref/jsref_obj_math.asp',
     content: "w3school是一个提供各种编程语言、技术和工具的在线学习平台，涵盖了HTML、CSS、JavaScript、Python、Java、C、SQL、AI等多个领域。"
   },
+  {
+    icon: '',
+    title: "如何使用Netlify之前端HTML+后端Node.js的简单部署",
+    path: 'https://blog.csdn.net/qq_42489313/article/details/145992896',
+    content: "netlify的自动化部署方法。"
+  },
+  {
+    icon: '',
+    title: "uniapp使用uview-plus(vue3项目)",
+    path: 'https://blog.csdn.net/qq_16182677/article/details/129935901',
+    content: "uniapp中安装uview-plus"
+  },
+  {
+    icon: '',
+    title: "JS数组函数 reduce() 的用法—包含基础、进阶、高阶用法",
+    path: 'https://blog.csdn.net/sunyctf/article/details/134491546',
+    content: "reduce() 的用法"
+  },
+  {
+    icon: '',
+    title: "如何使用 JavaScript 根据 ID 删除数组中的对象",
+    path: 'https://blog.csdn.net/m0_55666986/article/details/140476507',
+    content: "根据 ID 删除数组中的对象"
+  },
 ])
 
 const errorImg = (event) => {
