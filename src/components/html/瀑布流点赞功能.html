@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>uView-Plus瀑布流解决方案</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
+  <style>
+    body {
+      padding: 20px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      color: #333;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      padding: 25px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #eee;
+    }
+
+    h1 {
+      color: #2c3e50;
+      margin-bottom: 10px;
+    }
+
+    .description {
+      color: #7f8c8d;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      overflow-x: auto;
+      padding-bottom: 10px;
+    }
+
+    .tab {
+      padding: 10px 20px;
+      border-radius: 25px;
+      cursor: pointer;
+      background-color: #f8f9fa;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .tab.active {
+      background-color: #3498db;
+      color: white;
+      box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+    }
+
+    .waterfall-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-content {
+      padding: 15px;
+    }
+
+    .card-title {
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #2c3e50;
+      font-size: 16px;
+      line-height: 1.4;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 15px;
+    }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .like-btn {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 12px;
+      border-radius: 20px;
+      background: #f5f5f5;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .like-btn:hover {
+      background: #ffece0;
+    }
+
+    .like-btn.liked {
+      color: #e74c3c;
+      background: #ffeded;
+    }
+
+    .controls {
+      display: flex;
+      gap: 15px;
+      margin: 20px 0;
+      flex-wrap: wrap;
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      background: #3498db;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background: #2980b9;
+      transform: translateY(-2px);
+    }
+
+    .error {
+      color: #e74c3c;
+      padding: 10px;
+      background: #ffeded;
+      border-radius: 6px;
+      margin: 15px 0;
+    }
+
+    .solution {
+      background: #f8f9fa;
+      padding: 20px;
+      border-radius: 10px;
+      margin: 20px 0;
+    }
+
+    .solution h3 {
+      color: #2c3e50;
+      margin-top: 0;
+    }
+
+    .solution-item {
+      margin: 10px 0;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .solution-item:before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #27ae60;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 20px;
+      color: #7f8c8d;
+    }
+
+    @media (max-width: 768px) {
+      .waterfall-container {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>uView-Plus瀑布流数据不显示解决方案</h1>
+      <p class="description">
+        此页面演示了uView-Plus瀑布流组件常见的数据不显示问题及其解决方案。通过下面的控制按钮，您可以模拟不同场景并查看解决方案。
+      </p>
+    </header>
+
+    <div class="controls">
+      <button onclick="loadData()">加载数据</button>
+      <button onclick="simulateError()">模拟数据错误</button>
+      <button onclick="clearData()">清空数据</button>
+      <button onclick="loadWithImagesError()">模拟图片加载失败</button>
+    </div>
+
+    <div class="tabs">
+      <div class="tab active" onclick="changeTab(0)">推荐</div>
+      <div class="tab" onclick="changeTab(1)">热门</div>
+      <div class="tab" onclick="changeTab(2)">最新</div>
+      <div class="tab" onclick="changeTab(3)">关注</div>
+    </div>
+
+    <div id="error-message" class="error" style="display: none;"></div>
+
+    <div id="waterfall" class="waterfall-container">
+      <div class="loading" id="loading">点击"加载数据"按钮显示内容...</div>
+    </div>
+
+    <div class="solution">
+      <h3>常见问题解决方案</h3>
+      <div class="solution-item">确保数据格式正确，包含必要的字段（id, image, title, avatar, nickName）</div>
+      <div class="solution-item">检查图片URL是否有效，避免因图片加载失败导致布局问题</div>
+      <div class="solution-item">使用响应式数据更新方法，确保Vue能检测到数据变化</div>
+      <div class="solution-item">为瀑布流容器设置明确的高度或使用flex/grid布局</div>
+      <div class="solution-item">检查网络请求是否正确，使用try/catch处理可能的错误</div>
+      <div class="solution-item">确保uView-Plus组件正确引入和注册</div>
+    </div>
+  </div>
+
+  <script>
+    // 模拟数据
+    const mockData = [
+      {
+        id: 1,
+        image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
+        title: "美丽的山脉景色，令人心旷神怡",
+        avatar: "https://randomuser.me/api/portraits/men/1.jpg",
+        nickName: "旅行者",
+        like: false,
+        likeNum: 42
+      },
+      {
+        id: 2,
+        image: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131",
+        title: "可爱的小猫咪，萌萌哒",
+        avatar: "https://randomuser.me/api/portraits/women/2.jpg",
+        nickName: "爱猫人士",
+        like: true,
+        likeNum: 128
+      },
+      {
+        id: 3,
+        image: "https://images.unsplash.com/photo-1551963831-b3b1ca40c98e",
+        title: "美味的美食制作教程分享",
+        avatar: "https://randomuser.me/api/portraits/men/3.jpg",
+        nickName: "美食家",
+        like: false,
+        likeNum: 76
+      },
+      {
+        id: 4,
+        image: "https://images.unsplash.com/photo-1522770179533-24471fcdba45",
+        title: "现代建筑设计灵感分享",
+        avatar: "https://randomuser.me/api/portraits/women/4.jpg",
+        nickName: "建筑师",
+        like: true,
+        likeNum: 91
+      },
+      {
+        id: 5,
+        image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e",
+        title: "神秘森林探险日记",
+        avatar: "https://randomuser.me/api/portraits/men/5.jpg",
+        nickName: "探险家",
+        like: false,
+        likeNum: 57
+      },
+      {
+        id: 6,
+        image: "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2",
+        title: "豪华跑车鉴赏与评测",
+        avatar: "https://randomuser.me/api/portraits/women/6.jpg",
+        nickName: "汽车爱好者",
+        like: true,
+        likeNum: 204
+      }
+    ];
+
+    const errorData = [
+      {
+        id: 1,
+        // 缺少image字段
+        title: "这个条目缺少图片字段",
+        avatar: "https://randomuser.me/api/portraits/men/1.jpg",
+        nickName: "测试用户",
+        like: false,
+        likeNum: 5
+      },
+      {
+        id: 2,
+        image: "invalid-url", // 无效的图片URL
+        title: "这个条目的图片URL无效",
+        avatar: "https://randomuser.me/api/portraits/women/2.jpg",
+        nickName: "测试用户",
+        like: true,
+        likeNum: 10
+      }
+    ];
+
+    let currentData = [];
+    let currentTab = 0;
+
+    // 显示错误消息
+    function showError(message) {
+      const errorEl = document.getElementById('error-message');
+      errorEl.textContent = message;
+      errorEl.style.display = 'block';
+
+      // 5秒后隐藏错误消息
+      setTimeout(() => {
+        errorEl.style.display = 'none';
+      }, 5000);
+    }
+
+    // 加载数据
+    function loadData() {
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('error-message').style.display = 'none';
+
+      currentData = [...mockData];
+      renderWaterfall();
+    }
+
+    // 模拟数据错误
+    function simulateError() {
+      document.getElementById('loading').style.display = 'none';
+
+      currentData = [...errorData];
+      renderWaterfall();
+      showError("数据格式错误：某些条目缺少必要字段或包含无效URL");
+    }
+
+    // 清空数据
+    function clearData() {
+      currentData = [];
+      renderWaterfall();
+      document.getElementById('loading').style.display = 'block';
+      document.getElementById('loading').textContent = "数据已清空，点击'加载数据'重新加载";
+    }
+
+    // 模拟图片加载失败
+    function loadWithImagesError() {
+      document.getElementById('loading').style.display = 'none';
+
+      // 复制数据但将图片URL改为无效
+      currentData = mockData.map(item => ({
+        ...item,
+        image: "https://invalid-domain.com/invalid-image.jpg"
+      }));
+
+      renderWaterfall();
+      showError("图片加载失败：请检查图片URL是否正确");
+    }
+
+    // 切换标签
+    function changeTab(tabIndex) {
+      currentTab = tabIndex;
+      const tabs = document.querySelectorAll('.tab');
+      tabs.forEach((tab, index) => {
+        if (index === tabIndex) {
+          tab.classList.add('active');
+        } else {
+          tab.classList.remove('active');
+        }
+      });
+
+      // 在实际应用中，这里会根据标签加载不同的数据
+      loadData();
+    }
+
+    // 处理点赞
+    function handleLike(id) {
+      const index = currentData.findIndex(item => item.id === id);
+      if (index !== -1) {
+        currentData[index] = {
+          ...currentData[index],
+          like: !currentData[index].like,
+          likeNum: currentData[index].like
+            ? currentData[index].likeNum - 1
+            : currentData[index].likeNum + 1
+        };
+
+        renderWaterfall();
+      }
+    }
+
+    // 渲染瀑布流
+    function renderWaterfall() {
+      const waterfallEl = document.getElementById('waterfall');
+
+      if (currentData.length === 0) {
+        waterfallEl.innerHTML = '<div class="loading">没有数据可显示</div>';
+        return;
+      }
+
+      let html = '';
+
+      currentData.forEach(item => {
+        // 检查数据完整性
+        const hasError = !item.image || !item.title || !item.avatar || !item.nickName;
+
+        html += `
+                    <div class="card ${hasError ? 'error-card' : ''}">
+                        ${item.image ?
+            `<img src="${item.image}" class="card-image" alt="${item.title}" onerror="this.src='https://via.placeholder.com/300x200/ffcccc/ffffff?text=图片加载失败'">` :
+            `<div class="card-image" style="background:#ffcccc;display:flex;align-items:center;justify-content:center;color:#fff;">缺少图片</div>`
+          }
+                        <div class="card-content">
+                            <div class="card-title">${item.title || '无标题'}</div>
+                            <div class="card-footer">
+                                <div class="user-info">
+                                    <img src="${item.avatar || 'https://via.placeholder.com/30x30/cccccc/ffffff?text=?'}" class="avatar" alt="头像">
+                                    <span>${item.nickName || '未知用户'}</span>
+                                </div>
+                                <div class="like-btn ${item.like ? 'liked' : ''}" onclick="handleLike(${item.id})">
+                                    <span class="like-icon">${item.like ? '♥' : '♡'}</span>
+                                    <span>${item.likeNum}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+      });
+
+      waterfallEl.innerHTML = html;
+    }
+
+    // 初始化
+    document.addEventListener('DOMContentLoaded', () => {
+      // 初始加载数据
+      loadData();
+    });
+  </script>
+</body>
+
+</html>
