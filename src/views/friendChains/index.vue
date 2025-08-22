@@ -81,6 +81,12 @@ const frendlyChains = ref([
     path: 'https://tools.jb51.net/#home',
     content: "万能大全的工具合集。"
   },
+  {
+    icon: 'https://uinotes.com/public/img/logo.svg',
+    title: "app UI图片集合",
+    path: 'https://uinotes.com/',
+    content: "万能大全的app界面截图。"
+  },
 ])
 
 const handelBox = (path) => {

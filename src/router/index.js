@@ -384,6 +384,12 @@ export const getRoutes = (userType) => {
             meta: { icon: 'vue' },
             component: () => import('@/views/vue/transition/index.vue')
           },
+          {
+            path: '/imageExt',
+            name: 'node批量修改图片后缀',
+            meta: { icon: 'vue' },
+            component: () => import('@/views/vue/node/imageExt.vue')
+          },
         ]
       },
       {
