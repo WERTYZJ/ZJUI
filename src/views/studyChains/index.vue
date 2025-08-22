@@ -87,6 +87,12 @@ const frendlyChains = ref([
     path: 'https://blog.csdn.net/m0_55666986/article/details/140476507',
     content: "根据 ID 删除数组中的对象"
   },
+  {
+    icon: 'https://www.cnblogs.com/images/logo.svg?v=2SMrXdIvlZwVoB1akyXm38WIKuTHVqvGD0CweV-B6cY',
+    title: "uni-app 常用提示弹框 uni.showToast",
+    path: 'https://www.cnblogs.com/hailexuexi/p/17049290.html',
+    content: "uni.showToast使用方法"
+  },
 ])
 
 const errorImg = (event) => {
