@@ -93,6 +93,12 @@ const frendlyChains = ref([
     path: 'https://www.cnblogs.com/hailexuexi/p/17049290.html',
     content: "uni.showToast使用方法"
   },
+  {
+    icon: 'https://lf-web-assets.juejin.cn/obj/juejin-web/xitu_juejin_web/e08da34488b114bd4c665ba2fa520a31.svg',
+    title: "2025年vue3最新面试题",
+    path: 'https://juejin.cn/post/7458326985077587983#heading-1',
+    content: "2025年vue3最新面试题"
+  },
 ])
 
 const errorImg = (event) => {
